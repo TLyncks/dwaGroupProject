@@ -1,0 +1,8 @@
+.navbar a {
+  text-decoration: none;
+  color: white;
+}
+
+.navbar a:hover {
+  color: lightgray;
+}
