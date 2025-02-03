@@ -1,8 +1,143 @@
+body {
+  background: linear-gradient(rgb(221, 221, 221), rgb(182, 182, 182));
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  font-family: "cofo-sans-variable",sans-serif;
+  font-variation-settings: 'wght' 400, 'slnt' 0;
+  color: #434343;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  padding-top: 100px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: auto;
+}
+
+.navbar {
+  background-color: whitesmoke;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  padding: 10px 20px;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
 .navbar a {
   text-decoration: none;
-  color: white;
+  color: #434343;
 }
 
 .navbar a:hover {
-  color: lightgray;
+  color: rgb(38, 0, 255);
+}
+.nav-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-header img {
+  width: 40px;
+  height: 40px;
+}
+
+.nav-header h1 {
+  font-size: medium;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  margin-left: 20px;
+  justify-content: flex-start;
+  flex-grow: 1;
+}
+
+.nav-links ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.usr-panel {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.usr-panel img {
+  width: 30px;
+  height: auto;
+
+}
+
+footer {
+  background-color: rgb(15, 15, 15);
+  height: auto;
+  width: 100%;
+  bottom: 0;
+  position: absolute;
+  color: whitesmoke;
+  font-size: small;
+  font-weight: 200;
+}
+
+.f-format {
+  padding: 40px 225px;
+}
+
+.f-nav ul {
+  list-style: none;
+  align-content: center;
+  padding: 5px;
+}
+
+.f-nav li {
+  justify-content: flex-start;
+}
+
+.f-nav a {
+  text-decoration: none;
+  font-weight: 100;
+  color: whitesmoke;
+}
+
+.authors, .sids {
+  display: flex;
+  padding: 0px;
+  margin: 0px;
+  align-items: center;
+}
+
+.authors h4 {
+  font-weight: bold;
+  align-content: center;
+  margin: 0;
+}
+
+.authors ul {
+  list-style: none;
+  align-content: center;
+  display: inline-flex;
+  gap: 20px;
+}
+
+.authors a {
+  text-decoration: none;
+  color: whitesmoke;
 }
