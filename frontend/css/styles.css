@@ -22,7 +22,7 @@ body {
 }
 
 .navbar {
-  background-color: whitesmoke;
+  background-color: rgb(254 30 60);
   position: fixed;
   top: 0;
   left: 0;
@@ -32,7 +32,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-weight: 700;
+  font-weight: 200;
   gap: 20px;
   box-sizing: border-box;
   z-index: 1000;
@@ -40,11 +40,11 @@ body {
 
 .navbar a {
   text-decoration: none;
-  color: #434343;
+  color: whitesmoke;
 }
 
 .navbar a:hover {
-  color: rgb(38, 0, 255);
+  color: rgb(218, 218, 218);
 }
 
 .nav-header {
@@ -54,12 +54,13 @@ body {
 }
 
 .nav-header img {
-  width: 40px;
-  height: 40px;
+  width: auto;
+  height: 50px;
 }
 
 .nav-header h1 {
   font-size: medium;
+  color: whitesmoke;
 }
 
 .nav-links {
@@ -112,9 +113,10 @@ main {
   
 }
 
-.lp-banner img {
+.lp-banner video {
   height: 400px;
   width: 100%;
+  object-position: top;
   object-fit: cover;
 }
 
