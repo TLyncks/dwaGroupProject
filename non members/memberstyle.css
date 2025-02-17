@@ -1,0 +1,85 @@
+/* Ensure the membership section starts below the navbar */
+.membership-main {
+    margin-top: 100px; /* Adjust this value based on navbar height */
+}
+
+/* Membership Page Layout */
+.membership-main {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    background-color: white;
+}
+
+/* Membership container */
+.membership-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* Membership cards */
+.membership-card {
+    background-color: #d0021b; /* Red background */
+    color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    flex: 1 1 300px;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Header text inside cards */
+.membership-header {
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+/* Membership benefits list */
+.membership-benefits ul {
+    list-style: none;
+}
+
+.membership-benefits li {
+    padding-left: 20px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+/* Custom bullet point */
+.membership-benefits li::before {
+    content: ">";
+    position: absolute;
+    left: 0;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Membership button */
+.membership-button {
+    display: inline-block;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    padding: 0.75rem 1.25rem;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 1rem;
+    transition: background 0.3s ease-in-out;
+}
+
+.membership-button:hover {
+    background-color: #333;
+}
