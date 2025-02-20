@@ -1,0 +1,106 @@
+/* General Layout */
+.events-main {
+    margin-top: 100px;
+    padding: 3rem 2rem;
+    background: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Events Container */
+.events-container {
+    max-width: 1200px;
+    width: 100%;
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    border-top: 6px solid #d0021b;
+}
+
+/* Title Styling */
+.events-container h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 0.5rem;
+}
+
+.events-container p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+/* Filter Buttons */
+.filter-options {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.filter-btn {
+    background: #d0021b;
+    color: white;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background: #a00015;
+}
+
+/* Event Cards Grid */
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+/* Event Card */
+.event-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.12);
+    text-align: left;
+    transition: 0.3s;
+}
+
+.event-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.event-details {
+    padding: 1.5rem;
+}
+
+.event-details h2 {
+    font-size: 1.5rem;
+    color: #222;
+    margin-bottom: 0.5rem;
+}
+
+.event-btn {
+    background: #d0021b;
+    color: white;
+    font-size: 1rem;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.event-btn:hover {
+    background: #a00015;
+}

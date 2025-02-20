@@ -1,0 +1,148 @@
+/* General Page Layout */
+.application-main {
+    margin-top: 100px;
+    padding: 3rem 2rem;
+    background: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Increased Form Width */
+.form-container {
+    max-width: 1250px; /* Increased width */
+    width: 100%;
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    border-top: 6px solid #d0021b;
+}
+
+/* Title Styling */
+.form-container h1 {
+    font-size: 2.4rem;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 0.5rem;
+}
+
+.form-container p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+/* Wider & Well-Aligned Form Layout */
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Form Group with Card Styling */
+.form-group {
+    flex: 1;
+    text-align: left;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.12);
+    border-left: 6px solid #d0021b;
+    transition: 0.3s ease-in-out;
+    position: relative;
+}
+
+/* Hover Effect */
+.form-group:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Label Styling */
+.form-group label {
+    font-size: 1.1rem;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #444;
+}
+
+/* Input Fields */
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #f8f8f8;
+    transition: 0.3s ease-in-out;
+    display: block;
+    outline: none;
+}
+
+/* Fix Textarea Inside Box */
+.form-group textarea {
+    height: 120px; /* Adjusted height */
+    resize: vertical;
+    padding: 12px;
+}
+
+/* Focus Effects */
+.form-group input:focus,
+.form-group textarea:focus {
+    background: white;
+    box-shadow: 0px 4px 10px rgba(208, 2, 27, 0.2);
+}
+
+/* Section Headers */
+.section-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #d0021b;
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+/* Submit Button */
+.submit-container {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.submit-container button {
+    background: #d0021b;
+    color: white;
+    font-size: 1.4rem;
+    font-weight: bold;
+    padding: 14px 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+/* Button Hover Effect */
+.submit-container button:hover {
+    background: #a00015;
+    transform: translateY(-3px);
+    box-shadow: 0px 6px 12px rgba(208, 2, 27, 0.3);
+}
+
+/* Responsive Fixes */
+@media (max-width: 1024px) {
+    .form-container {
+        max-width: 95%;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .form-group {
+        width: 100%;
+    }
+}

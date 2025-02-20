@@ -1,0 +1,128 @@
+/* Page Layout */
+.membership-main {
+    margin-top: 100px;
+    padding: 2rem;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Membership Grid */
+.membership-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    gap: 2rem;
+}
+
+/* Left Section - Membership Title */
+.membership-info {
+    flex: 1;
+    text-align: left;
+}
+
+.membership-info h1 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.membership-subtitle {
+    font-size: 2rem;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+}
+
+/* Red Text */
+.red-text {
+    color: #d0021b;
+}
+
+.black-text {
+    color: #333;
+}
+
+/* Center Section - Membership Card */
+.membership-card {
+    background-color: #d0021b;
+    color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 350px;
+    text-align: center;
+}
+
+.membership-header {
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.membership-benefits ul {
+    list-style: none;
+    padding: 0;
+}
+
+.membership-benefits li {
+    padding: 10px;
+    position: relative;
+}
+
+/* Custom bullet */
+.membership-benefits li::before {
+    content: ">";
+    position: absolute;
+    left: 0;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Right Section - Pricing */
+.membership-pricing {
+    flex: 1;
+    text-align: center;
+}
+
+.price-card {
+    background-color: black;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 1rem;
+    max-width: 200px;
+}
+
+.price-title {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.price-amount {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Join Button */
+.membership-button {
+    display: inline-block;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    padding: 0.75rem 1.25rem;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out;
+    max-width: 250px;
+}
+
+.membership-button:hover {
+    background-color: #555;
+}
