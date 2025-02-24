@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="/frontend/css/styles.css" />
+    <link rel="stylesheet" href="/frontend/css/dashboard.css" />
+</head>
+<style>
+    .collapsible {
+      background-color: #777;
+      color: white;
+      cursor: pointer;
+      padding: 18px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 15px;
+    }
+    
+    .active, .collapsible:hover {
+  background-color: #555;
+}
+
+.collapsible:after {
+  content: '\002B';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+    
+    .content {
+      padding: 0 18px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease-out;
+      background-color: #f1f1f1;
+    }
+
+    #myProgress {
+  width: 100%;
+  background-color: grey;
+}
+
+#myBar {
+  width: 1%;
+  height: 30px;
+  background-color: green;
+}
+
+
+
+    </style>
+<body>
+    <nav class="navbar">
+        <header class="nav-header">
+            <div class="nav-image">
+                <img src="/frontend/images/TC_Logos-01.png" alt="PLACEHOLDER" />
+            </div>
+        </header>
+        <div class="nav-links">
+            <ul>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Memberships</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+        <div class="usr-panel">
+            <button href="#">Sign Up</button>
+            <img src="/frontend/images/EmptyBag.svg" alt="empty-shopping-bag" />
+            <img src="/frontend/images/GuestIcon.svg" alt="guest-profile-icon" />
+        </div>
+    </nav>
+    
+    <main class="dashboard-container">
+        <h1>Welcome to Your Dashboard</h1>
+        <div class="dashboard-grid">
+            <button class="modal-btn" data-modal="benefits-modal">Benefits</button>
+            <button class="modal-btn" data-modal="chat-modal">Chat</button>
+            <button class="modal-btn" data-modal="booking-modal">Book Content</button>
+            <button class="modal-btn" data-modal="calendar-modal">Calendar</button>
+            <button class="modal-btn" data-modal="settings-modal">Settings</button>
+        </div>
+    </main>
+
+    <h2>Sections:</h2>
+<button class="collapsible">Benefits</button>
+<div class="content">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  <div id="myProgress">
+    <div id="myBar"></div>
+
+  </div>
+</div>
+
+
+<button class="collapsible">Calendar</button>
+<div class="content">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+
+<button class="collapsible">Digital Content</button>
+<div class="content">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+
+<button class="collapsible">Chat</button>
+<div class="content">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+
+<button class="collapsible">Settings</button>
+<div class="content">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+
+<script>
+    var i = 0;
+    document.getElementById("Benefits").addEventListener("click", function move() {
+  if (i == 0) {
+    i = 1;
+    var elem = document.getElementById("myBar");
+    var width = 1;
+    var id = setInterval(frame, 10);
+    function frame() {
+      if (width >= 100) {
+        clearInterval(id);
+        i = 0;
+      } else {
+        width++;
+        elem.style.width = width + "%";
+      }
+    }
+  }
+});
+</script>
+    
+    
+
+
+
+
+
+
+    
+    <footer>
+        <div class="f-format">
+            <div class="f-list">
+                <div class="f-nav">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="/frontend/index.html">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Memberships</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="/frontend/js/dashboard.js"></script>
+</body>
+</html>
