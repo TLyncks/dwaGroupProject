@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\backend",
+    "\\backend\\config",
+    "\\database"
   ],
-  "SelectedNode": "\\C:\\Users\\mgoin\\Source\\Repos\\dwaGroupProject",
   "PreviewInSolutionExplorer": false
 }

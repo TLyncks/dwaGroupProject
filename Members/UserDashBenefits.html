@@ -3,65 +3,70 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>User Dashboard</title>
+    <title>Member Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type= "text/css" href="/frontend/css/footHeadStyle.css">  
-    <link rel="stylesheet" type = "text/css" href="/frontend/css/UserDashboard.css">
+    <link rel="stylesheet" type="text/css" href="footHeadStyle.css">
+    <link rel="stylesheet" type="text/css" href="UserDashboard.css">
 
 
 
-    <style> 
-                .icon {
-                    width: 80px;
-                    height: 80px;
-                    border-radius: 10px;
-                }
-                .card {
-                    border-radius: 10px;
-                    transition: 0.3s;
-                }
-                .card:hover {
-                    transform: scale(1.05);
-                    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-                }
 
-                .accordion-content {
-                            max-height: 0;
-                            overflow: hidden;
-                            transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
-                            opacity: 0;
-                            display: flex;
-                            flex-direction: column;
-                            align-items: center;
-                        }
-                        .accordion-content img {
-                            max-width: 100px;
-                            margin-top: 10px;
-                            transition: transform 0.5s ease-in-out;
-                        }
-                        .accordion-content.show {
-                            max-height: 300px;
-                            opacity: 1;
-                        }
-                        .accordion-content.show img {
-                            transform: translateX(0);
-                        }
+    <style>
+        .icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+        }
 
-            #myProgress {
-                        width: 80%; /* This remains fixed at 80% of screen width */
-                        height: 30px;
-                        background-color: grey;
-                        border-radius: 5px;
-                        overflow: hidden; /* Ensures that the green bar never exceeds the grey area */
-                    }
+        .card {
+            border-radius: 10px;
+            transition: 0.3s;
+        }
 
-                #myBar {
-                    width: 0%; /* Default to 0% so it can grow dynamically */
-                    height: 100%;
-                    background-color: green;
-                    transition: width 0.5s ease-in-out; /* Smooth transition */
+            .card:hover {
+                transform: scale(1.05);
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+            opacity: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+            .accordion-content img {
+                max-width: 100px;
+                margin-top: 10px;
+                transition: transform 0.5s ease-in-out;
+            }
+
+            .accordion-content.show {
+                max-height: 300px;
+                opacity: 1;
+            }
+
+                .accordion-content.show img {
+                    transform: translateX(0);
                 }
 
+        #myProgress {
+            width: 80%; /* This remains fixed at 80% of screen width */
+            height: 30px;
+            background-color: grey;
+            border-radius: 5px;
+            overflow: hidden; /* Ensures that the green bar never exceeds the grey area */
+        }
+
+        #myBar {
+            width: 0%; /* Default to 0% so it can grow dynamically */
+            height: 100%;
+            background-color: green;
+            transition: width 0.5s ease-in-out; /* Smooth transition */
+        }
     </style>
 
 
@@ -75,7 +80,7 @@
     <nav class="navbar">
         <header class="nav-header">
             <div class="nav-image">
-                <!--<img src="/frontend/images/TC_Logos-01.png" alt="PLACEHOLDER" />-->
+                <img src="../frontend/images/TC_Logos-01.png" alt="PLACEHOLDER" />
             </div>
         </header>
         <div class="nav-links">
@@ -90,8 +95,8 @@
         </div>
         <div class="usr-panel">
             <button href="#">Sign Up</button>
-          <!--  <img src="/frontend/images/EmptyBag.svg" alt="empty-shopping-bag" />-->
-           <!-- <img src="/frontend/images/GuestIcon.svg" alt="guest-profile-icon" />-->
+          <img src="../frontend/images/EmptyBag.svg" alt="empty-shopping-bag" />
+           <img src="../frontend/images/GuestIcon.svg" alt="guest-profile-icon" />
         </div>
     </nav>
     
@@ -114,7 +119,7 @@
         <div class="col-md-6">
             <div class="card text-center">
                 <div class="card-body">
-                   <!-- <img src="DWA website file&photos/Screenshot 2025-03-02 132636.png" class="mx-auto d-block mb-3 rounded" width="80">-->
+                    <img src="DWA website file&photos/Screenshot 2025-03-02 132636.png" class="mx-auto d-block mb-3 rounded" width="80">
                     <h5 class="card-title">Exclusive Together Culture Events</h5>
                     <p class="card-text">Attend your first Together Culture Event to redeem this benefit and start hosting your own events!</p>
                     <button class="btn btn-primary" onclick="toggleAccordion('benefit1')">More Info</button>
@@ -129,7 +134,7 @@
             <div class="col-md-6">
                 <div class="card text-center">
                     <div class="card-body">
-                       <!-- <img src="DWA website file&photos/free-photo-of-vibrant-market-scene-in-valencia-spain.jpeg" class="mx-auto d-block mb-3 rounded" width="80">-->
+                       <img src="DWA website file&photos/free-photo-of-vibrant-market-scene-in-valencia-spain.jpeg" class="mx-auto d-block mb-3 rounded" width="80">
                         <h5 class="card-title">Community Discounts</h5>
                         <p class="card-text"> We've partnered with vendors in our community that align with our mission to bring great deals!</p>
                         <button class="btn btn-primary" onclick="toggleAccordion('benefit2') ">See Full List</button>
@@ -154,7 +159,7 @@ Zi's Piri Piri      Noodles +
             <div class="col-md-6">
                 <div class="card text-center">
                     <div class="card-body">
-                       <!-- <img src="DWA website file&photos/ARU_Chelms-Campus-1646315935-369966023.jpg" class="mx-auto d-block mb-3 rounded" width="80"> -->
+                       <img src="DWA website file&photos/ARU_Chelms-Campus-1646315935-369966023.jpg" class="mx-auto d-block mb-3 rounded" width="80"> 
                         <h5 class="card-title">Anglia Ruskin University Partnership</h5>
                         <p class="card-text">Access to select ARU events and services</p>
                         <button class="btn btn-primary" onclick="toggleAccordion('benefit3')">More Info</button>
@@ -175,7 +180,7 @@ Zi's Piri Piri      Noodles +
             <div class="col-md-6">
                 <div class="card text-center">
                     <div class="card-body">
-                       <!-- <img src="DWA website file&photos/Cambridge image.jpg" class="mx-auto d-block mb-3 rounded" width="80"> -->
+                       <img src="DWA website file&photos/Cambridge image.jpg" class="mx-auto d-block mb-3 rounded" width="80"> 
 
                         <h5 class="card-title">Cambridge University Partnership</h5>
                         <p class="card-text">Access to select CU event and services </p>
@@ -199,7 +204,7 @@ Zi's Piri Piri      Noodles +
             <div class="col-md-6">
                 <div class="card text-center">
                     <div class="card-body">
-                        <!-- <img src="DWA website file&photos/Screenshot+2024-06-10+at+15.32.51+(1).jpg" class="mx-auto d-block mb-3 rounded" width="80">-->
+                        <img src="DWA website file&photos/Screenshot+2024-06-10+at+15.32.51+(1).jpg" class="mx-auto d-block mb-3 rounded" width="80">
                         <h5 class="card-title">Together Culture Workplace & Services</h5>
                         <p class="card-text">Exclusive access to our 5 Fitzroy St Workplace & Services!</p>
                         <button class="btn btn-primary" onclick="toggleAccordion('benefit5')">More Info</button>
