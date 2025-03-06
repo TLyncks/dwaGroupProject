@@ -35,7 +35,26 @@
             border: 2px solid #ddd;
             border-radius: 10px;
             background-color: rgb(254, 30, 60);
+            color: white;
         }
+
+        .correct-answer {
+    
+    -webkit-text-stroke: 1px white;
+    font-weight: bold;
+    text-shadow: 1px 1px 0px white, -1px -1px 0px white, 
+    -1px 1px 0px white, 1px -1px 0px white;
+}
+
+.incorrect-answer {
+    
+    -webkit-text-stroke: 1px white;
+    font-weight: bold;
+    text-shadow: 1px 1px 0px white, -1px -1px 0px white, 
+    -1px 1px 0px white, 1px -1px 0px white;
+}
+
+        
     </style>
 </head>
 
@@ -98,14 +117,19 @@
     </div>
 
     <script>
-        function checkAnswer(answer) {
-            const result = document.getElementById('quiz-result');
-            if (answer === 'communication') {
-                result.innerHTML = "<span class='text-success'>Correct! Communication is key to teamwork.</span>";
-            } else {
-                result.innerHTML = "<span class='text-danger'>Incorrect. Try again!</span>";
-            }
+    function checkAnswer(answer) {
+        const result = document.getElementById('quiz-result');
+        result.classList.remove("correct-answer", "incorrect-answer"); 
+    
+        if (answer === 'communication') {
+            result.textContent = "Correct! Communication is key to teamwork.";
+            result.classList.add("correct-answer"); 
+        } else {
+            result.textContent = "Incorrect. Try again!";
+            result.classList.add("incorrect-answer"); 
         }
+    }
+
     </script>
 
     <footer>
