@@ -27,6 +27,22 @@
                 transform: scale(1.05);
                 box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             }
+            
+            .benefit-card {
+                background-size: cover; /* Ensure the image covers the card */
+                background-position: center;
+                color: white; /* Ensure text is visible */
+                border-radius: 10px;
+                padding: 20px; /* Adds spacing inside the card */
+                min-height: 300px; /* Ensures a good size */
+            }
+
+            .semi-transparent-bg {
+            background-color: rgba(128, 128, 128, 0.5); /* Grey with 50% transparency */
+            padding: 5px 10px; /* Add some spacing */
+            border-radius: 5px; /* Optional: Rounded corners */
+            display: inline-block; /* Prevent full width */
+            }
 
         .accordion-content {
             max-height: 0;
@@ -103,155 +119,191 @@
     
 
     <main class="dashboard-container">
-        <!-- Bootstrap CSS -->
-
-<h1> Benefits Dashboard</h1>
-<div id="myProgress">
-    <div id="myBar"></div>
-  </div>
-
-  <button onclick="updateProgress(50)">Set to 50%</button>
-  <button onclick="updateProgress(75)">Set to 75%</button>
-
-  <div class="container mt-4">
-    <div class="row">
-        <!-- Benefit 1 -->
-        <div class="col-md-6">
-            <div class="card text-center">
-                <div class="card-body">
-                    <img src="DWA website file&photos/Screenshot 2025-03-02 132636.png" class="mx-auto d-block mb-3 rounded" width="80">
-                    <h5 class="card-title">Exclusive Together Culture Events</h5>
-                    <p class="card-text">Attend your first Together Culture Event to redeem this benefit and start hosting your own events!</p>
-                    <button class="btn btn-primary" onclick="toggleAccordion('benefit1')">More Info</button>
-                    <div id="benefit1" class="accordion-content">
-                        <p>Join our exciting events to meet new people and grow your network.</p>
-                        <a href="#"><img src="" alt="Events"></a>
-                    </div>
-                </div>
-            </div>
+        <h1> Benefits Dashboard</h1>
+        <div id="myProgress">
+            <div id="myBar"></div>
         </div>
-            <!-- Benefit 2 -->
-            <div class="col-md-6">
-                <div class="card text-center">
-                    <div class="card-body">
-                       <img src="DWA website file&photos/free-photo-of-vibrant-market-scene-in-valencia-spain.jpeg" class="mx-auto d-block mb-3 rounded" width="80">
-                        <h5 class="card-title">Community Discounts</h5>
-                        <p class="card-text"> We've partnered with vendors in our community that align with our mission to bring great deals!</p>
-                        <button class="btn btn-primary" onclick="toggleAccordion('benefit2') ">See Full List</button>
-                        <div id="benefit2" class="accordion-content">
-                                <pre>
-Vendors: 
-Jack's Gelato       Zhonghua Snacks
-Thrive Cafe         Noshe Afghan
-Zi's Piri Piri      Noodles +
-                                </pre>
-                                <a href="#"> <img src="" alt = "Partners"></a>
 
+      
+
+        <div class="container mt-4">
+            <div class="row">
+                <!-- Benefit 1 -->
+                <div class="col-md-6">
+                    <div class="card text-center benefit-card" style="background-image: url('UserDashPhotos/Screenshot 2025-03-02 132636.png');">
+                        <div class="card-body">
+                            <h5 class="semi-transparent-bg">Exclusive Together Culture Events</h5>
+                            <p class="semi-transparent-bg">Attend your first Together Culture Event to redeem this benefit and start hosting your own events!</p>
+                            <button class="btn btn-primary" onclick="handleButtonClick('benefit1', 17, 'btn1')">More Info</button>
+                            <div id="benefit1" class="accordion-content">
+                                <p class = "semi-transparent-bg">Join our exciting events to meet new people and grow your network.</p>
+                            </div>
                         </div>
-                        <!-- TODO List of our partners and link to partner page??-->
+                    </div>
+                </div>
+
+                <!-- Benefit 2 -->
+                <div class="col-md-6">
+                    <div class="card text-center benefit-card" style="background-image: url('UserDashPhotos/free-photo-of-vibrant-market-scene-in-valencia-spain.jpeg');">
+                        <div class="card-body">
+                            <h5 class="semi-transparent-bg">Community Discounts</h5>
+                            <p class="semi-transparent-bg">We've partnered with vendors in our community that align with our mission to bring great deals! Use your member ID at the register!</p>
+                            <button class="btn btn-primary" onclick="handleButtonClick('benefit2', 17, 'btn2')">More Info</button>
+                            <div id="benefit2" class="accordion-content">
+                                <div style="display: flex; gap: 20px;  background-color: rgba(128, 128, 128, 0.5);">
+                                    <ul>
+                                        <li>Jack's Gelato</li>
+                                        <li>Zhonghua Snacks</li>
+                                        <li>Thrive Cafe</li>
+                                    </ul>
+                                    <ul>
+                                        <li>Noshe Afghan</li>
+                                        <li>Zi's Piri Piri</li>
+                                        <li>Noodles +</li>
+                                    </ul>
+                                </div>  
+                      
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+                <!-- Benefit 3 -->
+                <div class="col-md-6">
+                    <div class="card text-center benefit-card" style="background-image: url('UserDashPhotos/ARU_Chelms-Campus-1646315935-369966023.jpg');">
+                        <div class="card-body">
+                            <h5 class="semi-transparent-bg">Anglia Ruskin University Partnership</h5>
+                            <p class="semi-transparent-bg">Access to select ARU events and services</p>
+                            <button class="btn btn-primary" onclick="handleButtonClick('benefit3', 17, 'btn3')">More Info</button>
+                             <div id="benefit3" class="accordion-content">
+                                <p class="semi-transparent-bg">Anglia Ruskin University has partnered with us to bring services and events to the community at large!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+
+                <!-- Benefit 4 -->
+                <div class="col-md-6">
+                    <div class="card text-center benefit-card" style="background-image: url('UserDashPhotos/Cambridge image.jpg');">
+                        <div class="card-body">
+                            <h5 class="semi-transparent-bg">Cambridge University Partnership</h5>
+                            <p class="semi-transparent-bg">Access to select CU event and services</p>
+                            <button class="btn btn-primary" onclick="handleButtonClick('benefit4', 17, 'btn4')">More Info</button>
+                                 <div id="benefit4" class="accordion-content">
+                                <p class = "semi-transparent-bg">Cambridge University has partnered with us to bring services and events to the community!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <!-- Benefit 5 -->
+                <div class="col-md-6">
+                    <div class="card text-center">
+                        <div class = "cardtext-center benefit-card" style = "background-image: url('UserDashPhotos/Screenshot+2024-06-10+at+15.32.51+(1).jpg')">
+                        <div class="card-body">
+                            <h5 class="semi-transparent-bg">Together Culture Workplace & Services</h5>
+                            <p class="semi-transparent-bg">Exclusive access to our 5 Fitzroy St Workplace & Services!</p>
+                            <button class="btn btn-primary" onclick="handleButtonClick('benefit5', 17, 'btn5')">More Info</button>
+                              <div id="benefit5" class="accordion-content">
+                            <p class = "semi-transparent-bg">
+                                Reserve our workspace with access to materials, technology and creative tools to foster development of your personal hobbies 
+                                or your company's new program! Space for individuals and group work with 
+                            </p>
+                            <a href="#"><img src="" alt="Workspace"></a>
+                        </div>
+                             <!-- TODO link to the workplace and services-->
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Benefit 6 -->
+                <div class="col-md-6">
+                    <div class="card text-center">
+                        <div class = "cardtext-center benefit-card" style = "background-image: url('UserDashPhotos/communityHill.jpg')"> 
+                            <div class="card-body">
+                                <h5 class="semi-transparent-bg">Join a Vibrant Community</h5>
+                                <p class="semi-transparent-bg">Become apart of the fastest growing network and community in the CambridgeShire area!</p>
+                                <button class="btn btn-primary" onclick="handleButtonClick('benefit6', 17, 'btn6')">More Info</button>
+                                     <div id="benefit6" class="accordion-content">    
+                                        <p class = "semi-transparent-bg">
+                                           Come in and visit! 
+                                        </p>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                </div>
+            </div>
+
+
+
         </div>
-
-        <div class="row">
-            <!-- Benefit 3 -->
-            <div class="col-md-6">
-                <div class="card text-center">
-                    <div class="card-body">
-                       <img src="DWA website file&photos/ARU_Chelms-Campus-1646315935-369966023.jpg" class="mx-auto d-block mb-3 rounded" width="80"> 
-                        <h5 class="card-title">Anglia Ruskin University Partnership</h5>
-                        <p class="card-text">Access to select ARU events and services</p>
-                        <button class="btn btn-primary" onclick="toggleAccordion('benefit3')">More Info</button>
-                    <div id="benefit3" class="accordion-content">
-                        <p>
-                            Anglia Ruskin University has partnered with us to bring services and events to the community at large! 
-                            Your calendar will show events hosted or sponsored by ARU, exclusive to only Together Culture members and 
-                            ARU members!
-                            As a member, you will recieve the following: Discounts at ARU sports facilities, access to ARU technological and library facilities and other support services!
-                        </p>
-                        <a href="#"><img src="" alt="ARU"></a>
-                    </div>
-                        <!-- TODO aru events on the calendar with link to it in this dropdown and a list of services here-->
-                    </div>
-                </div>
-            </div>
-            <!-- Benefit 4 -->
-            <div class="col-md-6">
-                <div class="card text-center">
-                    <div class="card-body">
-                       <img src="DWA website file&photos/Cambridge image.jpg" class="mx-auto d-block mb-3 rounded" width="80"> 
-
-                        <h5 class="card-title">Cambridge University Partnership</h5>
-                        <p class="card-text">Access to select CU event and services </p>
-                        <button class="btn btn-primary" onclick="toggleAccordion('benefit4')">More Info</button>
-                    <div id="benefit4" class="accordion-content">
-                        <p> Cambridge University has partnered with us to bring services and events to the community at large! 
-                            Your calendar will show events hosted or sponsored by Cambridge, exclusive to only Together Culture members and 
-                            Cambridge members!
-                            As a member, you will recieve the following: Access to exclusive events and support services!
-                        </p>
-                        <a href="#"><img src="" alt="Cambridge"></a>
-                    </div>
-                         <!-- TODO CU events on the calendar with link to it in this dropdown and a list of services here-->
-                    </div>
-                </div>
-            </div>
-        </div>
-
-<div class="row">
-            <!-- Benefit 5 -->
-            <div class="col-md-6">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <img src="DWA website file&photos/Screenshot+2024-06-10+at+15.32.51+(1).jpg" class="mx-auto d-block mb-3 rounded" width="80">
-                        <h5 class="card-title">Together Culture Workplace & Services</h5>
-                        <p class="card-text">Exclusive access to our 5 Fitzroy St Workplace & Services!</p>
-                        <button class="btn btn-primary" onclick="toggleAccordion('benefit5')">More Info</button>
-                    <div id="benefit5" class="accordion-content">
-                        <p>
-                            Reserve our workspace with access to materials, technology and creative tools to foster development of your personal hobbies 
-                            or your company's new program! Space for individuals and group work with 
-                        </p>
-                        <a href="#"><img src="" alt="Workspace"></a>
-                    </div>
-                         <!-- TODO link to the workplace and services-->
-                    </div>
-                </div>
-            </div>
-            <!-- Benefit 2 -->
-            <div class="col-md-6">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <div class="icon bg-secondary mx-auto mb-3"></div>
-                        <h5 class="card-title">Benefit 6</h5>
-                        <p class="card-text">Short description of the benefit.</p>
-                        <button class="btn btn-primary">More Info</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        
-
-    </div>
     </main>
 
 
 
 
  
+    <!-- The 1st section of scripts are to save and update the benefits-progress bar-->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            loadProgress(); // Load progress when page loads
+        });
+    
+        function handleButtonClick(accordionId, increment, buttonId) {
+            if (!localStorage.getItem(buttonId)) {
+                localStorage.setItem(buttonId, true); 
+                updateProgress(increment);
+                saveProgressToDB(); 
+            }
+            toggleAccordion(accordionId);
+        }
+    
+        function updateProgress(increment) {
+            let currentProgress = parseInt(localStorage.getItem("benefitProgress")) || 0;
+            if (currentProgress < 100) {
+                currentProgress = Math.min(currentProgress + increment, 100);
+                localStorage.setItem("benefitProgress", currentProgress);
+                updateProgressBar(currentProgress);
+            }
+        }
+    
+        function updateProgressBar(progress) {
+            let bar = document.getElementById("myBar");
+            bar.style.width = progress + "%";
+        }
+    
+        function loadProgress() {
+            fetch('/api/benefitProgress')
+                .then(response => response.json())
+                .then(data => {
+                    localStorage.setItem("benefitProgress", data.benefitProgress); 
+                    updateProgressBar(data.benefitProgress);
+                })
+                .catch(error => console.error('Error loading progress:', error));
+        }
+    
+        function saveProgressToDB() {
+            let progress = parseInt(localStorage.getItem("benefitProgress")) || 0;
+            fetch('/api/save-benefitProgress', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ benefitProgress: progress }) 
+            });
+        }
+    </script>
+    
 
-<script>
-    function updateProgress(percent) {
-        if (percent < 0) percent = 0;
-        if (percent > 100) percent = 100;
-        
-        let bar = document.getElementById("myBar");
-        bar.style.width = percent + "%";
-    }
-</script>
-
+<!--Script below is to allow the bootstrap accordion movement on button click-->
 <script>
      function toggleAccordion(id) {
             var content = document.getElementById(id);
@@ -275,7 +327,7 @@ Zi's Piri Piri      Noodles +
                         <li><a href="/frontend/index.html">Home</a></li>
                         <li><a href="#">About</a></li>
                         <li><a href="#">Memberships</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="/contact-support.html">Contact</a></li>
                     </ul>
                 </div>
             </div>

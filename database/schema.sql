@@ -24,6 +24,7 @@ CREATE TABLE BaseUser (
     interest3 VARCHAR(100),
     memberID INT UNIQUE NOT NULL CHECK (memberID BETWEEN 100000 AND 999999),  -- Unique identifier across the system
     timesWorkspaceReserved INT DEFAULT 0 CHECK (timesWorkspaceReserved >= 0)
+    benefitProgress INT NOT NULL DEFAULT 0
 );
 
 
