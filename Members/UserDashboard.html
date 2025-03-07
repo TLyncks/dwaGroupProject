@@ -45,7 +45,10 @@
             margin-top: 20px;
         }
         .content-card {
+            display: block;
             position: relative;
+            color: inherit;
+            text-decoration: none;
             background: white;
             border-radius: 10px;
             overflow: hidden;
@@ -55,8 +58,13 @@
             width: 100%;
             height: 200px;
             object-fit: cover;
-            filter: brightness(0.8);
+           
         }
+        .content-card:hover {
+            transform: scale(1.05); /* Slight zoom effect */
+            transition: 0.3s ease-in-out;
+        }
+
         .content-card .title-overlay {
             position: absolute;
             bottom: 10px;
@@ -123,22 +131,24 @@
             </div>
 
             <!-- Content Cards (2 per row) -->
-            <div class="content-card">
+            <a href="benefits.html" class="content-card">
                 <img src=".\UserDashPhotos\healthyGirl.jpg" alt="Benefits">
                 <div class="title-overlay">Benefits</div>
-            </div>
-            <div class="content-card">
+            </a>
+            <a href="" class="content-card">
                 <img src=".\UserDashPhotos\calendar.jpg" alt="Calendar">
                 <div class="title-overlay">Calendar</div>
-            </div>
-            <div class="content-card">
-                <img src=".\UserDashPhotos\messaging.jpg" alt="Chat">
-                <div class="title-overlay">Chat with Members</div>
-            </div>
-            <div class="content-card">
+                  </a>
+
+            <a href="UserDigitalContent.html" class="content-card">
                 <img src=".\UserDashPhotos\digitalContent.jpg" alt="Digital Content">
                 <div class="title-overlay">Digital Content</div>
-            </div>
+            </a>
+
+            <a href="" class="content-card">
+                <img src=".\UserDashPhotos\messaging.jpg" alt="Chat">
+                <div class="title-overlay">Chat</div>
+              </a>
 
             <!-- Settings Section -->
             <div class="settings">
