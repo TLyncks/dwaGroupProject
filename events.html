@@ -5,33 +5,302 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Upcoming Events | Together Culture</title>
     <link rel="stylesheet" href="/frontend/css/styles.css" />
-    <link rel="stylesheet" href="events-style.css" />
-  </head>
+    <!-- Merged CSS for header, events page, and footer -->
+    <style>
+      /* ========== RESET & GLOBAL ========== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
 
+      /* ========== HEADER (New Dropdown Header) ========== */
+      .navbar {
+        background-color: #fe1e3c;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        font-weight: 200;
+        z-index: 1000;
+      }
+      .nav-header img {
+        height: 50px;
+        width: auto;
+      }
+      .nav-links {
+        margin: 0 auto;
+      }
+      .nav-links ul {
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 1rem;
+      }
+      .usr-panel {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .signup-btn,
+      .usr-panel button {
+        background: linear-gradient(to right, #ff416c, #ff4b2b);
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+      }
+      .usr-panel button:hover {
+        background: linear-gradient(to right, #ff4b2b, #ff416c);
+        transform: scale(1.05);
+      }
+      /* Dropdown Menu */
+      .dropdown {
+        position: relative;
+      }
+      .dropdown-menu {
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #fff;
+        min-width: 160px;
+        border-radius: 8px;
+        margin-top: 0.5rem;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        padding: 0.75rem 0;
+        transform: translateY(-10px);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+      .dropdown-menu li {
+        list-style: none;
+      }
+      .dropdown-menu li a {
+        display: block;
+        padding: 0.5rem 1rem;
+        color: #333;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: background-color 0.2s ease;
+      }
+      .dropdown-menu li a:hover {
+        background-color: #f2f2f2;
+      }
+      .dropdown:hover .dropdown-menu {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      /* ========== MAIN CONTENT: EVENTS SECTION ========== */
+      .events-main {
+        margin-top: 100px; /* offset for fixed header */
+        padding: 3rem 2rem;
+        background: #f4f4f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .events-container {
+        max-width: 1200px;
+        width: 100%;
+        background: white;
+        padding: 3rem;
+        border-radius: 15px;
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+        text-align: center;
+        border-top: 6px solid #d0021b;
+      }
+      .events-container h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #222;
+        margin-bottom: 0.5rem;
+      }
+      .events-container p {
+        font-size: 1.2rem;
+        color: #666;
+        margin-bottom: 2rem;
+      }
+      /* Filter Options */
+      .filter-options {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+      .filter-btn {
+        background: #d0021b;
+        color: white;
+        font-size: 1rem;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: #a00015;
+      }
+      /* Events Grid */
+      .events-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+      }
+      .event-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.12);
+        text-align: left;
+        transition: 0.3s;
+      }
+      .event-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+      .event-details {
+        padding: 1.5rem;
+      }
+      .event-details h2 {
+        font-size: 1.5rem;
+        color: #222;
+        margin-bottom: 0.5rem;
+      }
+      .event-btn {
+        background: #d0021b;
+        color: white;
+        font-size: 1rem;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .event-btn:hover {
+        background: #a00015;
+      }
+
+      /* ========== FOOTER ========== */
+      footer {
+        background-color: #0f0f0f;
+        color: whitesmoke;
+        font-size: small;
+        font-weight: 200;
+        margin-top: auto;
+        padding: 40px 0;
+      }
+      .f-format {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .f-list {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      .f-nav,
+      .f-mem,
+      .f-acc,
+      .f-support {
+        margin-right: 20px;
+      }
+      .f-nav ul,
+      .f-mem ul,
+      .f-acc ul,
+      .f-support ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .f-nav li,
+      .f-mem li,
+      .f-acc li,
+      .f-support li {
+        padding-bottom: 5px;
+      }
+      .f-nav a,
+      .f-mem a,
+      .f-acc a,
+      .f-support a {
+        text-decoration: none;
+        color: rgb(200, 200, 200);
+      }
+      .f-logo img {
+        width: 150px;
+        height: auto;
+      }
+
+      /* ========== RESPONSIVE ========== */
+      @media (max-width: 1024px) {
+        .nav-links ul {
+          gap: 1rem;
+        }
+        .events-container {
+          padding: 2rem;
+        }
+        .f-list {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    </style>
+  </head>
   <body>
-    <!-- Navigation Bar -->
+    <!-- ========== HEADER (New Dropdown Header) ========== -->
     <nav class="navbar">
-      <header class="nav-header">
-        <div class="nav-image">
-          <img src="/frontend/images/TC_Logos-01.png" alt="PLACEHOLDER" />
-        </div>
-      </header>
+      <!-- Left: Logo -->
+      <div class="nav-header">
+        <img
+          src="/frontend/images/TC_Logos-01.png"
+          alt="Together Culture Cambridge Logo"
+        />
+      </div>
+      <!-- Center: Nav Links with Dropdown -->
       <div class="nav-links">
         <ul>
           <li><a href="#">About</a></li>
-          <li><a href="#">Memberships</a></li>
+          <li class="dropdown">
+            <a href="#">Memberships</a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Community</a></li>
+              <li><a href="#">Key Access</a></li>
+              <li><a href="#">Creative Workspace</a></li>
+            </ul>
+          </li>
           <li><a href="#">Events</a></li>
           <li><a href="#">Contact</a></li>
         </ul>
       </div>
+      <!-- Right: Join Now Button & Icons -->
       <div class="usr-panel">
-        <button href="#">Join Now</button>
+        <button class="signup-btn">Join Now</button>
         <img src="/frontend/images/EmptyBag.svg" alt="empty-shopping-bag" />
         <img src="/frontend/images/GuestIcon.svg" alt="guest-profile-icon" />
       </div>
     </nav>
 
-    <!-- Events Section -->
+    <!-- ========== MAIN CONTENT: UPCOMING EVENTS ========== -->
     <main class="events-main">
       <div class="events-container">
         <h1>Upcoming Cultural Events</h1>
@@ -39,7 +308,6 @@
           Join us for inspiring cultural experiences, workshops, and networking
           events.
         </p>
-
         <!-- Filter Options -->
         <div class="filter-options">
           <button class="filter-btn active">All</button>
@@ -48,16 +316,15 @@
           <button class="filter-btn">Art Exhibitions</button>
           <button class="filter-btn">Networking</button>
         </div>
-
-        <!-- Event Cards -->
+        <!-- Event Cards Container -->
         <div class="events-grid">
           <!-- Sample Event 1 -->
           <div class="event-card">
             <img src="/frontend/images/event1.jpg" alt="Event 1" />
             <div class="event-details">
               <h2>Live Jazz Night</h2>
-              <p><strong>Date:</strong> March 15, 2024</p>
-              <p><strong>Location:</strong> Cambridge Arts Center</p>
+              <p><strong>Date:</strong> 15 April, 2025</p>
+              <p><strong>Location:</strong> Cambridge Guildhall</p>
               <p>
                 Enjoy an evening of soulful jazz music performed by renowned
                 local artists.
@@ -65,14 +332,13 @@
               <button class="event-btn">Join Event</button>
             </div>
           </div>
-
           <!-- Sample Event 2 -->
           <div class="event-card">
             <img src="/frontend/images/event2.jpg" alt="Event 2" />
             <div class="event-details">
               <h2>Modern Art Exhibition</h2>
-              <p><strong>Date:</strong> April 5, 2024</p>
-              <p><strong>Location:</strong> Together Culture Gallery</p>
+              <p><strong>Date:</strong> 5 May, 2025</p>
+              <p><strong>Location:</strong> Together Culture workspace</p>
               <p>
                 Explore thought-provoking contemporary artwork from emerging
                 artists.
@@ -80,14 +346,13 @@
               <button class="event-btn">Learn More</button>
             </div>
           </div>
-
           <!-- Sample Event 3 -->
           <div class="event-card">
             <img src="/frontend/images/event3.jpg" alt="Event 3" />
             <div class="event-details">
               <h2>Poetry & Storytelling Workshop</h2>
-              <p><strong>Date:</strong> April 20, 2024</p>
-              <p><strong>Location:</strong> Community Hall</p>
+              <p><strong>Date:</strong> 14 May, 2025</p>
+              <p><strong>Location:</strong> Cambridge Theatre</p>
               <p>
                 A creative session where writers share their poetry and stories
                 in an open-mic setting.
@@ -95,11 +360,22 @@
               <button class="event-btn">Join Now</button>
             </div>
           </div>
+          <!-- Sample Event 4 (Now inside the grid, next to Event 3) -->
+          <div class="event-card">
+            <img src="/frontend/images/event4.jpg" alt="Event 4" />
+            <div class="event-details">
+              <h2>Networking Evening</h2>
+              <p><strong>Date:</strong> 25 May, 2025</p>
+              <p><strong>Location:</strong> Together Culture workspace</p>
+              <p>A great way to get to know all of our amazing members!</p>
+              <button class="event-btn">Learn More</button>
+            </div>
+          </div>
         </div>
       </div>
     </main>
 
-    <!-- Footer -->
+    <!-- ========== FOOTER ========== -->
     <footer>
       <div class="f-format">
         <div class="f-list">
@@ -110,7 +386,7 @@
               <li><a href="#">About</a></li>
               <li><a href="#">Memberships</a></li>
               <li><a href="#">Events</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="#">Contact us</a></li>
             </ul>
           </div>
         </div>

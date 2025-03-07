@@ -4,77 +4,388 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Creative Workspace Membership</title>
+    <!-- Global CSS -->
     <link rel="stylesheet" href="/frontend/css/styles.css" />
-    <link rel="stylesheet" href="creative-workspace-style.css" />
-  </head>
+    <!-- Merged CSS for this page -->
+    <style>
+      /* ========== RESET & GLOBAL ========== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
 
+      /* ========== NAVIGATION BAR ========== */
+      .navbar {
+        background-color: #fe1e3c;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        font-weight: 200;
+        z-index: 1000;
+      }
+
+      /* LEFT: LOGO */
+      .nav-header img {
+        height: 50px;
+        width: auto;
+      }
+
+      /* CENTER: NAV LINKS */
+      .nav-links {
+        margin: 0 auto; /* centers the nav list */
+      }
+      .nav-links ul {
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 1rem;
+      }
+
+      /* RIGHT: SIGN UP + ICONS */
+      .usr-panel {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .signup-btn {
+        background: linear-gradient(to right, #ff416c, #ff4b2b);
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+      }
+      .signup-btn:hover {
+        background: linear-gradient(to right, #ff4b2b, #ff416c);
+        transform: scale(1.05);
+      }
+
+      /* ========== DROPDOWN MENU ========== */
+      .dropdown {
+        position: relative;
+      }
+      .dropdown-menu {
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #fff;
+        min-width: 160px;
+        border-radius: 8px;
+        margin-top: 0.5rem;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        padding: 0.75rem 0;
+        transform: translateY(-10px);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+      .dropdown-menu li {
+        list-style: none;
+      }
+      .dropdown-menu li a {
+        display: block;
+        padding: 0.5rem 1rem;
+        color: #333;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: background-color 0.2s ease;
+      }
+      .dropdown-menu li a:hover {
+        background-color: #f2f2f2;
+      }
+      .dropdown:hover .dropdown-menu {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      /* ========== MAIN CONTENT: CREATIVE WORKSPACE MEMBERSHIP ========== */
+      .membership-main {
+        margin-top: 80px; /* offset for fixed navbar */
+        padding: 2rem;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .membership-layout {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        width: 100%;
+        gap: 2rem;
+      }
+
+      /* LEFT: Info (Title & Subtitle) */
+      .membership-info {
+        flex: 1;
+        text-align: left;
+      }
+      .membership-info h1 {
+        font-size: 3rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+      .red-text {
+        color: #d0021b;
+      }
+      .black-text {
+        color: #333;
+      }
+      .subtitle {
+        color: rgba(0, 0, 0, 0.2);
+        font-size: 2rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        line-height: 1.2;
+      }
+
+      /* CENTER: RED CARD */
+      .membership-card {
+        background-color: #d0021b;
+        color: #fff;
+        padding: 2rem;
+        border-radius: 10px;
+        max-width: 380px;
+        text-align: center;
+        flex: 1;
+      }
+      .membership-header {
+        background-color: #000;
+        color: #fff;
+        padding: 10px;
+        font-weight: bold;
+        font-size: 1.2rem;
+        border-radius: 5px;
+        margin-bottom: 1rem;
+      }
+      .membership-benefits ul {
+        list-style: none;
+        padding: 0;
+      }
+      .membership-benefits li {
+        padding: 10px;
+        position: relative;
+        font-size: 1rem;
+      }
+      .membership-benefits li::before {
+        content: ">";
+        position: absolute;
+        left: 0;
+        color: #fff;
+        font-weight: bold;
+        transform: translateX(-20px);
+      }
+
+      /* RIGHT: COST & CTA */
+      .membership-pricing {
+        flex: 1;
+        text-align: center;
+      }
+      .price-card {
+        background-color: #000;
+        color: #fff;
+        padding: 15px;
+        border-radius: 10px;
+        display: inline-block;
+        margin-bottom: 1rem;
+      }
+      .price-title {
+        font-weight: bold;
+        font-size: 1rem;
+      }
+      .price-amount {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-top: 0.5rem;
+      }
+      .cta-button {
+        display: inline-block;
+        background-color: #333;
+        color: #fff;
+        text-decoration: none;
+        padding: 0.75rem 1.25rem;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background 0.3s ease-in-out;
+        font-size: 0.95rem;
+      }
+      .cta-button:hover {
+        background-color: #555;
+      }
+
+      /* ========== FOOTER ========== */
+      footer {
+        background-color: #0f0f0f;
+        color: whitesmoke;
+        font-size: small;
+        font-weight: 200;
+        margin-top: auto;
+        padding: 40px 0;
+      }
+      .f-format {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .f-list {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      .f-nav,
+      .f-mem,
+      .f-acc,
+      .f-support {
+        margin-right: 20px;
+      }
+      .f-nav ul,
+      .f-mem ul,
+      .f-acc ul,
+      .f-support ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .f-nav li,
+      .f-mem li,
+      .f-acc li,
+      .f-support li {
+        padding-bottom: 5px;
+      }
+      .f-nav a,
+      .f-mem a,
+      .f-acc a,
+      .f-support a {
+        text-decoration: none;
+        color: rgb(200, 200, 200);
+      }
+      .f-logo img {
+        width: 150px;
+        height: auto;
+      }
+
+      /* ========== RESPONSIVE ========== */
+      @media (max-width: 1024px) {
+        .membership-layout {
+          flex-direction: column;
+          align-items: center;
+        }
+        .membership-card,
+        .membership-pricing {
+          margin-top: 1.5rem;
+          max-width: 90%;
+        }
+        .membership-info {
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
   <body>
-    <!-- Navigation Bar -->
+    <!-- ========== HEADER (NEW DROPDOWN) ========== -->
     <nav class="navbar">
-      <header class="nav-header">
-        <div class="nav-image">
-          <img src="/frontend/images/TC_Logos-01.png" alt="PLACEHOLDER" />
-        </div>
-      </header>
+      <!-- Left: Logo -->
+      <div class="nav-header">
+        <img
+          src="/frontend/images/TC_Logos-01.png"
+          alt="Together Culture Cambridge Logo"
+        />
+      </div>
+      <!-- Center: Nav Links with Dropdown -->
       <div class="nav-links">
         <ul>
           <li><a href="#">About</a></li>
-          <li><a href="#">Creative Workspace Membership</a></li>
-          <li><a href="#">Contact</a></li>
+          <li class="dropdown">
+            <a href="#">Memberships</a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Community</a></li>
+              <li><a href="#">Key Access</a></li>
+              <li><a href="#">Creative Workspace</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Events</a></li>
+          <li><a href="#">Contact us</a></li>
         </ul>
       </div>
+      <!-- Right: Sign Up & Icons -->
       <div class="usr-panel">
-        <button href="#">Sign Up</button>
+        <button class="signup-btn">Sign Up</button>
         <img src="/frontend/images/EmptyBag.svg" alt="empty-shopping-bag" />
         <img src="/frontend/images/GuestIcon.svg" alt="guest-profile-icon" />
       </div>
     </nav>
 
-    <!-- Creative Workspace Membership Section -->
+    <!-- ========== MAIN CONTENT: CREATIVE WORKSPACE MEMBERSHIP ========== -->
     <main class="membership-main">
-      <div class="membership-layout">
-        <!-- Left Section - Application Info -->
-        <div class="membership-info red-card">
-          <p class="membership-text">
-            In order to apply to become a workspace member, we will just need
-            you to fill up a form to check your eligibility. We will get back to
-            you within 5 working days.
-          </p>
-          <p class="membership-subtitle">Together Culture Cambridge</p>
-        </div>
-
-        <!-- Center Section - Benefits -->
-        <div class="membership-card">
-          <div class="membership-header">
-            Apply to Become a Workspace Member
-          </div>
-          <div class="membership-benefits">
-            <ul>
-              <li>All of the benefits of Community Membership, plus</li>
-              <li>24/7 Access to 5 Fitzroy Street</li>
-              <li>Inclusive hire for your own events and meetings</li>
-              <li>Access to the Workspace workbench upstairs</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Right Section - Pricing & Apply Button -->
-        <div class="membership-pricing">
-          <div class="price-card">
-            <p class="price-title">Monthly Cost</p>
-            <p class="price-amount">
-              £100 per month <br />
-              + £100 joining fee
+      <section class="membership-section">
+        <div class="membership-layout">
+          <!-- Left: Info -->
+          <div class="membership-info">
+            <h1>
+              <span class="red-text">Creative Workspace</span>
+              <span class="black-text">Membership</span>
+            </h1>
+            <p class="subtitle">
+              TOGETHER CULTURE<br />
+              CAMBRIDGE
             </p>
           </div>
-          <a href="#" class="membership-button"
-            >Become a Creative Workspace Member</a
-          >
+          <!-- Center: Red Card -->
+          <div class="membership-card">
+            <div class="membership-header">
+              Apply to Become a Workspace Member
+            </div>
+            <div class="membership-benefits">
+              <ul>
+                <li>All of the benefits of Community Membership, plus</li>
+                <li>24/7 Access to 5 Fitzroy Street</li>
+                <li>Inclusive hire for your own events and meetings</li>
+                <li>Your own dedicated workspace and storage</li>
+              </ul>
+            </div>
+          </div>
+          <!-- Right: Pricing & CTA -->
+          <div class="membership-pricing">
+            <div class="price-card">
+              <p class="price-title">Monthly Cost</p>
+              <p class="price-amount">£100 per month<br />+ £100 joining fee</p>
+            </div>
+            <a href="#" class="cta-button">
+              Become a Creative Workspace Member
+            </a>
+          </div>
         </div>
-      </div>
+        <!-- Extra note about applying -->
+        <div class="apply-note">
+          <p>
+            In order to apply to become a workspace member, we will need you to
+            fill out a form to check eligibility. We will get back to you within
+            5 working days.
+          </p>
+        </div>
+      </section>
     </main>
 
-    <!-- Footer -->
+    <!-- ========== FOOTER ========== -->
     <footer>
       <div class="f-format">
         <div class="f-list">
@@ -83,7 +394,7 @@
             <ul>
               <li><a href="/frontend/index.html">Home</a></li>
               <li><a href="#">About</a></li>
-              <li><a href="#">Creative Workspace Membership</a></li>
+              <li><a href="#">Community Membership</a></li>
               <li><a href="#">Contact</a></li>
             </ul>
           </div>
@@ -100,6 +411,7 @@
             <ul>
               <li><a href="#">Login / Sign-up</a></li>
               <li><a href="#">Account Dashboard</a></li>
+              <li><a href="#">My Membership</a></li>
               <li><a href="#">Billing</a></li>
             </ul>
           </div>
@@ -111,7 +423,10 @@
             </ul>
           </div>
           <div class="f-logo">
-            <img src="/frontend/images/PLACEHOLDER.svg" />
+            <img
+              src="/frontend/images/PLACEHOLDER.svg"
+              alt="Placeholder Logo"
+            />
           </div>
         </div>
       </div>
