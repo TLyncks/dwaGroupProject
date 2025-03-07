@@ -27,6 +27,21 @@
                 transform: scale(1.05);
                 box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             }
+            .benefit-card {
+                background-size: cover; /* Ensure the image covers the card */
+                background-position: center;
+                color: white; /* Ensure text is visible */
+                border-radius: 10px;
+                padding: 20px; /* Adds spacing inside the card */
+                min-height: 300px; /* Ensures a good size */
+            }
+
+            .semi-transparent-bg {
+            background-color: rgba(128, 128, 128, 0.5); /* Grey with 50% transparency */
+            padding: 5px 10px; /* Add some spacing */
+            border-radius: 5px; /* Optional: Rounded corners */
+            display: inline-block; /* Prevent full width */
+            }
 
         .accordion-content {
             max-height: 0;
@@ -117,11 +132,12 @@
     <div class="row">
         <!-- Benefit 1 -->
         <div class="col-md-6">
-            <div class="card text-center">
+            
+                <div class="card text-center benefit-card" style="background-image: url('UserDashPhotos/image1.png');">
                 <div class="card-body">
-                    <img src="DWA website file&photos/Screenshot 2025-03-02 132636.png" class="mx-auto d-block mb-3 rounded" width="80">
-                    <h5 class="card-title">Exclusive Together Culture Events</h5>
-                    <p class="card-text">Attend your first Together Culture Event to redeem this benefit and start hosting your own events!</p>
+                    <img src="UserDashPhotos/Screenshot 2025-03-02 132636.png" class="mx-auto d-block mb-3 rounded" width="80">
+                    <h5 class="semi-transparent-bg">Exclusive Together Culture Events</h5>
+                    <p class="semi-transparent-bg">Attend your first Together Culture Event to redeem this benefit and start hosting your own events!</p>
                     <button class="btn btn-primary" onclick="toggleAccordion('benefit1')">More Info</button>
                     <div id="benefit1" class="accordion-content">
                         <p>Join our exciting events to meet new people and grow your network.</p>
@@ -134,7 +150,7 @@
             <div class="col-md-6">
                 <div class="card text-center">
                     <div class="card-body">
-                       <img src="DWA website file&photos/free-photo-of-vibrant-market-scene-in-valencia-spain.jpeg" class="mx-auto d-block mb-3 rounded" width="80">
+                       <img src="UserDashPhotos/free-photo-of-vibrant-market-scene-in-valencia-spain.jpeg" class="mx-auto d-block mb-3 rounded" width="80">
                         <h5 class="card-title">Community Discounts</h5>
                         <p class="card-text"> We've partnered with vendors in our community that align with our mission to bring great deals!</p>
                         <button class="btn btn-primary" onclick="toggleAccordion('benefit2') ">See Full List</button>
@@ -159,7 +175,7 @@ Zi's Piri Piri      Noodles +
             <div class="col-md-6">
                 <div class="card text-center">
                     <div class="card-body">
-                       <img src="DWA website file&photos/ARU_Chelms-Campus-1646315935-369966023.jpg" class="mx-auto d-block mb-3 rounded" width="80"> 
+                       <img src="UserDashPhotos/ARU_Chelms-Campus-1646315935-369966023.jpg" class="mx-auto d-block mb-3 rounded" width="80"> 
                         <h5 class="card-title">Anglia Ruskin University Partnership</h5>
                         <p class="card-text">Access to select ARU events and services</p>
                         <button class="btn btn-primary" onclick="toggleAccordion('benefit3')">More Info</button>
@@ -180,7 +196,7 @@ Zi's Piri Piri      Noodles +
             <div class="col-md-6">
                 <div class="card text-center">
                     <div class="card-body">
-                       <img src="DWA website file&photos/Cambridge image.jpg" class="mx-auto d-block mb-3 rounded" width="80"> 
+                       <img src="UserDashPhotos/Cambridge image.jpg" class="mx-auto d-block mb-3 rounded" width="80"> 
 
                         <h5 class="card-title">Cambridge University Partnership</h5>
                         <p class="card-text">Access to select CU event and services </p>
@@ -204,7 +220,7 @@ Zi's Piri Piri      Noodles +
             <div class="col-md-6">
                 <div class="card text-center">
                     <div class="card-body">
-                        <img src="DWA website file&photos/Screenshot+2024-06-10+at+15.32.51+(1).jpg" class="mx-auto d-block mb-3 rounded" width="80">
+                        <img src="UserDashPhotos/Screenshot+2024-06-10+at+15.32.51+(1).jpg" class="mx-auto d-block mb-3 rounded" width="80">
                         <h5 class="card-title">Together Culture Workplace & Services</h5>
                         <p class="card-text">Exclusive access to our 5 Fitzroy St Workplace & Services!</p>
                         <button class="btn btn-primary" onclick="toggleAccordion('benefit5')">More Info</button>
