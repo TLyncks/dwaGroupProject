@@ -261,18 +261,18 @@
     
         function handleButtonClick(accordionId, increment, buttonId) {
             if (!localStorage.getItem(buttonId)) {
-                localStorage.setItem(buttonId, true); // Mark button as clicked
+                localStorage.setItem(buttonId, true); 
                 updateProgress(increment);
+                saveProgressToDB(); 
             }
             toggleAccordion(accordionId);
         }
     
         function updateProgress(increment) {
-            let currentProgress = parseInt(localStorage.getItem("progress")) || 0;
+            let currentProgress = parseInt(localStorage.getItem("benefitProgress")) || 0;
             if (currentProgress < 100) {
                 currentProgress = Math.min(currentProgress + increment, 100);
-                localStorage.setItem("progress", currentProgress);
-             //   saveProgressToDB(currentProgress); // Send to MySQL
+                localStorage.setItem("benefitProgress", currentProgress);
                 updateProgressBar(currentProgress);
             }
         }
@@ -283,23 +283,25 @@
         }
     
         function loadProgress() {
-            fetch('/api/progress')
+            fetch('/api/benefitProgress')
                 .then(response => response.json())
                 .then(data => {
-                    localStorage.setItem("progress", data.progress);
-                    updateProgressBar(data.progress);
+                    localStorage.setItem("benefitProgress", data.benefitProgress); 
+                    updateProgressBar(data.benefitProgress);
                 })
                 .catch(error => console.error('Error loading progress:', error));
         }
-
-       /* function saveProgressToDB(progress) {
-            fetch('/api/save-progress', {
+    
+        function saveProgressToDB() {
+            let progress = parseInt(localStorage.getItem("benefitProgress")) || 0;
+            fetch('/api/save-benefitProgress', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ progress })
+                body: JSON.stringify({ benefitProgress: progress }) 
             });
-        } */
+        }
     </script>
+    
 
 <!--Script below is to allow the bootstrap accordion movement on button click-->
 <script>
