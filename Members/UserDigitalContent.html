@@ -10,7 +10,7 @@
     </head>
 
 
-    <body>
+    
     <style>
 
 body {
@@ -19,10 +19,12 @@ body {
 
 
         .grid-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            display: grid ;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 20px; /* Equal horizontal gap */
             padding: 20px;
+            border: 2px solid red;
+            justify-content: center;
         }
 
         .card {
@@ -31,6 +33,17 @@ body {
             color: white;
             border-radius: 10px;
             height: 400px;
+            transition: transform 0.3 ease-in-out;
+            border: 1px solid blue;
+        }
+
+        .card-link{
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card:hover{
+            transform: scale(1.05);
         }
 
             .card img {
@@ -47,6 +60,7 @@ body {
 
             .btn-view{
                 color: white;
+                cursor: pointer;
             }
 
         #onTheBottom{
@@ -54,21 +68,9 @@ body {
             bottom: 0;
         }
 
-        /* First row: Offset second image down */
-        .grid-container .card:nth-child(2) {
-            margin-left: -40px;
-        }
-        .grid-container .card:nth-child(1) {
-            margin-right: 40px;
-        }
-        .grid-container .card:nth-child(3) {
-            margin-right: -40px;
-        }
 
-        /* Second row: Offset first image down */
-        .grid-container .card:nth-child(4) {
-            margin-left: 40px;
-        }
+
+       
     </style>
 
 <body>
@@ -81,16 +83,16 @@ body {
         </header>
         <div class="nav-links">
             <ul>
-                <li><a href="#">Dashboard</a></li>
+                <li><a href="UserDashboard.html">Dashboard</a></li>
                 <li><a href="#">Calendar</a></li>
                 <li><a href="#">Chat</a></li>
-                <li><a href="#">Digital Content</a></li>
+                <li><a href="UserDigitalContent.html">Digital Content</a></li>
                 <li><a href="#">Settings</a></li>
                 
             </ul>
         </div>
         <div class="usr-panel">
-            <button href="#">Sign Up</button>
+            <button href="#">Log Out</button>
           <img src="../frontend/images/EmptyBag.svg" alt="empty-shopping-bag" />
            <img src="../frontend/images/GuestIcon.svg" alt="guest-profile-icon" />
         </div>
@@ -106,6 +108,7 @@ body {
     <div class="container mt-4">
         
         <div class="grid-container">
+           
             <div class="card">
                 <img src=".\UserDashPhotos\boroughMarket.jpg" alt="Borough Farmers Market">
                 <div class="card-img-overlay">
@@ -114,9 +117,10 @@ body {
                 </div>
                 <div id="onTheBottom">
                     <p class="card-text">Learn how to support local...</p>
-                    <a href="content.html" class="btn btn-view">View</a>
+                    <a href="UserDigitalContentExample.html" class="btn btn-view">View</a>
                 </div>
             </div>
+          
 
             <div class="card">
                 <img src=".\UserDashPhotos\puntingInCambridge.jpg" alt="Cambridge University">
@@ -125,11 +129,14 @@ body {
                     <h5>Under their Shadow</h5>
                 </div>
                 <div id="onTheBottom">   
-                <p class= "card-text">Learn how to move and exist in the shadow of one of the most elitist universities in...</p>
-                    <a href="content.html" class="btn btn-view">View</a>
+                <p class= "card-text">Learn how to move and exist in the shadow of one of the most elite universities in...</p>
+                    <a href="UserDigitalContentExample.html" class="btn btn-view">View</a>
                 </div>
             </div>
+           <
 
+
+            
             <div class="card">
                 <img src=".\UserDashPhotos\womanBeforeTeam.jpg" alt="Team Leader">
                 <div class="card-img-overlay">
@@ -138,10 +145,12 @@ body {
                 </div>
                 <div id="onTheBottom">
                     <p class="card-text">Learn from leaders in our community and sharpen your...</p>
-                    <a href="content.html" class="btn btn-view">View</a>
+                    <a href="UserDigitalContentExample.html" class="btn btn-view">View</a>
                 </div>
             </div>
+            
 
+            
             <div class="card">
                 <img src=".\UserDashPhotos\womenTeamwork.jpg" alt="Company Building">
                 <div class="card-img-overlay">
@@ -150,9 +159,11 @@ body {
                 </div>
                 <div id="onTheBottom">
                     <p class="card-text"> Learn how to build your own business or startup...</p>
-                    <a href="content.html" class="btn btn-view">View</a>
+                    <a href="UserDigitalContentExample.html" class="btn btn-view">View</a>
                 </div>
             </div>
+            </a>
+
         </div>
     </div>
 
@@ -165,7 +176,7 @@ body {
                         <li><a href="/frontend/index.html">Home</a></li>
                         <li><a href="#">About</a></li>
                         <li><a href="#">Memberships</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="..\contact-support.html">Contact</a></li>
                     </ul>
                 </div>
             </div>
