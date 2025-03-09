@@ -2,6 +2,10 @@
 <html lang="en" class="light">
   <head>
     <link rel="stylesheet" href="admin.css" />
+    <link rel="stylesheet" href="lib/bootstrap.min.css" />
+    <link rel="stylesheet" href="lib/table-sortable.css" />
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/table-sortable.js"></script>
   </head>
 
   <body>
@@ -29,7 +33,7 @@
         <h2 style="margin-top: 90px">Member Administration</h2>
 
         <div class="member-actions">
-          <input type="text" class="input-text" id="search-member" placeholder="Search Name..." style="width: 15%" />
+          <input type="text" class="input-text" id="search-member" placeholder="Search Name..." style="width: 15%" id="searchField" />
           <input type="text" class="input-text" id="search-member" placeholder="Search Email..." style="width: 15%" />
           <input type="text" class="input-text" id="search-member" placeholder="Search Type..." style="width: 15%" />
           <input type="text" class="input-text" id="search-member" placeholder="Search Tag..." style="width: 15%" />
@@ -37,60 +41,7 @@
           <button class="btn" onclick="searchMember()">Search</button>
         </div>
 
-        <div class="member-table">
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>MemberShip Type</th>
-                <th>Based On</th>
-                <th>Tag</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody id="member-table-body">
-              <tr>
-                <td>Tai Rose</td>
-                <td>tairose@gmail.com</td>
-                <td>Community Member</td>
-                <td>Indiviual</td>
-                <td>Usually</td>
-                <td>Approved</td>
-                <td><button class="btn" onclick="window.location.href = 'member-detail.html'">Detail</button><button class="btn" onclick="">Delete</button></td>
-              </tr>
-              <tr>
-                <td>Malcom Going</td>
-                <td>malcom@gmail.com</td>
-                <td>Key Access Member</td>
-                <td>Indiviual</td>
-                <td>Often</td>
-                <td>Approved</td>
-                <td><button class="btn" onclick="window.location.href = 'member-detail.html'">Detail</button><button class="btn" onclick="">Delete</button></td>
-              </tr>
-
-              <tr>
-                <td>Yusuf Kose</td>
-                <td>yusufkose@gmail.com</td>
-                <td>Workspace Member</td>
-                <td>Company</td>
-                <td>Always</td>
-                <td>Approved</td>
-                <td><button class="btn" onclick="window.location.href = 'member-detail.html'">Detail</button><button class="btn" onclick="">Delete</button></td>
-              </tr>
-              <tr>
-                <td>Alessandro La Mendola</td>
-                <td>alessandro@gmail.com</td>
-                <td>Workspace Member</td>
-                <td>Company</td>
-                <td>Never</td>
-                <td>Waiting</td>
-                <td><button class="btn" onclick="">Allow</button> <button class="btn" onclick="">Deny</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <div id="table-sortable" class="table-sortable"></div>
 
         <div class="add-member">
           <h3>Add New Member</h3>
@@ -135,26 +86,7 @@
               </ul>
             </div>
           </div>
-          <div class="f-mem">
-            <h4>Memberships</h4>
-            <div>
-              <ul>
-                <li><a href="/frontend/index.html">Standard</a></li>
-                <li><a href="#">Community</a></li>
-                <li><a href="#">Key Access</a></li>
-                <li><a href="#">Creative Workspace</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="f-support">
-            <h4>Support</h4>
-            <div>
-              <ul>
-                <li><a href="/frontend/index.html">Contact Us</a></li>
-                <li><a href="#">Report</a></li>
-              </ul>
-            </div>
-          </div>
+
           <div class="f-logo">
             <img src="/frontend/images/PLACEHOLDER.svg" />
           </div>
@@ -171,5 +103,75 @@
         </div>
       </div>
     </footer>
+
+    <script>
+      var data = [
+        {
+          name: 'Tai Rose',
+          email: 'tairose@gmail.com',
+          type: 'Community Member',
+          basedOn: 'Indiviual',
+          tag: 'Usually',
+          status: 'Approved',
+          detail: 'Detail',
+          delete: 'Delete'
+        },
+        {
+          name: 'Malcom Going',
+          email: 'malcom@gmail.com',
+          type: 'Key Access Member',
+          basedOn: 'Indiviual',
+          tag: 'Often',
+          status: 'Approved',
+          detail: 'Detail',
+          delete: 'Delete'
+        },
+        {
+          name: 'Yusuf Kose',
+          email: 'yusufkose@gmail.com',
+          type: 'Workspace Member',
+          basedOn: 'Company',
+          tag: 'Always',
+          status: 'Approved',
+          detail: 'Detail',
+          delete: 'Delete'
+        },
+        {
+          name: 'Alessandro La Mendola',
+          email: 'alessandro@gmail.com',
+          type: 'Workspace Member',
+          basedOn: 'Company',
+          tag: 'Never',
+          status: 'Waiting',
+          detail: 'Detail',
+          delete: 'Delete'
+        }
+      ]
+
+      var table = $('#table-sortable').tableSortable({
+        data: data,
+        columns: {
+          name: 'Name',
+          email: 'Email',
+          type: 'MemberShip Type',
+          basedOn: 'Based On',
+          tag: 'Tag',
+          status: 'Status',
+          detail: 'Detail',
+          delete: 'Delete'
+        },
+        rowsPerPage: 5,
+        pagination: true,
+        formatCell: function (row, key) {
+          if (key === 'detail') {
+            return $('<button></button>').attr('onclick', "window.location.href = 'member-detail.html'").addClass('btn').text('Detail')
+          }
+          if (key === 'delete') {
+            return $('<button></button>').attr('onclick', "'").addClass('btn').text('Delete')
+          }
+          return row[key]
+        }
+      })
+    </script>
   </body>
 </html>
