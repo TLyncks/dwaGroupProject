@@ -2,6 +2,10 @@
 <html lang="en" class="light">
   <head>
     <link rel="stylesheet" href="admin.css" />
+    <link rel="stylesheet" href="lib/bootstrap.min.css" />
+    <link rel="stylesheet" href="lib/table-sortable.css" />
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/table-sortable.js"></script>
   </head>
 
   <body>
@@ -13,9 +17,9 @@
       </header>
       <div class="nav-links">
         <ul>
-          <li><a href="member.html">Members</a></li>
-          <li><a href="event.html">Events</a></li>
-          <li><a href="event-report.html">Event Report</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Memberships</a></li>
+          <li><a href="#">Contact</a></li>
         </ul>
       </div>
       <div class="usr-panel">
@@ -29,65 +33,12 @@
         <h2 style="margin-top: 90px">Event Administration</h2>
 
         <div class="member-actions">
-          <input type="text" class="input-text" id="search-member" placeholder="Search Event..." style="width: 30%" />
+          <input type="text" class="input-text" placeholder="Search Event..." style="width: 30%" id="searchField" />
           <input type="date" id="searchdate" class="date-picker" style="width: 25%" />
           <input type="date" id="enddate" class="date-picker" style="width: 25%" />
           <button class="btn" onclick="searchEvent()">Search</button>
         </div>
-
-        <div class="event-table">
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Image</th>
-                <th>Date</th>
-                <th>Time Period</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody id="event-table-body">
-              <tr>
-                <td>Town and Gown Conversation 1: Land</td>
-                <td><img style="width: 80px" src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F934304073%2F5521189670%2F1%2Foriginal.20250113-145235?w=512&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C1600%2C800&s=8ee2b53ce53e610576f7f7e132cd683e" /></td>
-                <td>01-10-2025</td>
-                <td>7:00pm - 7:30pm</td>
-                <td><button class="btn" onclick="window.location.href = 'event-detail.html'">Detail</button><button class="btn" onclick="">Delete</button></td>
-              </tr>
-              <tr>
-                <td>Happy Board Game Hour</td>
-                <td><img style="width: 80px" src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F603228779%2F293537922080%2F1%2Foriginal.20230921-132611?h=230&w=460&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C119%2C4000%2C2000&s=b7d1f683d45aa9aa0027c6ab14dac080" /></td>
-                <td>03-10-2025</td>
-                <td>8:00pm - 10:30pm</td>
-                <td><button class="btn" onclick="window.location.href = 'event-detail.html'">Detail</button><button class="btn" onclick="">Delete</button></td>
-              </tr>
-
-              <tr>
-                <td>Meet The People Who Shaped The Kite From 1800 - 1980</td>
-                <td><img style="width: 80px" src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F934312153%2F5521189670%2F1%2Foriginal.20250113-150110?w=512&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C1600%2C800&s=310b1555169083db22b60adf28b181a6" /></td>
-                <td>04-10-2025</td>
-                <td>3:00pm - 4:30pm</td>
-                <td><button class="btn" onclick="window.location.href = 'event-detail.html'">Detail</button><button class="btn" onclick="">Delete</button></td>
-              </tr>
-
-              <tr>
-                <td>Town and Gown Conversation 2: Power</td>
-                <td><img style="width: 80px" src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F887669043%2F292515380042%2F1%2Foriginal.20241030-160941?w=512&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C194%2C4928%2C2464&s=305730f34f54405d059da880d344c2de" /></td>
-                <td>06-10-2025</td>
-                <td>8:00pm - 11:00pm</td>
-                <td><button class="btn" onclick="window.location.href = 'event-detail.html'">Detail</button><button class="btn" onclick="">Delete</button></td>
-              </tr>
-
-              <tr>
-                <td>Let's Go Fly our Kites Finale / Community Songfest</td>
-                <td><img style="width: 80px" src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F860757979%2F1805356517083%2F1%2Foriginal.20240927-074150?w=382&auto=format%2Ccompress&q=75&sharp=10&s=4bfd83b440e955c2840c9a9840a54082" /></td>
-                <td>07-10-2025</td>
-                <td>1:00pm - 2:00pm</td>
-                <td><button class="btn" onclick="window.location.href = 'event-detail.html'">Detail</button><button class="btn" onclick="">Delete</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <div id="table-sortable" class="table-sortable"></div>
 
         <div class="add-event">
           <h3>Add New Event</h3>
@@ -215,7 +166,6 @@
               <ul>
                 <li><a href="/frontend/index.html">Home</a></li>
                 <li><a href="#">About</a></li>
-                <li><a href="#">Pricing</a></li>
                 <li><a href="#">Contact</a></li>
               </ul>
             </div>
@@ -256,5 +206,93 @@
         </div>
       </div>
     </footer>
+
+    <script>
+      var data = [
+        {
+          eventName: 'Living the Living Book: Turning Up and Butter Making / ONLINE',
+          eventImage: 'https://images.squarespace-cdn.com/content/v1/63bc104e8f7c476406bd6221/093f57bd-0a54-42a2-a3a0-bfe53d06fd59/5.png?format=1000w',
+          eventDate: '03-10-2025',
+          timePeriod: '1:00pm - 2:00pm',
+          detail: 'Detail',
+          delete: 'Delete'
+        },
+        {
+          eventName: 'Happy Board Game Hour',
+          eventImage: 'https://images.squarespace-cdn.com/content/v1/63bc104e8f7c476406bd6221/bcdf0716-23f4-4fb8-aa28-b9ae87c5b753/Website+Event+Images+2.0+%2822%29.png?format=1000w',
+          eventDate: '04-04-2025',
+          timePeriod: '1:00pm - 3:00pm',
+          detail: 'Detail',
+          delete: 'Delete'
+        },
+        {
+          eventName: 'Slow Flow to Restore',
+          eventImage: 'https://images.squarespace-cdn.com/content/v1/63bc104e8f7c476406bd6221/70121822-f819-4d9c-982e-de17260e7329/YOGAatTC.png?format=1000w',
+          eventDate: '04-10-2025',
+          timePeriod: '6:15pm - 7:30pm',
+          detail: 'Detail',
+          delete: 'Delete'
+        },
+        {
+          eventName: 'Connections Meal',
+          eventImage: 'https://images.squarespace-cdn.com/content/v1/63bc104e8f7c476406bd6221/026670af-4fc8-4329-8f89-3fb38972fd82/Website+Event+Images+2.0+%2812%29.png?format=1000w',
+          eventDate: '04-11-2025',
+          timePeriod: '12:30pm - 2:30pm',
+          detail: 'Detail',
+          delete: 'Delete'
+        },
+        {
+          eventName: 'Wellbeing for Change: Digital',
+          eventImage: 'https://images.squarespace-cdn.com/content/v1/63bc104e8f7c476406bd6221/f42aaeb7-5d74-4389-8675-0befd6103b17/Website+Event+Images+2.0+%2826%29.png?format=1000w',
+          eventDate: '04-15-2025',
+          timePeriod: '6:30pm - 8:00pm',
+          detail: 'Detail',
+          delete: 'Delete'
+        },
+        {
+          eventName: 'Power Flow Yoga',
+          eventImage: 'https://images.squarespace-cdn.com/content/v1/63bc104e8f7c476406bd6221/4cb0b296-33bb-405a-811d-caabd0cc8d00/YOGAatTC.png?format=1000w',
+          eventDate: '04-17-2025',
+          timePeriod: '5:15pm - 6:00pm',
+          detail: 'Detail',
+          delete: 'Delete'
+        },
+        {
+          eventName: 'Orientation for New Members and Curious Folk',
+          eventImage: 'https://images.squarespace-cdn.com/content/v1/63bc104e8f7c476406bd6221/6b811abb-956d-4ee5-9604-0315f50dcff6/3.png?format=1000w',
+          eventDate: '04-25-2025',
+          timePeriod: '12:00pm - 1:00pm',
+          detail: 'Detail',
+          delete: 'Delete'
+        }
+      ]
+
+      var columns = {
+        eventName: 'Name',
+        eventImage: 'Image',
+        eventDate: 'Date',
+        timePeriod: 'Time Period',
+        detail: 'Detail',
+        delete: 'Delete'
+      }
+      var table = $('#table-sortable').tableSortable({
+        data: data,
+        columns: columns,
+        rowsPerPage: 5,
+        pagination: true,
+        formatCell: function (row, key) {
+          if (key === 'eventImage') {
+            return $('<img></img>').attr('src', row[key]).attr('style', 'width: 80px')
+          }
+          if (key === 'detail') {
+            return $('<button></button>').attr('onclick', "window.location.href = 'event-detail.html'").addClass('btn').text('Detail')
+          }
+          if (key === 'delete') {
+            return $('<button></button>').attr('onclick', "'").addClass('btn').text('Delete')
+          }
+          return row[key]
+        }
+      })
+    </script>
   </body>
 </html>
