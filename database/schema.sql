@@ -1,6 +1,6 @@
---Current info below for admin info is basic to test out usage. 
---Information can/will be changed for final draft
+--Information below is a draft of the final tables
 
+--Admin(only us 4)
 CREATE TABLE adminInfo (
     ID INT AUTO_INCREMENT PRIMARY KEY,
     MemberName VARCHAR(255) DEFAULT 'unknown',
@@ -8,13 +8,15 @@ CREATE TABLE adminInfo (
     PhoneNum VARCHAR(15) DEFAULT '0000000000'
 );
 
+--All base users, key members, company members will be here
+--memberID is the identifier key that links to other tables
 CREATE TABLE BaseUser (
     id INT AUTO_INCREMENT PRIMARY KEY,  -- Unique identifier for each user
-    name VARCHAR(100) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
+    UserName VARCHAR(100) NOT NULL,
+    userEmail VARCHAR(255) UNIQUE NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
-    address TEXT,
-    phone VARCHAR(20) UNIQUE NOT NULL,
+    UserAddress TEXT,
+    UserPhone VARCHAR(20) UNIQUE NOT NULL,
     isKeyMember BOOLEAN DEFAULT FALSE,  -- Key members have more permissions
     dateAccountMade DATETIME DEFAULT CURRENT_TIMESTAMP,
     eventsHosted INT DEFAULT 0 CHECK (eventsHosted >= 0),
@@ -28,6 +30,10 @@ CREATE TABLE BaseUser (
 );
 
 
+--This table will be replicated for each company. 
+--This is the template for the table that will hold each company member. 
+--memberID links to each person's base user account
+--companyID links to the master company table that lists all the generic info for each company
 CREATE TABLE company_roles (
     role_id INT AUTO_INCREMENT PRIMARY KEY,  -- Unique ID for each role entry
     memberID INT NOT NULL,  -- Links to BaseUser
@@ -41,15 +47,17 @@ CREATE TABLE company_roles (
 );
 
 
+--master company info that hold the generic info that must be completed when filling out an application 
 CREATE TABLE companies (
     company_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL UNIQUE,
+    companyName VARCHAR(255) NOT NULL UNIQUE,
     leader VARCHAR(255) NOT NULL,  -- Main leader (e.g., CEO)
-    address VARCHAR(255), -- Address of the company
-    phone VARCHAR(20), --main contact number
-    email VARCHAR(255), --main contact email
-    website VARCHAR(255), --main website
-    bio TEXT,
+    companyAddress VARCHAR(255), -- Address of the company
+    companyPhone VARCHAR(20), --main contact number
+    companyEmail VARCHAR(255), --main contact email
+    companyWebsite VARCHAR(255), --main website
+    memberCountUsingTC INT,
+    companyBio TEXT,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
