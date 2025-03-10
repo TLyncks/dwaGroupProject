@@ -2,9 +2,10 @@
 <html lang="en" class="light">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Upcoming Events | Together Culture</title>
     <link rel="stylesheet" href="/frontend/css/styles.css" />
+
     <!-- Merged CSS for header, events page, and footer -->
     <style>
       /* ========== RESET & GLOBAL ========== */
@@ -51,8 +52,7 @@
         align-items: center;
         gap: 1rem;
       }
-      .signup-btn,
-      .usr-panel button {
+      .signup-btn {
         background: linear-gradient(to right, #ff416c, #ff4b2b);
         color: #fff;
         border: none;
@@ -63,10 +63,11 @@
         cursor: pointer;
         transition: 0.3s ease-in-out;
       }
-      .usr-panel button:hover {
+      .signup-btn:hover {
         background: linear-gradient(to right, #ff4b2b, #ff416c);
         transform: scale(1.05);
       }
+
       /* Dropdown Menu */
       .dropdown {
         position: relative;
@@ -172,6 +173,7 @@
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.12);
         text-align: left;
         transition: 0.3s;
+        /* Each card has a data-category to filter by */
       }
       .event-card img {
         width: 100%;
@@ -279,22 +281,31 @@
       <!-- Center: Nav Links with Dropdown -->
       <div class="nav-links">
         <ul>
-          <li><a href="#">About</a></li>
+          <li><a href="/frontend/index.html">About</a></li>
           <li class="dropdown">
             <a href="#">Memberships</a>
             <ul class="dropdown-menu">
-              <li><a href="#">Community</a></li>
-              <li><a href="#">Key Access</a></li>
-              <li><a href="#">Creative Workspace</a></li>
+              <li><a href="/frontend/non members/community-membership.html">Community</a></li>
+              <li><a href="/frontend/non members/key-access-membership.html">Key Access</a></li>
+              <li><a href="/frontend/non members/creative-workspace-membership.html">Creative Workspace</a></li>
+              <!-- New: "See All Memberships" link -->
+              <li><a href="/frontend/non members/non-member-page.html">See All Memberships</a></li>
             </ul>
           </li>
-          <li><a href="#">Events</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="/frontend/non members/events.html">Events</a></li>
+          <!-- Link "Contact" to Contact Support page -->
+          <li><a href="/frontend/non members/contact-support.html">Contact</a></li>
         </ul>
       </div>
       <!-- Right: Join Now Button & Icons -->
       <div class="usr-panel">
-        <button class="signup-btn">Join Now</button>
+        <!-- Updated "Join Now" button to go to membership application -->
+        <button
+          class="signup-btn"
+          onclick="location.href='/frontend/non members/member-application.html'"
+        >
+          Join Now
+        </button>
         <img src="/frontend/images/EmptyBag.svg" alt="empty-shopping-bag" />
         <img src="/frontend/images/GuestIcon.svg" alt="guest-profile-icon" />
       </div>
@@ -304,71 +315,64 @@
     <main class="events-main">
       <div class="events-container">
         <h1>Upcoming Cultural Events</h1>
-        <p>
-          Join us for inspiring cultural experiences, workshops, and networking
-          events.
-        </p>
+        <p>Join us for inspiring cultural experiences, workshops, and networking events.</p>
+
         <!-- Filter Options -->
         <div class="filter-options">
-          <button class="filter-btn active">All</button>
-          <button class="filter-btn">Workshops</button>
-          <button class="filter-btn">Music</button>
-          <button class="filter-btn">Art Exhibitions</button>
-          <button class="filter-btn">Networking</button>
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="workshops">Workshops</button>
+          <button class="filter-btn" data-filter="music">Music</button>
+          <button class="filter-btn" data-filter="art-exhibitions">Art Exhibitions</button>
+          <button class="filter-btn" data-filter="networking">Networking</button>
         </div>
-        <!-- Event Cards Container -->
+
+        <!-- Events Grid -->
         <div class="events-grid">
-          <!-- Sample Event 1 -->
-          <div class="event-card">
+          <!-- Sample Event 1: MUSIC -->
+          <div class="event-card" data-category="music">
             <img src="/frontend/images/event1.jpg" alt="Event 1" />
             <div class="event-details">
               <h2>Live Jazz Night</h2>
               <p><strong>Date:</strong> 15 April, 2025</p>
               <p><strong>Location:</strong> Cambridge Guildhall</p>
-              <p>
-                Enjoy an evening of soulful jazz music performed by renowned
-                local artists.
-              </p>
+              <p>Enjoy an evening of soulful jazz music performed by renowned local artists.</p>
               <button class="event-btn">Join Event</button>
             </div>
           </div>
-          <!-- Sample Event 2 -->
-          <div class="event-card">
+
+          <!-- Sample Event 2: ART EXHIBITIONS -->
+          <div class="event-card" data-category="art-exhibitions">
             <img src="/frontend/images/event2.jpg" alt="Event 2" />
             <div class="event-details">
               <h2>Modern Art Exhibition</h2>
               <p><strong>Date:</strong> 5 May, 2025</p>
               <p><strong>Location:</strong> Together Culture workspace</p>
-              <p>
-                Explore thought-provoking contemporary artwork from emerging
-                artists.
-              </p>
-              <button class="event-btn">Learn More</button>
+              <p>Explore thought-provoking contemporary artwork from emerging artists.</p>
+              <button class="event-btn">Join event</button>
             </div>
           </div>
-          <!-- Sample Event 3 -->
-          <div class="event-card">
+
+          <!-- Sample Event 3: WORKSHOPS -->
+          <div class="event-card" data-category="workshops">
             <img src="/frontend/images/event3.jpg" alt="Event 3" />
             <div class="event-details">
               <h2>Poetry & Storytelling Workshop</h2>
               <p><strong>Date:</strong> 14 May, 2025</p>
               <p><strong>Location:</strong> Cambridge Theatre</p>
-              <p>
-                A creative session where writers share their poetry and stories
-                in an open-mic setting.
-              </p>
-              <button class="event-btn">Join Now</button>
+              <p>A creative session where writers share their poetry and stories in an open-mic setting.</p>
+              <button class="event-btn">Join event</button>
             </div>
           </div>
-          <!-- Sample Event 4 (Now inside the grid, next to Event 3) -->
-          <div class="event-card">
+
+          <!-- Sample Event 4: NETWORKING -->
+          <div class="event-card" data-category="networking">
             <img src="/frontend/images/event4.jpg" alt="Event 4" />
             <div class="event-details">
               <h2>Networking Evening</h2>
               <p><strong>Date:</strong> 25 May, 2025</p>
               <p><strong>Location:</strong> Together Culture workspace</p>
               <p>A great way to get to know all of our amazing members!</p>
-              <button class="event-btn">Learn More</button>
+              <button class="event-btn">Join event</button>
             </div>
           </div>
         </div>
@@ -385,12 +389,44 @@
               <li><a href="/frontend/index.html">Home</a></li>
               <li><a href="#">About</a></li>
               <li><a href="#">Memberships</a></li>
-              <li><a href="#">Events</a></li>
-              <li><a href="#">Contact us</a></li>
+              <li><a href="/frontend/non members/events.html">Events</a></li>
+              <li><a href="/frontend/non members/contact-support.html">Contact Us</a></li>
             </ul>
           </div>
         </div>
       </div>
     </footer>
+
+    <!-- Inline JavaScript to handle event filtering -->
+    <script>
+      const filterButtons = document.querySelectorAll(".filter-btn");
+      const eventCards = document.querySelectorAll(".event-card");
+
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          // Remove "active" class from all buttons
+          filterButtons.forEach((btn) => btn.classList.remove("active"));
+          // Add "active" to the clicked button
+          button.classList.add("active");
+
+          const filterValue = button.getAttribute("data-filter");
+
+          eventCards.forEach((card) => {
+            // "all" shows all events
+            if (filterValue === "all") {
+              card.style.display = "block";
+            } else {
+              // Check if event card's category matches the filter
+              const cardCategory = card.getAttribute("data-category");
+              if (cardCategory === filterValue) {
+                card.style.display = "block";
+              } else {
+                card.style.display = "none";
+              }
+            }
+          });
+        });
+      });
+    </script>
   </body>
 </html>

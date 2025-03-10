@@ -112,7 +112,6 @@
       .dropdown-menu li a:hover {
         background-color: #f2f2f2;
       }
-      /* Show sub-menu ONLY on hover of .dropdown */
       .dropdown:hover .dropdown-menu {
         visibility: visible;
         opacity: 1;
@@ -190,7 +189,7 @@
         font-size: 1rem;
       }
       .membership-benefits li::before {
-        content: \"> \";
+        content: "> ";
         position: absolute;
         left: 0;
         color: #fff;
@@ -358,26 +357,28 @@
       <!-- Center: Nav Links -->
       <div class="nav-links">
         <ul>
-          <li><a href="#">About</a></li>
-
-          <!-- Only show sub-menu on direct hover over "Memberships" item -->
+          <li><a href="/frontend/index.html">Home</a></li>
           <li class="dropdown">
             <a href="#">Memberships</a>
             <ul class="dropdown-menu">
-              <li><a href="#">Community</a></li>
-              <li><a href="#">Key Access</a></li>
-              <li><a href="#">Creative Workspace</a></li>
+              <li><a href="/frontend/non members/community-membership.html">Community</a></li>
+              <li><a href="/frontend/non members/key-access-membership.html">Key Access</a></li>
+              <li><a href="/frontend/non members/creative-workspace-membership.html">Creative Workspace</a></li>
             </ul>
           </li>
-
-          <li><a href="#">Events</a></li>
-          <li><a href="#">Contact us</a></li>
+          <li><a href="/frontend/non members/events.html">Events</a></li>
+          <li><a href="/frontend/non members/contact-support.html">Contact Us</a></li>
         </ul>
       </div>
 
       <!-- Right: Sign Up + Icons -->
       <div class="usr-panel">
-        <button class="signup-btn">Sign Up</button>
+        <button
+          class="signup-btn"
+          onclick="location.href='/frontend/non members/member application.html'"
+        >
+          Sign Up
+        </button>
         <img src="/frontend/images/EmptyBag.svg" alt="Shopping Bag Icon" />
         <img src="/frontend/images/GuestIcon.svg" alt="Guest Profile Icon" />
       </div>
@@ -421,7 +422,13 @@
               <p class="price-title">Monthly Cost</p>
               <p class="price-amount">£18.50 per month</p>
             </div>
-            <a href="#" class="cta-button">Join the Community Membership</a>
+            <!-- UPDATED: Now links to membership application -->
+            <a
+              href="/frontend/non members/member application.html"
+              class="cta-button"
+            >
+              Join the Community Membership
+            </a>
           </div>
         </div>
       </section>
@@ -458,9 +465,18 @@
           <div class="membership-cost">
             <div class="price-card">
               <p class="price-title">Monthly Cost</p>
-              <p class="price-amount">£75 per month<br />+ £100 joining fee</p>
+              <p class="price-amount">
+                £75 per month<br />
+                + £100 joining fee
+              </p>
             </div>
-            <a href="#" class="cta-button">Join the Key Access Membership</a>
+            <!-- UPDATED: Now links to membership application -->
+            <a
+              href="/frontend/non members/member application.html"
+              class="cta-button"
+            >
+              Join the Key Access Membership
+            </a>
           </div>
         </div>
       </section>
@@ -499,9 +515,16 @@
           <div class="membership-cost">
             <div class="price-card">
               <p class="price-title">Monthly Cost</p>
-              <p class="price-amount">£100 per month<br />+ £100 joining fee</p>
+              <p class="price-amount">
+                £100 per month<br />
+                + £100 joining fee
+              </p>
             </div>
-            <a href="#" class="cta-button">
+            <!-- UPDATED: Now links to membership application -->
+            <a
+              href="/frontend/non members/member application.html"
+              class="cta-button"
+            >
               Become a Creative Workspace Member
             </a>
           </div>
@@ -523,7 +546,12 @@
           <strong>Pay What You Can</strong>
           memberships to those facing financial hardship.
         </p>
-        <button class="free-membership-btn">Apply for Free Membership</button>
+        <button
+          class="free-membership-btn"
+          onclick="location.href='/frontend/non members/member application.html'"
+        >
+          Apply for Free Membership
+        </button>
       </div>
     </main>
 
@@ -535,17 +563,41 @@
             <h4>Navigation</h4>
             <ul>
               <li><a href="/frontend/index.html">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Community Membership</a></li>
-              <li><a href="#">Contact</a></li>
+              <li>
+                <a href="/frontend/non members/community-membership.html"
+                  >Community Membership</a
+                >
+              </li>
+              <li>
+                <a href="/frontend/non members/key-access-membership.html"
+                  >Key Access</a
+                >
+              </li>
+              <li>
+                <a href="/frontend/non members/creative-workspace-membership.html"
+                  >Creative Workspace</a
+                >
+              </li>
             </ul>
           </div>
           <div class="f-mem">
             <h4>Memberships</h4>
             <ul>
-              <li><a href="#">Community</a></li>
-              <li><a href="#">Key Access</a></li>
-              <li><a href="#">Creative Workspace</a></li>
+              <li>
+                <a href="/frontend/non members/community-membership.html"
+                  >Community</a
+                >
+              </li>
+              <li>
+                <a href="/frontend/non members/key-access-membership.html"
+                  >Key Access</a
+                >
+              </li>
+              <li>
+                <a href="/frontend/non members/creative-workspace-membership.html"
+                  >Creative Workspace</a
+                >
+              </li>
             </ul>
           </div>
           <div class="f-acc">
@@ -560,7 +612,11 @@
           <div class="f-support">
             <h4>Support</h4>
             <ul>
-              <li><a href="#">Contact Us</a></li>
+              <li>
+                <a href="/frontend/non members/contact-support.html"
+                  >Contact Us</a
+                >
+              </li>
               <li><a href="#">Report Issue</a></li>
             </ul>
           </div>
