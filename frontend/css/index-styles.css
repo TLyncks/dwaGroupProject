@@ -120,7 +120,18 @@ main {
   object-fit: cover;
 }
 
-.lp-banner .content {
+.overlay  {
+  position: absolute;
+  top: 25%;
+  left: 0;
+  width: 20%;
+  height: 70%;
+  background: rgba(254, 30, 60);
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+}
+
+.content {
   max-width: 1200px;
   width: 100%;
   display: flex;
@@ -130,9 +141,9 @@ main {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
-.lp-banner .content img {
-  height: 40px;
-  width: 40px;
+.content img {
+  height: auto;
+  width: 150px;
 }
 
 .main-content {
