@@ -4,10 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Community Membership</title>
-    <!-- Link to global CSS file -->
     <link rel="stylesheet" href="/frontend/css/styles.css" />
-
-    <!-- Inline (merged) CSS -->
     <style>
       /* ========== RESET & GLOBAL ========== */
       * {
@@ -17,7 +14,7 @@
         font-family: Arial, sans-serif;
       }
 
-      /* ========== NAVBAR ========== */
+      /* ========== HEADER (Unified Dropdown Header) ========== */
       .navbar {
         background-color: #fe1e3c;
         position: fixed;
@@ -36,7 +33,7 @@
         width: auto;
       }
       .nav-links {
-        margin: 0 auto; /* centers nav list */
+        margin: 0 auto;
       }
       .nav-links ul {
         list-style: none;
@@ -112,7 +109,7 @@
 
       /* ========== MAIN CONTENT: COMMUNITY MEMBERSHIP ========== */
       .membership-main {
-        margin-top: 80px; /* offset for navbar */
+        margin-top: 80px;
         padding: 2rem;
         background: #fff;
         display: flex;
@@ -127,14 +124,13 @@
         width: 100%;
         gap: 2rem;
       }
-
-      /* LEFT: Title & Subtitle (like Creative style) */
+      /* LEFT: Title & Subtitle */
       .membership-info {
         flex: 1;
         text-align: left;
       }
       .membership-info h1 {
-        font-size: 3rem; /* same large size as creative workspace */
+        font-size: 3rem;
         font-weight: bold;
         margin-bottom: 1rem;
       }
@@ -151,8 +147,7 @@
         text-transform: uppercase;
         line-height: 1.2;
       }
-
-      /* CENTER: Red Card (like Creative style) */
+      /* CENTER: Red Card */
       .membership-card {
         background-color: #d0021b;
         color: #fff;
@@ -188,8 +183,7 @@
         font-weight: bold;
         transform: translateX(-20px);
       }
-
-      /* RIGHT: Pricing & Join Button (like Creative style) */
+      /* RIGHT: Pricing & CTA */
       .membership-pricing {
         flex: 1;
         text-align: center;
@@ -276,7 +270,6 @@
         width: 150px;
         height: auto;
       }
-
       /* ========== RESPONSIVE ========== */
       @media (max-width: 1024px) {
         .membership-layout {
@@ -294,57 +287,57 @@
       }
     </style>
   </head>
-
   <body>
-    <!-- HEADER (NEW DROPDOWN) -->
+    <!-- HEADER -->
     <nav class="navbar">
-      <!-- Left: Logo -->
       <div class="nav-header">
         <img
           src="/frontend/images/TC_Logos-01.png"
           alt="Together Culture Cambridge Logo"
         />
       </div>
-      <!-- Center: Nav Links with Dropdown -->
       <div class="nav-links">
         <ul>
-          <li><a href="#">About</a></li>
+          <!-- CHANGED 'Home' to 'About' -->
+          <li><a href="/frontend/non members/about.html">About</a></li>
           <li class="dropdown">
             <a href="#">Memberships</a>
             <ul class="dropdown-menu">
-              <li><a href="#">Community</a></li>
-              <li><a href="#">Key Access</a></li>
-              <li><a href="#">Creative Workspace</a></li>
+              <li><a href="/frontend/non members/community-membership.html">Community</a></li>
+              <li><a href="/frontend/non members/key-access-membership.html">Key Access</a></li>
+              <li><a href="/frontend/non members/creative-workspace-membership.html">Creative Workspace</a></li>
+              <li><a href="/frontend/non members/non-member-page.html">See All Memberships</a></li>
             </ul>
           </li>
-          <li><a href="#">Events</a></li>
-          <li><a href="#">Contact us</a></li>
+          <li><a href="/frontend/non members/events.html">Events</a></li>
+          <li><a href="/frontend/non members/contact-support.html">Contact Us</a></li>
         </ul>
       </div>
-      <!-- Right: Sign Up & Icons -->
       <div class="usr-panel">
-        <button class="signup-btn">Sign Up</button>
+        <button
+          class="signup-btn"
+          onclick="location.href='/frontend/non members/member-application.html'"
+        >
+          Sign Up
+        </button>
         <img src="/frontend/images/EmptyBag.svg" alt="empty-shopping-bag" />
         <img src="/frontend/images/GuestIcon.svg" alt="guest-profile-icon" />
       </div>
     </nav>
 
-    <!-- COMMUNITY MEMBERSHIP SECTION (Styled like Creative) -->
+    <!-- MAIN CONTENT: COMMUNITY MEMBERSHIP -->
     <main class="membership-main">
       <section class="membership-section">
         <div class="membership-layout">
-          <!-- Left: Info (Title, Subtitle) -->
+          <!-- LEFT: Info -->
           <div class="membership-info">
             <h1>
               <span class="red-text">Community</span>
               <span class="black-text">Membership</span>
             </h1>
-            <p class="subtitle">
-              TOGETHER CULTURE<br />
-              CAMBRIDGE
-            </p>
+            <p class="subtitle">TOGETHER CULTURE<br />CAMBRIDGE</p>
           </div>
-          <!-- Center: Red Card -->
+          <!-- CENTER: Red Card -->
           <div class="membership-card">
             <div class="membership-header">Community Member</div>
             <div class="membership-benefits">
@@ -356,13 +349,19 @@
               </ul>
             </div>
           </div>
-          <!-- Right: Pricing & CTA -->
+          <!-- RIGHT: Pricing & CTA -->
           <div class="membership-pricing">
             <div class="price-card">
               <p class="price-title">Monthly Cost</p>
               <p class="price-amount">£18.50 per month</p>
             </div>
-            <a href="#" class="cta-button"> Join the Community Membership </a>
+            <!-- CTA links to membership application form -->
+            <a
+              href="/frontend/non members/member application.html"
+              class="cta-button"
+            >
+              Join the Community Membership
+            </a>
           </div>
         </div>
       </section>
@@ -375,33 +374,54 @@
           <div class="f-nav">
             <h4>Navigation</h4>
             <ul>
-              <li><a href="/frontend/index.html">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Community Membership</a></li>
-              <li><a href="#">Contact</a></li>
+              <!-- CHANGED 'Home' to 'About' in the footer as well -->
+              <li><a href="/frontend/non members/about.html">About</a></li>
+              <li><a href="/frontend/non members/community-membership.html"
+                >Community Membership</a
+              ></li>
+              <li><a href="/frontend/non members/contact-support.html"
+                >Contact</a></li>
             </ul>
           </div>
           <div class="f-mem">
             <h4>Memberships</h4>
             <ul>
-              <li><a href="#">Basic</a></li>
-              <li><a href="#">Standard</a></li>
-              <li><a href="#">Premium</a></li>
+              <li><a href="/frontend/non members/community-membership.html"
+                >Community</a
+              ></li>
+              <li><a href="/frontend/non members/key-access-membership.html"
+                >Key Access</a
+              ></li>
+              <li><a
+                href="/frontend/non members/creative-workspace-membership.html"
+                >Creative Workspace</a
+              ></li>
             </ul>
           </div>
           <div class="f-acc">
             <h4>Account</h4>
             <ul>
-              <li><a href="#">Login / Sign-up</a></li>
-              <li><a href="#">Account Dashboard</a></li>
-              <li><a href="#">Billing</a></li>
+              <li><a href="/frontend/non members/login.html">Login / Sign-up</a></li>
+              <li><a href="/frontend/non members/dashboard.html"
+                >Account Dashboard</a
+              ></li>
+              <li><a href="/frontend/non members/my-membership.html"
+                >My Membership</a
+              ></li>
+              <li><a href="/frontend/non members/billing.html">Billing</a></li>
             </ul>
           </div>
           <div class="f-support">
             <h4>Support</h4>
             <ul>
-              <li><a href="#">Contact Us</a></li>
-              <li><a href="#">Report Issue</a></li>
+              <li>
+                <a href="/frontend/non members/contact-support.html"
+                  >Contact Us</a
+                >
+              </li>
+              <li><a href="/frontend/non members/report-issue.html"
+                >Report Issue</a
+              ></li>
             </ul>
           </div>
           <div class="f-logo">
