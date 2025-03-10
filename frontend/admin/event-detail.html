@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+  <head>
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <header class="nav-header">
+        <div class="nav-image">
+          <img src="../images/TC_Logos-01.png" alt="Together Culture CAMBRIDGE" />
+        </div>
+      </header>
+      <div class="nav-links">
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="./member.html">Memberships</a></li>
+          <li><a href="/frontend/non members/contact-support.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="usr-panel">
+        <button href="#">Logout</button>
+        <img src="./frontend/images/GuestIcon.svg" alt="guest-profile-icon" />
+      </div>
+    </nav>
+
+    <main>
+      <div class="admin-container">
+        <h2 style="margin-top: 90px"><button class="btn" onclick="window.location.href = 'event.html'">&#x25c0;</button>Update Event</h2>
+
+        <div class="add-event">
+          <h3>Event Detail - Living the Living Book: Turning Up and Butter Making / ONLINE</h3>
+          <form id="add-event-form">
+            <label for="date">Event Name:</label><br />
+            <input type="text" class="input-text" id="member-name" placeholder="Event Name" required value="Living the Living Book: Turning Up and Butter Making / ONLINE" /> <br />
+            <label for="date">Event Image:</label><br />
+            <input type="file" class="input-text" style="width: 70%" />
+            <img style="width: 80px; margin-left: 24px" src="https://images.squarespace-cdn.com/content/v1/63bc104e8f7c476406bd6221/093f57bd-0a54-42a2-a3a0-bfe53d06fd59/5.png?format=1000w" />
+            <br />
+            <label for="date">Event Date:</label><br /><input type="date" id="date" class="date-picker" value="2025-03-10" /> <br />
+            <label for="date">Event Start Time:</label><br />
+            <select id="time" class="input-select">
+              <option value="00:00">12:00 AM</option>
+              <option value="00:30">12:30 AM</option>
+              <option value="01:00">1:00 AM</option>
+              <option value="01:30">1:30 AM</option>
+              <option value="02:00">2:00 AM</option>
+              <option value="02:30">2:30 AM</option>
+              <option value="03:00">3:00 AM</option>
+              <option value="03:30">3:30 AM</option>
+              <option value="04:00">4:00 AM</option>
+              <option value="04:30">4:30 AM</option>
+              <option value="05:00">5:00 AM</option>
+              <option value="05:30">5:30 AM</option>
+              <option value="06:00">6:00 AM</option>
+              <option value="06:30">6:30 AM</option>
+              <option value="07:00">7:00 AM</option>
+              <option value="07:30">7:30 AM</option>
+              <option value="08:00">8:00 AM</option>
+              <option value="08:30">8:30 AM</option>
+              <option value="09:00">9:00 AM</option>
+              <option value="09:30">9:30 AM</option>
+              <option value="10:00">10:00 AM</option>
+              <option value="10:30">10:30 AM</option>
+              <option value="11:00">11:00 AM</option>
+              <option value="11:30">11:30 AM</option>
+              <option value="12:00">12:00 PM</option>
+              <option value="12:30">12:30 PM</option>
+              <option value="13:00" selected>1:00 PM</option>
+              <option value="13:30">1:30 PM</option>
+              <option value="14:00">2:00 PM</option>
+              <option value="14:30">2:30 PM</option>
+              <option value="15:00">3:00 PM</option>
+              <option value="15:30">3:30 PM</option>
+              <option value="16:00">4:00 PM</option>
+              <option value="16:30">4:30 PM</option>
+              <option value="17:00">5:00 PM</option>
+              <option value="17:30">5:30 PM</option>
+              <option value="18:00">6:00 PM</option>
+              <option value="18:30">6:30 PM</option>
+              <option value="19:00">7:00 PM</option>
+              <option value="19:30">7:30 PM</option>
+              <option value="20:00">8:00 PM</option>
+              <option value="20:30">8:30 PM</option>
+              <option value="21:00">9:00 PM</option>
+              <option value="21:30">9:30 PM</option>
+              <option value="22:00">10:00 PM</option>
+              <option value="22:30">10:30 PM</option>
+              <option value="23:00">11:00 PM</option>
+              <option value="23:30">11:30 PM</option></select
+            ><br />
+            <label for="date">Event End Time:</label><br />
+            <select id="time" class="input-select">
+              <option value="00:00">12:00 AM</option>
+              <option value="00:30">12:30 AM</option>
+              <option value="01:00">1:00 AM</option>
+              <option value="01:30">1:30 AM</option>
+              <option value="02:00">2:00 AM</option>
+              <option value="02:30">2:30 AM</option>
+              <option value="03:00">3:00 AM</option>
+              <option value="03:30">3:30 AM</option>
+              <option value="04:00">4:00 AM</option>
+              <option value="04:30">4:30 AM</option>
+              <option value="05:00">5:00 AM</option>
+              <option value="05:30">5:30 AM</option>
+              <option value="06:00">6:00 AM</option>
+              <option value="06:30">6:30 AM</option>
+              <option value="07:00">7:00 AM</option>
+              <option value="07:30">7:30 AM</option>
+              <option value="08:00">8:00 AM</option>
+              <option value="08:30">8:30 AM</option>
+              <option value="09:00">9:00 AM</option>
+              <option value="09:30">9:30 AM</option>
+              <option value="10:00">10:00 AM</option>
+              <option value="10:30">10:30 AM</option>
+              <option value="11:00">11:00 AM</option>
+              <option value="11:30">11:30 AM</option>
+              <option value="12:00">12:00 PM</option>
+              <option value="12:30">12:30 PM</option>
+              <option value="13:00">1:00 PM</option>
+              <option value="13:30">1:30 PM</option>
+              <option value="14:00" selected>2:00 PM</option>
+              <option value="14:30">2:30 PM</option>
+              <option value="15:00">3:00 PM</option>
+              <option value="15:30">3:30 PM</option>
+              <option value="16:00">4:00 PM</option>
+              <option value="16:30">4:30 PM</option>
+              <option value="17:00">5:00 PM</option>
+              <option value="17:30">5:30 PM</option>
+              <option value="18:00">6:00 PM</option>
+              <option value="18:30">6:30 PM</option>
+              <option value="19:00">7:00 PM</option>
+              <option value="19:30">7:30 PM</option>
+              <option value="20:00">8:00 PM</option>
+              <option value="20:30">8:30 PM</option>
+              <option value="21:00">9:00 PM</option>
+              <option value="21:30">9:30 PM</option>
+              <option value="22:00">10:00 PM</option>
+              <option value="22:30">10:30 PM</option>
+              <option value="23:00">11:00 PM</option>
+              <option value="23:30">11:30 PM</option>
+            </select>
+            <br />
+            <button type="submit" class="btn" style="margin-top: 12px; margin-bottom: 12px">Update Event</button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="f-format">
+        <div class="f-list">
+          <div class="f-nav">
+            <h4>Navigation</h4>
+            <div>
+              <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="f-logo">
+            <img src="../images/PLACEHOLDER.svg" />
+          </div>
+        </div>
+        <hr />
+        <div class="authors">
+          <h4>Authors:</h4>
+          <ul>
+            <li><a href="https://github.com/TLyncks">Tai Rose (SID: 2108618)</a></li>
+            <li><a href="https://github.com/mgoing">Malcom Going (SID: 2372291)</a></li>
+            <li><a href="https://github.com/AlessandroLaMendola">Alessandro La Mendola (SID: 2158059)</a></li>
+            <li><a href="https://github.com/yusufkose-aru">Yusuf Kose (SID: 2415327)</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

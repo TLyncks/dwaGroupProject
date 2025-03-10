@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Header with Hover Dropdown</title>
+
+
+    <!-- Link your global CSS if any -->
+    <link rel="stylesheet" href="css/styles.css" />
+    
+
+    <link rel="stylesheet" href="header.css" />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <!-- Left: Logo -->
+      <div class="nav-header">
+        <img
+          src="images/TC_Logos-01.png"
+          alt="Together Culture Cambridge Logo"
+        />
+      </div>
+
+      <!-- Center: Nav Links -->
+      <div class="nav-links">
+        <ul>
+          <li><a href="#">About</a></li>
+
+          <!-- Only show sub-menu on direct hover over "Memberships" item -->
+          <li class="dropdown">
+            <a href="non members/community-membership.html">Memberships</a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Community</a></li>
+              <li><a href="non members/key-access-membership.html">Key Access</a></li>
+              <li><a href="non members/workspace-application.html">Creative Workspace</a></li>
+            </ul>
+          </li>
+
+          <li><a href="non members/contact-support.html">Contact Us</a></li>
+          <li><a href="non members/events.html">Events</a></li>
+        </ul>
+      </div>
+
+      <!-- Right: Sign Up + Icons -->
+      <div class="usr-panel">
+        <button class="signup-btn">Sign Up</button>
+        <img src="images/EmptyBag.svg" alt="Shopping Bag Icon" />
+        <img src="images/GuestIcon.svg" alt="Guest Profile Icon" />
+      </div>
+    </nav>
+  </body>
+</html>

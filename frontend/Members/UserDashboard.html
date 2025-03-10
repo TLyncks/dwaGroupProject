@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="footHeadStyle.css" />
+    <link rel="stylesheet" type="text/css" href="dashboard.css" />
+    <style>
+        body {
+            background-color: #f5f5f5;
+            margin: 0;
+        }
+        .container {
+            max-width: 2500px;
+            margin: auto;
+            padding: 20px;
+        }
+        .profile {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            grid-column: span 2; /* Profile spans 2 columns */
+        }
+        .profile img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        .profile-details h5, .profile-details p {
+            margin: 0;
+        }
+        .profile-details p {
+            color: gray;
+        }
+        /* 2-column grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(500px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .content-card {
+            display: block;
+            position: relative;
+            color: inherit;
+            text-decoration: none;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .content-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+           
+        }
+        .content-card:hover {
+            transform: scale(1.05); /* Slight zoom effect */
+            transition: 0.3s ease-in-out;
+        }
+
+        .content-card .title-overlay {
+            position: absolute;
+            bottom: 10px;
+            left: 15px;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        /* Settings Section */
+        .settings {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            grid-column: span 2; /* Settings spans 2 columns below */
+            text-align: center;
+        }
+        /* Footer Fix */
+        footer {
+            width: 100%;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <header class="nav-header">
+            <div class="nav-image">
+                <img src="../frontend/images/TC_Logos-01.png" alt="PLACEHOLDER" />
+            </div>
+        </header>
+        <div class="nav-links">
+            <ul>
+                <li><a href=".\UserDashboard.html">Dashboard</a></li>
+                <li><a href="#">Calendar</a></li>
+                <li><a href="#">Chat</a></li>
+                <li><a href=".\UserDigitalContent.html">Digital Content</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+        </div>
+        <div class="usr-panel">
+            <button>Sign Up</button>
+            <img src="../frontend/images/EmptyBag.svg" alt="empty-shopping-bag" />
+            <img src="../frontend/images/GuestIcon.svg" alt="guest-profile-icon" />
+        </div>
+    </nav>
+
+    <h1>Welcome to Your Dashboard</h1>
+
+    <div class="container">
+        <div class="content-grid">
+            <!-- Profile Section -->
+            <div class="profile">
+                <img src=".\UserDashPhotos\defaultIcon.jpg" alt="User Profile">
+                <div class="profile-details">
+                    <h5>John Doe</h5>
+                    <p>Email: johndoe@example.com</p>
+                    <p>Other Info: Web Developer, Traveler</p>
+                </div>
+            </div>
+
+            <!-- Content Cards (2 per row) -->
+            <a href="benefits.html" class="content-card">
+                <img src=".\UserDashPhotos\healthyGirl.jpg" alt="Benefits">
+                <div class="title-overlay">Benefits</div>
+            </a>
+            <a href="" class="content-card">
+                <img src=".\UserDashPhotos\calendar.jpg" alt="Calendar">
+                <div class="title-overlay">Calendar</div>
+                  </a>
+
+            <a href="UserDigitalContent.html" class="content-card">
+                <img src=".\UserDashPhotos\digitalContent.jpg" alt="Digital Content">
+                <div class="title-overlay">Digital Content</div>
+            </a>
+
+            <a href="" class="content-card">
+                <img src=".\UserDashPhotos\messaging.jpg" alt="Chat">
+                <div class="title-overlay">Chat</div>
+              </a>
+
+            <!-- Settings Section -->
+            <div class="settings">
+                <img src=".\UserDashPhotos\settingsIcon.jpg" alt="Settings" width="80">
+                <h3>Settings</h3>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="f-format">
+            <div class="f-list">
+                <div class="f-nav">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="../frontend/index.html">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Memberships</a></li>
+                        <li><a href="..\contact-support.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
