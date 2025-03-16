@@ -21,40 +21,67 @@
     body {
         font-family: Arial, sans-serif;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
         align-items: center;
-        height: 100vh;
         background: linear-gradient(rgb(221, 221, 221), rgb(182, 182, 182));
+        margin: 0;
+        padding: 0;
     }
 
     .content {
-    margin-top: 100px; /* Increased to ensure navbar doesn't overlap */
-}
+        text-align: center;
+        margin-top: 100px;
+        width: 80%;
+    }
 
     .container {
-        width: 400px;
+        display: flex;
+        
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 50px;
+        margin-top: 30px;
+        width: 80%;
+    }
+
+
+    .registration-container {
+        flex: 1;
+        max-width: 400px;
         padding: 20px;
         border: 2px solid red;
         border-radius: 10px;
         background-color: white;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional: Adds depth */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
+
+    .membership-column{
+        display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    width: 40%;
+    }
+
     .form-group {
         display: flex;
         justify-content: space-between;
         margin-bottom: 15px;
     }
+
     label {
         flex: 1;
         text-align: left;
         padding-right: 10px;
     }
+
     input, textarea {
         flex: 2;
         padding: 8px;
         border: 1px solid #ccc;
         border-radius: 5px;
     }
+
     button {
         width: 100%;
         padding: 10px;
@@ -64,13 +91,45 @@
         border-radius: 5px;
         cursor: pointer;
     }
+
     button:hover {
         background-color: darkred;
     }
 
+    .membership-info {
+    width: 400px;
+    padding: 20px;
+    border: 2px solid red;
+    border-radius: 10px;
+    flex-direction: column;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    color: black; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 200px; 
+}
+
+.membership-info p {
+    display: inline;
+    background: white;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+.membership-one{
+    background: url('../images/threeGirlsLaptop.jpg') center/cover no-repeat;
+}
+.membership-two{
+    background: url('../images/customerSupport.jpg') center/cover no-repeat;
+}
+
+
 </style>
 
-
+<body>
   
     <!-- Navigation Bar -->
     <nav class="navbar">
@@ -114,14 +173,16 @@
 
 
 
-<body>
+
     <div class="content">
         <h1>Join Our Community</h1>
         <p>Become a part of our growing network and enjoy exclusive benefits. Submit an application below to get started!</p>
     </div>
-    <div class="container">
+
+<div class = "container">
+    <div class="registration-container">
         <h2>Application Form</h2>
-        <form>
+        <form id = "registration-form">
             <div class="form-group">
                 <label for="fullname">Full Name:</label>
                 <input type="text" id="fullname" name="fullname" required>
@@ -147,23 +208,55 @@
                 <input type="tel" id="phone" name="phone" required>
             </div>
             <div class="form-group">
-                <label for="reason">Why Join?</label>
+                <label for="reason">Why are you Joining?</label>
                 <textarea id="reason" name="reason" rows="3" required></textarea>
             </div>
             <button type="submit">Submit</button>
-        </form>
+         </form>
+        </div>
+    
+
+        <div class=" membership-column">
+            <div class = "membership-info membership-one">
+                <p>Memberships applications are reviewed by our team. We will contact you in 1-2 weeks with your status.</p>
+            
+            </div>
+
+
+            <div class = "membership-info membership-two">
+                <p>Need Help?</p>
+                <a href = "contact-support.html">
+                <button type = "menu">Contact Us!</button>
+                </a>
+            </div>
+
+        </div>
     </div>
 
 
 
+  
 
 
 
+</body>
+
+  <footer>
+    <div class="f-format">
+        <div class="f-list">
+            <div class="f-nav">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="/frontend/index.html">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Memberships</a></li>
+                    <li><a href="/contact-support.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+  <script src= "registration.js"> </script> 
 
 
-
-
-
-
-  </body>
 </html>
