@@ -2,10 +2,9 @@
 
 --Admin(only us 4)
 CREATE TABLE adminInfo (
-    ID INT AUTO_INCREMENT PRIMARY KEY,
+    ID tinyint AUTO_INCREMENT PRIMARY KEY,
     MemberName VARCHAR(255) DEFAULT 'unknown',
-    E_mail VARCHAR(255) DEFAULT 'user@mail.com',
-    PhoneNum VARCHAR(15) DEFAULT '0000000000'
+    E_mail VARCHAR(255) DEFAULT 'user@mail.com'
 );
 
 --All base users, key members, company members will be here
