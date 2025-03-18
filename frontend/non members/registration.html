@@ -3,260 +3,359 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Registration</title>
+    <title>Sign Up / Log In | Together Culture</title>
 
-
-    <!-- Link your global CSS if any -->
-    <link rel="stylesheet" href="..\css\styles.css" />
-    
-
-    <link rel="stylesheet" href="..\header.css" />
-
-
-  </head>
-
-
-
-  <style>
-    body {
-        font-family: Arial, sans-serif;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background: linear-gradient(rgb(221, 221, 221), rgb(182, 182, 182));
+    <!-- Inline CSS to match existing style -->
+    <style>
+      /* ========== RESET & GLOBAL ========== */
+      * {
         margin: 0;
         padding: 0;
-    }
-
-    .content {
-        text-align: center;
-        margin-top: 100px;
-        width: 80%;
-    }
-
-    .container {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+      html, body {
+        height: 100%;
+      }
+      body {
         display: flex;
-       
-        justify-content: space-between;
-        align-items: flex-start;
-        gap: 10px;
-        margin-top: 30px;
-        width: 80%;
-    }
+        flex-direction: column;
+      }
 
-
-    .registration-container {
-        flex: 1;
-        max-width: 400px;
-        padding: 20px;
-        border: 2px solid red;
-        border-radius: 10px;
-        background-color: white;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .membership-column{
-        display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-    width: 40%;
-    }
-
-    .form-group {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 15px;
-    }
-
-    label {
-        flex: 1;
-        text-align: left;
-        padding-right: 10px;
-    }
-
-    input, textarea {
-        flex: 2;
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-
-    button {
+      /* ========== HEADER ========== */
+      .navbar {
+        background-color: #fe1e3c;
+        position: fixed;
+        top: 0;
+        left: 0;
         width: 100%;
-        padding: 10px;
-        background-color: red;
-        color: white;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        font-weight: 200;
+        z-index: 1000;
+      }
+      .nav-header img {
+        height: 50px;
+        width: auto;
+      }
+      .nav-links {
+        margin-left: 2rem;
+        margin-right: auto;
+      }
+      .nav-links ul {
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 1rem;
+      }
+      .usr-panel {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .signup-btn {
+        background: linear-gradient(to right, #ff416c, #ff4b2b);
+        color: #fff;
         border: none;
-        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 25px;
         cursor: pointer;
-    }
+        transition: 0.3s ease-in-out;
+      }
+      .signup-btn:hover {
+        background: linear-gradient(to right, #ff4b2b, #ff416c);
+        transform: scale(1.05);
+      }
 
-    button:hover {
-        background-color: darkred;
-    }
+      /* Dropdown Menu */
+      .dropdown {
+        position: relative;
+      }
+      .dropdown-menu {
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #fff;
+        min-width: 160px;
+        border-radius: 8px;
+        margin-top: 0.5rem;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        padding: 0.75rem 0;
+        transform: translateY(-10px);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+      .dropdown-menu li {
+        list-style: none;
+      }
+      .dropdown-menu li a {
+        display: block;
+        padding: 0.5rem 1rem;
+        color: #333;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: background-color 0.2s ease;
+      }
+      .dropdown-menu li a:hover {
+        background-color: #f2f2f2;
+      }
+      .dropdown:hover .dropdown-menu {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
 
-    .membership-info {
-    width: 400px;
-    padding: 20px;
-    border: 2px solid red;
-    border-radius: 10px;
-    flex-direction: column;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-    color: black; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    height: 200px; 
-}
+      /* ========== MAIN CONTENT: LOGIN / SIGNUP ========== */
+      .auth-main {
+        margin-top: 80px;
+        padding: 3rem 2rem;
+        background: #f4f4f9;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .auth-container {
+        max-width: 600px;
+        width: 100%;
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+        text-align: center;
+        border-top: 6px solid #d0021b;
+      }
+      .auth-container h1 {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #222;
+        margin-bottom: 1.5rem;
+      }
+      .auth-container p {
+        margin-bottom: 2rem;
+      }
+      .toggle-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+      .toggle-btn {
+        background: #d0021b;
+        color: white;
+        font-size: 1rem;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .toggle-btn:hover,
+      .toggle-btn.active {
+        background: #a00015;
+      }
+      .form-group {
+        text-align: left;
+        margin-bottom: 1rem;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #333;
+      }
+      .form-group input {
+        width: 100%;
+        padding: 0.75rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+      }
+      .submit-btn {
+        background: #d0021b;
+        color: white;
+        font-size: 1rem;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .submit-btn:hover {
+        background: #a00015;
+      }
+      .auth-form {
+        display: none;
+      }
 
-.membership-info p {
-    display: inline;
-    background: white;
-    padding: 2px 5px;
-    border-radius: 3px;
-}
+      /* ========== FOOTER ========== */
+      footer {
+        background-color: #0f0f0f;
+        color: whitesmoke;
+        font-size: small;
+        font-weight: 200;
+        padding: 40px 0;
+      }
+      .f-format {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .authors {
+        text-align: center;
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+      .authors h4 {
+        margin-bottom: 1rem;
+      }
 
-.membership-one{
-    background: url('../images/threeGirlsLaptop.jpg') center/cover no-repeat;
-}
-.membership-two{
-    background: url('../images/customerSupport.jpg') center/cover no-repeat;
-}
-
-
-</style>
-
-<body>
-  
-    <!-- Navigation Bar -->
+      /* ========== RESPONSIVE ========== */
+      @media (max-width: 768px) {
+        .auth-container {
+          padding: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ========== HEADER (NAVBAR) ========== -->
     <nav class="navbar">
-      <!-- Left: Logo -->
       <div class="nav-header">
-        <img
-          src="../images/TC_Logos-01.png"
-          alt="Together Culture Cambridge Logo"
-        />
+        <img src="/frontend/images/TC_Logos-01.png" alt="Together Culture Cambridge Logo" />
       </div>
-
-      <!-- Center: Nav Links -->
       <div class="nav-links">
         <ul>
-          <li><a href="#">About</a></li>
-
-          <!-- Only show sub-menu on direct hover over "Memberships" item -->
+          <li><a href="/frontend/index.html">About</a></li>
           <li class="dropdown">
-            <a href="community-membership.html">Memberships</a>
+            <a href="#">Memberships</a>
             <ul class="dropdown-menu">
-              <li><a href="#">Community</a></li>
-              <li><a href="key-access-membership.html">Key Access</a></li>
-              <li><a href="workspace-application.html">Creative Workspace</a></li>
+              <li><a href="/frontend/non members/community-membership.html">Community</a></li>
+              <li><a href="/frontend/non members/key-access-membership.html">Key Access</a></li>
+              <li><a href="/frontend/non members/creative-workspace-membership.html">Creative Workspace</a></li>
+              <li><a href="/frontend/non members/non-member-page.html">Compare all Memberships</a></li>
             </ul>
           </li>
-
-          <li><a href="contact-support.html">Contact Us</a></li>
-          <li><a href="events.html">Events</a></li>
+          <li><a href="/frontend/non members/events.html">Events</a></li>
+          <li><a href="/frontend/non members/contact-support.html">Contact Us</a></li>
         </ul>
       </div>
-
-      <!-- Right: Sign Up + Icons -->
       <div class="usr-panel">
-        <button class="signup-btn">Sign Up</button>
-        <img src="../images/EmptyBag.svg" alt="Shopping Bag Icon" />
-        <img src="../images/GuestIcon.svg" alt="Guest Profile Icon" />
+        <!-- The "Join Now" button links to registration.html with tab=signup -->
+        <button class="signup-btn" onclick="location.href='/frontend/non members/registration.html?tab=signup'">Join Now</button>
+        <img src="/frontend/images/EmptyBag.svg" alt="empty-shopping-bag" />
+        <!-- The user icon links to registration.html with tab=login -->
+        <a href="/frontend/non members/registration.html?tab=login">
+          <img src="/frontend/images/GuestIcon.svg" alt="guest-profile-icon" />
+        </a>
       </div>
     </nav>
 
+    <!-- ========== MAIN CONTENT: SIGN UP / LOG IN ========== -->
+    <main class="auth-main">
+      <div class="auth-container">
+        <h1>Welcome to Together Culture</h1>
+        <p>Please choose an option below to continue.</p>
 
-
-
-
-
-    <div class="content">
-        <h1>Welcome Back!</h1>
-        <p>fwagebwrbea</p>
-    </div>
-
-<div class = "container">
-    <div class="registration-container">
-        <h2>Application Form</h2>
-        <form id = "registration-form">
-            <div class="form-group">
-                <label for="fullname">Full Name:</label>
-                <input type="text" id="fullname" name="fullname" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div class="form-group">
-                <label for="confirm-password">Confirm Password:</label>
-                <input type="password" id="confirm-password" name="confirm-password" required>
-            </div>
-            <div class="form-group">
-                <label for="address">Address:</label>
-                <input type="text" id="address" name="address" required>
-            </div>
-            <div class="form-group">
-                <label for="phone">Phone:</label>
-                <input type="tel" id="phone" name="phone" required>
-            </div>
-            <div class="form-group">
-                <label for="reason">Why are you Joining?</label>
-                <textarea id="reason" name="reason" rows="3" required></textarea>
-            </div>
-            <button type="submit">Submit</button>
-         </form>
+        <!-- Toggle Buttons -->
+        <div class="toggle-buttons">
+          <button class="toggle-btn active" id="signUpBtn">Sign Up</button>
+          <button class="toggle-btn" id="loginBtn">Log In</button>
         </div>
-    
 
-        <div class=" membership-column">
-            <div class = "membership-info membership-one">
-                <p>Memberships applications are reviewed by our team. We will contact you in 1-2 weeks with your status.</p>
-            
-            </div>
+        <!-- Sign Up Form -->
+        <form class="auth-form" id="signUpForm" action="/signup" method="POST">
+          <div class="form-group">
+            <label for="signup-name">Full Name</label>
+            <input type="text" id="signup-name" name="signup-name" placeholder="Your Name" required />
+          </div>
+          <div class="form-group">
+            <label for="signup-email">Email Address</label>
+            <input type="email" id="signup-email" name="signup-email" placeholder="example@domain.com" required />
+          </div>
+          <div class="form-group">
+            <label for="signup-password">Password</label>
+            <input type="password" id="signup-password" name="signup-password" placeholder="Password" required />
+          </div>
+          <div class="form-group">
+            <label for="signup-confirm">Confirm Password</label>
+            <input type="password" id="signup-confirm" name="signup-confirm" placeholder="Confirm Password" required />
+          </div>
+          <button type="submit" class="submit-btn">Sign Up</button>
+        </form>
 
+        <!-- Log In Form -->
+        <form class="auth-form" id="loginForm" action="/login" method="POST">
+          <div class="form-group">
+            <label for="login-email">Email Address</label>
+            <input type="email" id="login-email" name="login-email" placeholder="example@domain.com" required />
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" name="login-password" placeholder="Password" required />
+          </div>
+          <button type="submit" class="submit-btn">Log In</button>
+        </form>
+      </div>
+    </main>
 
-            <div class = "membership-info membership-two">
-                <p>Need Help?</p>
-                <a href = "contact-support.html">
-                <button type = "menu">Contact Us!</button>
-                </a>
-            </div>
-
+    <!-- ========== FOOTER ========== -->
+    <footer>
+      <div class="f-format">
+        <div class="authors">
+          <h4>Authors:</h4>
+          <p>Tai Rose (SID: 2108618)</p>
+          <p>Malcom Going (SID: 2372291)</p>
+          <p>Alessandro La Mendola (SID: 2158059)</p>
+          <p>Yusuf Kose (SID: 2415327)</p>
         </div>
-    </div>
+      </div>
+    </footer>
 
+    <!-- Inline JavaScript for toggling forms and setting default tab -->
+    <script>
+      const signUpBtn = document.getElementById("signUpBtn");
+      const loginBtn = document.getElementById("loginBtn");
+      const signUpForm = document.getElementById("signUpForm");
+      const loginForm = document.getElementById("loginForm");
 
+      function showSignUp() {
+        signUpBtn.classList.add("active");
+        loginBtn.classList.remove("active");
+        signUpForm.style.display = "block";
+        loginForm.style.display = "none";
+      }
 
-  
+      function showLogin() {
+        loginBtn.classList.add("active");
+        signUpBtn.classList.remove("active");
+        loginForm.style.display = "block";
+        signUpForm.style.display = "none";
+      }
 
+      // Show Sign Up by default
+      showSignUp();
 
+      // Toggle forms when buttons are clicked
+      signUpBtn.addEventListener("click", showSignUp);
+      loginBtn.addEventListener("click", showLogin);
 
-</body>
-
-  <footer>
-    <div class="f-format">
-        <div class="f-list">
-            <div class="f-nav">
-                <h4>Navigation</h4>
-                <ul>
-                    <li><a href="/frontend/index.html">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="community-membership.html">Memberships</a></li>
-                    <li><a href="/contact-support.html">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer>
-  <script src= "registration.js"> </script> 
-
-
+      // Check URL parameters to set the default tab if specified
+      const urlParams = new URLSearchParams(window.location.search);
+      const tab = urlParams.get('tab');
+      if (tab === 'login') {
+        showLogin();
+      }
+    </script>
+  </body>
 </html>

@@ -313,15 +313,15 @@
           <li><a href="/frontend/non members/contact-support.html">Contact Us</a></li>
         </ul>
       </div>
-      <div class="usr-panel">
-        <button
-          class="signup-btn"
-          onclick="location.href='/frontend/non members/member-application.html'"
-        >
-          Sign Up
-        </button>
-        <img src="/frontend/images/EmptyBag.svg" alt="empty-shopping-bag" />
-        <img src="/frontend/images/GuestIcon.svg" alt="guest-profile-icon" />
+        <div class="usr-panel">
+          <!-- The "Join Now" button links to registration.html with tab=signup -->
+          <button class="signup-btn" onclick="location.href='/frontend/non members/registration.html?tab=signup'">Join Now</button>
+          <img src="/frontend/images/EmptyBag.svg" alt="empty-shopping-bag" />
+          <!-- The user icon links to registration.html with tab=login -->
+          <a href="/frontend/non members/registration.html?tab=login">
+            <img src="/frontend/images/GuestIcon.svg" alt="guest-profile-icon" />
+          </a>
+        </div>
       </div>
     </nav>
 
@@ -367,71 +367,17 @@
       </section>
     </main>
 
-    <!-- FOOTER -->
-    <footer>
-      <div class="f-format">
-        <div class="f-list">
-          <div class="f-nav">
-            <h4>Navigation</h4>
-            <ul>
-              <!-- CHANGED 'Home' to 'About' in the footer as well -->
-              <li><a href="/frontend/non members/about.html">About</a></li>
-              <li><a href="/frontend/non members/community-membership.html"
-                >Community Membership</a
-              ></li>
-              <li><a href="/frontend/non members/contact-support.html"
-                >Contact</a></li>
-            </ul>
-          </div>
-          <div class="f-mem">
-            <h4>Memberships</h4>
-            <ul>
-              <li><a href="/frontend/non members/community-membership.html"
-                >Community</a
-              ></li>
-              <li><a href="/frontend/non members/key-access-membership.html"
-                >Key Access</a
-              ></li>
-              <li><a
-                href="/frontend/non members/creative-workspace-membership.html"
-                >Creative Workspace</a
-              ></li>
-            </ul>
-          </div>
-          <div class="f-acc">
-            <h4>Account</h4>
-            <ul>
-              <li><a href="/frontend/non members/login.html">Login / Sign-up</a></li>
-              <li><a href="/frontend/non members/dashboard.html"
-                >Account Dashboard</a
-              ></li>
-              <li><a href="/frontend/non members/my-membership.html"
-                >My Membership</a
-              ></li>
-              <li><a href="/frontend/non members/billing.html">Billing</a></li>
-            </ul>
-          </div>
-          <div class="f-support">
-            <h4>Support</h4>
-            <ul>
-              <li>
-                <a href="/frontend/non members/contact-support.html"
-                  >Contact Us</a
-                >
-              </li>
-              <li><a href="/frontend/non members/report-issue.html"
-                >Report Issue</a
-              ></li>
-            </ul>
-          </div>
-          <div class="f-logo">
-            <img
-              src="/frontend/images/PLACEHOLDER.svg"
-              alt="Placeholder Logo"
-            />
-          </div>
-        </div>
-      </div>
-    </footer>
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="f-format">
+    <div class="authors">
+      <h4>Authors:</h4>
+      <p>Tai Rose (SID: 2108618)</p>
+      <p>Malcom Going (SID: 2372291)</p>
+      <p>Alessandro La Mendola (SID: 2158059)</p>
+      <p>Yusuf Kose (SID: 2415327)</p>
+    </div>
+  </div>
+</footer>
   </body>
 </html>

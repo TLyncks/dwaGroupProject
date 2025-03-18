@@ -240,3 +240,15 @@ CREATE TABLE adminInfo
     participant_count INT DEFAULT 0,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+                                                -- Login and Signup table
+                                                CREATE TABLE users
+                                                (
+                                                    id INT
+                                                    AUTO_INCREMENT PRIMARY KEY,
+  full_name VARCHAR
+                                                    (100) NOT NULL,
+  email VARCHAR
+                                                    (255) NOT NULL UNIQUE,
+  password_hash VARCHAR
+                                                    (255) NOT NULL
+);

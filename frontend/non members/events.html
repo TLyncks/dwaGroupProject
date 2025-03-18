@@ -173,7 +173,6 @@
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.12);
         text-align: left;
         transition: 0.3s;
-        /* Each card has a data-category to filter by */
       }
       .event-card img {
         width: 100%;
@@ -200,6 +199,35 @@
       }
       .event-btn:hover {
         background: #a00015;
+      }
+
+      /* ========== CALENDAR STYLES ========== */
+      #calendar-container {
+        display: none; /* hidden by default; toggled via JS */
+        margin-top: 2rem;
+      }
+      #calendar-container h2 {
+        margin-bottom: 1rem;
+      }
+      #calendar-container .month {
+        margin-bottom: 2rem;
+      }
+      #calendar-container table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0 auto;
+      }
+      #calendar-container th,
+      #calendar-container td {
+        border: 1px solid #ccc;
+        padding: 0.5rem;
+        text-align: center;
+        vertical-align: middle;
+        min-width: 50px;
+      }
+      /* Highlight cells with events */
+      #calendar-container td.highlight {
+        background-color: #d0f0c0;
       }
 
       /* ========== FOOTER ========== */
@@ -261,6 +289,9 @@
         .events-container {
           padding: 2rem;
         }
+        #calendar-container table {
+          font-size: 0.9rem;
+        }
         .f-list {
           flex-direction: column;
           align-items: center;
@@ -298,18 +329,17 @@
           <li><a href="/frontend/non members/contact-support.html">Contact</a></li>
         </ul>
       </div>
-      <!-- Right: Join Now Button & Icons -->
-      <div class="usr-panel">
+    
         <!-- Updated "Join Now" button to go to membership application -->
-        <button
-          class="signup-btn"
-          onclick="location.href='/frontend/non members/member-application.html'"
-        >
-          Join Now
-        </button>
-        <img src="/frontend/images/EmptyBag.svg" alt="empty-shopping-bag" />
-        <img src="/frontend/images/GuestIcon.svg" alt="guest-profile-icon" />
-      </div>
+        <div class="usr-panel">
+          <!-- The "Join Now" button links to registration.html with tab=signup -->
+          <button class="signup-btn" onclick="location.href='/frontend/non members/registration.html?tab=signup'">Join Now</button>
+          <img src="/frontend/images/EmptyBag.svg" alt="empty-shopping-bag" />
+          <!-- The user icon links to registration.html with tab=login -->
+          <a href="/frontend/non members/registration.html?tab=login">
+            <img src="/frontend/images/GuestIcon.svg" alt="guest-profile-icon" />
+          </a>
+        </div>
     </nav>
 
     <!-- ========== MAIN CONTENT: UPCOMING EVENTS ========== -->
@@ -325,6 +355,8 @@
           <button class="filter-btn" data-filter="music">Music</button>
           <button class="filter-btn" data-filter="art-exhibitions">Art Exhibitions</button>
           <button class="filter-btn" data-filter="networking">Networking</button>
+          <!-- New Calendar Button -->
+          <button class="filter-btn" data-filter="calendar" id="calendarBtn">Calendar</button>
         </div>
 
         <!-- Events Grid -->
@@ -377,31 +409,170 @@
             </div>
           </div>
         </div>
-      </div>
-    </main>
 
-    <!-- ========== FOOTER ========== -->
-    <footer>
-      <div class="f-format">
-        <div class="f-list">
-          <div class="f-nav">
-            <h4>Navigation</h4>
-            <ul>
-              <li><a href="/frontend/index.html">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Memberships</a></li>
-              <li><a href="/frontend/non members/events.html">Events</a></li>
-              <li><a href="/frontend/non members/contact-support.html">Contact Us</a></li>
-            </ul>
+        <!-- ========== CALENDAR VIEW ========== -->
+        <div id="calendar-container">
+          <h2>Event Calendar</h2>
+
+          <!-- April 2025 -->
+          <div class="month">
+            <h3>April 2025</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Sun</th>
+                  <th>Mon</th>
+                  <th>Tue</th>
+                  <th>Wed</th>
+                  <th>Thu</th>
+                  <th>Fri</th>
+                  <th>Sat</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- 1st row (April starts on Tuesday) -->
+                <tr>
+                  <td></td> <!-- Sun -->
+                  <td></td> <!-- Mon -->
+                  <td>1</td> <!-- Tue -->
+                  <td>2</td> <!-- Wed -->
+                  <td>3</td> <!-- Thu -->
+                  <td>4</td> <!-- Fri -->
+                  <td>5</td> <!-- Sat -->
+                </tr>
+                <!-- 2nd row -->
+                <tr>
+                  <td>6</td> 
+                  <td>7</td> 
+                  <td>8</td> 
+                  <td>9</td> 
+                  <td>10</td>
+                  <td>11</td>
+                  <td>12</td>
+                </tr>
+                <!-- 3rd row (15th is Jazz Night) -->
+                <tr>
+                  <td>13</td>
+                  <td>14</td>
+                  <td class="highlight">15<br/>Live Jazz Night</td>
+                  <td>16</td>
+                  <td>17</td>
+                  <td>18</td>
+                  <td>19</td>
+                </tr>
+                <!-- 4th row -->
+                <tr>
+                  <td>20</td>
+                  <td>21</td>
+                  <td>22</td>
+                  <td>23</td>
+                  <td>24</td>
+                  <td>25</td>
+                  <td>26</td>
+                </tr>
+                <!-- 5th row -->
+                <tr>
+                  <td>27</td>
+                  <td>28</td>
+                  <td>29</td>
+                  <td>30</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- May 2025 -->
+          <div class="month">
+            <h3>May 2025</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Sun</th>
+                  <th>Mon</th>
+                  <th>Tue</th>
+                  <th>Wed</th>
+                  <th>Thu</th>
+                  <th>Fri</th>
+                  <th>Sat</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- May starts on Thursday -->
+                <tr>
+                  <td></td> <!-- Sun -->
+                  <td></td> <!-- Mon -->
+                  <td></td> <!-- Tue -->
+                  <td></td> <!-- Wed -->
+                  <td>1</td> <!-- Thu -->
+                  <td>2</td> <!-- Fri -->
+                  <td>3</td> <!-- Sat -->
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td class="highlight">5<br/>Modern Art<br/>Exhibition</td>
+                  <td>6</td>
+                  <td>7</td>
+                  <td>8</td>
+                  <td>9</td>
+                  <td>10</td>
+                </tr>
+                <tr>
+                  <td>11</td>
+                  <td>12</td>
+                  <td>13</td>
+                  <td class="highlight">14<br/>Poetry &amp;<br/>Storytelling</td>
+                  <td>15</td>
+                  <td>16</td>
+                  <td>17</td>
+                </tr>
+                <tr>
+                  <td>18</td>
+                  <td>19</td>
+                  <td>20</td>
+                  <td>21</td>
+                  <td>22</td>
+                  <td>23</td>
+                  <td>24</td>
+                </tr>
+                <tr>
+                  <td class="highlight">25<br/>Networking</td>
+                  <td>26</td>
+                  <td>27</td>
+                  <td>28</td>
+                  <td>29</td>
+                  <td>30</td>
+                  <td>31</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
-    </footer>
+    </main>
 
-    <!-- Inline JavaScript to handle event filtering -->
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="f-format">
+    <div class="authors">
+      <h4>Authors:</h4>
+      <p>Tai Rose (SID: 2108618)</p>
+      <p>Malcom Going (SID: 2372291)</p>
+      <p>Alessandro La Mendola (SID: 2158059)</p>
+      <p>Yusuf Kose (SID: 2415327)</p>
+    </div>
+  </div>
+</footer>
+
+    <!-- Inline JavaScript to handle event filtering & calendar toggle -->
     <script>
       const filterButtons = document.querySelectorAll(".filter-btn");
       const eventCards = document.querySelectorAll(".event-card");
+      const calendarBtn = document.getElementById("calendarBtn");
+      const calendarContainer = document.getElementById("calendar-container");
 
       filterButtons.forEach((button) => {
         button.addEventListener("click", () => {
@@ -412,10 +583,19 @@
 
           const filterValue = button.getAttribute("data-filter");
 
+          // If user clicks a filter other than "calendar," hide the calendar
+          if (filterValue !== "calendar") {
+            calendarContainer.style.display = "none";
+          }
+
+          // Show/hide event cards based on filter
           eventCards.forEach((card) => {
-            // "all" shows all events
             if (filterValue === "all") {
+              // Show all events
               card.style.display = "block";
+            } else if (filterValue === "calendar") {
+              // If "calendar" filter, hide all cards (done below)
+              card.style.display = "none";
             } else {
               // Check if event card's category matches the filter
               const cardCategory = card.getAttribute("data-category");
@@ -427,6 +607,16 @@
             }
           });
         });
+      });
+
+      // Show the calendar and hide event cards when "Calendar" is clicked
+      calendarBtn.addEventListener("click", () => {
+        // Hide all event cards
+        eventCards.forEach((card) => {
+          card.style.display = "none";
+        });
+        // Display the calendar
+        calendarContainer.style.display = "block";
       });
     </script>
   </body>
