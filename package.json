@@ -1,7 +1,7 @@
 {
   "name": "dwagroupproject",
   "version": "1.0.0",
-  "description": "",
+  "description": "Hi editing from visual studio on my computer",
   "main": "index.js",
   "scripts": {
     "start": "node backend/server.js",
@@ -25,7 +25,8 @@
     "express": "^4.21.2",
     "mysql": "^2.18.1",
     "mysql2": "^3.13.0",
-    "socket.io": "^4.8.1"
+    "socket.io": "^4.8.1",
+    "react-scripts":"^3.4.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.9"

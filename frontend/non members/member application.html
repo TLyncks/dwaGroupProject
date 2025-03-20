@@ -3,10 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Workspace Application Form</title>
-    <!-- global CSS file -->
+    <title>Membership Application Form</title>
     <link rel="stylesheet" href="/frontend/css/styles.css" />
-
     <!-- Inline (merged) CSS -->
     <style>
       /* ========== RESET & GLOBAL ========== */
@@ -16,8 +14,7 @@
         box-sizing: border-box;
         font-family: Arial, sans-serif;
       }
-
-      /* ========== NAVBAR (NEW DROPDOWN) ========== */
+      /* ========== HEADER (Unified Dropdown Header) ========== */
       .navbar {
         background-color: #fe1e3c;
         position: fixed;
@@ -68,7 +65,6 @@
         background: linear-gradient(to right, #ff4b2b, #ff416c);
         transform: scale(1.05);
       }
-
       /* Dropdown Menu */
       .dropdown {
         position: relative;
@@ -84,7 +80,7 @@
         min-width: 160px;
         border-radius: 8px;
         margin-top: 0.5rem;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         padding: 0.75rem 0;
         transform: translateY(-10px);
         transition: opacity 0.2s ease, transform 0.2s ease;
@@ -109,8 +105,7 @@
         pointer-events: auto;
         transform: translateY(0);
       }
-
-      /* ========== WORKSPACE APPLICATION FORM SECTION ========== */
+      /* ========== APPLICATION FORM SECTION ========== */
       .application-main {
         margin-top: 80px; /* offset for navbar */
         padding: 3rem 2rem;
@@ -119,18 +114,16 @@
         justify-content: center;
         align-items: center;
       }
-
       .form-container {
-        max-width: 1250px; /* Increased width */
+        max-width: 1250px;
         width: 100%;
         background: white;
         padding: 3rem;
         border-radius: 15px;
-        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+        box-shadow: 0px 6px 15px rgba(0,0,0,0.15);
         text-align: center;
         border-top: 6px solid #d0021b;
       }
-
       .form-container h1 {
         font-size: 2.4rem;
         font-weight: bold;
@@ -142,7 +135,6 @@
         color: #666;
         margin-bottom: 2rem;
       }
-
       .section-header {
         font-size: 1.5rem;
         font-weight: bold;
@@ -150,28 +142,26 @@
         text-align: left;
         margin-bottom: 1rem;
       }
-
       .form-row {
         display: flex;
         justify-content: space-between;
         gap: 2rem;
         margin-bottom: 1.5rem;
       }
-
       .form-group {
         flex: 1;
         text-align: left;
         background: white;
         padding: 1.5rem;
         border-radius: 12px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.12);
+        box-shadow: 0px 4px 10px rgba(0,0,0,0.12);
         border-left: 6px solid #d0021b;
         transition: 0.3s ease-in-out;
         position: relative;
       }
       .form-group:hover {
         transform: translateY(-2px);
-        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 8px 15px rgba(0,0,0,0.2);
       }
       .form-group label {
         font-size: 1.1rem;
@@ -181,7 +171,8 @@
         color: #444;
       }
       .form-group input,
-      .form-group textarea {
+      .form-group textarea,
+      .form-group select {
         width: 100%;
         padding: 14px;
         border: none;
@@ -198,11 +189,11 @@
         padding: 12px;
       }
       .form-group input:focus,
-      .form-group textarea:focus {
+      .form-group textarea:focus,
+      .form-group select:focus {
         background: white;
-        box-shadow: 0px 4px 10px rgba(208, 2, 27, 0.2);
+        box-shadow: 0px 4px 10px rgba(208,2,27,0.2);
       }
-
       .submit-container {
         text-align: center;
         margin-top: 2rem;
@@ -221,9 +212,8 @@
       .submit-container button:hover {
         background: #a00015;
         transform: translateY(-3px);
-        box-shadow: 0px 6px 12px rgba(208, 2, 27, 0.3);
+        box-shadow: 0px 6px 12px rgba(208,2,27,0.3);
       }
-
       /* ========== FOOTER ========== */
       footer {
         background-color: #0f0f0f;
@@ -268,13 +258,12 @@
       .f-acc a,
       .f-support a {
         text-decoration: none;
-        color: rgb(200, 200, 200);
+        color: rgb(200,200,200);
       }
       .f-logo img {
         width: 150px;
         height: auto;
       }
-
       /* ========== RESPONSIVE FIXES ========== */
       @media (max-width: 1024px) {
         .form-container {
@@ -290,110 +279,161 @@
     </style>
   </head>
   <body>
-    <!-- ========== HEADER (NEW DROPDOWN) ========== -->
+    <!-- HEADER -->
     <nav class="navbar">
-      <!-- Left: Logo -->
       <div class="nav-header">
-        <img
-          src="/frontend/images/TC_Logos-01.png"
-          alt="Together Culture Cambridge Logo"
-        />
+        <img src="/frontend/images/TC_Logos-01.png" alt="Together Culture Cambridge Logo" />
       </div>
-      <!-- Center: Nav Links with Dropdown -->
       <div class="nav-links">
         <ul>
-          <li><a href="#">About</a></li>
+          <li><a href="/frontend/index.html">Home</a></li>
           <li class="dropdown">
             <a href="#">Memberships</a>
             <ul class="dropdown-menu">
-              <li><a href="#">Community</a></li>
-              <li><a href="#">Key Access</a></li>
-              <li><a href="#">Creative Workspace</a></li>
+              <li><a href="/frontend/non members/community-membership.html">Community</a></li>
+              <li><a href="/frontend/non members/key-access-membership.html">Key Access</a></li>
+              <li><a href="/frontend/non members/creative-workspace-membership.html">Creative Workspace</a></li>
+              <li><a href="/frontend/non members/non-member-page.html">Compare all Memberships</a></li>
             </ul>
           </li>
-          <li><a href="#">Events</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="/frontend/non members/events.html">Events</a></li>
+          <li><a href="/frontend/non members/contact-support.html">Contact Us</a></li>
         </ul>
       </div>
-      <!-- Right: Sign Up & Icons -->
       <div class="usr-panel">
-        <button class="signup-btn">Sign Up</button>
+        <!-- The "Join Now" button links to registration.html with tab=signup -->
+        <button class="signup-btn" onclick="location.href='/frontend/non members/registration.html?tab=signup'">Join Now</button>
         <img src="/frontend/images/EmptyBag.svg" alt="empty-shopping-bag" />
-        <img src="/frontend/images/GuestIcon.svg" alt="guest-profile-icon" />
+        <!-- The user icon links to registration.html with tab=login -->
+        <a href="/frontend/non members/registration.html?tab=login">
+          <img src="/frontend/images/GuestIcon.svg" alt="guest-profile-icon" />
+        </a>
       </div>
     </nav>
 
-    <!-- WORKSPACE APPLICATION FORM SECTION -->
+    <!-- MAIN CONTENT: APPLICATION FORM -->
     <main class="application-main">
       <div class="form-container">
-        <h1>Workspace Application Form</h1>
-        <p>Tell us about how you'd like to use your Workspace Membership</p>
-
-        <form>
+        <h1>Membership Application Form</h1>
+        <p>Tell us about how you'd like to use your Membership</p>
+        <form id="applicationForm">
           <!-- Basic Information -->
           <div class="section-header">Basic Information</div>
           <div class="form-row">
             <div class="form-group">
-              <label>Name</label>
-              <input type="text" placeholder="Enter your name" />
+              <label for="firstName">Name</label>
+              <input type="text" id="firstName" name="firstName" placeholder="Enter your name" required />
             </div>
             <div class="form-group">
-              <label>Surname</label>
-              <input type="text" placeholder="Enter your surname" />
+              <label for="lastName">Surname</label>
+              <input type="text" id="lastName" name="lastName" placeholder="Enter your surname" required />
             </div>
             <div class="form-group">
-              <label>Email</label>
-              <input type="email" placeholder="Enter your email" />
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="Enter your email" required />
             </div>
             <div class="form-group">
-              <label>Phone number</label>
-              <input type="tel" placeholder="Enter phone number" />
+              <label for="phone">Phone number</label>
+              <input type="tel" id="phone" name="phone" placeholder="Enter phone number" required />
             </div>
           </div>
-
           <!-- Additional Information -->
           <div class="section-header">Additional Information</div>
           <div class="form-row">
             <div class="form-group">
-              <label>What kind of membership is required and why?</label>
-              <textarea placeholder="Type here..."></textarea>
+              <label for="membershipType">Membership Type</label>
+              <select id="membershipType" name="membershipType" required>
+                <option value="">Select a membership...</option>
+                <option value="community">Community</option>
+                <option value="key_access">Key Access</option>
+                <option value="creative_workspace">Creative Workspace</option>
+                <option value="pay_what_you_can">Pay what you can</option>
+              </select>
             </div>
             <div class="form-group">
-              <label>Company address</label>
-              <textarea placeholder="Type here..."></textarea>
+              <label for="reason">Why?</label>
+              <textarea id="reason" name="reason" placeholder="Explain why you need this membership..." required></textarea>
             </div>
             <div class="form-group">
-              <label>Have you ever participated in cultural events?</label>
-              <textarea placeholder="Type here..."></textarea>
+              <label for="participated">Have you ever participated in cultural events?</label>
+              <textarea id="participated" name="participated" placeholder="Type here..." required></textarea>
             </div>
             <div class="form-group">
-              <label>How did you hear about us?</label>
-              <textarea placeholder="Type here..."></textarea>
+              <label for="heardAbout">How did you hear about us?</label>
+              <textarea id="heardAbout" name="heardAbout" placeholder="Type here..." required></textarea>
             </div>
           </div>
-
           <div class="submit-container">
-            <button type="submit">Submit Application</button>
+            <button type="submit" id="submitApplication">Submit Application</button>
           </div>
         </form>
       </div>
     </main>
 
-    <!-- FOOTER -->
+    <!-- ========== FOOTER ========== -->
     <footer>
       <div class="f-format">
-        <div class="f-list">
-          <div class="f-nav">
-            <h4>Navigation</h4>
-            <ul>
-              <li><a href="/frontend/index.html">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Workspace Membership</a></li>
-              <li><a href="#">Contact</a></li>
-            </ul>
-          </div>
+        <div class="authors">
+          <h4>Authors:</h4>
+          <p>Tai Rose (SID: 2108618)</p>
+          <p>Malcom Going (SID: 2372291)</p>
+          <p>Alessandro La Mendola (SID: 2158059)</p>
+          <p>Yusuf Kose (SID: 2415327)</p>
         </div>
       </div>
     </footer>
+
+    <!-- JavaScript for submission handling -->
+    <script>
+      document.getElementById("applicationForm").addEventListener("submit", async function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Collect the form values by ID
+        const firstName = document.getElementById("firstName").value.trim();
+        const lastName = document.getElementById("lastName").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const membershipType = document.getElementById("membershipType").value;
+        const reason = document.getElementById("reason").value.trim();
+        const participated = document.getElementById("participated").value.trim();
+        const heardAbout = document.getElementById("heardAbout").value.trim();
+
+        // Basic validation
+        if (!firstName || !lastName || !email || !phone || !membershipType || !reason || !participated || !heardAbout) {
+          alert("Please fill in all the fields.");
+          return;
+        }
+
+        try {
+          // Make a POST request to your server's /apply endpoint
+          const response = await fetch("http://127.0.0.1:5000/apply", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              firstName,
+              lastName,
+              email,
+              phone,
+              membershipType,
+              reason,
+              participated,
+              heardAbout
+            })
+          });
+
+          const data = await response.text();
+          if (response.ok) {
+            alert("Application submitted successfully!");
+            // Redirect after submission; adjust as needed
+            window.location.href = "/frontend/index.html";
+          } else {
+            alert("Submission failed: " + data);
+          }
+        } catch (error) {
+          alert("Error: Could not connect to the server.");
+          console.error("Error:", error);
+        }
+      });
+    </script>
   </body>
 </html>
