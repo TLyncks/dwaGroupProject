@@ -319,7 +319,6 @@
               <li><a href="/frontend/non members/community-membership.html">Community</a></li>
               <li><a href="/frontend/non members/key-access-membership.html">Key Access</a></li>
               <li><a href="/frontend/non members/creative-workspace-membership.html">Creative Workspace</a></li>
-              <li><a href="/frontend/non members/non-member-page.html">Compare all Memberships</a></li>
               <!-- New: "See All Memberships" link -->
               <li><a href="/frontend/non members/non-member-page.html">Compare all Memberships</a></li>
             </ul>
@@ -329,17 +328,14 @@
           <li><a href="/frontend/non members/contact-support.html">Contact</a></li>
         </ul>
       </div>
-    
-        <!-- Updated "Join Now" button to go to membership application -->
-        <div class="usr-panel">
-          <!-- The "Join Now" button links to registration.html with tab=signup -->
-          <button class="signup-btn" onclick="location.href='/frontend/non members/registration.html?tab=signup'">Join Now</button>
-          <img src="/frontend/images/EmptyBag.svg" alt="empty-shopping-bag" />
-          <!-- The user icon links to registration.html with tab=login -->
-          <a href="/frontend/non members/registration.html?tab=login">
-            <img src="/frontend/images/GuestIcon.svg" alt="guest-profile-icon" />
-          </a>
-        </div>
+      <!-- Right: User Panel -->
+      <div class="usr-panel">
+        <button class="signup-btn" onclick="location.href='/frontend/non members/registration.html?tab=signup'">Join Now</button>
+        <img src="/frontend/images/EmptyBag.svg" alt="empty-shopping-bag" />
+        <a href="/frontend/non members/registration.html?tab=login">
+          <img src="/frontend/images/GuestIcon.svg" alt="guest-profile-icon" />
+        </a>
+      </div>
     </nav>
 
     <!-- ========== MAIN CONTENT: UPCOMING EVENTS ========== -->
@@ -361,6 +357,9 @@
 
         <!-- Events Grid -->
         <div class="events-grid">
+          <!-- Static sample events are included here as a fallback.
+               They will be replaced by dynamically loaded events from the backend. -->
+
           <!-- Sample Event 1: MUSIC -->
           <div class="event-card" data-category="music">
             <img src="/frontend/images/event1.jpg" alt="Event 1" />
@@ -553,19 +552,18 @@
       </div>
     </main>
 
-
-<!-- ========== FOOTER ========== -->
-<footer>
-  <div class="f-format">
-    <div class="authors">
-      <h4>Authors:</h4>
-      <p>Tai Rose (SID: 2108618)</p>
-      <p>Malcom Going (SID: 2372291)</p>
-      <p>Alessandro La Mendola (SID: 2158059)</p>
-      <p>Yusuf Kose (SID: 2415327)</p>
-    </div>
-  </div>
-</footer>
+    <!-- ========== FOOTER ========== -->
+    <footer>
+      <div class="f-format">
+        <div class="authors">
+          <h4>Authors:</h4>
+          <p>Tai Rose (SID: 2108618)</p>
+          <p>Malcom Going (SID: 2372291)</p>
+          <p>Alessandro La Mendola (SID: 2158059)</p>
+          <p>Yusuf Kose (SID: 2415327)</p>
+        </div>
+      </div>
+    </footer>
 
     <!-- Inline JavaScript to handle event filtering & calendar toggle -->
     <script>
@@ -611,12 +609,45 @@
 
       // Show the calendar and hide event cards when "Calendar" is clicked
       calendarBtn.addEventListener("click", () => {
-        // Hide all event cards
         eventCards.forEach((card) => {
           card.style.display = "none";
         });
-        // Display the calendar
         calendarContainer.style.display = "block";
+      });
+    </script>
+
+    <!-- New Script: Dynamic Events Loading -->
+    <script>
+      window.addEventListener("DOMContentLoaded", async () => {
+        try {
+          const response = await fetch("http://127.0.0.1:5000/api/events");
+          if (!response.ok) {
+            throw new Error("Failed to fetch events");
+          }
+          const eventsData = await response.json();
+          const eventsGrid = document.querySelector(".events-grid");
+          // Clear the existing static events if dynamic events are available
+          eventsGrid.innerHTML = "";
+          eventsData.forEach(event => {
+            const card = document.createElement("div");
+            card.className = "event-card";
+            // Assuming the events table has a 'category' field:
+            card.setAttribute("data-category", event.category);
+            card.innerHTML = `
+              <img src="${event.image_path}" alt="${event.title}" />
+              <div class="event-details">
+                <h2>${event.title}</h2>
+                <p><strong>Date:</strong> ${event.event_date}</p>
+                <p><strong>Location:</strong> ${event.location}</p>
+                <p>${event.description}</p>
+                <button class="event-btn">Join event</button>
+              </div>
+            `;
+            eventsGrid.appendChild(card);
+          });
+        } catch (error) {
+          console.error("Error fetching events:", error);
+        }
       });
     </script>
   </body>

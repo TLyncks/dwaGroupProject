@@ -321,46 +321,46 @@
           <div class="section-header">Basic Information</div>
           <div class="form-row">
             <div class="form-group">
-              <label>Name</label>
-              <input type="text" placeholder="Enter your name" required />
+              <label for="firstName">Name</label>
+              <input type="text" id="firstName" name="firstName" placeholder="Enter your name" required />
             </div>
             <div class="form-group">
-              <label>Surname</label>
-              <input type="text" placeholder="Enter your surname" required />
+              <label for="lastName">Surname</label>
+              <input type="text" id="lastName" name="lastName" placeholder="Enter your surname" required />
             </div>
             <div class="form-group">
-              <label>Email</label>
-              <input type="email" placeholder="Enter your email" required />
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="Enter your email" required />
             </div>
             <div class="form-group">
-              <label>Phone number</label>
-              <input type="tel" placeholder="Enter phone number" required />
+              <label for="phone">Phone number</label>
+              <input type="tel" id="phone" name="phone" placeholder="Enter phone number" required />
             </div>
           </div>
           <!-- Additional Information -->
           <div class="section-header">Additional Information</div>
           <div class="form-row">
             <div class="form-group">
-              <label>Membership Type</label>
-              <select name="membership_type" required>
+              <label for="membershipType">Membership Type</label>
+              <select id="membershipType" name="membershipType" required>
                 <option value="">Select a membership...</option>
                 <option value="community">Community</option>
                 <option value="key_access">Key Access</option>
                 <option value="creative_workspace">Creative Workspace</option>
-                <option value="community">Pay what you can</option>
+                <option value="pay_what_you_can">Pay what you can</option>
               </select>
             </div>
             <div class="form-group">
-              <label>Why?</label>
-              <textarea placeholder="Explain why you need this membership..." required></textarea>
+              <label for="reason">Why?</label>
+              <textarea id="reason" name="reason" placeholder="Explain why you need this membership..." required></textarea>
             </div>
             <div class="form-group">
-              <label>Have you ever participated in cultural events?</label>
-              <textarea placeholder="Type here..." required></textarea>
+              <label for="participated">Have you ever participated in cultural events?</label>
+              <textarea id="participated" name="participated" placeholder="Type here..." required></textarea>
             </div>
             <div class="form-group">
-              <label>How did you hear about us?</label>
-              <textarea placeholder="Type here..." required></textarea>
+              <label for="heardAbout">How did you hear about us?</label>
+              <textarea id="heardAbout" name="heardAbout" placeholder="Type here..." required></textarea>
             </div>
           </div>
           <div class="submit-container">
@@ -370,26 +370,69 @@
       </div>
     </main>
 
-
-   <!-- ========== FOOTER ========== -->
-   <footer>
-    <div class="f-format">
-      <div class="authors">
-        <h4>Authors:</h4>
-        <p>Tai Rose (SID: 2108618)</p>
-        <p>Malcom Going (SID: 2372291)</p>
-        <p>Alessandro La Mendola (SID: 2158059)</p>
-        <p>Yusuf Kose (SID: 2415327)</p>
+    <!-- ========== FOOTER ========== -->
+    <footer>
+      <div class="f-format">
+        <div class="authors">
+          <h4>Authors:</h4>
+          <p>Tai Rose (SID: 2108618)</p>
+          <p>Malcom Going (SID: 2372291)</p>
+          <p>Alessandro La Mendola (SID: 2158059)</p>
+          <p>Yusuf Kose (SID: 2415327)</p>
+        </div>
       </div>
-    </div>
-  </footer>
+    </footer>
 
     <!-- JavaScript for submission handling -->
     <script>
-      document.getElementById("submitApplication").addEventListener("click", function(event) {
+      document.getElementById("applicationForm").addEventListener("submit", async function(event) {
         event.preventDefault(); // Prevent default form submission
-        alert("Your application has been submitted!");
-        window.location.href = "/frontend/index.html"; // Redirect after submission; adjust as needed
+
+        // Collect the form values by ID
+        const firstName = document.getElementById("firstName").value.trim();
+        const lastName = document.getElementById("lastName").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const membershipType = document.getElementById("membershipType").value;
+        const reason = document.getElementById("reason").value.trim();
+        const participated = document.getElementById("participated").value.trim();
+        const heardAbout = document.getElementById("heardAbout").value.trim();
+
+        // Basic validation
+        if (!firstName || !lastName || !email || !phone || !membershipType || !reason || !participated || !heardAbout) {
+          alert("Please fill in all the fields.");
+          return;
+        }
+
+        try {
+          // Make a POST request to your server's /apply endpoint
+          const response = await fetch("http://127.0.0.1:5000/apply", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              firstName,
+              lastName,
+              email,
+              phone,
+              membershipType,
+              reason,
+              participated,
+              heardAbout
+            })
+          });
+
+          const data = await response.text();
+          if (response.ok) {
+            alert("Application submitted successfully!");
+            // Redirect after submission; adjust as needed
+            window.location.href = "/frontend/index.html";
+          } else {
+            alert("Submission failed: " + data);
+          }
+        } catch (error) {
+          alert("Error: Could not connect to the server.");
+          console.error("Error:", error);
+        }
       });
     </script>
   </body>

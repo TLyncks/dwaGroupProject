@@ -4,8 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up / Log In | Together Culture</title>
-
-    <!-- Inline CSS to match existing style -->
     <style>
       /* ========== RESET & GLOBAL ========== */
       * {
@@ -14,14 +12,14 @@
         box-sizing: border-box;
         font-family: Arial, sans-serif;
       }
-      html, body {
+      html,
+      body {
         height: 100%;
       }
       body {
         display: flex;
         flex-direction: column;
       }
-
       /* ========== HEADER ========== */
       .navbar {
         background-color: #fe1e3c;
@@ -74,7 +72,6 @@
         background: linear-gradient(to right, #ff4b2b, #ff416c);
         transform: scale(1.05);
       }
-
       /* Dropdown Menu */
       .dropdown {
         position: relative;
@@ -115,7 +112,6 @@
         pointer-events: auto;
         transform: translateY(0);
       }
-
       /* ========== MAIN CONTENT: LOGIN / SIGNUP ========== */
       .auth-main {
         margin-top: 80px;
@@ -197,7 +193,6 @@
       .auth-form {
         display: none;
       }
-
       /* ========== FOOTER ========== */
       footer {
         background-color: #0f0f0f;
@@ -219,7 +214,6 @@
       .authors h4 {
         margin-bottom: 1rem;
       }
-
       /* ========== RESPONSIVE ========== */
       @media (max-width: 768px) {
         .auth-container {
@@ -251,10 +245,10 @@
         </ul>
       </div>
       <div class="usr-panel">
-        <!-- The "Join Now" button links to registration.html with tab=signup -->
-        <button class="signup-btn" onclick="location.href='/frontend/non members/registration.html?tab=signup'">Join Now</button>
+        <button class="signup-btn" onclick="location.href='/frontend/non members/registration.html?tab=signup'">
+          Join Now
+        </button>
         <img src="/frontend/images/EmptyBag.svg" alt="empty-shopping-bag" />
-        <!-- The user icon links to registration.html with tab=login -->
         <a href="/frontend/non members/registration.html?tab=login">
           <img src="/frontend/images/GuestIcon.svg" alt="guest-profile-icon" />
         </a>
@@ -269,12 +263,12 @@
 
         <!-- Toggle Buttons -->
         <div class="toggle-buttons">
-          <button class="toggle-btn active" id="signUpBtn">Sign Up</button>
+          <button class="toggle-btn" id="signUpBtn">Sign Up</button>
           <button class="toggle-btn" id="loginBtn">Log In</button>
         </div>
 
         <!-- Sign Up Form -->
-        <form class="auth-form" id="signUpForm" action="/signup" method="POST">
+        <form class="auth-form" id="signUpForm" action="http://127.0.0.1:5000/signup" method="POST">
           <div class="form-group">
             <label for="signup-name">Full Name</label>
             <input type="text" id="signup-name" name="signup-name" placeholder="Your Name" required />
@@ -295,7 +289,7 @@
         </form>
 
         <!-- Log In Form -->
-        <form class="auth-form" id="loginForm" action="/login" method="POST">
+        <form class="auth-form" id="loginForm" action="http://127.0.0.1:5000/login" method="POST">
           <div class="form-group">
             <label for="login-email">Email Address</label>
             <input type="email" id="login-email" name="login-email" placeholder="example@domain.com" required />
@@ -322,8 +316,9 @@
       </div>
     </footer>
 
-    <!-- Inline JavaScript for toggling forms and setting default tab -->
+    <!-- Combined JavaScript for toggling forms and handling submissions -->
     <script>
+      // Toggling Logic
       const signUpBtn = document.getElementById("signUpBtn");
       const loginBtn = document.getElementById("loginBtn");
       const signUpForm = document.getElementById("signUpForm");
@@ -343,19 +338,97 @@
         signUpForm.style.display = "none";
       }
 
-      // Show Sign Up by default
-      showSignUp();
-
-      // Toggle forms when buttons are clicked
+      // Add click event listeners for toggling between forms
       signUpBtn.addEventListener("click", showSignUp);
       loginBtn.addEventListener("click", showLogin);
 
-      // Check URL parameters to set the default tab if specified
+      // Set default tab based on URL parameter
       const urlParams = new URLSearchParams(window.location.search);
-      const tab = urlParams.get('tab');
-      if (tab === 'login') {
+      if (urlParams.get("tab") === "login") {
         showLogin();
+      } else {
+        showSignUp();
       }
+
+      // Form Submission Logic
+      document.addEventListener("DOMContentLoaded", function () {
+        // Sign Up Submission
+        if (signUpForm) {
+          signUpForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            // Collect values from the form
+            const fullName = document.getElementById("signup-name").value.trim();
+            const email = document.getElementById("signup-email").value.trim();
+            const password = document.getElementById("signup-password").value;
+            const confirmPassword = document.getElementById("signup-confirm").value;
+
+            // Basic validation
+            if (!fullName || !email || !password || !confirmPassword) {
+              alert("All fields are required.");
+              return;
+            }
+            if (password !== confirmPassword) {
+              alert("Passwords do not match!");
+              return;
+            }
+
+            try {
+              // Send JSON to the backend with matching keys
+              const response = await fetch("http://127.0.0.1:5000/signup", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ fullName, email, password })
+              });
+
+              const data = await response.text();
+              if (response.ok) {
+                alert("Signup successful! You can now log in.");
+                window.location.href = "registration.html?tab=login";
+              } else {
+                alert("Signup failed: " + data);
+              }
+            } catch (error) {
+              alert("Error: Could not connect to the server.");
+              console.error("Error:", error);
+            }
+          });
+        }
+
+        // Log In Submission
+        if (loginForm) {
+          loginForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
+            const email = document.getElementById("login-email").value.trim();
+            const password = document.getElementById("login-password").value;
+
+            if (!email || !password) {
+              alert("Both fields are required.");
+              return;
+            }
+
+            try {
+              // Send JSON to the backend with matching keys
+              const response = await fetch("http://127.0.0.1:5000/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password })
+              });
+              const data = await response.text();
+              if (response.ok) {
+                alert("Login successful!");
+                // Redirect to the common user dashboard file
+                window.location.href = "/frontend/Members/UserDashboard.html";
+              } else {
+                alert("Login failed: " + data);
+              }
+            } catch (error) {
+              alert("Error: Could not connect to the server.");
+              console.error("Error:", error);
+            }
+          });
+        }
+      });
     </script>
   </body>
 </html>
