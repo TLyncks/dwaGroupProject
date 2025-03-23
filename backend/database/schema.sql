@@ -62,17 +62,15 @@ CREATE TABLE companies (
 
 CREATE TABLE Calendar (
     event_id INT AUTO_INCREMENT PRIMARY KEY, -- Unique event identifier
-    organizer_id INT NOT NULL, -- Link to the user creating the event
     title VARCHAR(255) NOT NULL, -- Event title
     description TEXT, -- Event details
+    image_url VARCHAR(255) NOT NULL, -- Event image URL
     start_date DATE NOT NULL, -- Event start date
     end_date DATE NOT NULL, -- Event end date
     start_time TIME NOT NULL, -- Event start time
     end_time TIME NOT NULL, -- Event end time
     recurrence ENUM('none', 'daily', 'weekly', 'monthly') DEFAULT 'none', -- Recurrence settings
-    visibility ENUM('public', 'private', 'members-only') DEFAULT 'public', -- Event visibility settings
-    CONSTRAINT fk_calendar_user FOREIGN KEY (organizer_id) REFERENCES BaseUser(id) -- Foreign key to link organizer_id to BaseUser table
-    ON DELETE CASCADE -- If user is deleted, their events are removed
+    visibility ENUM('public', 'private', 'members-only') DEFAULT 'public' -- Event visibility settings
 );
 
 CREATE TABLE EventAttendees (

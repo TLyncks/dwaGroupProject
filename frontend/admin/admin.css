@@ -286,13 +286,12 @@ footer {
 
 /* General input and select styling */
 .input-text, .input-select {
-  width: 80%;
+  width: 100%;
   padding: 10px 12px;
   font-size: 16px;
   border: 1px solid #ced4da;
   border-radius: 4px;
   transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  margin-top: 5px;
 }
 
 /* Focus effect */
@@ -315,7 +314,7 @@ footer {
 
 /* Select (Combo Box) Specific Styling */
 .input-select {
-  width: 83%;
+  width: 100%;
   appearance: none; /* Removes default browser styling */
   background-color: white;
   background-image: url('data:image/svg+xml;utf8,<svg fill="%236c757d" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M7.247 11.14l-4.796-4.797a.5.5 0 0 1 .708-.708L8 10.293l4.843-4.843a.5.5 0 1 1 .708.708l-4.797 4.796a.5.5 0 0 1-.707 0z"></path></svg>');
@@ -368,7 +367,7 @@ label {
 }
 
 input[type="date"] {
-  width: 80%;
+  width: 90%;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
