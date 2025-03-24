@@ -92,3 +92,42 @@ app.post('/apply', (req, res) => {
     res.send("Application submitted successfully");
   });
 });
+ // =========================================================
+ // NEW EVENTS ROUTES
+ // =========================================================
+ 
+ // GET all events from the "events" table
+ app.get('/api/events', (req, res) => {
+   const query = 'SELECT * FROM events ORDER BY event_date ASC';
+   dbModule.executeQuery(query, [], (err, results) => {
+     if (err) {
+       console.error('Error fetching events:', err);
+       return res.status(500).send('Database error');
+     }
+     // Return events as JSON
+     res.json(results);
+   });
+ });
+ 
+ // POST a new event to the "events" table (optional, if you want to add events from the front end)
+ app.post('/api/events', (req, res) => {
+   const { title, event_date, location, description, image_path, category } = req.body;
+   // Minimal validation
+   if (!title || !event_date) {
+     return res.status(400).send('Missing required fields');
+   }
+ 
+   const insertQuery = `
+     INSERT INTO events (title, event_date, location, description, image_path, category)
+     VALUES (?, ?, ?, ?, ?, ?)
+   `;
+   const params = [title, event_date, location, description, image_path, category];
+ 
+   dbModule.executeQuery(insertQuery, params, (err, result) => {
+     if (err) {
+       console.error('Error inserting event:', err);
+       return res.status(500).send('Database error');
+     }
+     res.send('Event created successfully');
+   });
+ });
