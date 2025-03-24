@@ -23,10 +23,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-<<<<<<< HEAD
     "express-session": "^1.18.1",
-=======
->>>>>>> a905cb177074a538ac643fecda6bf2a69a4cd211
     "multer": "^1.4.5-lts.2",
     "mysql": "^2.18.1",
     "mysql2": "^3.13.0",
