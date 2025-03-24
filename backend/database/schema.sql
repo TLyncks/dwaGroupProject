@@ -96,6 +96,7 @@ CREATE TABLE adminInfo
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
+<<<<<<< HEAD
                                 CREATE TABLE Calendar
                                 (
                                         event_id INT
@@ -105,14 +106,26 @@ CREATE TABLE adminInfo
     description TEXT, -- Event details
     image_url VARCHAR
                                         (255) NOT NULL, -- Event image URL
+=======
+CREATE TABLE Calendar (
+    event_id INT AUTO_INCREMENT PRIMARY KEY, -- Unique event identifier
+    title VARCHAR(255) NOT NULL, -- Event title
+    description TEXT, -- Event details
+    image_url VARCHAR(255) NOT NULL, -- Event image URL
+>>>>>>> a905cb177074a538ac643fecda6bf2a69a4cd211
     start_date DATE NOT NULL, -- Event start date
     end_date DATE NOT NULL, -- Event end date
     start_time TIME NOT NULL, -- Event start time
     end_time TIME NOT NULL, -- Event end time
+<<<<<<< HEAD
     recurrence ENUM
                                         ('none', 'daily', 'weekly', 'monthly') DEFAULT 'none', -- Recurrence settings
     visibility ENUM
                                         ('public', 'private', 'members-only') DEFAULT 'public' -- Event visibility settings
+=======
+    recurrence ENUM('none', 'daily', 'weekly', 'monthly') DEFAULT 'none', -- Recurrence settings
+    visibility ENUM('public', 'private', 'members-only') DEFAULT 'public' -- Event visibility settings
+>>>>>>> a905cb177074a538ac643fecda6bf2a69a4cd211
 );
 
                                         CREATE TABLE EventAttendees
