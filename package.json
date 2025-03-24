@@ -23,7 +23,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "multer": "^1.4.5-lts.2",
+    "express-async-handler": "^1.2.0",
     "mysql": "^2.18.1",
     "mysql2": "^3.13.0",
     "react": "^19.0.0",
