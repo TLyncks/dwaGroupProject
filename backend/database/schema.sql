@@ -96,130 +96,45 @@ CREATE TABLE adminInfo
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-                                -- Calendar for events
                                 CREATE TABLE Calendar
                                 (
                                         event_id INT
-                                        AUTO_INCREMENT PRIMARY KEY,
-    organizer_id INT NOT NULL,   -- Link to the user creating the event
+                                        AUTO_INCREMENT PRIMARY KEY, -- Unique event identifier
     title VARCHAR
-                                        (255) NOT NULL,
-    description TEXT,
-    start_date DATE NOT NULL,
-    end_date DATE NOT NULL,
-    start_time TIME NOT NULL,
-    end_time TIME NOT NULL,
+                                        (255) NOT NULL, -- Event title
+    description TEXT, -- Event details
+    image_url VARCHAR
+                                        (255) NOT NULL, -- Event image URL
+    start_date DATE NOT NULL, -- Event start date
+    end_date DATE NOT NULL, -- Event end date
+    start_time TIME NOT NULL, -- Event start time
+    end_time TIME NOT NULL, -- Event end time
     recurrence ENUM
-                                        ('none', 'daily', 'weekly', 'monthly') DEFAULT 'none',
+                                        ('none', 'daily', 'weekly', 'monthly') DEFAULT 'none', -- Recurrence settings
     visibility ENUM
-                                        ('public', 'private', 'members-only') DEFAULT 'public',
-    CONSTRAINT fk_calendar_user FOREIGN KEY
-                                        (organizer_id) REFERENCES BaseUser
-                                        (id) ON
-                                        DELETE CASCADE
+                                        ('public', 'private', 'members-only') DEFAULT 'public' -- Event visibility settings
 );
 
-                                        -- Table for tracking event attendees
                                         CREATE TABLE EventAttendees
                                         (
                                                 attendee_id INT
-                                                AUTO_INCREMENT PRIMARY KEY,  -- Unique record for each attendee-event combination
-    event_id INT NOT NULL,                       -- Links to Calendar table
-    user_id INT NOT NULL,                        -- Links to BaseUser table
+                                                AUTO_INCREMENT PRIMARY KEY, -- Unique record for each attendee-event combination
+    event_id INT NOT NULL, -- Links to Calendar table
+    user_id INT NOT NULL, -- Links to BaseUser table
     status ENUM
-                                                ('attending', 'maybe', 'declined') DEFAULT 'attending',
+                                                ('attending', 'maybe', 'declined') DEFAULT 'attending', -- RSVP status
+
+    -- Foreign keys to ensure relationships
     CONSTRAINT fk_event FOREIGN KEY
                                                 (event_id) REFERENCES Calendar
-                                                (event_id) ON
-                                                DELETE CASCADE,
+                                                (event_id) 
+    ON
+                                                DELETE CASCADE, -- If an event is deleted, remove its attendees
     CONSTRAINT fk_user FOREIGN KEY
                                                 (user_id) REFERENCES BaseUser
-                                                (id) ON
-                                                DELETE CASCADE
-);
-
-                                                -- =========================================
-                                                -- ========== Alex's Tables ================
-                                                -- =========================================
-
-                                                CREATE TABLE membership_applications
-                                                (
-                                                        id INT
-                                                        AUTO_INCREMENT PRIMARY KEY,
-  first_name VARCHAR
-                                                        (100) NOT NULL,
-  last_name VARCHAR
-                                                        (100) NOT NULL,
-  email VARCHAR
-                                                        (255) NOT NULL,
-  phone VARCHAR
-                                                        (20) NOT NULL,
-  membership_type VARCHAR
-                                                        (100) NOT NULL,
-  reason TEXT NOT NULL,
-  participated TEXT NOT NULL,
-  heard_about TEXT NOT NULL,
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-);
-
-                                                        -- Membership benefits: Each membership can have multiple benefits
-                                                        CREATE TABLE membership_benefits
-                                                        (
-                                                                benefit_id INT
-                                                                AUTO_INCREMENT PRIMARY KEY,
-    membership_id INT NOT NULL,
-    benefit_text VARCHAR
-                                                                (255) NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY
-                                                                (membership_id) REFERENCES Memberships
-                                                                (membership_id) ON
-                                                                DELETE CASCADE
-);
-
-                                                                -- Simpler events table (alternative to Calendar)
-                                                                CREATE TABLE events
-                                                                (
-                                                                        id INT
-                                                                        AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR
-                                                                        (255) NOT NULL,
-    event_date DATE NOT NULL,
-    location VARCHAR
-                                                                        (255),
-    description TEXT,
-    image_path VARCHAR
-                                                                        (255),
-    category VARCHAR
-                                                                        (100),
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-);
-
-                                                                        -- Support requests for contact/support form submissions
-                                                                        CREATE TABLE support_request
-                                                                        (
-                                                                                id INT
-                                                                                AUTO_INCREMENT PRIMARY KEY,
-    full_name VARCHAR
-                                                                                (255) NOT NULL,
-    email VARCHAR
-                                                                                (255) NOT NULL,
-    issue_type VARCHAR
-                                                                                (100),
-    issue_description TEXT,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+                                                (id) 
+    ON
+                                                DELETE CASCADE -- If a user is deleted, remove their attendance records
 );
 
 
-                                                                                -- Login and Signup table
-                                                                                CREATE TABLE users
-                                                                                (
-                                                                                        id INT
-                                                                                        AUTO_INCREMENT PRIMARY KEY,
-    full_name VARCHAR
-                                                                                        (100) NOT NULL,
-    email VARCHAR
-                                                                                        (255) NOT NULL UNIQUE,
-    password_hash VARCHAR
-                                                                                        (255) NOT NULL
-);

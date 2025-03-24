@@ -17,13 +17,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(
   session({
-    secret: process.env.SESSION_SECRET || 'yourSecretKey',
+    secret: process.env.SESSION_SECRET || 'yourSecretKey', // Use a strong secret in production
     resave: false,
     saveUninitialized: false
   })
 );
 
-// Serve static files from the "non members" folder
+// Serve static files from the "non members" folder (adjust if needed)
 app.use(express.static('non members'));
 
 // Basic route
@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
 });
 
 // ------------------------
-// GET all users (existing code)
+// GET Route: Retrieve all users from the "users" table
 // ------------------------
 app.get('/users', (req, res) => {
   const query = 'SELECT * FROM users';
@@ -46,7 +46,21 @@ app.get('/users', (req, res) => {
 });
 
 // ------------------------
-// Sign Up Route (existing code)
+// GET Route: Retrieve all events from the "events" table
+// ------------------------
+app.get('/events', (req, res) => {
+  const query = 'SELECT * FROM events';
+  dbModule.executeQuery(query, [], (err, results) => {
+    if (err) {
+      console.error("Error fetching events:", err);
+      return res.status(500).send("Database error");
+    }
+    res.json(results);
+  });
+});
+
+// ------------------------
+// Sign Up Route
 // ------------------------
 app.post('/signup', async (req, res) => {
   const fullName = req.body.fullName;
@@ -69,6 +83,7 @@ app.post('/signup', async (req, res) => {
       const insertQuery = 'INSERT INTO users (full_name, email, password_hash) VALUES (?, ?, ?)';
       dbModule.executeQuery(insertQuery, [fullName, email, hashedPassword], (err, result) => {
         if (err) return res.status(500).send('Database error');
+
         req.session.user = { id: result.insertId, email };
         res.send('User registered successfully');
       });
@@ -80,7 +95,7 @@ app.post('/signup', async (req, res) => {
 });
 
 // ------------------------
-// Log In Route (existing code)
+// Log In Route
 // ------------------------
 app.post('/login', (req, res) => {
   const email = req.body.email;
@@ -105,7 +120,7 @@ app.post('/login', (req, res) => {
 });
 
 // ------------------------
-// Log Out Route (existing code)
+// Log Out Route
 // ------------------------
 app.get('/logout', (req, res) => {
   req.session.destroy(err => {
@@ -115,7 +130,7 @@ app.get('/logout', (req, res) => {
 });
 
 // ------------------------
-// Membership Application Submission (existing code)
+// Membership Application Submission Route
 // ------------------------
 app.post('/apply', (req, res) => {
   const { firstName, lastName, email, phone, membershipType, reason, participated, heardAbout } = req.body;
@@ -136,46 +151,6 @@ app.post('/apply', (req, res) => {
       return res.status(500).send("Database error");
     }
     res.send("Application submitted successfully");
-  });
-});
-
-// =========================================================
-// NEW EVENTS ROUTES
-// =========================================================
-
-// GET all events from the "events" table
-app.get('/api/events', (req, res) => {
-  const query = 'SELECT * FROM events ORDER BY event_date ASC';
-  dbModule.executeQuery(query, [], (err, results) => {
-    if (err) {
-      console.error('Error fetching events:', err);
-      return res.status(500).send('Database error');
-    }
-    // Return events as JSON
-    res.json(results);
-  });
-});
-
-// POST a new event to the "events" table (optional, if you want to add events from the front end)
-app.post('/api/events', (req, res) => {
-  const { title, event_date, location, description, image_path, category } = req.body;
-  // Minimal validation
-  if (!title || !event_date) {
-    return res.status(400).send('Missing required fields');
-  }
-
-  const insertQuery = `
-    INSERT INTO events (title, event_date, location, description, image_path, category)
-    VALUES (?, ?, ?, ?, ?, ?)
-  `;
-  const params = [title, event_date, location, description, image_path, category];
-
-  dbModule.executeQuery(insertQuery, params, (err, result) => {
-    if (err) {
-      console.error('Error inserting event:', err);
-      return res.status(500).send('Database error');
-    }
-    res.send('Event created successfully');
   });
 });
 

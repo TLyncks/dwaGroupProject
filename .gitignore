@@ -4,3 +4,8 @@ node_modules/
 .DS_Store
 .env.local
 .env.*.local
+*/uploads/*.jpg
+*/uploads/*.jpeg
+*/uploads/*.png
+*/uploads/*.gif
+*/uploads/*.svg

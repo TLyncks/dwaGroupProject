@@ -39,119 +39,172 @@
           <button class="btn" onclick="searchEvent()">Search</button>
         </div>
         <div id="table-sortable" class="table-sortable"></div>
-
+        <hr />
         <div class="add-event">
           <h3>Add New Event</h3>
-          <form id="add-event-form">
-            <label for="date">Event Name:</label><br />
-            <input type="text" class="input-text" id="member-name" placeholder="Event Name" required /> <br />
-            <label for="date">Event Image:</label><br />
-            <input type="file" class="input-text" /> <br />
-            <label for="date">Event Date:</label><br /><input type="date" id="date" class="date-picker" /> <br />
-            <label for="date">Event Start Time:</label><br />
-            <select id="time" class="input-select">
-              <option value="00:00">12:00 AM</option>
-              <option value="00:30">12:30 AM</option>
-              <option value="01:00">1:00 AM</option>
-              <option value="01:30">1:30 AM</option>
-              <option value="02:00">2:00 AM</option>
-              <option value="02:30">2:30 AM</option>
-              <option value="03:00">3:00 AM</option>
-              <option value="03:30">3:30 AM</option>
-              <option value="04:00">4:00 AM</option>
-              <option value="04:30">4:30 AM</option>
-              <option value="05:00">5:00 AM</option>
-              <option value="05:30">5:30 AM</option>
-              <option value="06:00">6:00 AM</option>
-              <option value="06:30">6:30 AM</option>
-              <option value="07:00">7:00 AM</option>
-              <option value="07:30">7:30 AM</option>
-              <option value="08:00">8:00 AM</option>
-              <option value="08:30">8:30 AM</option>
-              <option value="09:00">9:00 AM</option>
-              <option value="09:30">9:30 AM</option>
-              <option value="10:00">10:00 AM</option>
-              <option value="10:30">10:30 AM</option>
-              <option value="11:00">11:00 AM</option>
-              <option value="11:30">11:30 AM</option>
-              <option value="12:00">12:00 PM</option>
-              <option value="12:30">12:30 PM</option>
-              <option value="13:00">1:00 PM</option>
-              <option value="13:30">1:30 PM</option>
-              <option value="14:00">2:00 PM</option>
-              <option value="14:30">2:30 PM</option>
-              <option value="15:00">3:00 PM</option>
-              <option value="15:30">3:30 PM</option>
-              <option value="16:00">4:00 PM</option>
-              <option value="16:30">4:30 PM</option>
-              <option value="17:00">5:00 PM</option>
-              <option value="17:30">5:30 PM</option>
-              <option value="18:00">6:00 PM</option>
-              <option value="18:30">6:30 PM</option>
-              <option value="19:00">7:00 PM</option>
-              <option value="19:30">7:30 PM</option>
-              <option value="20:00">8:00 PM</option>
-              <option value="20:30">8:30 PM</option>
-              <option value="21:00">9:00 PM</option>
-              <option value="21:30">9:30 PM</option>
-              <option value="22:00">10:00 PM</option>
-              <option value="22:30">10:30 PM</option>
-              <option value="23:00">11:00 PM</option>
-              <option value="23:30">11:30 PM</option></select
-            ><br />
-            <label for="date">Event End Time:</label><br />
-            <select id="time" class="input-select">
-              <option value="00:00">12:00 AM</option>
-              <option value="00:30">12:30 AM</option>
-              <option value="01:00">1:00 AM</option>
-              <option value="01:30">1:30 AM</option>
-              <option value="02:00">2:00 AM</option>
-              <option value="02:30">2:30 AM</option>
-              <option value="03:00">3:00 AM</option>
-              <option value="03:30">3:30 AM</option>
-              <option value="04:00">4:00 AM</option>
-              <option value="04:30">4:30 AM</option>
-              <option value="05:00">5:00 AM</option>
-              <option value="05:30">5:30 AM</option>
-              <option value="06:00">6:00 AM</option>
-              <option value="06:30">6:30 AM</option>
-              <option value="07:00">7:00 AM</option>
-              <option value="07:30">7:30 AM</option>
-              <option value="08:00">8:00 AM</option>
-              <option value="08:30">8:30 AM</option>
-              <option value="09:00">9:00 AM</option>
-              <option value="09:30">9:30 AM</option>
-              <option value="10:00">10:00 AM</option>
-              <option value="10:30">10:30 AM</option>
-              <option value="11:00">11:00 AM</option>
-              <option value="11:30">11:30 AM</option>
-              <option value="12:00">12:00 PM</option>
-              <option value="12:30">12:30 PM</option>
-              <option value="13:00">1:00 PM</option>
-              <option value="13:30">1:30 PM</option>
-              <option value="14:00">2:00 PM</option>
-              <option value="14:30">2:30 PM</option>
-              <option value="15:00">3:00 PM</option>
-              <option value="15:30">3:30 PM</option>
-              <option value="16:00">4:00 PM</option>
-              <option value="16:30">4:30 PM</option>
-              <option value="17:00">5:00 PM</option>
-              <option value="17:30">5:30 PM</option>
-              <option value="18:00">6:00 PM</option>
-              <option value="18:30">6:30 PM</option>
-              <option value="19:00">7:00 PM</option>
-              <option value="19:30">7:30 PM</option>
-              <option value="20:00">8:00 PM</option>
-              <option value="20:30">8:30 PM</option>
-              <option value="21:00">9:00 PM</option>
-              <option value="21:30">9:30 PM</option>
-              <option value="22:00">10:00 PM</option>
-              <option value="22:30">10:30 PM</option>
-              <option value="23:00">11:00 PM</option>
-              <option value="23:30">11:30 PM</option>
-            </select>
-            <br />
-            <button type="submit" class="btn" style="margin-top: 12px; margin-bottom: 12px">Add Event</button>
+          <form id="add-event-form" enctype="multipart/form-data" method="post" name="add-event-form">
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Event Name:</label>
+              <div class="col-9">
+                <input type="text" class="form-control" id="title" placeholder="Event Name" name="title" required />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Event Image:</label>
+              <div class="col-9">
+                <input type="file" class="form-control" required accept="image/png, image/jpeg" name="file" />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-2 col-form-label" for="startDate">Event Start Date:</label>
+              <div class="col-3">
+                <input type="date" id="startDate" class="form-control" required name="start_date" />
+              </div>
+              <label class="col-2 col-form-label" for="endDate">Event End Date:</label>
+              <div class="col-3">
+                <input type="date" id="endDate" class="form-control" required name="end_date" />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label" for="startTime">Event Start Time:</label>
+              <div class="col-sm-3">
+                <select id="startTime" class="form-control" required name="start_time">
+                  <option value="00:00">12:00 AM</option>
+                  <option value="00:30">12:30 AM</option>
+                  <option value="01:00">1:00 AM</option>
+                  <option value="01:30">1:30 AM</option>
+                  <option value="02:00">2:00 AM</option>
+                  <option value="02:30">2:30 AM</option>
+                  <option value="03:00">3:00 AM</option>
+                  <option value="03:30">3:30 AM</option>
+                  <option value="04:00">4:00 AM</option>
+                  <option value="04:30">4:30 AM</option>
+                  <option value="05:00">5:00 AM</option>
+                  <option value="05:30">5:30 AM</option>
+                  <option value="06:00">6:00 AM</option>
+                  <option value="06:30">6:30 AM</option>
+                  <option value="07:00">7:00 AM</option>
+                  <option value="07:30">7:30 AM</option>
+                  <option value="08:00">8:00 AM</option>
+                  <option value="08:30">8:30 AM</option>
+                  <option value="09:00">9:00 AM</option>
+                  <option value="09:30">9:30 AM</option>
+                  <option value="10:00">10:00 AM</option>
+                  <option value="10:30">10:30 AM</option>
+                  <option value="11:00">11:00 AM</option>
+                  <option value="11:30">11:30 AM</option>
+                  <option value="12:00">12:00 PM</option>
+                  <option value="12:30">12:30 PM</option>
+                  <option value="13:00">1:00 PM</option>
+                  <option value="13:30">1:30 PM</option>
+                  <option value="14:00">2:00 PM</option>
+                  <option value="14:30">2:30 PM</option>
+                  <option value="15:00">3:00 PM</option>
+                  <option value="15:30">3:30 PM</option>
+                  <option value="16:00">4:00 PM</option>
+                  <option value="16:30">4:30 PM</option>
+                  <option value="17:00">5:00 PM</option>
+                  <option value="17:30">5:30 PM</option>
+                  <option value="18:00">6:00 PM</option>
+                  <option value="18:30">6:30 PM</option>
+                  <option value="19:00">7:00 PM</option>
+                  <option value="19:30">7:30 PM</option>
+                  <option value="20:00">8:00 PM</option>
+                  <option value="20:30">8:30 PM</option>
+                  <option value="21:00">9:00 PM</option>
+                  <option value="21:30">9:30 PM</option>
+                  <option value="22:00">10:00 PM</option>
+                  <option value="22:30">10:30 PM</option>
+                  <option value="23:00">11:00 PM</option>
+                  <option value="23:30">11:30 PM</option>
+                </select>
+              </div>
+              <label class="col-sm-2 col-form-label" for="endTime">Event End Time:</label>
+              <div class="col-sm-3">
+                <select id="endTime" class="form-control" required name="end_time">
+                  <option value="00:00">12:00 AM</option>
+                  <option value="00:30">12:30 AM</option>
+                  <option value="01:00">1:00 AM</option>
+                  <option value="01:30">1:30 AM</option>
+                  <option value="02:00">2:00 AM</option>
+                  <option value="02:30">2:30 AM</option>
+                  <option value="03:00">3:00 AM</option>
+                  <option value="03:30">3:30 AM</option>
+                  <option value="04:00">4:00 AM</option>
+                  <option value="04:30">4:30 AM</option>
+                  <option value="05:00">5:00 AM</option>
+                  <option value="05:30">5:30 AM</option>
+                  <option value="06:00">6:00 AM</option>
+                  <option value="06:30">6:30 AM</option>
+                  <option value="07:00">7:00 AM</option>
+                  <option value="07:30">7:30 AM</option>
+                  <option value="08:00">8:00 AM</option>
+                  <option value="08:30">8:30 AM</option>
+                  <option value="09:00">9:00 AM</option>
+                  <option value="09:30">9:30 AM</option>
+                  <option value="10:00">10:00 AM</option>
+                  <option value="10:30">10:30 AM</option>
+                  <option value="11:00">11:00 AM</option>
+                  <option value="11:30">11:30 AM</option>
+                  <option value="12:00">12:00 PM</option>
+                  <option value="12:30">12:30 PM</option>
+                  <option value="13:00">1:00 PM</option>
+                  <option value="13:30">1:30 PM</option>
+                  <option value="14:00">2:00 PM</option>
+                  <option value="14:30">2:30 PM</option>
+                  <option value="15:00">3:00 PM</option>
+                  <option value="15:30">3:30 PM</option>
+                  <option value="16:00">4:00 PM</option>
+                  <option value="16:30">4:30 PM</option>
+                  <option value="17:00">5:00 PM</option>
+                  <option value="17:30">5:30 PM</option>
+                  <option value="18:00">6:00 PM</option>
+                  <option value="18:30">6:30 PM</option>
+                  <option value="19:00">7:00 PM</option>
+                  <option value="19:30">7:30 PM</option>
+                  <option value="20:00">8:00 PM</option>
+                  <option value="20:30">8:30 PM</option>
+                  <option value="21:00">9:00 PM</option>
+                  <option value="21:30">9:30 PM</option>
+                  <option value="22:00">10:00 PM</option>
+                  <option value="22:30">10:30 PM</option>
+                  <option value="23:00">11:00 PM</option>
+                  <option value="23:30">11:30 PM</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label" for="startTime">Recurrence: </label>
+              <div class="col-sm-3">
+                <select id="recurrence" class="form-control" required name="recurrence">
+                  <option value="none">None</option>
+                  <option value="daily">Daily</option>
+                  <option value="weekly">Weekly</option>
+                  <option value="monthly">Monthly</option>
+                </select>
+              </div>
+              <label class="col-sm-2 col-form-label" for="endTime">Visibililty:</label>
+              <div class="col-sm-3">
+                <select id="visibility" class="form-control" name="visibility" required>
+                  <option value="public">Public</option>
+                  <option value="private">Private</option>
+                  <option value="members-only">Members-Only</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Event Description:</label>
+              <div class="col-9">
+                <textarea class="form-control" required name="description"></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3 mb-3 float-right">Add Event</button>
           </form>
         </div>
       </div>
@@ -189,90 +242,82 @@
     </footer>
 
     <script>
-      var data = [
-        {
-          eventName: 'Living the Living Book: Turning Up and Butter Making / ONLINE',
-          eventImage: 'https://images.squarespace-cdn.com/content/v1/63bc104e8f7c476406bd6221/093f57bd-0a54-42a2-a3a0-bfe53d06fd59/5.png?format=1000w',
-          eventDate: '03-10-2025',
-          timePeriod: '1:00pm - 2:00pm',
-          detail: 'Detail',
-          delete: 'Delete'
-        },
-        {
-          eventName: 'Happy Board Game Hour',
-          eventImage: 'https://images.squarespace-cdn.com/content/v1/63bc104e8f7c476406bd6221/bcdf0716-23f4-4fb8-aa28-b9ae87c5b753/Website+Event+Images+2.0+%2822%29.png?format=1000w',
-          eventDate: '04-04-2025',
-          timePeriod: '1:00pm - 3:00pm',
-          detail: 'Detail',
-          delete: 'Delete'
-        },
-        {
-          eventName: 'Slow Flow to Restore',
-          eventImage: 'https://images.squarespace-cdn.com/content/v1/63bc104e8f7c476406bd6221/70121822-f819-4d9c-982e-de17260e7329/YOGAatTC.png?format=1000w',
-          eventDate: '04-10-2025',
-          timePeriod: '6:15pm - 7:30pm',
-          detail: 'Detail',
-          delete: 'Delete'
-        },
-        {
-          eventName: 'Connections Meal',
-          eventImage: 'https://images.squarespace-cdn.com/content/v1/63bc104e8f7c476406bd6221/026670af-4fc8-4329-8f89-3fb38972fd82/Website+Event+Images+2.0+%2812%29.png?format=1000w',
-          eventDate: '04-11-2025',
-          timePeriod: '12:30pm - 2:30pm',
-          detail: 'Detail',
-          delete: 'Delete'
-        },
-        {
-          eventName: 'Wellbeing for Change: Digital',
-          eventImage: 'https://images.squarespace-cdn.com/content/v1/63bc104e8f7c476406bd6221/f42aaeb7-5d74-4389-8675-0befd6103b17/Website+Event+Images+2.0+%2826%29.png?format=1000w',
-          eventDate: '04-15-2025',
-          timePeriod: '6:30pm - 8:00pm',
-          detail: 'Detail',
-          delete: 'Delete'
-        },
-        {
-          eventName: 'Power Flow Yoga',
-          eventImage: 'https://images.squarespace-cdn.com/content/v1/63bc104e8f7c476406bd6221/4cb0b296-33bb-405a-811d-caabd0cc8d00/YOGAatTC.png?format=1000w',
-          eventDate: '04-17-2025',
-          timePeriod: '5:15pm - 6:00pm',
-          detail: 'Detail',
-          delete: 'Delete'
-        },
-        {
-          eventName: 'Orientation for New Members and Curious Folk',
-          eventImage: 'https://images.squarespace-cdn.com/content/v1/63bc104e8f7c476406bd6221/6b811abb-956d-4ee5-9604-0315f50dcff6/3.png?format=1000w',
-          eventDate: '04-25-2025',
-          timePeriod: '12:00pm - 1:00pm',
-          detail: 'Detail',
-          delete: 'Delete'
-        }
-      ]
+      var columns = {
+        title: 'Title',
+        image_url: 'Image',
+        start_date: 'Start Date',
+        end_date: 'End Date',
+        start_time: 'Start Time',
+        end_time: 'End Time',
+        detail: 'Detail',
+        delete: 'Delete'
+      }
 
       var table = $('#table-sortable').tableSortable({
-        data: data,
-        columns: {
-          eventName: 'Name',
-          eventImage: 'Image',
-          eventDate: 'Date',
-          timePeriod: 'Time Period',
-          detail: 'Detail',
-          delete: 'Delete'
-        },
+        data: [],
         rowsPerPage: 5,
         pagination: true,
         formatCell: function (row, key) {
-          if (key === 'eventImage') {
-            return $('<img></img>').attr('src', row[key]).attr('style', 'width: 80px')
-          }
-          if (key === 'detail') {
-            return $('<button></button>').attr('onclick', "window.location.href = 'event-detail.html'").addClass('btn').text('Detail')
-          }
-          if (key === 'delete') {
-            return $('<button></button>').attr('onclick', "'").addClass('btn').text('Delete')
-          }
+          if (key === 'image_url') return $('<img></img>').attr('src', `http://localhost:5000/uploads/${row[key]}`).attr('style', 'width: 80px')
+          if (key === 'detail')
+            return $('<button></button>')
+              .attr('onclick', "window.location.href = 'event-detail.html?eventId=" + row.event_id + "'")
+              .addClass('btn')
+              .text('Detail')
+          if (key === 'delete')
+            return $('<button></button>')
+              .attr('onclick', 'deleteEvent(' + row.event_id + ')')
+              .addClass('btn')
+              .text('Delete')
           return row[key]
         }
       })
+
+      function setData() {
+        $.get(`http://localhost:5000/events`, function (data) {
+          table.setData(
+            data.events.map((a) => ({ detail: 'Detail', delete: 'Delete', ...a })),
+            columns
+          )
+        })
+      }
+
+      setData()
+
+      $('#add-event-form').submit(function (e) {
+        e.preventDefault()
+        var formData = new FormData(this) // Create FormData object
+        $.ajax({
+          url: 'http://localhost:5000/events', // The URL where you want to send the POST request
+          type: 'POST',
+          data: formData,
+          processData: false, // Prevent jQuery from processing the data
+          contentType: false, // Let the browser set the correct content type
+          success: function (response) {
+            alert('Event added successfully!')
+            setData()
+          },
+          error: function (xhr, status, error) {
+            alert('An error occurred: ' + error)
+          }
+        })
+      })
+
+      function deleteEvent(eventId) {
+        if (confirm('Are you sure you want to delete this item?')) {
+          $.ajax({
+            url: 'http://localhost:5000/events/' + eventId,
+            type: 'DELETE',
+            success: function (response) {
+              alert('Event deleted successfully!')
+              setData()
+            },
+            error: function (xhr, status, error) {
+              alert('An error occurred: ' + error)
+            }
+          })
+        }
+      }
     </script>
   </body>
 </html>
