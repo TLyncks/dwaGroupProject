@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up / Log In | Together Culture</title>
+    <!-- You may link to your external stylesheet if needed -->
+    <link rel="stylesheet" href="/css/styles.css" />
     <style>
       /* ========== RESET & GLOBAL ========== */
       * {
@@ -12,15 +14,15 @@
         box-sizing: border-box;
         font-family: Arial, sans-serif;
       }
-      html,
-      body {
+      html, body {
         height: 100%;
       }
       body {
         display: flex;
         flex-direction: column;
       }
-      /* ========== HEADER ========== */
+
+      /* ========== HEADER (Copied from events.html) ========== */
       .navbar {
         background-color: #fe1e3c;
         position: fixed;
@@ -39,8 +41,7 @@
         width: auto;
       }
       .nav-links {
-        margin-left: 2rem;
-        margin-right: auto;
+        margin: 0 auto;
       }
       .nav-links ul {
         list-style: none;
@@ -112,9 +113,10 @@
         pointer-events: auto;
         transform: translateY(0);
       }
-      /* ========== MAIN CONTENT: LOGIN / SIGNUP ========== */
+
+      /* ========== MAIN CONTENT: REGISTRATION ========== */
       .auth-main {
-        margin-top: 80px;
+        margin-top: 100px; /* offset for fixed header */
         padding: 3rem 2rem;
         background: #f4f4f9;
         flex: 1;
@@ -193,6 +195,7 @@
       .auth-form {
         display: none;
       }
+
       /* ========== FOOTER ========== */
       footer {
         background-color: #0f0f0f;
@@ -200,9 +203,10 @@
         font-size: small;
         font-weight: 200;
         padding: 40px 0;
+        margin-top: auto;
       }
       .f-format {
-        width: 90%;
+        width: 100%;
         max-width: 1200px;
         margin: 0 auto;
       }
@@ -214,8 +218,12 @@
       .authors h4 {
         margin-bottom: 1rem;
       }
+
       /* ========== RESPONSIVE ========== */
-      @media (max-width: 768px) {
+      @media (max-width: 1024px) {
+        .nav-links ul {
+          gap: 1rem;
+        }
         .auth-container {
           padding: 1rem;
         }
@@ -223,39 +231,42 @@
     </style>
   </head>
   <body>
-    <!-- ========== HEADER (NAVBAR) ========== -->
+    <!-- ========== HEADER (Copied from events.html) ========== -->
     <nav class="navbar">
+      <!-- Left: Logo -->
       <div class="nav-header">
-        <img src="/frontend/images/TC_Logos-01.png" alt="Together Culture Cambridge Logo" />
+        <img src="/images/TC_Logos-01.png" alt="Together Culture Cambridge Logo" />
       </div>
+      <!-- Center: Nav Links with Dropdown -->
       <div class="nav-links">
         <ul>
-          <li><a href="/frontend/index.html">About</a></li>
+          <li><a href="/index.html">About</a></li>
           <li class="dropdown">
             <a href="#">Memberships</a>
             <ul class="dropdown-menu">
-              <li><a href="/frontend/non members/community-membership.html">Community</a></li>
-              <li><a href="/frontend/non members/key-access-membership.html">Key Access</a></li>
-              <li><a href="/frontend/non members/creative-workspace-membership.html">Creative Workspace</a></li>
-              <li><a href="/frontend/non members/non-member-page.html">Compare all Memberships</a></li>
+              <li><a href="/non members/community-membership.html">Community</a></li>
+              <li><a href="/non members/key-access-membership.html">Key Access</a></li>
+              <li><a href="/non members/creative-workspace-membership.html">Creative Workspace</a></li>
+              <li><a href="/non members/non-member-page.html">Compare all Memberships</a></li>
             </ul>
           </li>
-          <li><a href="/frontend/non members/events.html">Events</a></li>
-          <li><a href="/frontend/non members/contact-support.html">Contact Us</a></li>
+          <li><a href="/non members/events.html">Events</a></li>
+          <li><a href="/non members/contact-support.html">Contact Us</a></li>
         </ul>
       </div>
+      <!-- Right: User Panel -->
       <div class="usr-panel">
-        <button class="signup-btn" onclick="location.href='/frontend/non members/registration.html?tab=signup'">
+        <button class="signup-btn" onclick="location.href='/non members/registration.html?tab=signup'">
           Join Now
         </button>
-        <img src="/frontend/images/EmptyBag.svg" alt="empty-shopping-bag" />
-        <a href="/frontend/non members/registration.html?tab=login">
-          <img src="/frontend/images/GuestIcon.svg" alt="guest-profile-icon" />
+        <img src="/images/EmptyBag.svg" alt="empty-shopping-bag" />
+        <a href="/non members/registration.html?tab=login">
+          <img src="/images/GuestIcon.svg" alt="guest-profile-icon" />
         </a>
       </div>
     </nav>
 
-    <!-- ========== MAIN CONTENT: SIGN UP / LOG IN ========== -->
+    <!-- ========== MAIN CONTENT: REGISTRATION ========== -->
     <main class="auth-main">
       <div class="auth-container">
         <h1>Welcome to Together Culture</h1>
@@ -268,35 +279,39 @@
         </div>
 
         <!-- Sign Up Form -->
-        <form class="auth-form" id="signUpForm" action="http://127.0.0.1:5000/signup" method="POST">
+        <form class="auth-form" id="signUpForm">
           <div class="form-group">
             <label for="signup-name">Full Name</label>
-            <input type="text" id="signup-name" name="signup-name" placeholder="Your Name" required />
+            <input type="text" id="signup-name" name="fullName" placeholder="Your Name" required />
           </div>
           <div class="form-group">
             <label for="signup-email">Email Address</label>
-            <input type="email" id="signup-email" name="signup-email" placeholder="example@domain.com" required />
+            <input type="email" id="signup-email" name="email" placeholder="example@domain.com" required />
+          </div>
+          <div class="form-group">
+            <label for="signup-phone">Phone Number</label>
+            <input type="tel" id="signup-phone" name="phone" placeholder="123-456-7890" required />
           </div>
           <div class="form-group">
             <label for="signup-password">Password</label>
-            <input type="password" id="signup-password" name="signup-password" placeholder="Password" required />
+            <input type="password" id="signup-password" name="password" placeholder="Password" required />
           </div>
           <div class="form-group">
             <label for="signup-confirm">Confirm Password</label>
-            <input type="password" id="signup-confirm" name="signup-confirm" placeholder="Confirm Password" required />
+            <input type="password" id="signup-confirm" name="confirmPassword" placeholder="Confirm Password" required />
           </div>
           <button type="submit" class="submit-btn">Sign Up</button>
         </form>
 
         <!-- Log In Form -->
-        <form class="auth-form" id="loginForm" action="http://127.0.0.1:5000/login" method="POST">
+        <form class="auth-form" id="loginForm">
           <div class="form-group">
             <label for="login-email">Email Address</label>
-            <input type="email" id="login-email" name="login-email" placeholder="example@domain.com" required />
+            <input type="email" id="login-email" name="email" placeholder="example@domain.com" required />
           </div>
           <div class="form-group">
             <label for="login-password">Password</label>
-            <input type="password" id="login-password" name="login-password" placeholder="Password" required />
+            <input type="password" id="login-password" name="password" placeholder="Password" required />
           </div>
           <button type="submit" class="submit-btn">Log In</button>
         </form>
@@ -316,9 +331,9 @@
       </div>
     </footer>
 
-    <!-- Combined JavaScript for toggling forms and handling submissions -->
+    <!-- ========== SCRIPTS ========== -->
     <script>
-      // Toggling Logic
+      // Toggle between Sign Up and Log In forms
       const signUpBtn = document.getElementById("signUpBtn");
       const loginBtn = document.getElementById("loginBtn");
       const signUpForm = document.getElementById("signUpForm");
@@ -330,19 +345,15 @@
         signUpForm.style.display = "block";
         loginForm.style.display = "none";
       }
-
       function showLogin() {
         loginBtn.classList.add("active");
         signUpBtn.classList.remove("active");
         loginForm.style.display = "block";
         signUpForm.style.display = "none";
       }
-
-      // Add click event listeners for toggling between forms
       signUpBtn.addEventListener("click", showSignUp);
       loginBtn.addEventListener("click", showLogin);
 
-      // Set default tab based on URL parameter
       const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.get("tab") === "login") {
         showLogin();
@@ -350,83 +361,70 @@
         showSignUp();
       }
 
-      // Form Submission Logic
-      document.addEventListener("DOMContentLoaded", function () {
-        // Sign Up Submission
-        if (signUpForm) {
-          signUpForm.addEventListener("submit", async function (event) {
-            event.preventDefault();
+      // Back-end URL adjustment if needed
+      const backendURL = window.location.port === '5000' ? '' : 'http://127.0.0.1:5000';
 
-            // Collect values from the form
-            const fullName = document.getElementById("signup-name").value.trim();
-            const email = document.getElementById("signup-email").value.trim();
-            const password = document.getElementById("signup-password").value;
-            const confirmPassword = document.getElementById("signup-confirm").value;
+      // Sign Up Form Submission
+      document.getElementById("signUpForm").addEventListener("submit", async function(event) {
+        event.preventDefault();
+        const fullName = document.getElementById("signup-name").value.trim();
+        const email = document.getElementById("signup-email").value.trim();
+        const phone = document.getElementById("signup-phone").value.trim();
+        const password = document.getElementById("signup-password").value;
+        const confirmPassword = document.getElementById("signup-confirm").value;
 
-            // Basic validation
-            if (!fullName || !email || !password || !confirmPassword) {
-              alert("All fields are required.");
-              return;
-            }
-            if (password !== confirmPassword) {
-              alert("Passwords do not match!");
-              return;
-            }
-
-            try {
-              // Send JSON to the backend with matching keys
-              const response = await fetch("http://127.0.0.1:5000/signup", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ fullName, email, password })
-              });
-
-              const data = await response.text();
-              if (response.ok) {
-                alert("Signup successful! You can now log in.");
-                window.location.href = "registration.html?tab=login";
-              } else {
-                alert("Signup failed: " + data);
-              }
-            } catch (error) {
-              alert("Error: Could not connect to the server.");
-              console.error("Error:", error);
-            }
-          });
+        if (!fullName || !email || !phone || !password || !confirmPassword) {
+          alert("All fields are required.");
+          return;
         }
-
-        // Log In Submission
-        if (loginForm) {
-          loginForm.addEventListener("submit", async function (event) {
-            event.preventDefault();
-            const email = document.getElementById("login-email").value.trim();
-            const password = document.getElementById("login-password").value;
-
-            if (!email || !password) {
-              alert("Both fields are required.");
-              return;
-            }
-
-            try {
-              // Send JSON to the backend with matching keys
-              const response = await fetch("http://127.0.0.1:5000/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password })
-              });
-              const data = await response.text();
-              if (response.ok) {
-                alert("Login successful!");
-                // Redirect to the common user dashboard file
-                window.location.href = "/frontend/Members/UserDashboard.html";
-              } else {
-                alert("Login failed: " + data);
-              }
-            } catch (error) {
-              alert("Error: Could not connect to the server.");
-              console.error("Error:", error);
-            }
+        if (password !== confirmPassword) {
+          alert("Passwords do not match!");
+          return;
+        }
+        try {
+          const response = await fetch(`${backendURL}/signup`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ fullName, email, phone, password })
           });
+          const data = await response.text();
+          if (response.ok) {
+            alert("Signup successful! You can now log in.");
+            window.location.href = "registration.html?tab=login";
+          } else {
+            alert("Signup failed: " + data);
+          }
+        } catch (error) {
+          alert("Error: Could not connect to the server.");
+          console.error("Error:", error);
+        }
+      });
+
+      // Log In Form Submission
+      document.getElementById("loginForm").addEventListener("submit", async function(event) {
+        event.preventDefault();
+        const email = document.getElementById("login-email").value.trim();
+        const password = document.getElementById("login-password").value;
+        if (!email || !password) {
+          alert("Both fields are required.");
+          return;
+        }
+        try {
+          const response = await fetch(`${backendURL}/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
+          });
+          const data = await response.text();
+          if (response.ok) {
+            alert("Login successful!");
+            window.location.href = "/Members/UserDashboard.html";
+          } else {
+            alert("Login failed: " + data);
+          }
+        } catch (error) {
+          alert("Error: Could not connect to the server.");
+          console.error("Error:", error);
         }
       });
     </script>

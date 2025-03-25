@@ -1,124 +1,126 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
+<html lang="en">
   <head>
-    <link rel="stylesheet" href="admin.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Event Report | Together Culture Admin</title>
+    <link rel="stylesheet" href="/css/admin.css" />
+    <style>
+      /* Basic styling for event report page */
+      body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f9;
+        margin: 0;
+        padding: 20px;
+      }
+      .report-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      }
+      h1 {
+        text-align: center;
+      }
+      #event-info {
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 20px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th, td {
+        padding: 10px;
+        border: 1px solid #ccc;
+        text-align: left;
+      }
+      th {
+        background: #fe1e3c;
+        color: #fff;
+      }
+      .back-btn {
+        margin-top: 20px;
+        display: block;
+        background: #d0021b;
+        color: white;
+        padding: 10px 15px;
+        text-decoration: none;
+        text-align: center;
+        border-radius: 5px;
+        width: 150px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .back-btn:hover {
+        background: #a00015;
+      }
+    </style>
   </head>
-
   <body>
-    <nav class="navbar">
-      <header class="nav-header">
-        <div class="nav-image">
-          <img src="../images/TC_Logos-01.png" alt="Together Culture CAMBRIDGE" />
-        </div>
-      </header>
-      <div class="nav-links">
-        <ul>
-          <li><a href="#">About</a></li>
-          <li><a href="./member.html">Memberships</a></li>
-          <li><a href="/frontend/non members/contact-support.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="usr-panel">
-        <button href="#">Logout</button>
-        <img src="../images/GuestIcon.svg" alt="guest-profile-icon" />
-      </div>
-    </nav>
+    <div class="report-container">
+      <h1>Event Report</h1>
+      <p id="event-info">Loading event details...</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Member Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+          </tr>
+        </thead>
+        <tbody id="attendeesTableBody">
+          <!-- Attendee rows will be inserted here dynamically -->
+        </tbody>
+      </table>
+      <a href="/non-members/events.html" class="back-btn">Back to Events</a>
+    </div>
 
-    <main>
-      <div class="admin-container">
-        <h2 style="margin-top: 90px">Event Reports</h2>
+    <script>
+      // Retrieve the eventId from the URL query string
+      const urlParams = new URLSearchParams(window.location.search);
+      const eventId = urlParams.get("eventId");
 
-        <div class="member-actions">
-          <input type="text" class="input-text" id="search-member" placeholder="Search Event..." style="width: 30%" />
-          <input type="date" id="searchdate" class="date-picker" style="width: 25%" />
-          <input type="date" id="enddate" class="date-picker" style="width: 25%" />
-          <button class="btn" onclick="searchEvent()">Search</button>
-        </div>
+      if (!eventId) {
+        document.body.innerHTML = "<p>No event specified.</p>";
+      } else {
+        window.addEventListener("DOMContentLoaded", async () => {
+          try {
+            // Fetch attendee details for the given event
+            const response = await fetch(`/events/${eventId}/attendees`);
+            if (!response.ok) throw new Error("Failed to fetch attendees");
+            const attendees = await response.json();
+            
+            // Optionally, you can also fetch event details to display at the top
+            // const eventResponse = await fetch(`/events/${eventId}`);
+            // const eventDetails = await eventResponse.json();
+            // document.getElementById("event-info").innerText = `Event: ${eventDetails.title} on ${eventDetails.event_date}`;
 
-        <div class="event-table">
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Date</th>
-                <th>Time Period</th>
-                <th>Member Count</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody id="event-table-body">
-              <tr>
-                <td>Town and Gown Conversation 1: Land</td>
-                <td>01-10-2025</td>
-                <td>7:00pm - 7:30pm</td>
-                <td>80</td>
-                <td><button class="btn" onclick="window.location.href = 'event-report-detail.html'">Detail</button></td>
-              </tr>
-              <tr>
-                <td>Happy Board Game Hour</td>
-                <td>03-10-2025</td>
-                <td>8:00pm - 10:30pm</td>
-                <td>64</td>
-                <td><button class="btn" onclick="window.location.href = 'event-report-detail.html'">Detail</button></td>
-              </tr>
+            // For now, we simply display the event ID:
+            document.getElementById("event-info").innerText = `Attendees for Event ID: ${eventId}`;
 
-              <tr>
-                <td>Meet The People Who Shaped The Kite From 1800 - 1980</td>
-                <td>04-10-2025</td>
-                <td>3:00pm - 4:30pm</td>
-                <td>45</td>
-                <td><button class="btn" onclick="window.location.href = 'event-report-detail.html'">Detail</button></td>
-              </tr>
-
-              <tr>
-                <td>Town and Gown Conversation 2: Power</td>
-                <td>06-10-2025</td>
-                <td>8:00pm - 11:00pm</td>
-                <td>23</td>
-                <td><button class="btn" onclick="window.location.href = 'event-report-detail.html'">Detail</button></td>
-              </tr>
-
-              <tr>
-                <td>Let's Go Fly our Kites Finale / Community Songfest</td>
-                <td>07-10-2025</td>
-                <td>1:00pm - 2:00pm</td>
-                <td>56</td>
-                <td><button class="btn" onclick="window.location.href = 'event-report-detail.html'">Detail</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </main>
-
-    <footer>
-      <div class="f-format">
-        <div class="f-list">
-          <div class="f-nav">
-            <h4>Navigation</h4>
-            <div>
-              <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="f-logo">
-            <img src="../images/PLACEHOLDER.svg" />
-          </div>
-        </div>
-        <hr />
-        <div class="authors">
-          <h4>Authors:</h4>
-          <ul>
-            <li><a href="https://github.com/TLyncks">Tai Rose (SID: 2108618)</a></li>
-            <li><a href="https://github.com/mgoing">Malcom Going (SID: 2372291)</a></li>
-            <li><a href="https://github.com/AlessandroLaMendola">Alessandro La Mendola (SID: 2158059)</a></li>
-            <li><a href="https://github.com/yusufkose-aru">Yusuf Kose (SID: 2415327)</a></li>
-          </ul>
-        </div>
-      </div>
-    </footer>
+            // Insert attendees into table
+            const tbody = document.getElementById("attendeesTableBody");
+            tbody.innerHTML = "";
+            attendees.forEach(att => {
+              const row = document.createElement("tr");
+              row.innerHTML = `
+                <td>${att.UserName}</td>
+                <td>${att.userEmail}</td>
+                <td>${att.UserPhone}</td>
+              `;
+              tbody.appendChild(row);
+            });
+          } catch (error) {
+            console.error("Error fetching event report:", error);
+            document.body.innerHTML = "<p>Error loading event report.</p>";
+          }
+        });
+      }
+    </script>
   </body>
 </html>

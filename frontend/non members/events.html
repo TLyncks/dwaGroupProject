@@ -4,9 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Upcoming Events | Together Culture</title>
-    <link rel="stylesheet" href="/frontend/css/styles.css" />
-
-    <!-- Merged CSS for header, events page, and footer -->
+    <!-- If your static middleware serves the "frontend" folder at the root, remove the /frontend prefix -->
+    <link rel="stylesheet" href="/css/styles.css" />
     <style>
       /* ========== RESET & GLOBAL ========== */
       * {
@@ -15,7 +14,6 @@
         box-sizing: border-box;
         font-family: Arial, sans-serif;
       }
-
       /* ========== HEADER (New Dropdown Header) ========== */
       .navbar {
         background-color: #fe1e3c;
@@ -67,7 +65,6 @@
         background: linear-gradient(to right, #ff4b2b, #ff416c);
         transform: scale(1.05);
       }
-
       /* Dropdown Menu */
       .dropdown {
         position: relative;
@@ -108,7 +105,6 @@
         pointer-events: auto;
         transform: translateY(0);
       }
-
       /* ========== MAIN CONTENT: EVENTS SECTION ========== */
       .events-main {
         margin-top: 100px; /* offset for fixed header */
@@ -196,11 +192,11 @@
         border-radius: 6px;
         cursor: pointer;
         transition: 0.3s;
+        margin-right: 5px;
       }
       .event-btn:hover {
         background: #a00015;
       }
-
       /* ========== CALENDAR STYLES ========== */
       #calendar-container {
         display: none; /* hidden by default; toggled via JS */
@@ -229,7 +225,6 @@
       #calendar-container td.highlight {
         background-color: #d0f0c0;
       }
-
       /* ========== FOOTER ========== */
       footer {
         background-color: #0f0f0f;
@@ -280,7 +275,6 @@
         width: 150px;
         height: auto;
       }
-
       /* ========== RESPONSIVE ========== */
       @media (max-width: 1024px) {
         .nav-links ul {
@@ -304,36 +298,33 @@
     <nav class="navbar">
       <!-- Left: Logo -->
       <div class="nav-header">
-        <img
-          src="/frontend/images/TC_Logos-01.png"
-          alt="Together Culture Cambridge Logo"
-        />
+        <!-- Remove the "/frontend" prefix to load from root-based path -->
+        <img src="/images/TC_Logos-01.png" alt="Together Culture Cambridge Logo" />
       </div>
       <!-- Center: Nav Links with Dropdown -->
       <div class="nav-links">
         <ul>
-          <li><a href="/frontend/index.html">About</a></li>
+          <li><a href="/index.html">About</a></li>
           <li class="dropdown">
             <a href="#">Memberships</a>
             <ul class="dropdown-menu">
-              <li><a href="/frontend/non members/community-membership.html">Community</a></li>
-              <li><a href="/frontend/non members/key-access-membership.html">Key Access</a></li>
-              <li><a href="/frontend/non members/creative-workspace-membership.html">Creative Workspace</a></li>
-              <!-- New: "See All Memberships" link -->
-              <li><a href="/frontend/non members/non-member-page.html">Compare all Memberships</a></li>
+              <li><a href="/non members/community-membership.html">Community</a></li>
+              <li><a href="/non members/key-access-membership.html">Key Access</a></li>
+              <li><a href="/non members/creative-workspace-membership.html">Creative Workspace</a></li>
+              <li><a href="/non members/non-member-page.html">Compare all Memberships</a></li>
             </ul>
           </li>
-          <li><a href="/frontend/non members/events.html">Events</a></li>
-          <!-- Link "Contact" to Contact Support page -->
-          <li><a href="/frontend/non members/contact-support.html">Contact</a></li>
+          <li><a href="/non members/events.html">Events</a></li>
+          <li><a href="/non members/contact-support.html">Contact Us</a></li>
         </ul>
       </div>
       <!-- Right: User Panel -->
       <div class="usr-panel">
-        <button class="signup-btn" onclick="location.href='/frontend/non members/registration.html?tab=signup'">Join Now</button>
-        <img src="/frontend/images/EmptyBag.svg" alt="empty-shopping-bag" />
-        <a href="/frontend/non members/registration.html?tab=login">
-          <img src="/frontend/images/GuestIcon.svg" alt="guest-profile-icon" />
+        <button class="signup-btn" onclick="location.href='/non members/registration.html?tab=signup'">Join Now</button>
+        <!-- Remove the "/frontend" prefix from image paths -->
+        <img src="/images/EmptyBag.svg" alt="empty-shopping-bag" />
+        <a href="/non members/registration.html?tab=login">
+          <img src="/images/GuestIcon.svg" alt="guest-profile-icon" />
         </a>
       </div>
     </nav>
@@ -351,60 +342,56 @@
           <button class="filter-btn" data-filter="music">Music</button>
           <button class="filter-btn" data-filter="art-exhibitions">Art Exhibitions</button>
           <button class="filter-btn" data-filter="networking">Networking</button>
-          <!-- New Calendar Button -->
           <button class="filter-btn" data-filter="calendar" id="calendarBtn">Calendar</button>
         </div>
 
         <!-- Events Grid -->
         <div class="events-grid">
-          <!-- Static sample events are included here as a fallback.
-               They will be replaced by dynamically loaded events from the backend. -->
-
           <!-- Sample Event 1: MUSIC -->
           <div class="event-card" data-category="music">
-            <img src="/frontend/images/event1.jpg" alt="Event 1" />
+            <img src="/images/event1.jpg" alt="Event 1" />
             <div class="event-details">
               <h2>Live Jazz Night</h2>
               <p><strong>Date:</strong> 15 April, 2025</p>
               <p><strong>Location:</strong> Cambridge Guildhall</p>
               <p>Enjoy an evening of soulful jazz music performed by renowned local artists.</p>
-              <button class="event-btn">Join Event</button>
+              <button class="event-btn" onclick="joinEvent(1)">Join event</button>
             </div>
           </div>
 
           <!-- Sample Event 2: ART EXHIBITIONS -->
           <div class="event-card" data-category="art-exhibitions">
-            <img src="/frontend/images/event2.jpg" alt="Event 2" />
+            <img src="/images/event2.jpg" alt="Event 2" />
             <div class="event-details">
               <h2>Modern Art Exhibition</h2>
               <p><strong>Date:</strong> 5 May, 2025</p>
               <p><strong>Location:</strong> Together Culture workspace</p>
               <p>Explore thought-provoking contemporary artwork from emerging artists.</p>
-              <button class="event-btn">Join event</button>
+              <button class="event-btn" onclick="joinEvent(2)">Join event</button>
             </div>
           </div>
 
           <!-- Sample Event 3: WORKSHOPS -->
           <div class="event-card" data-category="workshops">
-            <img src="/frontend/images/event3.jpg" alt="Event 3" />
+            <img src="/images/event3.jpg" alt="Event 3" />
             <div class="event-details">
               <h2>Poetry & Storytelling Workshop</h2>
               <p><strong>Date:</strong> 14 May, 2025</p>
               <p><strong>Location:</strong> Cambridge Theatre</p>
               <p>A creative session where writers share their poetry and stories in an open-mic setting.</p>
-              <button class="event-btn">Join event</button>
+              <button class="event-btn" onclick="joinEvent(3)">Join event</button>
             </div>
           </div>
 
           <!-- Sample Event 4: NETWORKING -->
           <div class="event-card" data-category="networking">
-            <img src="/frontend/images/event4.jpg" alt="Event 4" />
+            <img src="/images/event4.jpg" alt="Event 4" />
             <div class="event-details">
               <h2>Networking Evening</h2>
               <p><strong>Date:</strong> 25 May, 2025</p>
               <p><strong>Location:</strong> Together Culture workspace</p>
               <p>A great way to get to know all of our amazing members!</p>
-              <button class="event-btn">Join event</button>
+              <button class="event-btn" onclick="joinEvent(4)">Join event</button>
             </div>
           </div>
         </div>
@@ -429,27 +416,24 @@
                 </tr>
               </thead>
               <tbody>
-                <!-- 1st row (April starts on Tuesday) -->
                 <tr>
-                  <td></td> <!-- Sun -->
-                  <td></td> <!-- Mon -->
-                  <td>1</td> <!-- Tue -->
-                  <td>2</td> <!-- Wed -->
-                  <td>3</td> <!-- Thu -->
-                  <td>4</td> <!-- Fri -->
-                  <td>5</td> <!-- Sat -->
+                  <td></td>
+                  <td></td>
+                  <td>1</td>
+                  <td>2</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>5</td>
                 </tr>
-                <!-- 2nd row -->
                 <tr>
-                  <td>6</td> 
-                  <td>7</td> 
-                  <td>8</td> 
-                  <td>9</td> 
+                  <td>6</td>
+                  <td>7</td>
+                  <td>8</td>
+                  <td>9</td>
                   <td>10</td>
                   <td>11</td>
                   <td>12</td>
                 </tr>
-                <!-- 3rd row (15th is Jazz Night) -->
                 <tr>
                   <td>13</td>
                   <td>14</td>
@@ -459,7 +443,6 @@
                   <td>18</td>
                   <td>19</td>
                 </tr>
-                <!-- 4th row -->
                 <tr>
                   <td>20</td>
                   <td>21</td>
@@ -469,7 +452,6 @@
                   <td>25</td>
                   <td>26</td>
                 </tr>
-                <!-- 5th row -->
                 <tr>
                   <td>27</td>
                   <td>28</td>
@@ -499,15 +481,14 @@
                 </tr>
               </thead>
               <tbody>
-                <!-- May starts on Thursday -->
                 <tr>
-                  <td></td> <!-- Sun -->
-                  <td></td> <!-- Mon -->
-                  <td></td> <!-- Tue -->
-                  <td></td> <!-- Wed -->
-                  <td>1</td> <!-- Thu -->
-                  <td>2</td> <!-- Fri -->
-                  <td>3</td> <!-- Sat -->
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>1</td>
+                  <td>2</td>
+                  <td>3</td>
                 </tr>
                 <tr>
                   <td>4</td>
@@ -565,8 +546,9 @@
       </div>
     </footer>
 
-    <!-- Inline JavaScript to handle event filtering & calendar toggle -->
+    <!-- Inline JavaScript -->
     <script>
+      // Filter and Calendar Toggle Logic
       const filterButtons = document.querySelectorAll(".filter-btn");
       const eventCards = document.querySelectorAll(".event-card");
       const calendarBtn = document.getElementById("calendarBtn");
@@ -574,65 +556,68 @@
 
       filterButtons.forEach((button) => {
         button.addEventListener("click", () => {
-          // Remove "active" class from all buttons
           filterButtons.forEach((btn) => btn.classList.remove("active"));
-          // Add "active" to the clicked button
           button.classList.add("active");
 
           const filterValue = button.getAttribute("data-filter");
 
-          // If user clicks a filter other than "calendar," hide the calendar
           if (filterValue !== "calendar") {
             calendarContainer.style.display = "none";
           }
 
-          // Show/hide event cards based on filter
           eventCards.forEach((card) => {
             if (filterValue === "all") {
-              // Show all events
               card.style.display = "block";
             } else if (filterValue === "calendar") {
-              // If "calendar" filter, hide all cards (done below)
               card.style.display = "none";
             } else {
-              // Check if event card's category matches the filter
               const cardCategory = card.getAttribute("data-category");
-              if (cardCategory === filterValue) {
-                card.style.display = "block";
-              } else {
-                card.style.display = "none";
-              }
+              card.style.display = cardCategory === filterValue ? "block" : "none";
             }
           });
         });
       });
 
-      // Show the calendar and hide event cards when "Calendar" is clicked
       calendarBtn.addEventListener("click", () => {
-        eventCards.forEach((card) => {
-          card.style.display = "none";
-        });
+        eventCards.forEach((card) => card.style.display = "none");
         calendarContainer.style.display = "block";
       });
-    </script>
 
-    <!-- New Script: Dynamic Events Loading -->
-    <script>
+      // Function to join an event
+      async function joinEvent(eventId) {
+        try {
+          const response = await fetch(`/events/${eventId}/join`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ eventId })
+          });
+          if (response.ok) {
+            alert("Successfully joined the event!");
+            // Optionally, update the UI here (disable the button, etc.)
+          } else {
+            const text = await response.text();
+            alert("Failed to join event: " + text);
+          }
+        } catch (error) {
+          alert("Error: Could not join the event.");
+          console.error("Join event error:", error);
+        }
+      }
+
+      // Dynamic Events Loading
       window.addEventListener("DOMContentLoaded", async () => {
         try {
-          const response = await fetch("http://127.0.0.1:5000/api/events");
+          const response = await fetch("/api/events");
           if (!response.ok) {
             throw new Error("Failed to fetch events");
           }
           const eventsData = await response.json();
           const eventsGrid = document.querySelector(".events-grid");
-          // Clear the existing static events if dynamic events are available
           eventsGrid.innerHTML = "";
           eventsData.forEach(event => {
             const card = document.createElement("div");
             card.className = "event-card";
-            // Assuming the events table has a 'category' field:
-            card.setAttribute("data-category", event.category);
+            card.setAttribute("data-category", event.category || "all");
             card.innerHTML = `
               <img src="${event.image_path}" alt="${event.title}" />
               <div class="event-details">
@@ -640,7 +625,7 @@
                 <p><strong>Date:</strong> ${event.event_date}</p>
                 <p><strong>Location:</strong> ${event.location}</p>
                 <p>${event.description}</p>
-                <button class="event-btn">Join event</button>
+                <button class="event-btn" onclick="joinEvent(${event.event_id})">Join event</button>
               </div>
             `;
             eventsGrid.appendChild(card);

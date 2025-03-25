@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Creative Workspace Membership</title>
-    <link rel="stylesheet" href="/frontend/css/styles.css" />
+    <!-- Link to global CSS (served from root) -->
+    <link rel="stylesheet" href="/css/styles.css" />
     <style>
       /* ========== RESET & GLOBAL ========== */
       * {
@@ -180,7 +181,7 @@
         font-weight: bold;
         transform: translateX(-20px);
       }
-      /* RIGHT: COST & CTA */
+      /* RIGHT: Pricing & CTA */
       .membership-pricing {
         flex: 1;
         text-align: center;
@@ -287,35 +288,32 @@
     <!-- HEADER -->
     <nav class="navbar">
       <div class="nav-header">
-        <img
-          src="/frontend/images/TC_Logos-01.png"
-          alt="Together Culture Cambridge Logo"
-        />
+        <!-- Updated image path (served from root) -->
+        <img src="/images/TC_Logos-01.png" alt="Together Culture Cambridge Logo" />
       </div>
       <div class="nav-links">
         <ul>
-          <!-- Replaced "Home" with "About" -->
-          <li><a href="/frontend/non members/about.html">About</a></li>
+          <!-- Updated navigation links -->
+          <li><a href="/index.html">About</a></li>
           <li class="dropdown">
             <a href="#">Memberships</a>
             <ul class="dropdown-menu">
-              <li><a href="/frontend/non members/community-membership.html">Community</a></li>
-              <li><a href="/frontend/non members/key-access-membership.html">Key Access</a></li>
-              <li><a href="/frontend/non members/creative-workspace-membership.html">Creative Workspace</a></li>
-              <li><a href="/frontend/non members/non-member-page.html">Compare all Memberships</a></li>
+              <li><a href="/non members/community-membership.html">Community</a></li>
+              <li><a href="/non members/key-access-membership.html">Key Access</a></li>
+              <li><a href="/non members/creative-workspace-membership.html">Creative Workspace</a></li>
+              <li><a href="/non members/non-member-page.html">Compare all Memberships</a></li>
             </ul>
           </li>
-          <li><a href="/frontend/non members/events.html">Events</a></li>
-          <li><a href="/frontend/non members/contact-support.html">Contact Us</a></li>
+          <li><a href="/non members/events.html">Events</a></li>
+          <li><a href="/non members/contact-support.html">Contact Us</a></li>
         </ul>
       </div>
       <div class="usr-panel">
-        <!-- The "Join Now" button links to registration.html with tab=signup -->
-        <button class="signup-btn" onclick="location.href='/frontend/non members/registration.html?tab=signup'">Join Now</button>
-        <img src="/frontend/images/EmptyBag.svg" alt="empty-shopping-bag" />
-        <!-- The user icon links to registration.html with tab=login -->
-        <a href="/frontend/non members/registration.html?tab=login">
-          <img src="/frontend/images/GuestIcon.svg" alt="guest-profile-icon" />
+        <!-- Updated registration links -->
+        <button class="signup-btn" onclick="location.href='/non members/registration.html?tab=signup'">Join Now</button>
+        <img src="/images/EmptyBag.svg" alt="empty-shopping-bag" />
+        <a href="/non members/registration.html?tab=login">
+          <img src="/images/GuestIcon.svg" alt="guest-profile-icon" />
         </a>
       </div>
     </nav>
@@ -355,11 +353,8 @@
                 + £100 joining fee
               </p>
             </div>
-            <!-- Updated CTA button to point to membership application -->
-            <a
-              href="/frontend/non members/member application.html"
-              class="cta-button"
-            >
+            <!-- Updated CTA button link -->
+            <a href="/non members/member application.html" class="cta-button">
               Become a Creative Workspace Member
             </a>
           </div>
@@ -367,17 +362,17 @@
       </section>
     </main>
 
-<!-- ========== FOOTER ========== -->
-<footer>
-  <div class="f-format">
-    <div class="authors">
-      <h4>Authors:</h4>
-      <p>Tai Rose (SID: 2108618)</p>
-      <p>Malcom Going (SID: 2372291)</p>
-      <p>Alessandro La Mendola (SID: 2158059)</p>
-      <p>Yusuf Kose (SID: 2415327)</p>
-    </div>
-  </div>
-</footer>
+    <!-- FOOTER -->
+    <footer>
+      <div class="f-format">
+        <div class="authors">
+          <h4>Authors:</h4>
+          <p>Tai Rose (SID: 2108618)</p>
+          <p>Malcom Going (SID: 2372291)</p>
+          <p>Alessandro La Mendola (SID: 2158059)</p>
+          <p>Yusuf Kose (SID: 2415327)</p>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
