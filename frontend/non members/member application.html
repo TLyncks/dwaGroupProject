@@ -83,7 +83,7 @@
         min-width: 160px;
         border-radius: 8px;
         margin-top: 0.5rem;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         padding: 0.75rem 0;
         transform: translateY(-10px);
         transition: opacity 0.2s ease, transform 0.2s ease;
@@ -261,7 +261,7 @@
       .f-acc a,
       .f-support a {
         text-decoration: none;
-        color: rgb(200,200,200);
+        color: rgb(200, 200, 200);
       }
       .f-logo img {
         width: 150px;
@@ -304,11 +304,17 @@
         </ul>
       </div>
       <div class="usr-panel">
-        <button class="signup-btn" onclick="location.href='/non members/registration.html?tab=signup'">Join Now</button>
+        <!-- Dynamic header elements -->
+        <button class="signup-btn" id="joinNowBtn" onclick="location.href='/non members/registration.html?tab=signup'">
+          Join Now
+        </button>
         <img src="/images/EmptyBag.svg" alt="empty-shopping-bag" />
-        <a href="/non members/registration.html?tab=login">
-          <img src="/images/GuestIcon.svg" alt="guest-profile-icon" />
+        <!-- Single user icon with dynamic link -->
+        <a id="userIconLink" href="/non members/registration.html?tab=login">
+          <img src="/images/GuestIcon.svg" alt="user-profile-icon" />
         </a>
+        <!-- Logout Button (shown if logged in) -->
+        <button class="signup-btn" id="logoutBtn" style="display: none;">Logout</button>
       </div>
     </nav>
 
@@ -371,7 +377,7 @@
       </div>
     </main>
 
-    <!-- ========== FOOTER ========== -->
+    <!-- FOOTER -->
     <footer>
       <div class="f-format">
         <div class="authors">
@@ -384,7 +390,7 @@
       </div>
     </footer>
 
-    <!-- JavaScript for submission handling -->
+    <!-- JavaScript for form submission handling -->
     <script>
       document.getElementById("applicationForm").addEventListener("submit", async function(event) {
         event.preventDefault(); // Prevent default form submission
@@ -434,6 +440,63 @@
           alert("Error: Could not connect to the server.");
           console.error("Error:", error);
         }
+      });
+    </script>
+
+    <!-- SESSION LOGIC SCRIPT -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Debug: log that the session script is running
+        console.log("Session logic script running on Membership Application Form page");
+
+        // Elements in the header
+        const joinNowBtn = document.getElementById("joinNowBtn");
+        const userIconLink = document.getElementById("userIconLink");
+        const logoutBtn = document.getElementById("logoutBtn");
+
+        if (!joinNowBtn || !userIconLink || !logoutBtn) {
+          console.error("One or more header elements were not found!");
+          return;
+        }
+
+        // Check if user is logged in (this should be "true" if logged in)
+        const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+        console.log("isLoggedIn:", isLoggedIn);
+
+        // Update UI based on login status:
+        if (isLoggedIn) {
+          joinNowBtn.style.display = "none";
+          logoutBtn.style.display = "inline-block";
+          userIconLink.href = "/Members/UserDashboard.html";
+          console.log("User is logged in: updating header to show logout and dashboard link.");
+        } else {
+          joinNowBtn.style.display = "inline-block";
+          logoutBtn.style.display = "none";
+          userIconLink.href = "/non members/registration.html?tab=login";
+          console.log("User is NOT logged in: updating header to show join now and login link.");
+        }
+
+        // Logout logic
+        logoutBtn.addEventListener("click", async () => {
+          console.log("Logout button clicked.");
+          try {
+            const response = await fetch("/logout", {
+              method: "POST",
+              credentials: "include"
+            });
+            if (response.ok) {
+              localStorage.removeItem("loggedIn");
+              alert("Logged out successfully!");
+              window.location.href = "/non members/registration.html?tab=login";
+              console.log("Logout successful, redirecting to login page.");
+            } else {
+              alert("Logout failed.");
+              console.error("Logout failed. Response status:", response.status);
+            }
+          } catch (error) {
+            console.error("Error during logout:", error);
+          }
+        });
       });
     </script>
   </body>

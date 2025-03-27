@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Community Membership</title>
+    <title>Creative Workspace Membership</title>
     <!-- Link to global CSS file served from root -->
     <link rel="stylesheet" href="/css/styles.css" />
     <style>
@@ -14,7 +14,6 @@
         box-sizing: border-box;
         font-family: Arial, sans-serif;
       }
-
       /* ========== HEADER (Unified Dropdown Header) ========== */
       .navbar {
         background-color: #fe1e3c;
@@ -66,7 +65,6 @@
         background: linear-gradient(to right, #ff4b2b, #ff416c);
         transform: scale(1.05);
       }
-
       /* ========== DROPDOWN MENU ========== */
       .dropdown {
         position: relative;
@@ -107,8 +105,7 @@
         pointer-events: auto;
         transform: translateY(0);
       }
-
-      /* ========== MAIN CONTENT: COMMUNITY MEMBERSHIP ========== */
+      /* ========== MAIN CONTENT: CREATIVE WORKSPACE MEMBERSHIP ========== */
       .membership-main {
         margin-top: 80px;
         padding: 2rem;
@@ -220,7 +217,6 @@
       .cta-button:hover {
         background-color: #555;
       }
-
       /* ========== FOOTER ========== */
       footer {
         background-color: #0f0f0f;
@@ -292,12 +288,10 @@
     <!-- HEADER -->
     <nav class="navbar">
       <div class="nav-header">
-        <!-- Updated image path -->
         <img src="/images/TC_Logos-01.png" alt="Together Culture Cambridge Logo" />
       </div>
       <div class="nav-links">
         <ul>
-          <!-- Updated navigation links -->
           <li><a href="/index.html">About</a></li>
           <li class="dropdown">
             <a href="#">Memberships</a>
@@ -313,12 +307,17 @@
         </ul>
       </div>
       <div class="usr-panel">
-        <!-- Updated registration links -->
-        <button class="signup-btn" onclick="location.href='/non members/registration.html?tab=signup'">Join Now</button>
+        <!-- Join Now & User Icon: Visible if not logged in -->
+        <button class="signup-btn" id="joinNowBtn" onclick="location.href='/non members/registration.html?tab=signup'">
+          Join Now
+        </button>
         <img src="/images/EmptyBag.svg" alt="empty-shopping-bag" />
-        <a href="/non members/registration.html?tab=login">
-          <img src="/images/GuestIcon.svg" alt="guest-profile-icon" />
+        <!-- Single user icon that dynamically links based on login state -->
+        <a id="userIconLink">
+          <img src="/images/GuestIcon.svg" alt="user-profile-icon" />
         </a>
+        <!-- Logout Button (shown if logged in) -->
+        <button class="signup-btn" id="logoutBtn" style="display: none;">Logout</button>
       </div>
     </nav>
 
@@ -357,7 +356,6 @@
                 + £100 joining fee
               </p>
             </div>
-            <!-- Updated CTA link -->
             <a href="/non members/member application.html" class="cta-button">
               Become a Creative Workspace Member
             </a>
@@ -378,5 +376,55 @@
         </div>
       </div>
     </footer>
+
+    <!-- SESSION LOGIC SCRIPT -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Elements in the header
+        const joinNowBtn = document.getElementById("joinNowBtn");
+        const userIconLink = document.getElementById("userIconLink");
+        const logoutBtn = document.getElementById("logoutBtn");
+
+        // Check if user is logged in
+        const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+
+        // Update UI based on login status:
+        if (isLoggedIn) {
+          // Hide "Join Now" button
+          joinNowBtn.style.display = "none";
+          // Show logout button
+          logoutBtn.style.display = "inline-block";
+          // Set user icon link to dashboard if logged in
+          userIconLink.href = "/Members/UserDashboard.html";
+        } else {
+          // Show "Join Now" button
+          joinNowBtn.style.display = "inline-block";
+          // Hide logout button
+          logoutBtn.style.display = "none";
+          // Set user icon link to login page if not logged in
+          userIconLink.href = "/non members/registration.html?tab=login";
+        }
+
+        // Logout logic
+        logoutBtn.addEventListener("click", async () => {
+          try {
+            const response = await fetch("/logout", {
+              method: "POST",
+              credentials: "include"
+            });
+            if (response.ok) {
+              localStorage.removeItem("loggedIn");
+              alert("Logged out successfully!");
+              // Redirect to login page after logout
+              window.location.href = "/non members/registration.html?tab=login";
+            } else {
+              alert("Logout failed.");
+            }
+          } catch (error) {
+            console.error("Error during logout:", error);
+          }
+        });
+      });
+    </script>
   </body>
 </html>

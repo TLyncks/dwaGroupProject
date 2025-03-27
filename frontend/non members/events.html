@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Upcoming Events | Together Culture</title>
-    <!-- If your static middleware serves the "frontend" folder at the root, remove the /frontend prefix -->
     <link rel="stylesheet" href="/css/styles.css" />
     <style>
       /* ========== RESET & GLOBAL ========== */
@@ -14,7 +13,7 @@
         box-sizing: border-box;
         font-family: Arial, sans-serif;
       }
-      /* ========== HEADER (New Dropdown Header) ========== */
+      /* ========== HEADER ========== */
       .navbar {
         background-color: #fe1e3c;
         position: fixed;
@@ -105,7 +104,8 @@
         pointer-events: auto;
         transform: translateY(0);
       }
-      /* ========== MAIN CONTENT: EVENTS SECTION ========== */
+
+      /* ========== MAIN CONTENT: UPCOMING EVENTS ========== */
       .events-main {
         margin-top: 100px; /* offset for fixed header */
         padding: 3rem 2rem;
@@ -294,11 +294,10 @@
     </style>
   </head>
   <body>
-    <!-- ========== HEADER (New Dropdown Header) ========== -->
+    <!-- ========== HEADER ========== -->
     <nav class="navbar">
       <!-- Left: Logo -->
       <div class="nav-header">
-        <!-- Remove the "/frontend" prefix to load from root-based path -->
         <img src="/images/TC_Logos-01.png" alt="Together Culture Cambridge Logo" />
       </div>
       <!-- Center: Nav Links with Dropdown -->
@@ -318,14 +317,16 @@
           <li><a href="/non members/contact-support.html">Contact Us</a></li>
         </ul>
       </div>
-      <!-- Right: User Panel -->
+      <!-- Right: User Panel with Logout Functionality -->
       <div class="usr-panel">
-        <button class="signup-btn" onclick="location.href='/non members/registration.html?tab=signup'">Join Now</button>
-        <!-- Remove the "/frontend" prefix from image paths -->
+        <button class="signup-btn" id="joinNowBtn" onclick="location.href='/non members/registration.html?tab=signup'">Join Now</button>
         <img src="/images/EmptyBag.svg" alt="empty-shopping-bag" />
-        <a href="/non members/registration.html?tab=login">
+        <!-- Renamed ID to match membership logic -->
+        <a href="/non members/registration.html?tab=login" id="userIconLink">
           <img src="/images/GuestIcon.svg" alt="guest-profile-icon" />
         </a>
+        <!-- Logout Button (hidden by default if not logged in) -->
+        <button class="signup-btn" id="logoutBtn" style="display: none;">Logout</button>
       </div>
     </nav>
 
@@ -375,7 +376,7 @@
           <div class="event-card" data-category="workshops">
             <img src="/images/event3.jpg" alt="Event 3" />
             <div class="event-details">
-              <h2>Poetry & Storytelling Workshop</h2>
+              <h2>Poetry &amp; Storytelling Workshop</h2>
               <p><strong>Date:</strong> 14 May, 2025</p>
               <p><strong>Location:</strong> Cambridge Theatre</p>
               <p>A creative session where writers share their poetry and stories in an open-mic setting.</p>
@@ -503,7 +504,7 @@
                   <td>11</td>
                   <td>12</td>
                   <td>13</td>
-                  <td class="highlight">14<br/>Poetry &amp;<br/>Storytelling</td>
+                  <td class="highlight">14<br/>Poetry &amp; Storytelling</td>
                   <td>15</td>
                   <td>16</td>
                   <td>17</td>
@@ -548,7 +549,7 @@
 
     <!-- Inline JavaScript -->
     <script>
-      // Filter and Calendar Toggle Logic
+      // ================== Filter and Calendar Toggle Logic ==================
       const filterButtons = document.querySelectorAll(".filter-btn");
       const eventCards = document.querySelectorAll(".event-card");
       const calendarBtn = document.getElementById("calendarBtn");
@@ -556,11 +557,11 @@
 
       filterButtons.forEach((button) => {
         button.addEventListener("click", () => {
+          // Mark this button as active, remove from others
           filterButtons.forEach((btn) => btn.classList.remove("active"));
           button.classList.add("active");
 
           const filterValue = button.getAttribute("data-filter");
-
           if (filterValue !== "calendar") {
             calendarContainer.style.display = "none";
           }
@@ -583,7 +584,7 @@
         calendarContainer.style.display = "block";
       });
 
-      // Function to join an event
+      // ================== Join Event Function ==================
       async function joinEvent(eventId) {
         try {
           const response = await fetch(`/events/${eventId}/join`, {
@@ -593,7 +594,6 @@
           });
           if (response.ok) {
             alert("Successfully joined the event!");
-            // Optionally, update the UI here (disable the button, etc.)
           } else {
             const text = await response.text();
             alert("Failed to join event: " + text);
@@ -604,7 +604,59 @@
         }
       }
 
-      // Dynamic Events Loading
+      /*
+      // Commented out to match membership logic (no forced redirect on page load):
+      (function checkSession() {
+        if (localStorage.getItem("loggedIn") !== "true") {
+          window.location.href = "/non members/registration.html?tab=login";
+        }
+      })();
+      */
+
+      // Show/hide header elements based on login
+      const logoutBtn = document.getElementById("logoutBtn");
+      const joinNowBtn = document.getElementById("joinNowBtn");
+      // Renamed from guestIconLink to userIconLink:
+      const userIconLink = document.getElementById("userIconLink");
+
+      function updateUIBasedOnLogin() {
+        const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+        if (isLoggedIn) {
+          joinNowBtn.style.display = "none";
+          logoutBtn.style.display = "inline-block";
+          // If logged in, point user icon to the member dashboard:
+          userIconLink.href = "/Members/UserDashboard.html";
+        } else {
+          joinNowBtn.style.display = "inline-block";
+          logoutBtn.style.display = "none";
+          // If not logged in, point user icon to the login page:
+          userIconLink.href = "/non members/registration.html?tab=login";
+        }
+      }
+      updateUIBasedOnLogin();
+
+      // Logout button event listener
+      logoutBtn.addEventListener("click", async () => {
+        try {
+          const response = await fetch('/logout', {
+            method: 'POST',
+            credentials: 'include'
+          });
+          if (response.ok) {
+            localStorage.removeItem("loggedIn");
+            alert("Logged out successfully!");
+            // Redirect to login page, matching membership logic:
+            window.location.href = "/non members/registration.html?tab=login";
+          } else {
+            alert("Logout failed.");
+          }
+        } catch (error) {
+          console.error("Error during logout:", error);
+        }
+      });
+
+      // ================== Dynamic Events Loading (Optional) ==================
+      // If your backend serves a JSON list of events at /api/events, we can load them here:
       window.addEventListener("DOMContentLoaded", async () => {
         try {
           const response = await fetch("/api/events");
@@ -635,5 +687,49 @@
         }
       });
     </script>
+    <!-- SESSION LOGIC SCRIPT (Commented out to avoid duplication/conflict) -->
+    <!--
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Elements in the header
+        const joinNowBtn = document.getElementById("joinNowBtn");
+        const userIconLink = document.getElementById("userIconLink");
+        const logoutBtn = document.getElementById("logoutBtn");
+
+        // Check if user is logged in
+        const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+
+        // Update UI based on login status:
+        if (isLoggedIn) {
+          joinNowBtn.style.display = "none";
+          logoutBtn.style.display = "inline-block";
+          userIconLink.href = "/Members/UserDashboard.html";
+        } else {
+          joinNowBtn.style.display = "inline-block";
+          logoutBtn.style.display = "none";
+          userIconLink.href = "/non members/registration.html?tab=login";
+        }
+
+        // Logout logic
+        logoutBtn.addEventListener("click", async () => {
+          try {
+            const response = await fetch("/logout", {
+              method: "POST",
+              credentials: "include"
+            });
+            if (response.ok) {
+              localStorage.removeItem("loggedIn");
+              alert("Logged out successfully!");
+              window.location.href = "/non members/registration.html?tab=login";
+            } else {
+              alert("Logout failed.");
+            }
+          } catch (error) {
+            console.error("Error during logout:", error);
+          }
+        });
+      });
+    </script>
+    -->
   </body>
 </html>

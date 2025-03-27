@@ -4,11 +4,18 @@ const cors = require('cors');
 const session = require('express-session');
 const path = require('path');
 
-// Example event routes
+//  event routes
 const eventRoutes = require('./admin/routes/eventRoutes.js');
 
-// Registration routes (using "non members" folder as-is)
+// Registration routes
 const userRoutes = require('./non members/Routes/registrationRoute.js');
+
+// Support route
+
+const supportRoute = require('./non members/Routes/SupportRoute.js');
+
+//authorisation route
+const authRoute = require('./non members/Routes/authRoute.js')
 
 const app = express();
 
@@ -37,6 +44,14 @@ app.use('/', userRoutes);
 
 // Event routes mounted at /events
 app.use('/events', eventRoutes);
+
+// Auth routes on root
+app.use('/', authRoute); 
+
+// Support routes on root
+// In supportRoute.js, the route is defined as router.post('/api/support', ...)
+// So the final endpoint will be POST /api/support
+app.use('/', supportRoute);
 
 // Example root endpoint
 app.get('/', (req, res) => {

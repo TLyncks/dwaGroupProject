@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up / Log In | Together Culture</title>
-    <!-- You may link to your external stylesheet if needed -->
     <link rel="stylesheet" href="/css/styles.css" />
     <style>
       /* ========== RESET & GLOBAL ========== */
@@ -22,7 +21,7 @@
         flex-direction: column;
       }
 
-      /* ========== HEADER (Copied from events.html) ========== */
+      /* ========== HEADER ========== */
       .navbar {
         background-color: #fe1e3c;
         position: fixed;
@@ -231,7 +230,7 @@
     </style>
   </head>
   <body>
-    <!-- ========== HEADER (Copied from events.html) ========== -->
+    <!-- ========== HEADER ========== -->
     <nav class="navbar">
       <!-- Left: Logo -->
       <div class="nav-header">
@@ -256,13 +255,19 @@
       </div>
       <!-- Right: User Panel -->
       <div class="usr-panel">
-        <button class="signup-btn" onclick="location.href='/non members/registration.html?tab=signup'">
-          Join Now
-        </button>
+        <!-- Show "Join Now" by default, hide if logged in -->
+        <button class="signup-btn" id="joinNowBtn">Join Now</button>
+
+        <!-- Shopping bag always visible -->
         <img src="/images/EmptyBag.svg" alt="empty-shopping-bag" />
-        <a href="/non members/registration.html?tab=login">
-          <img src="/images/GuestIcon.svg" alt="guest-profile-icon" />
+
+        <!-- Single user icon that changes destination depending on login state -->
+        <a id="userIconLink">
+          <img src="/images/GuestIcon.svg" alt="user-profile-icon" />
         </a>
+
+        <!-- Logout button (hidden if not logged in) -->
+        <button class="signup-btn" id="logoutBtn" style="display: none;">Logout</button>
       </div>
     </nav>
 
@@ -333,7 +338,7 @@
 
     <!-- ========== SCRIPTS ========== -->
     <script>
-      // Toggle between Sign Up and Log In forms
+      // ========== SHOW/HIDE FORMS ==========
       const signUpBtn = document.getElementById("signUpBtn");
       const loginBtn = document.getElementById("loginBtn");
       const signUpForm = document.getElementById("signUpForm");
@@ -351,9 +356,11 @@
         loginForm.style.display = "block";
         signUpForm.style.display = "none";
       }
+
       signUpBtn.addEventListener("click", showSignUp);
       loginBtn.addEventListener("click", showLogin);
 
+      // Check URL ?tab=login to display login form directly
       const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.get("tab") === "login") {
         showLogin();
@@ -361,11 +368,38 @@
         showSignUp();
       }
 
-      // Back-end URL adjustment if needed
-      const backendURL = window.location.port === '5000' ? '' : 'http://127.0.0.1:5000';
+      // ========== SESSION MANAGEMENT (FRONT-END EXAMPLE) ==========
+      // NOTE: Real sessions/cookies are managed server-side.
+      // We'll store a simple "loggedIn" flag in localStorage for demonstration.
 
-      // Sign Up Form Submission
-      document.getElementById("signUpForm").addEventListener("submit", async function(event) {
+      const backendURL = window.location.port === '5000' ? '' : 'http://127.0.0.1:5000';
+      const logoutBtn = document.getElementById("logoutBtn");
+      const joinNowBtn = document.getElementById("joinNowBtn");
+      const userIconLink = document.getElementById("userIconLink");
+
+      function updateUIBasedOnLogin() {
+        const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+
+        if (isLoggedIn) {
+          // Hide "Join Now" button
+          joinNowBtn.style.display = "none";
+          // Show logout button
+          logoutBtn.style.display = "inline-block";
+          // If logged in, user icon goes to Dashboard
+          userIconLink.href = "/Members/UserDashboard.html";
+        } else {
+          // Show "Join Now" button
+          joinNowBtn.style.display = "inline-block";
+          // Hide logout button
+          logoutBtn.style.display = "none";
+          // If not logged in, user icon goes to login page
+          userIconLink.href = "/non members/registration.html?tab=login";
+        }
+      }
+      updateUIBasedOnLogin();
+
+      // ========== SIGN UP FORM SUBMIT ==========
+      signUpForm.addEventListener("submit", async function(event) {
         event.preventDefault();
         const fullName = document.getElementById("signup-name").value.trim();
         const email = document.getElementById("signup-email").value.trim();
@@ -381,6 +415,7 @@
           alert("Passwords do not match!");
           return;
         }
+
         try {
           const response = await fetch(`${backendURL}/signup`, {
             method: "POST",
@@ -400,8 +435,8 @@
         }
       });
 
-      // Log In Form Submission
-      document.getElementById("loginForm").addEventListener("submit", async function(event) {
+      // ========== LOG IN FORM SUBMIT ==========
+      loginForm.addEventListener("submit", async function(event) {
         event.preventDefault();
         const email = document.getElementById("login-email").value.trim();
         const password = document.getElementById("login-password").value;
@@ -409,22 +444,48 @@
           alert("Both fields are required.");
           return;
         }
+
         try {
           const response = await fetch(`${backendURL}/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
+            credentials: "include", // Ensures session cookie is sent
             body: JSON.stringify({ email, password })
           });
-          const data = await response.text();
+          const data = await response.json();
+
           if (response.ok) {
+            localStorage.setItem("loggedIn", "true");
             alert("Login successful!");
             window.location.href = "/Members/UserDashboard.html";
           } else {
-            alert("Login failed: " + data);
+            alert("Login failed: " + (data.error || "Unknown error"));
           }
         } catch (error) {
           alert("Error: Could not connect to the server.");
           console.error("Error:", error);
+        }
+      });
+
+      // ========== LOGOUT BUTTON ==========
+
+      logoutBtn.addEventListener("click", async () => {
+        try {
+          const response = await fetch(`${backendURL}/logout`, {
+            method: "POST",
+            credentials: "include" // Ensures session cookie is sent
+          });
+          if (response.ok) {
+            localStorage.removeItem("loggedIn");
+            alert("Logged out successfully!");
+            updateUIBasedOnLogin();
+            // Optionally redirect or reload
+            window.location.href = "/non members/registration.html?tab=login";
+          } else {
+            alert("Logout failed.");
+          }
+        } catch (error) {
+          console.error("Error logging out:", error);
         }
       });
     </script>
