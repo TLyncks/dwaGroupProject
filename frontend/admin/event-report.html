@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Event Report | Together Culture Admin</title>
+    <link rel="stylesheet" href="/css/admin.css" />
+    <style>
+      /* Basic styling for event report page */
+      body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f9;
+        margin: 0;
+        padding: 20px;
+      }
+      .report-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      }
+      h1 {
+        text-align: center;
+      }
+      #event-info {
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 20px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th, td {
+        padding: 10px;
+        border: 1px solid #ccc;
+        text-align: left;
+      }
+      th {
+        background: #fe1e3c;
+        color: #fff;
+      }
+      .back-btn {
+        margin-top: 20px;
+        display: block;
+        background: #d0021b;
+        color: white;
+        padding: 10px 15px;
+        text-decoration: none;
+        text-align: center;
+        border-radius: 5px;
+        width: 150px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .back-btn:hover {
+        background: #a00015;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="report-container">
+      <h1>Event Report</h1>
+      <p id="event-info">Loading event details...</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Member Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+          </tr>
+        </thead>
+        <tbody id="attendeesTableBody">
+          <!-- Attendee rows will be inserted here dynamically -->
+        </tbody>
+      </table>
+      <a href="/non-members/events.html" class="back-btn">Back to Events</a>
+    </div>
+
+    <script>
+      // Retrieve the eventId from the URL query string
+      const urlParams = new URLSearchParams(window.location.search);
+      const eventId = urlParams.get("eventId");
+
+      if (!eventId) {
+        document.body.innerHTML = "<p>No event specified.</p>";
+      } else {
+        window.addEventListener("DOMContentLoaded", async () => {
+          try {
+            // Fetch attendee details for the given event
+            const response = await fetch(`/events/${eventId}/attendees`);
+            if (!response.ok) throw new Error("Failed to fetch attendees");
+            const attendees = await response.json();
+            
+            // Optionally, you can also fetch event details to display at the top
+            // const eventResponse = await fetch(`/events/${eventId}`);
+            // const eventDetails = await eventResponse.json();
+            // document.getElementById("event-info").innerText = `Event: ${eventDetails.title} on ${eventDetails.event_date}`;
+
+            // For now, we simply display the event ID:
+            document.getElementById("event-info").innerText = `Attendees for Event ID: ${eventId}`;
+
+            // Insert attendees into table
+            const tbody = document.getElementById("attendeesTableBody");
+            tbody.innerHTML = "";
+            attendees.forEach(att => {
+              const row = document.createElement("tr");
+              row.innerHTML = `
+                <td>${att.UserName}</td>
+                <td>${att.userEmail}</td>
+                <td>${att.UserPhone}</td>
+              `;
+              tbody.appendChild(row);
+            });
+          } catch (error) {
+            console.error("Error fetching event report:", error);
+            document.body.innerHTML = "<p>Error loading event report.</p>";
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

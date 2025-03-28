@@ -1,24 +1,324 @@
 <!DOCTYPE html>
-<html lang="en" class="light"> 
+<html lang="en" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Page | Together Culture</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+    <style>
+      /* ========== RESET & GLOBAL ========== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+      html, body {
+        height: 100%;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+      }
 
-<head>
-  
-</head>
+      /* ========== HEADER (Using Events Header Style) ========== */
+      .navbar {
+        background-color: #fe1e3c;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        font-weight: 200;
+        z-index: 1000;
+      }
 
-<body>
-  <div>
-    <nav>
-      <ul>
-        <li href=""></li>
-      </ul>
+      .nav-image img {
+        height: 50px;
+        width: auto;
+      }
+      .nav-links {
+        margin: 0 auto;
+      }
+      .nav-links ul {
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 1rem;
+      }
+      /* Dropdown for Memberships */
+      .dropdown {
+        position: relative;
+      }
+      .dropdown-menu {
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #fff;
+        min-width: 160px;
+        border-radius: 8px;
+        margin-top: 0.5rem;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        padding: 0.75rem 0;
+        transform: translateY(-10px);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+      .dropdown-menu li {
+        list-style: none;
+      }
+      .dropdown-menu li a {
+        display: block;
+        padding: 0.5rem 1rem;
+        color: #333;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: background-color 0.2s ease;
+      }
+      .dropdown-menu li a:hover {
+        background-color: #f2f2f2;
+      }
+      .dropdown:hover .dropdown-menu {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+      .usr-panel {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .signup-btn {
+        background: linear-gradient(to right, #ff416c, #ff4b2b);
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+      }
+      .signup-btn:hover {
+        background: linear-gradient(to right, #ff4b2b, #ff416c);
+        transform: scale(1.05);
+      }
+
+      /* ========== MAIN CONTENT ========== */
+      main {
+        margin-top: 80px; /* Offset for fixed header */
+      }
+      .lp-banner {
+        position: relative;
+      }
+      .lp-banner video {
+        width: 100%;
+        height: auto;
+      }
+      .lp-banner .content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: #fff;
+      }
+      .main-content {
+        padding: 2rem;
+      }
+
+      /* ========== FOOTER ========== */
+      footer {
+        background-color: #0f0f0f;
+        color: whitesmoke;
+        font-size: small;
+        font-weight: 200;
+        padding: 40px 0;
+        margin-top: auto;
+      }
+      .f-format {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .f-list {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      .f-nav, .f-mem, .f-acc, .f-support {
+        margin-right: 20px;
+      }
+      .f-nav ul, .f-mem ul, .f-acc ul, .f-support ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .f-nav li, .f-mem li, .f-acc li, .f-support li {
+        padding-bottom: 5px;
+      }
+      .f-nav a, .f-mem a, .f-acc a, .f-support a {
+        text-decoration: none;
+        color: rgb(200, 200, 200);
+      }
+      .f-logo img {
+        width: 150px;
+        height: auto;
+      }
+      @media (max-width: 1024px) {
+        .nav-links ul {
+          gap: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ========== HEADER (New Dropdown Header) ========== -->
+    <nav class="navbar">
+      <!-- Left: Logo -->
+      <header class="nav-header">
+        <div class="nav-image">
+          <img src="./images/TC_Logos-01.png" alt="Together Culture Cambridge Logo" />
+        </div>
+      </header>
+      <!-- Center: Navigation Links with Dropdown -->
+      <div class="nav-links">
+        <ul>
+          <li><a href="index.html">About</a></li>
+          <li class="dropdown">
+            <a href="#">Memberships</a>
+            <ul class="dropdown-menu">
+              <li><a href="./non members/community-membership.html">Community</a></li>
+              <li><a href="./non members/key-access-membership.html">Key Access</a></li>
+              <li><a href="./non members/creative-workspace-membership.html">Creative Workspace</a></li>
+              <li><a href="./non members/non-member-page.html">Compare all Memberships</a></li>
+            </ul>
+          </li>
+          <li><a href="./non members/events.html">Events</a></li>
+          <li><a href="./non members/contact-support.html">Contact</a></li>
+        </ul>
+      </div>
+      <!-- Right: User Panel -->
+      <div class="usr-panel">
+        <button class="signup-btn" onclick="location.href='./non members/registration.html?tab=signup'">Sign Up</button>
+        <img src="./images/EmptyBag.svg" alt="empty-shopping-bag" />
+        <a href="./non members/registration.html?tab=login">
+          <img src="./images/GuestIcon.svg" alt="guest-profile-icon" />
+        </a>
+      </div>
     </nav>
-  </div>
-</body>
 
-<footer>
+    <!-- ========== MAIN CONTENT ========== -->
+    <main>
+      <div class="lp-banner">
+        <video src="./images/cambridge_students_walking.mp4" loading="lazy" autoplay muted loop></video>
+        <div class="content">
+          <img src="./images/PLACEHOLDER.svg" loading="lazy" alt="Banner Graphic" />
+          <h1>This is a test</h1>
+        </div>
+      </div>
+      <div class="main-content">
+        <div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent iaculis lorem vel eleifend auctor. Integer lobortis at sem nec lobortis. Suspendisse sollicitudin scelerisque sem, non vulputate nisl tristique vel. Nulla rutrum odio accumsan condimentum finibus. Donec sagittis interdum elit, vitae mattis dolor egestas quis. Ut a ipsum ac nunc egestas posuere vel eu magna. Fusce feugiat libero vel semper scelerisque. Sed rutrum interdum lacus, vel sollicitudin ipsum faucibus eget. Sed velit velit, venenatis non purus non, efficitur tincidunt quam.
 
-</footer>
+            Vivamus aliquet sapien nec lacus semper semper. Aliquam vitae libero dui. Curabitur id purus lacus. Nam et mi non justo tristique convallis. Sed metus enim, tincidunt sit amet auctor et, tincidunt et mauris. Maecenas dapibus, orci quis tempus commodo, dolor nisi efficitur risus, eget tristique nisl tortor ut leo. Sed finibus dictum nisi convallis pulvinar. In mollis mi sit amet nunc convallis finibus quis vel augue.
+            
+            Pellentesque condimentum tincidunt ex quis tincidunt. Vestibulum finibus eu nisl quis feugiat. Aenean magna elit, posuere nec suscipit eget, blandit non odio. Sed iaculis placerat laoreet. Phasellus volutpat ipsum id malesuada posuere. Fusce at mi gravida ipsum vehicula aliquet eget vitae massa. Nunc non tellus imperdiet, tincidunt ipsum et, ultrices arcu. Nulla facilisi. Nullam porttitor, justo ac finibus pretium, est arcu vehicula dui, nec condimentum metus lorem at purus. Praesent luctus consectetur ligula at convallis. Sed sed pulvinar magna, efficitur commodo neque. Curabitur in auctor libero. Nullam sed arcu id quam rhoncus laoreet. Ut arcu neque, imperdiet in cursus quis, rhoncus non neque. Praesent nec pulvinar nisi. Nullam hendrerit nulla condimentum justo pharetra viverra.
+            
+            Nulla ante tellus, gravida in pulvinar ut, varius vel mauris. Nunc vel fringilla tellus. Aliquam ut gravida elit. Praesent sollicitudin elit vel est elementum lobortis. Nulla gravida lorem at ligula rutrum varius a at sem. Sed mauris mauris, suscipit eu risus vitae, interdum porttitor arcu. Sed eu mollis lorem. Donec congue erat sed congue dignissim.
+            
+            Aenean faucibus lorem magna, sit amet ultricies libero eleifend vel. Curabitur feugiat lacus ut elit elementum auctor. Sed viverra, nulla vel tempus euismod, urna lacus porttitor turpis, aliquam mattis augue nibh nec lacus. Nam posuere lorem pulvinar arcu malesuada consequat. Cras vitae urna enim. Nunc ac nibh ornare tellus mollis eleifend ut ac odio. Maecenas id libero vel purus aliquet aliquet vehicula id felis. Ut augue felis, consequat nec vestibulum in, porta et leo. Curabitur elementum, sapien vel pellentesque tristique, elit dui hendrerit erat, sed iaculis turpis sapien ut mi. Proin eleifend mi a risus posuere sollicitudin. In a placerat tortor, ac pharetra purus. Suspendisse placerat scelerisque eros ullamcorper pharetra.
+            
+            Maecenas convallis fermentum pulvinar. Maecenas a ante nisi. Nulla eget libero risus. Vestibulum tempus nec urna non finibus. Aenean ut dui vitae orci egestas ultrices vel non ipsum. Sed faucibus, arcu ac porta maximus, lectus urna tincidunt urna, quis tincidunt magna est sed dui. Vivamus auctor felis quis fermentum dignissim. Sed sagittis eleifend erat vitae hendrerit. Cras non nibh justo. Nullam hendrerit ultrices eros, in facilisis mi tincidunt vitae. Praesent pulvinar tincidunt fringilla. Donec diam nisl, suscipit ut diam sed, tempor fringilla velit. Aenean dignissim, erat ut consectetur facilisis, magna ipsum gravida metus, quis malesuada quam mauris nec dolor. Sed blandit cursus ante, id vestibulum mi vestibulum in. Cras gravida ullamcorper sodales. Maecenas dapibus elementum lorem a mattis.
+            
+            Morbi eget enim erat. Mauris sit amet odio mattis lectus auctor rhoncus. Morbi placerat tellus rutrum dolor blandit, sed egestas nisi sodales. Morbi nec orci non lectus sodales consectetur commodo id lorem. Etiam sapien quam, tincidunt sed enim nec, egestas maximus purus. Nullam venenatis, mi vitae finibus scelerisque, risus arcu faucibus massa, quis elementum urna sapien eu dui. Nam auctor at ligula in vulputate. Fusce in dignissim turpis. Curabitur consectetur justo vitae vulputate pretium. Sed eros nibh, pulvinar et enim et, mollis commodo orci. Integer dapibus diam euismod libero tempor porttitor. Praesent placerat dui sed ultricies imperdiet. Sed nunc dolor, tristique sed tortor ut, volutpat elementum enim. Aliquam ut sapien quis urna fringilla pharetra.
+            
+            Praesent mattis magna urna, et sodales nunc posuere id. Suspendisse potenti. Suspendisse at mauris justo. In in est ut odio commodo blandit. Aliquam feugiat neque id nisl interdum euismod. Donec venenatis, sem in rutrum ullamcorper, lacus elit luctus lacus, et maximus risus nisl at massa. Ut ac mauris at elit mollis aliquam at nec nunc. Suspendisse nec malesuada leo. Pellentesque odio metus, feugiat sit amet sollicitudin id, rutrum at dui. Duis vehicula, tortor non facilisis condimentum, diam orci rutrum libero, in fringilla elit augue quis lacus. Maecenas sed dapibus leo. Nulla bibendum nisl quis hendrerit accumsan. Integer tincidunt metus id arcu accumsan, nec egestas urna vehicula. Praesent tincidunt ante arcu, nec tincidunt ipsum sagittis ultricies.
+            
+            Integer placerat ornare arcu, at varius turpis porta eu. Donec eleifend enim nec orci accumsan, nec scelerisque orci commodo. Mauris urna ligula, sodales id lacus non, dapibus dignissim diam. Suspendisse erat nunc, euismod a nisi sit amet, imperdiet lobortis elit. Nam id est ligula. Fusce augue dolor, pulvinar non libero eu, volutpat porttitor est. Sed sed augue convallis, congue diam vulputate, convallis diam. Integer dapibus diam eget interdum consequat. Sed at orci est. Nullam magna dolor, sagittis eu aliquam a, efficitur at mauris. Mauris mollis sit amet turpis eget cursus. Fusce orci odio, facilisis vitae mauris a, malesuada ultricies dolor.
+            
+            Etiam metus elit, tempor sed feugiat eu, pulvinar vitae leo. Vestibulum finibus vestibulum viverra. Cras consectetur diam id nisl dapibus suscipit. Suspendisse dignissim sit amet libero a consectetur. Curabitur pulvinar ante non posuere bibendum. Mauris pulvinar mauris pretium iaculis consectetur. Nulla magna ex, iaculis eget diam vitae, ornare sagittis libero. In hac habitasse platea dictumst. Nunc vehicula nulla eget volutpat consectetur. Morbi venenatis vel sem aliquet tempor. In quis turpis at libero facilisis congue.
+          </p>
+        </div>
+        <div>
+          <p>This is a test 2</p>
+        </div>
+      </div>
+    </main>
 
-
-
+    <!-- ========== FOOTER ========== -->
+    <footer>
+      <div class="f-format">
+        <div class="f-list">
+          <div class="f-nav">
+            <h4>Navigation</h4>
+            <div>
+              <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="./non members/about.html">About</a></li>
+                <li><a href="./non members/member page.html">Pricing</a></li>
+                <li><a href="./non members/contact-support.html">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="f-mem">
+            <h4>Memberships</h4>
+            <div>
+              <ul>
+                <li><a href="./non members/standard.html">Standard</a></li>
+                <li><a href="./non members/community-membership.html">Community</a></li>
+                <li><a href="./non members/key-access-membership.html">Key Access</a></li>
+                <li><a href="./non members/creative-workspace-membership.html">Creative Workspace</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="f-acc">
+            <h4>Account</h4>
+            <div>
+              <ul>
+                <li><a href="./non members/registration.html">Login / Sign-up</a></li>
+                <li><a href="./non members/dashboard.html">Account Dashboard</a></li>
+                <li><a href="#">My Membership</a></li>
+                <li><a href="#">Billing</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="f-support">
+            <h4>Support</h4>
+            <div>
+              <ul>
+                <li><a href="./non members/contact-support.html">Contact Us</a></li>
+                <li><a href="./non members/report.html">Report</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="f-logo">
+            <img src="./images/PLACEHOLDER.svg" alt="Footer Logo">
+          </div>
+        </div>
+        <hr>
+        <div class="authors">
+          <h4>Authors:</h4>
+          <ul>
+            <li><a href="https://github.com/TLyncks">Tai Rose (SID: 2108618)</a></li>
+            <li><a href="https://github.com/mgoing">Malcom Going (SID: 2372291)</a></li>
+            <li><a href="https://github.com/AlessandroLaMendola">Alessandro La Mendola (SID: 2158059)</a></li>
+            <li><a href="https://github.com/yusufkose-aru">Yusuf Kose (SID: 2415327)</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    
+    <script src="js/main.js"></script>
+  </body>
 </html>

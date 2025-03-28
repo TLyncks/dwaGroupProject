@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+  <head>
+    <link rel="stylesheet" href="admin.css" />
+    <link rel="stylesheet" href="lib/bootstrap.min.css" />
+    <link rel="stylesheet" href="lib/table-sortable.css" />
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/table-sortable.js"></script>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <header class="nav-header">
+        <div class="nav-image">
+          <img src="/frontend/images/TC_Logos-01.png" alt="Together Culture CAMBRIDGE" />
+        </div>
+      </header>
+      <div class="nav-links">
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="./member.html">Memberships</a></li>
+          <li><a href="/frontend/non members/contact-support.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="usr-panel">
+        <button href="#">Logout</button>
+        <img src="/frontend/images/GuestIcon.svg" alt="guest-profile-icon" />
+      </div>
+    </nav>
+
+    <main>
+      <div class="admin-container">
+        <h2 style="margin-top: 90px">Member Administration</h2>
+
+        <div class="member-actions">
+          <input type="text" class="input-text" id="search-member" placeholder="Search Name..." style="width: 15%" id="searchField" />
+          <input type="text" class="input-text" id="search-member" placeholder="Search Email..." style="width: 15%" />
+          <input type="text" class="input-text" id="search-member" placeholder="Search Type..." style="width: 15%" />
+          <input type="text" class="input-text" id="search-member" placeholder="Search Tag..." style="width: 15%" />
+          <input type="text" class="input-text" id="search-member" placeholder="Search Status..." style="width: 15%" />
+          <button class="btn" onclick="searchMember()">Search</button>
+        </div>
+
+        <div id="table-sortable" class="table-sortable"></div>
+
+        <div class="add-member">
+          <h3>Add New Member</h3>
+          <form id="add-member-form">
+            <input type="text" class="input-text" id="member-name" placeholder="Name" required />
+            <input type="email" class="input-text" id="member-email" placeholder="Email" required />
+            <select id="membership-type" class="input-select">
+              <option value="">Select MemberShip Type</option>
+              <option value="community-member">Community Member</option>
+              <option value="key-access-member">Key Access Member</option>
+              <option value="workspace-member">Workspace Member</option>
+            </select>
+            <select id="based-on" class="input-select">
+              <option value="">Select Based On</option>
+              <option value="individual">Individual</option>
+              <option value="company">Company</option>
+            </select>
+            <select id="tag" class="input-select">
+              <option value="">Select Tag</option>
+              <option value="always">Always</option>
+              <option value="usually">Usually</option>
+              <option value="often">Often</option>
+              <option value="never">Never</option>
+            </select>
+            <br />
+            <button type="submit" class="btn" style="margin-top: 12px; margin-bottom: 12px">Add Member</button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="f-format">
+        <div class="f-list">
+          <div class="f-nav">
+            <h4>Navigation</h4>
+            <div>
+              <ul>
+                <li><a href="/frontend/index.html">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="f-logo">
+            <img src="/frontend/images/PLACEHOLDER.svg" />
+          </div>
+        </div>
+        <hr />
+        <div class="authors">
+          <h4>Authors:</h4>
+          <ul>
+            <li><a href="https://github.com/TLyncks">Tai Rose (SID: 2108618)</a></li>
+            <li><a href="https://github.com/mgoing">Malcom Going (SID: 2372291)</a></li>
+            <li><a href="https://github.com/AlessandroLaMendola">Alessandro La Mendola (SID: 2158059)</a></li>
+            <li><a href="https://github.com/yusufkose-aru">Yusuf Kose (SID: 2415327)</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      var data = [
+        {
+          name: 'Tai Rose',
+          email: 'tairose@gmail.com',
+          type: 'Community Member',
+          basedOn: 'Indiviual',
+          tag: 'Usually',
+          status: 'Approved',
+          detail: 'Detail',
+          delete: 'Delete'
+        },
+        {
+          name: 'Malcom Going',
+          email: 'malcom@gmail.com',
+          type: 'Key Access Member',
+          basedOn: 'Indiviual',
+          tag: 'Often',
+          status: 'Approved',
+          detail: 'Detail',
+          delete: 'Delete'
+        },
+        {
+          name: 'Yusuf Kose',
+          email: 'yusufkose@gmail.com',
+          type: 'Workspace Member',
+          basedOn: 'Company',
+          tag: 'Always',
+          status: 'Approved',
+          detail: 'Detail',
+          delete: 'Delete'
+        },
+        {
+          name: 'Alessandro La Mendola',
+          email: 'alessandro@gmail.com',
+          type: 'Workspace Member',
+          basedOn: 'Company',
+          tag: 'Never',
+          status: 'Waiting',
+          detail: 'Detail',
+          delete: 'Delete'
+        }
+      ]
+
+      var table = $('#table-sortable').tableSortable({
+        data: data,
+        columns: {
+          name: 'Name',
+          email: 'Email',
+          type: 'MemberShip Type',
+          basedOn: 'Based On',
+          tag: 'Tag',
+          status: 'Status',
+          detail: 'Detail',
+          delete: 'Delete'
+        },
+        rowsPerPage: 5,
+        pagination: true,
+        formatCell: function (row, key) {
+          if (key === 'detail') {
+            return $('<button></button>').attr('onclick', "window.location.href = 'member-detail.html'").addClass('btn').text('Detail')
+          }
+          if (key === 'delete') {
+            return $('<button></button>').attr('onclick', "'").addClass('btn').text('Delete')
+          }
+          return row[key]
+        }
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Upcoming Events | Together Culture</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <style>
+      /* ========== RESET & GLOBAL ========== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+      /* ========== HEADER ========== */
+      .navbar {
+        background-color: #fe1e3c;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        font-weight: 200;
+        z-index: 1000;
+      }
+      .nav-header img {
+        height: 50px;
+        width: auto;
+      }
+      .nav-links {
+        margin: 0 auto;
+      }
+      .nav-links ul {
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 1rem;
+      }
+      .usr-panel {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .signup-btn {
+        background: linear-gradient(to right, #ff416c, #ff4b2b);
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+      }
+      .signup-btn:hover {
+        background: linear-gradient(to right, #ff4b2b, #ff416c);
+        transform: scale(1.05);
+      }
+      /* Dropdown Menu */
+      .dropdown {
+        position: relative;
+      }
+      .dropdown-menu {
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #fff;
+        min-width: 160px;
+        border-radius: 8px;
+        margin-top: 0.5rem;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        padding: 0.75rem 0;
+        transform: translateY(-10px);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+      .dropdown-menu li {
+        list-style: none;
+      }
+      .dropdown-menu li a {
+        display: block;
+        padding: 0.5rem 1rem;
+        color: #333;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: background-color 0.2s ease;
+      }
+      .dropdown-menu li a:hover {
+        background-color: #f2f2f2;
+      }
+      .dropdown:hover .dropdown-menu {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      /* ========== MAIN CONTENT: UPCOMING EVENTS ========== */
+      .events-main {
+        margin-top: 100px; /* offset for fixed header */
+        padding: 3rem 2rem;
+        background: #f4f4f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .events-container {
+        max-width: 1200px;
+        width: 100%;
+        background: white;
+        padding: 3rem;
+        border-radius: 15px;
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+        text-align: center;
+        border-top: 6px solid #d0021b;
+      }
+      .events-container h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #222;
+        margin-bottom: 0.5rem;
+      }
+      .events-container p {
+        font-size: 1.2rem;
+        color: #666;
+        margin-bottom: 2rem;
+      }
+      /* Filter Options */
+      .filter-options {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+      .filter-btn {
+        background: #d0021b;
+        color: white;
+        font-size: 1rem;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: #a00015;
+      }
+      /* Events Grid */
+      .events-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+      }
+      .event-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.12);
+        text-align: left;
+        transition: 0.3s;
+      }
+      .event-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+      .event-details {
+        padding: 1.5rem;
+      }
+      .event-details h2 {
+        font-size: 1.5rem;
+        color: #222;
+        margin-bottom: 0.5rem;
+      }
+      .event-btn {
+        background: #d0021b;
+        color: white;
+        font-size: 1rem;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-right: 5px;
+      }
+      .event-btn:hover {
+        background: #a00015;
+      }
+      /* ========== CALENDAR STYLES ========== */
+      #calendar-container {
+        display: none; /* hidden by default; toggled via JS */
+        margin-top: 2rem;
+      }
+      #calendar-container h2 {
+        margin-bottom: 1rem;
+      }
+      #calendar-container .month {
+        margin-bottom: 2rem;
+      }
+      #calendar-container table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0 auto;
+      }
+      #calendar-container th,
+      #calendar-container td {
+        border: 1px solid #ccc;
+        padding: 0.5rem;
+        text-align: center;
+        vertical-align: middle;
+        min-width: 50px;
+      }
+      /* Highlight cells with events */
+      #calendar-container td.highlight {
+        background-color: #d0f0c0;
+      }
+      /* ========== FOOTER ========== */
+      footer {
+        background-color: #0f0f0f;
+        color: whitesmoke;
+        font-size: small;
+        font-weight: 200;
+        margin-top: auto;
+        padding: 40px 0;
+      }
+      .f-format {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .f-list {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      .f-nav,
+      .f-mem,
+      .f-acc,
+      .f-support {
+        margin-right: 20px;
+      }
+      .f-nav ul,
+      .f-mem ul,
+      .f-acc ul,
+      .f-support ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .f-nav li,
+      .f-mem li,
+      .f-acc li,
+      .f-support li {
+        padding-bottom: 5px;
+      }
+      .f-nav a,
+      .f-mem a,
+      .f-acc a,
+      .f-support a {
+        text-decoration: none;
+        color: rgb(200, 200, 200);
+      }
+      .f-logo img {
+        width: 150px;
+        height: auto;
+      }
+      /* ========== RESPONSIVE ========== */
+      @media (max-width: 1024px) {
+        .nav-links ul {
+          gap: 1rem;
+        }
+        .events-container {
+          padding: 2rem;
+        }
+        #calendar-container table {
+          font-size: 0.9rem;
+        }
+        .f-list {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ========== HEADER ========== -->
+    <nav class="navbar">
+      <!-- Left: Logo -->
+      <div class="nav-header">
+        <img src="/images/TC_Logos-01.png" alt="Together Culture Cambridge Logo" />
+      </div>
+      <!-- Center: Nav Links with Dropdown -->
+      <div class="nav-links">
+        <ul>
+          <li><a href="/index.html">About</a></li>
+          <li class="dropdown">
+            <a href="#">Memberships</a>
+            <ul class="dropdown-menu">
+              <li><a href="/non members/community-membership.html">Community</a></li>
+              <li><a href="/non members/key-access-membership.html">Key Access</a></li>
+              <li><a href="/non members/creative-workspace-membership.html">Creative Workspace</a></li>
+              <li><a href="/non members/non-member-page.html">Compare all Memberships</a></li>
+            </ul>
+          </li>
+          <li><a href="/non members/events.html">Events</a></li>
+          <li><a href="/non members/contact-support.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <!-- Right: User Panel with Logout Functionality -->
+      <div class="usr-panel">
+        <button class="signup-btn" id="joinNowBtn" onclick="location.href='/non members/registration.html?tab=signup'">Join Now</button>
+        <img src="/images/EmptyBag.svg" alt="empty-shopping-bag" />
+        <!-- Renamed ID to match membership logic -->
+        <a href="/non members/registration.html?tab=login" id="userIconLink">
+          <img src="/images/GuestIcon.svg" alt="guest-profile-icon" />
+        </a>
+        <!-- Logout Button (hidden by default if not logged in) -->
+        <button class="signup-btn" id="logoutBtn" style="display: none;">Logout</button>
+      </div>
+    </nav>
+
+    <!-- ========== MAIN CONTENT: UPCOMING EVENTS ========== -->
+    <main class="events-main">
+      <div class="events-container">
+        <h1>Upcoming Cultural Events</h1>
+        <p>Join us for inspiring cultural experiences, workshops, and networking events.</p>
+
+        <!-- Filter Options -->
+        <div class="filter-options">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="workshops">Workshops</button>
+          <button class="filter-btn" data-filter="music">Music</button>
+          <button class="filter-btn" data-filter="art-exhibitions">Art Exhibitions</button>
+          <button class="filter-btn" data-filter="networking">Networking</button>
+          <button class="filter-btn" data-filter="calendar" id="calendarBtn">Calendar</button>
+        </div>
+
+        <!-- Events Grid -->
+        <div class="events-grid">
+          <!-- Sample Event 1: MUSIC -->
+          <div class="event-card" data-category="music">
+            <img src="/images/event1.jpg" alt="Event 1" />
+            <div class="event-details">
+              <h2>Live Jazz Night</h2>
+              <p><strong>Date:</strong> 15 April, 2025</p>
+              <p><strong>Location:</strong> Cambridge Guildhall</p>
+              <p>Enjoy an evening of soulful jazz music performed by renowned local artists.</p>
+              <button class="event-btn" onclick="joinEvent(1)">Join event</button>
+            </div>
+          </div>
+
+          <!-- Sample Event 2: ART EXHIBITIONS -->
+          <div class="event-card" data-category="art-exhibitions">
+            <img src="/images/event2.jpg" alt="Event 2" />
+            <div class="event-details">
+              <h2>Modern Art Exhibition</h2>
+              <p><strong>Date:</strong> 5 May, 2025</p>
+              <p><strong>Location:</strong> Together Culture workspace</p>
+              <p>Explore thought-provoking contemporary artwork from emerging artists.</p>
+              <button class="event-btn" onclick="joinEvent(2)">Join event</button>
+            </div>
+          </div>
+
+          <!-- Sample Event 3: WORKSHOPS -->
+          <div class="event-card" data-category="workshops">
+            <img src="/images/event3.jpg" alt="Event 3" />
+            <div class="event-details">
+              <h2>Poetry &amp; Storytelling Workshop</h2>
+              <p><strong>Date:</strong> 14 May, 2025</p>
+              <p><strong>Location:</strong> Cambridge Theatre</p>
+              <p>A creative session where writers share their poetry and stories in an open-mic setting.</p>
+              <button class="event-btn" onclick="joinEvent(3)">Join event</button>
+            </div>
+          </div>
+
+          <!-- Sample Event 4: NETWORKING -->
+          <div class="event-card" data-category="networking">
+            <img src="/images/event4.jpg" alt="Event 4" />
+            <div class="event-details">
+              <h2>Networking Evening</h2>
+              <p><strong>Date:</strong> 25 May, 2025</p>
+              <p><strong>Location:</strong> Together Culture workspace</p>
+              <p>A great way to get to know all of our amazing members!</p>
+              <button class="event-btn" onclick="joinEvent(4)">Join event</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========== CALENDAR VIEW ========== -->
+        <div id="calendar-container">
+          <h2>Event Calendar</h2>
+
+          <!-- April 2025 -->
+          <div class="month">
+            <h3>April 2025</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Sun</th>
+                  <th>Mon</th>
+                  <th>Tue</th>
+                  <th>Wed</th>
+                  <th>Thu</th>
+                  <th>Fri</th>
+                  <th>Sat</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>1</td>
+                  <td>2</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>5</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>7</td>
+                  <td>8</td>
+                  <td>9</td>
+                  <td>10</td>
+                  <td>11</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>13</td>
+                  <td>14</td>
+                  <td class="highlight">15<br/>Live Jazz Night</td>
+                  <td>16</td>
+                  <td>17</td>
+                  <td>18</td>
+                  <td>19</td>
+                </tr>
+                <tr>
+                  <td>20</td>
+                  <td>21</td>
+                  <td>22</td>
+                  <td>23</td>
+                  <td>24</td>
+                  <td>25</td>
+                  <td>26</td>
+                </tr>
+                <tr>
+                  <td>27</td>
+                  <td>28</td>
+                  <td>29</td>
+                  <td>30</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- May 2025 -->
+          <div class="month">
+            <h3>May 2025</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Sun</th>
+                  <th>Mon</th>
+                  <th>Tue</th>
+                  <th>Wed</th>
+                  <th>Thu</th>
+                  <th>Fri</th>
+                  <th>Sat</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>1</td>
+                  <td>2</td>
+                  <td>3</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td class="highlight">5<br/>Modern Art<br/>Exhibition</td>
+                  <td>6</td>
+                  <td>7</td>
+                  <td>8</td>
+                  <td>9</td>
+                  <td>10</td>
+                </tr>
+                <tr>
+                  <td>11</td>
+                  <td>12</td>
+                  <td>13</td>
+                  <td class="highlight">14<br/>Poetry &amp; Storytelling</td>
+                  <td>15</td>
+                  <td>16</td>
+                  <td>17</td>
+                </tr>
+                <tr>
+                  <td>18</td>
+                  <td>19</td>
+                  <td>20</td>
+                  <td>21</td>
+                  <td>22</td>
+                  <td>23</td>
+                  <td>24</td>
+                </tr>
+                <tr>
+                  <td class="highlight">25<br/>Networking</td>
+                  <td>26</td>
+                  <td>27</td>
+                  <td>28</td>
+                  <td>29</td>
+                  <td>30</td>
+                  <td>31</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+      <div class="f-format">
+        <div class="authors">
+          <h4>Authors:</h4>
+          <p>Tai Rose (SID: 2108618)</p>
+          <p>Malcom Going (SID: 2372291)</p>
+          <p>Alessandro La Mendola (SID: 2158059)</p>
+          <p>Yusuf Kose (SID: 2415327)</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Inline JavaScript -->
+    <script>
+      // ================== Filter and Calendar Toggle Logic ==================
+      const filterButtons = document.querySelectorAll(".filter-btn");
+      const eventCards = document.querySelectorAll(".event-card");
+      const calendarBtn = document.getElementById("calendarBtn");
+      const calendarContainer = document.getElementById("calendar-container");
+
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          // Mark this button as active, remove from others
+          filterButtons.forEach((btn) => btn.classList.remove("active"));
+          button.classList.add("active");
+
+          const filterValue = button.getAttribute("data-filter");
+          if (filterValue !== "calendar") {
+            calendarContainer.style.display = "none";
+          }
+
+          eventCards.forEach((card) => {
+            if (filterValue === "all") {
+              card.style.display = "block";
+            } else if (filterValue === "calendar") {
+              card.style.display = "none";
+            } else {
+              const cardCategory = card.getAttribute("data-category");
+              card.style.display = cardCategory === filterValue ? "block" : "none";
+            }
+          });
+        });
+      });
+
+      calendarBtn.addEventListener("click", () => {
+        eventCards.forEach((card) => card.style.display = "none");
+        calendarContainer.style.display = "block";
+      });
+
+      // ================== Join Event Function ==================
+      async function joinEvent(eventId) {
+        try {
+          const response = await fetch(`/events/${eventId}/join`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ eventId })
+          });
+          if (response.ok) {
+            alert("Successfully joined the event!");
+          } else {
+            const text = await response.text();
+            alert("Failed to join event: " + text);
+          }
+        } catch (error) {
+          alert("Error: Could not join the event.");
+          console.error("Join event error:", error);
+        }
+      }
+
+      /*
+      // Commented out to match membership logic (no forced redirect on page load):
+      (function checkSession() {
+        if (localStorage.getItem("loggedIn") !== "true") {
+          window.location.href = "/non members/registration.html?tab=login";
+        }
+      })();
+      */
+
+      // Show/hide header elements based on login
+      const logoutBtn = document.getElementById("logoutBtn");
+      const joinNowBtn = document.getElementById("joinNowBtn");
+      // Renamed from guestIconLink to userIconLink:
+      const userIconLink = document.getElementById("userIconLink");
+
+      function updateUIBasedOnLogin() {
+        const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+        if (isLoggedIn) {
+          joinNowBtn.style.display = "none";
+          logoutBtn.style.display = "inline-block";
+          // If logged in, point user icon to the member dashboard:
+          userIconLink.href = "/Members/UserDashboard.html";
+        } else {
+          joinNowBtn.style.display = "inline-block";
+          logoutBtn.style.display = "none";
+          // If not logged in, point user icon to the login page:
+          userIconLink.href = "/non members/registration.html?tab=login";
+        }
+      }
+      updateUIBasedOnLogin();
+
+      // Logout button event listener
+      logoutBtn.addEventListener("click", async () => {
+        try {
+          const response = await fetch('/logout', {
+            method: 'POST',
+            credentials: 'include'
+          });
+          if (response.ok) {
+            localStorage.removeItem("loggedIn");
+            alert("Logged out successfully!");
+            // Redirect to login page, matching membership logic:
+            window.location.href = "/non members/registration.html?tab=login";
+          } else {
+            alert("Logout failed.");
+          }
+        } catch (error) {
+          console.error("Error during logout:", error);
+        }
+      });
+
+      // ================== Dynamic Events Loading (Optional) ==================
+      // If your backend serves a JSON list of events at /api/events, we can load them here:
+      window.addEventListener("DOMContentLoaded", async () => {
+        try {
+          const response = await fetch("/api/events");
+          if (!response.ok) {
+            throw new Error("Failed to fetch events");
+          }
+          const eventsData = await response.json();
+          const eventsGrid = document.querySelector(".events-grid");
+          eventsGrid.innerHTML = "";
+          eventsData.forEach(event => {
+            const card = document.createElement("div");
+            card.className = "event-card";
+            card.setAttribute("data-category", event.category || "all");
+            card.innerHTML = `
+              <img src="${event.image_path}" alt="${event.title}" />
+              <div class="event-details">
+                <h2>${event.title}</h2>
+                <p><strong>Date:</strong> ${event.event_date}</p>
+                <p><strong>Location:</strong> ${event.location}</p>
+                <p>${event.description}</p>
+                <button class="event-btn" onclick="joinEvent(${event.event_id})">Join event</button>
+              </div>
+            `;
+            eventsGrid.appendChild(card);
+          });
+        } catch (error) {
+          console.error("Error fetching events:", error);
+        }
+      });
+    </script>
+    <!-- SESSION LOGIC SCRIPT (Commented out to avoid duplication/conflict) -->
+    <!--
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Elements in the header
+        const joinNowBtn = document.getElementById("joinNowBtn");
+        const userIconLink = document.getElementById("userIconLink");
+        const logoutBtn = document.getElementById("logoutBtn");
+
+        // Check if user is logged in
+        const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+
+        // Update UI based on login status:
+        if (isLoggedIn) {
+          joinNowBtn.style.display = "none";
+          logoutBtn.style.display = "inline-block";
+          userIconLink.href = "/Members/UserDashboard.html";
+        } else {
+          joinNowBtn.style.display = "inline-block";
+          logoutBtn.style.display = "none";
+          userIconLink.href = "/non members/registration.html?tab=login";
+        }
+
+        // Logout logic
+        logoutBtn.addEventListener("click", async () => {
+          try {
+            const response = await fetch("/logout", {
+              method: "POST",
+              credentials: "include"
+            });
+            if (response.ok) {
+              localStorage.removeItem("loggedIn");
+              alert("Logged out successfully!");
+              window.location.href = "/non members/registration.html?tab=login";
+            } else {
+              alert("Logout failed.");
+            }
+          } catch (error) {
+            console.error("Error during logout:", error);
+          }
+        });
+      });
+    </script>
+    -->
+  </body>
+</html>

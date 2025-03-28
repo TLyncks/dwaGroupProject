@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+  <head>
+    <link rel="stylesheet" href="admin.css" />
+    <link rel="stylesheet" href="lib/bootstrap.min.css" />
+    <link rel="stylesheet" href="lib/table-sortable.css" />
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/table-sortable.js"></script>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <header class="nav-header">
+        <div class="nav-image">
+          <img src="/frontend/images/TC_Logos-01.png" alt="Together Culture CAMBRIDGE" />
+        </div>
+      </header>
+      <div class="nav-links">
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="./member.html">Memberships</a></li>
+          <li><a href="/frontend/non members/contact-support.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="usr-panel">
+        <button href="#">Logout</button>
+        <img src="/frontend/images/GuestIcon.svg" alt="guest-profile-icon" />
+      </div>
+    </nav>
+
+    <main>
+      <div class="admin-container">
+        <h2 style="margin-top: 90px">Event Administration</h2>
+
+        <div class="member-actions">
+          <input type="text" class="input-text" placeholder="Search Event..." style="width: 30%" id="searchField" />
+          <input type="date" id="searchdate" class="date-picker" style="width: 25%" />
+          <input type="date" id="enddate" class="date-picker" style="width: 25%" />
+          <button class="btn" onclick="searchEvent()">Search</button>
+        </div>
+        <div id="table-sortable" class="table-sortable"></div>
+        <hr />
+        <div class="add-event">
+          <h3>Add New Event</h3>
+          <form id="add-event-form" enctype="multipart/form-data" method="post" name="add-event-form">
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Event Name:</label>
+              <div class="col-9">
+                <input type="text" class="form-control" id="title" placeholder="Event Name" name="title" required />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Event Image:</label>
+              <div class="col-9">
+                <input type="file" class="form-control" required accept="image/png, image/jpeg" name="file" />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-2 col-form-label" for="startDate">Event Start Date:</label>
+              <div class="col-3">
+                <input type="date" id="startDate" class="form-control" required name="start_date" />
+              </div>
+              <label class="col-2 col-form-label" for="endDate">Event End Date:</label>
+              <div class="col-3">
+                <input type="date" id="endDate" class="form-control" required name="end_date" />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label" for="startTime">Event Start Time:</label>
+              <div class="col-sm-3">
+                <select id="startTime" class="form-control" required name="start_time">
+                  <option value="00:00">12:00 AM</option>
+                  <option value="00:30">12:30 AM</option>
+                  <option value="01:00">1:00 AM</option>
+                  <option value="01:30">1:30 AM</option>
+                  <option value="02:00">2:00 AM</option>
+                  <option value="02:30">2:30 AM</option>
+                  <option value="03:00">3:00 AM</option>
+                  <option value="03:30">3:30 AM</option>
+                  <option value="04:00">4:00 AM</option>
+                  <option value="04:30">4:30 AM</option>
+                  <option value="05:00">5:00 AM</option>
+                  <option value="05:30">5:30 AM</option>
+                  <option value="06:00">6:00 AM</option>
+                  <option value="06:30">6:30 AM</option>
+                  <option value="07:00">7:00 AM</option>
+                  <option value="07:30">7:30 AM</option>
+                  <option value="08:00">8:00 AM</option>
+                  <option value="08:30">8:30 AM</option>
+                  <option value="09:00">9:00 AM</option>
+                  <option value="09:30">9:30 AM</option>
+                  <option value="10:00">10:00 AM</option>
+                  <option value="10:30">10:30 AM</option>
+                  <option value="11:00">11:00 AM</option>
+                  <option value="11:30">11:30 AM</option>
+                  <option value="12:00">12:00 PM</option>
+                  <option value="12:30">12:30 PM</option>
+                  <option value="13:00">1:00 PM</option>
+                  <option value="13:30">1:30 PM</option>
+                  <option value="14:00">2:00 PM</option>
+                  <option value="14:30">2:30 PM</option>
+                  <option value="15:00">3:00 PM</option>
+                  <option value="15:30">3:30 PM</option>
+                  <option value="16:00">4:00 PM</option>
+                  <option value="16:30">4:30 PM</option>
+                  <option value="17:00">5:00 PM</option>
+                  <option value="17:30">5:30 PM</option>
+                  <option value="18:00">6:00 PM</option>
+                  <option value="18:30">6:30 PM</option>
+                  <option value="19:00">7:00 PM</option>
+                  <option value="19:30">7:30 PM</option>
+                  <option value="20:00">8:00 PM</option>
+                  <option value="20:30">8:30 PM</option>
+                  <option value="21:00">9:00 PM</option>
+                  <option value="21:30">9:30 PM</option>
+                  <option value="22:00">10:00 PM</option>
+                  <option value="22:30">10:30 PM</option>
+                  <option value="23:00">11:00 PM</option>
+                  <option value="23:30">11:30 PM</option>
+                </select>
+              </div>
+              <label class="col-sm-2 col-form-label" for="endTime">Event End Time:</label>
+              <div class="col-sm-3">
+                <select id="endTime" class="form-control" required name="end_time">
+                  <option value="00:00">12:00 AM</option>
+                  <option value="00:30">12:30 AM</option>
+                  <option value="01:00">1:00 AM</option>
+                  <option value="01:30">1:30 AM</option>
+                  <option value="02:00">2:00 AM</option>
+                  <option value="02:30">2:30 AM</option>
+                  <option value="03:00">3:00 AM</option>
+                  <option value="03:30">3:30 AM</option>
+                  <option value="04:00">4:00 AM</option>
+                  <option value="04:30">4:30 AM</option>
+                  <option value="05:00">5:00 AM</option>
+                  <option value="05:30">5:30 AM</option>
+                  <option value="06:00">6:00 AM</option>
+                  <option value="06:30">6:30 AM</option>
+                  <option value="07:00">7:00 AM</option>
+                  <option value="07:30">7:30 AM</option>
+                  <option value="08:00">8:00 AM</option>
+                  <option value="08:30">8:30 AM</option>
+                  <option value="09:00">9:00 AM</option>
+                  <option value="09:30">9:30 AM</option>
+                  <option value="10:00">10:00 AM</option>
+                  <option value="10:30">10:30 AM</option>
+                  <option value="11:00">11:00 AM</option>
+                  <option value="11:30">11:30 AM</option>
+                  <option value="12:00">12:00 PM</option>
+                  <option value="12:30">12:30 PM</option>
+                  <option value="13:00">1:00 PM</option>
+                  <option value="13:30">1:30 PM</option>
+                  <option value="14:00">2:00 PM</option>
+                  <option value="14:30">2:30 PM</option>
+                  <option value="15:00">3:00 PM</option>
+                  <option value="15:30">3:30 PM</option>
+                  <option value="16:00">4:00 PM</option>
+                  <option value="16:30">4:30 PM</option>
+                  <option value="17:00">5:00 PM</option>
+                  <option value="17:30">5:30 PM</option>
+                  <option value="18:00">6:00 PM</option>
+                  <option value="18:30">6:30 PM</option>
+                  <option value="19:00">7:00 PM</option>
+                  <option value="19:30">7:30 PM</option>
+                  <option value="20:00">8:00 PM</option>
+                  <option value="20:30">8:30 PM</option>
+                  <option value="21:00">9:00 PM</option>
+                  <option value="21:30">9:30 PM</option>
+                  <option value="22:00">10:00 PM</option>
+                  <option value="22:30">10:30 PM</option>
+                  <option value="23:00">11:00 PM</option>
+                  <option value="23:30">11:30 PM</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label" for="startTime">Recurrence: </label>
+              <div class="col-sm-3">
+                <select id="recurrence" class="form-control" required name="recurrence">
+                  <option value="none">None</option>
+                  <option value="daily">Daily</option>
+                  <option value="weekly">Weekly</option>
+                  <option value="monthly">Monthly</option>
+                </select>
+              </div>
+              <label class="col-sm-2 col-form-label" for="endTime">Visibililty:</label>
+              <div class="col-sm-3">
+                <select id="visibility" class="form-control" name="visibility" required>
+                  <option value="public">Public</option>
+                  <option value="private">Private</option>
+                  <option value="members-only">Members-Only</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Event Description:</label>
+              <div class="col-9">
+                <textarea class="form-control" required name="description"></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3 mb-3 float-right">Add Event</button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="f-format">
+        <div class="f-list">
+          <div class="f-nav">
+            <h4>Navigation</h4>
+            <div>
+              <ul>
+                <li><a href="/frontend/index.html">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="f-logo">
+            <img src="/frontend/images/PLACEHOLDER.svg" />
+          </div>
+        </div>
+        <hr />
+        <div class="authors">
+          <h4>Authors:</h4>
+          <ul>
+            <li><a href="https://github.com/TLyncks">Tai Rose (SID: 2108618)</a></li>
+            <li><a href="https://github.com/mgoing">Malcom Going (SID: 2372291)</a></li>
+            <li><a href="https://github.com/AlessandroLaMendola">Alessandro La Mendola (SID: 2158059)</a></li>
+            <li><a href="https://github.com/yusufkose-aru">Yusuf Kose (SID: 2415327)</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      var columns = {
+        title: 'Title',
+        image_url: 'Image',
+        start_date: 'Start Date',
+        end_date: 'End Date',
+        start_time: 'Start Time',
+        end_time: 'End Time',
+        detail: 'Detail',
+        delete: 'Delete'
+      }
+
+      var table = $('#table-sortable').tableSortable({
+        data: [],
+        rowsPerPage: 5,
+        pagination: true,
+        formatCell: function (row, key) {
+          if (key === 'image_url') return $('<img></img>').attr('src', `http://localhost:5000/uploads/${row[key]}`).attr('style', 'width: 80px')
+          if (key === 'detail')
+            return $('<button></button>')
+              .attr('onclick', "window.location.href = 'event-detail.html?eventId=" + row.event_id + "'")
+              .addClass('btn')
+              .text('Detail')
+          if (key === 'delete')
+            return $('<button></button>')
+              .attr('onclick', 'deleteEvent(' + row.event_id + ')')
+              .addClass('btn')
+              .text('Delete')
+          return row[key]
+        }
+      })
+
+      function setData() {
+        $.get(`http://localhost:5000/events`, function (data) {
+          table.setData(
+            data.events.map((a) => ({ detail: 'Detail', delete: 'Delete', ...a })),
+            columns
+          )
+        })
+      }
+
+      setData()
+
+      $('#add-event-form').submit(function (e) {
+        e.preventDefault()
+        var formData = new FormData(this) // Create FormData object
+        $.ajax({
+          url: 'http://localhost:5000/events', // The URL where you want to send the POST request
+          type: 'POST',
+          data: formData,
+          processData: false, // Prevent jQuery from processing the data
+          contentType: false, // Let the browser set the correct content type
+          success: function (response) {
+            alert('Event added successfully!')
+            setData()
+          },
+          error: function (xhr, status, error) {
+            alert('An error occurred: ' + error)
+          }
+        })
+      })
+
+      function deleteEvent(eventId) {
+        if (confirm('Are you sure you want to delete this item?')) {
+          $.ajax({
+            url: 'http://localhost:5000/events/' + eventId,
+            type: 'DELETE',
+            success: function (response) {
+              alert('Event deleted successfully!')
+              setData()
+            },
+            error: function (xhr, status, error) {
+              alert('An error occurred: ' + error)
+            }
+          })
+        }
+      }
+    </script>
+  </body>
+</html>
