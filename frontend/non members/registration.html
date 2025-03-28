@@ -369,8 +369,8 @@
       }
 
       // ========== SESSION MANAGEMENT (FRONT-END EXAMPLE) ==========
-      // NOTE: Real sessions/cookies are managed server-side.
       // We'll store a simple "loggedIn" flag in localStorage for demonstration.
+      // Also store "userRole" to check if admin or not.
 
       const backendURL = window.location.port === '5000' ? '' : 'http://127.0.0.1:5000';
       const logoutBtn = document.getElementById("logoutBtn");
@@ -385,8 +385,13 @@
           joinNowBtn.style.display = "none";
           // Show logout button
           logoutBtn.style.display = "inline-block";
-          // If logged in, user icon goes to Dashboard
-          userIconLink.href = "/Members/UserDashboard.html";
+          // If logged in, user icon goes to Dashboard (or Admin if userRole=admin)
+          const userRole = localStorage.getItem("userRole");
+          if (userRole === "admin") {
+            userIconLink.href = "/admin/member.html";
+          } else {
+            userIconLink.href = "/Members/UserDashboard.html";
+          }
         } else {
           // Show "Join Now" button
           joinNowBtn.style.display = "inline-block";
@@ -455,9 +460,19 @@
           const data = await response.json();
 
           if (response.ok) {
+            // Mark user as logged in
             localStorage.setItem("loggedIn", "true");
-            alert("Login successful!");
-            window.location.href = "/Members/UserDashboard.html";
+
+            // Check if admin
+            if (data.role === "admin") {
+              localStorage.setItem("userRole", "admin");
+              alert("Hello admin!");
+              window.location.href = "/admin/member.html";
+            } else {
+              localStorage.setItem("userRole", "user");
+              alert("Login successful!");
+              window.location.href = "/Members/UserDashboard.html";
+            }
           } else {
             alert("Login failed: " + (data.error || "Unknown error"));
           }
@@ -468,7 +483,6 @@
       });
 
       // ========== LOGOUT BUTTON ==========
-
       logoutBtn.addEventListener("click", async () => {
         try {
           const response = await fetch(`${backendURL}/logout`, {
@@ -477,6 +491,7 @@
           });
           if (response.ok) {
             localStorage.removeItem("loggedIn");
+            localStorage.removeItem("userRole");
             alert("Logged out successfully!");
             updateUIBasedOnLogin();
             // Optionally redirect or reload

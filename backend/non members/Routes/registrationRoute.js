@@ -6,7 +6,5 @@ const registrationController = require('../Controllers/registrationController.js
 // Route for user signup
 router.post('/signup', registrationController.signup);
 
-// Route for user login
-router.post('/login', registrationController.login);
 
 module.exports = router;

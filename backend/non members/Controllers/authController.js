@@ -15,7 +15,7 @@ exports.login = async (req, res) => {
   }
 
   try {
-    // Check if user exists
+    // 1) Check if user exists
     const [rows] = await db.pool.query(
       'SELECT * FROM BaseUser WHERE userEmail = ?',
       [email]
@@ -26,20 +26,24 @@ exports.login = async (req, res) => {
 
     const user = rows[0];
 
-    // Compare the provided password with the hashed password
+    // 2) Compare the provided password with the hashed password
     const isMatch = await bcrypt.compare(password, user.password_hash);
     if (!isMatch) {
       return res.status(400).json({ error: 'Invalid credentials.' });
     }
 
-    // If valid, store user ID (or any relevant data) in session
+    // 3) If valid, store user ID & role in session
+    //    (Assuming you have a 'role' column in BaseUser with 'user' or 'admin')
     req.session.userId = user.id;
-    // You could also store role or other info: req.session.role = user.role;
+    req.session.role = user.role; // e.g. 'admin' or 'user'
+
+    // Determine the message based on role
+    const message = user.role === 'admin' ? 'Hello admin!' : 'Login successful!';
 
     return res.json({
-      message: 'Login successful!',
+      message: message,
       userId: user.id,
-      // role: user.role, // if you have a role column
+      role: user.role,  // so front-end knows if user is admin
     });
   } catch (error) {
     console.error('Login error:', error);
@@ -52,14 +56,13 @@ exports.login = async (req, res) => {
  * Logs a user out by destroying the session.
  */
 exports.logout = (req, res) => {
-  // Destroy the session
   req.session.destroy((err) => {
     if (err) {
       console.error('Logout error:', err);
       return res.status(500).json({ error: 'Could not log out.' });
     }
     // If you’re using cookies, you might also want to clear them:
-    // res.clearCookie('connect.sid'); // default cookie name for express-session
+    // res.clearCookie('connect.sid');
 
     return res.json({ message: 'Logged out successfully!' });
   });
