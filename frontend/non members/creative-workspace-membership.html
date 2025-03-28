@@ -4,9 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Creative Workspace Membership</title>
-    <!-- Global CSS -->
-    <link rel="stylesheet" href="/frontend/css/styles.css" />
-    <!-- Merged CSS for this page -->
+    <!-- Link to global CSS (served from root) -->
+    <link rel="stylesheet" href="/css/styles.css" />
     <style>
       /* ========== RESET & GLOBAL ========== */
       * {
@@ -15,8 +14,7 @@
         box-sizing: border-box;
         font-family: Arial, sans-serif;
       }
-
-      /* ========== NAVIGATION BAR ========== */
+      /* ========== HEADER (Unified Dropdown Header) ========== */
       .navbar {
         background-color: #fe1e3c;
         position: fixed;
@@ -30,16 +28,12 @@
         font-weight: 200;
         z-index: 1000;
       }
-
-      /* LEFT: LOGO */
       .nav-header img {
         height: 50px;
         width: auto;
       }
-
-      /* CENTER: NAV LINKS */
       .nav-links {
-        margin: 0 auto; /* centers the nav list */
+        margin: 0 auto;
       }
       .nav-links ul {
         list-style: none;
@@ -51,8 +45,6 @@
         color: #fff;
         font-size: 1rem;
       }
-
-      /* RIGHT: SIGN UP + ICONS */
       .usr-panel {
         display: flex;
         align-items: center;
@@ -73,8 +65,7 @@
         background: linear-gradient(to right, #ff4b2b, #ff416c);
         transform: scale(1.05);
       }
-
-      /* ========== DROPDOWN MENU ========== */
+      /* Dropdown Menu */
       .dropdown {
         position: relative;
       }
@@ -89,7 +80,7 @@
         min-width: 160px;
         border-radius: 8px;
         margin-top: 0.5rem;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         padding: 0.75rem 0;
         transform: translateY(-10px);
         transition: opacity 0.2s ease, transform 0.2s ease;
@@ -117,14 +108,13 @@
 
       /* ========== MAIN CONTENT: CREATIVE WORKSPACE MEMBERSHIP ========== */
       .membership-main {
-        margin-top: 80px; /* offset for fixed navbar */
+        margin-top: 80px;
         padding: 2rem;
         background: #fff;
         display: flex;
         justify-content: center;
         align-items: center;
       }
-
       .membership-layout {
         display: flex;
         justify-content: space-between;
@@ -133,7 +123,6 @@
         width: 100%;
         gap: 2rem;
       }
-
       /* LEFT: Info (Title & Subtitle) */
       .membership-info {
         flex: 1;
@@ -157,8 +146,7 @@
         text-transform: uppercase;
         line-height: 1.2;
       }
-
-      /* CENTER: RED CARD */
+      /* CENTER: Red Card */
       .membership-card {
         background-color: #d0021b;
         color: #fff;
@@ -194,8 +182,7 @@
         font-weight: bold;
         transform: translateX(-20px);
       }
-
-      /* RIGHT: COST & CTA */
+      /* RIGHT: Pricing & CTA */
       .membership-pricing {
         flex: 1;
         text-align: center;
@@ -301,55 +288,55 @@
     </style>
   </head>
   <body>
-    <!-- ========== HEADER (NEW DROPDOWN) ========== -->
+    <!-- HEADER -->
     <nav class="navbar">
-      <!-- Left: Logo -->
       <div class="nav-header">
-        <img
-          src="/frontend/images/TC_Logos-01.png"
-          alt="Together Culture Cambridge Logo"
-        />
+        <img src="/images/TC_Logos-01.png" alt="Together Culture Cambridge Logo" />
       </div>
-      <!-- Center: Nav Links with Dropdown -->
       <div class="nav-links">
         <ul>
-          <li><a href="#">About</a></li>
+          <li><a href="/index.html">About</a></li>
           <li class="dropdown">
             <a href="#">Memberships</a>
             <ul class="dropdown-menu">
-              <li><a href="#">Community</a></li>
-              <li><a href="#">Key Access</a></li>
-              <li><a href="#">Creative Workspace</a></li>
+              <li><a href="/non members/community-membership.html">Community</a></li>
+              <li><a href="/non members/key-access-membership.html">Key Access</a></li>
+              <li><a href="/non members/creative-workspace-membership.html">Creative Workspace</a></li>
+              <li><a href="/non members/non-member-page.html">Compare all Memberships</a></li>
             </ul>
           </li>
-          <li><a href="#">Events</a></li>
-          <li><a href="#">Contact us</a></li>
+          <li><a href="/non members/events.html">Events</a></li>
+          <li><a href="/non members/contact-support.html">Contact Us</a></li>
         </ul>
       </div>
-      <!-- Right: Sign Up & Icons -->
       <div class="usr-panel">
-        <button class="signup-btn">Sign Up</button>
-        <img src="/frontend/images/EmptyBag.svg" alt="empty-shopping-bag" />
-        <img src="/frontend/images/GuestIcon.svg" alt="guest-profile-icon" />
+        <!-- Join Now & User Icon: Visible if not logged in -->
+        <button class="signup-btn" id="joinNowBtn" onclick="location.href='/non members/registration.html?tab=signup'">
+          Join Now
+        </button>
+        <img src="/images/EmptyBag.svg" alt="empty-shopping-bag" />
+        <!-- Single user icon with dynamic link -->
+        <a id="userIconLink">
+          <img src="/images/GuestIcon.svg" alt="user-profile-icon" />
+        </a>
+        <!-- Logout Button (shown if logged in) -->
+        <button class="signup-btn" id="logoutBtn" style="display: none;">Logout</button>
       </div>
     </nav>
 
-    <!-- ========== MAIN CONTENT: CREATIVE WORKSPACE MEMBERSHIP ========== -->
+    <!-- MAIN CONTENT: CREATIVE WORKSPACE MEMBERSHIP -->
     <main class="membership-main">
       <section class="membership-section">
         <div class="membership-layout">
-          <!-- Left: Info -->
+          <!-- LEFT: Info -->
           <div class="membership-info">
             <h1>
               <span class="red-text">Creative Workspace</span>
               <span class="black-text">Membership</span>
             </h1>
-            <p class="subtitle">
-              TOGETHER CULTURE<br />
-              CAMBRIDGE
-            </p>
+            <p class="subtitle">Together Culture<br />CAMBRIDGE</p>
           </div>
-          <!-- Center: Red Card -->
+          <!-- CENTER: Red Card -->
           <div class="membership-card">
             <div class="membership-header">
               Apply to Become a Workspace Member
@@ -363,73 +350,83 @@
               </ul>
             </div>
           </div>
-          <!-- Right: Pricing & CTA -->
+          <!-- RIGHT: Pricing & CTA -->
           <div class="membership-pricing">
             <div class="price-card">
               <p class="price-title">Monthly Cost</p>
-              <p class="price-amount">£100 per month<br />+ £100 joining fee</p>
+              <p class="price-amount">
+                £100 per month<br />
+                + £100 joining fee
+              </p>
             </div>
-            <a href="#" class="cta-button">
+            <a href="/non members/member application.html" class="cta-button">
               Become a Creative Workspace Member
             </a>
           </div>
         </div>
-        <!-- Extra note about applying -->
-        <div class="apply-note">
-          <p>
-            In order to apply to become a workspace member, we will need you to
-            fill out a form to check eligibility. We will get back to you within
-            5 working days.
-          </p>
-        </div>
       </section>
     </main>
 
-    <!-- ========== FOOTER ========== -->
+    <!-- FOOTER -->
     <footer>
       <div class="f-format">
-        <div class="f-list">
-          <div class="f-nav">
-            <h4>Navigation</h4>
-            <ul>
-              <li><a href="/frontend/index.html">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Community Membership</a></li>
-              <li><a href="#">Contact</a></li>
-            </ul>
-          </div>
-          <div class="f-mem">
-            <h4>Memberships</h4>
-            <ul>
-              <li><a href="#">Community</a></li>
-              <li><a href="#">Key Access</a></li>
-              <li><a href="#">Creative Workspace</a></li>
-            </ul>
-          </div>
-          <div class="f-acc">
-            <h4>Account</h4>
-            <ul>
-              <li><a href="#">Login / Sign-up</a></li>
-              <li><a href="#">Account Dashboard</a></li>
-              <li><a href="#">My Membership</a></li>
-              <li><a href="#">Billing</a></li>
-            </ul>
-          </div>
-          <div class="f-support">
-            <h4>Support</h4>
-            <ul>
-              <li><a href="#">Contact Us</a></li>
-              <li><a href="#">Report Issue</a></li>
-            </ul>
-          </div>
-          <div class="f-logo">
-            <img
-              src="/frontend/images/PLACEHOLDER.svg"
-              alt="Placeholder Logo"
-            />
-          </div>
+        <div class="authors">
+          <h4>Authors:</h4>
+          <p>Tai Rose (SID: 2108618)</p>
+          <p>Malcom Going (SID: 2372291)</p>
+          <p>Alessandro La Mendola (SID: 2158059)</p>
+          <p>Yusuf Kose (SID: 2415327)</p>
         </div>
       </div>
     </footer>
+
+ <!-- SESSION LOGIC SCRIPT -->
+ <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Elements in the header
+    const joinNowBtn = document.getElementById("joinNowBtn");
+    const userIconLink = document.getElementById("userIconLink");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    // Check if user is logged in
+    const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+
+    // Update UI based on login status:
+    if (isLoggedIn) {
+      // Hide "Join Now" button
+      joinNowBtn.style.display = "none";
+      // Show logout button
+      logoutBtn.style.display = "inline-block";
+      // Set user icon link to dashboard if logged in
+      userIconLink.href = "/Members/UserDashboard.html";
+    } else {
+      // Show "Join Now" button
+      joinNowBtn.style.display = "inline-block";
+      // Hide logout button
+      logoutBtn.style.display = "none";
+      // Set user icon link to login page if not logged in
+      userIconLink.href = "/non members/registration.html?tab=login";
+    }
+
+    // Logout logic
+    logoutBtn.addEventListener("click", async () => {
+      try {
+        const response = await fetch("/logout", {
+          method: "POST",
+          credentials: "include"
+        });
+        if (response.ok) {
+          localStorage.removeItem("loggedIn");
+          alert("Logged out successfully!");
+          window.location.href = "/non members/registration.html?tab=login";
+        } else {
+          alert("Logout failed.");
+        }
+      } catch (error) {
+        console.error("Error during logout:", error);
+      }
+    });
+  });
+</script>
   </body>
 </html>

@@ -3,12 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Support</title>
-    <!-- Updated stylesheet link (served from root) -->
+    <title>Membership Application Form</title>
+
+    <!-- Link to global CSS file (served from root) -->
     <link rel="stylesheet" href="/css/styles.css" />
-    <!-- Merged CSS for header, contact support body, and footer -->
+
+    <!-- Inline (merged) CSS -->
     <style>
-      /* ========== RESET & GLOBAL ========== */
+      /* ========== BASIC RESET ========== */
       * {
         margin: 0;
         padding: 0;
@@ -81,7 +83,7 @@
         min-width: 160px;
         border-radius: 8px;
         margin-top: 0.5rem;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         padding: 0.75rem 0;
         transform: translateY(-10px);
         transition: opacity 0.2s ease, transform 0.2s ease;
@@ -106,17 +108,17 @@
         pointer-events: auto;
         transform: translateY(0);
       }
-      /* ========== CONTACT SUPPORT SECTION ========== */
-      .contact-main {
-        margin-top: 80px; /* offset for fixed header */
+      /* ========== APPLICATION FORM SECTION ========== */
+      .application-main {
+        margin-top: 80px; /* offset for navbar */
         padding: 3rem 2rem;
         background: #f4f4f9;
         display: flex;
         justify-content: center;
         align-items: center;
       }
-      .contact-container {
-        max-width: 800px;
+      .form-container {
+        max-width: 1250px;
         width: 100%;
         background: white;
         padding: 3rem;
@@ -125,26 +127,44 @@
         text-align: center;
         border-top: 6px solid #d0021b;
       }
-      .contact-container h1 {
+      .form-container h1 {
         font-size: 2.4rem;
         font-weight: bold;
         color: #222;
         margin-bottom: 0.5rem;
       }
-      .contact-container p {
+      .form-container p {
         font-size: 1.1rem;
         color: #666;
         margin-bottom: 2rem;
       }
+      .section-header {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #d0021b;
+        text-align: left;
+        margin-bottom: 1rem;
+      }
+      .form-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 2rem;
+        margin-bottom: 1.5rem;
+      }
       .form-group {
+        flex: 1;
         text-align: left;
         background: white;
-        padding: 1rem;
-        border-radius: 10px;
+        padding: 1.5rem;
+        border-radius: 12px;
         box-shadow: 0px 4px 10px rgba(0,0,0,0.12);
         border-left: 6px solid #d0021b;
-        margin-bottom: 1.5rem;
+        transition: 0.3s ease-in-out;
         position: relative;
+      }
+      .form-group:hover {
+        transform: translateY(-2px);
+        box-shadow: 0px 8px 15px rgba(0,0,0,0.2);
       }
       .form-group label {
         font-size: 1.1rem;
@@ -154,8 +174,8 @@
         color: #444;
       }
       .form-group input,
-      .form-group select,
-      .form-group textarea {
+      .form-group textarea,
+      .form-group select {
         width: 100%;
         padding: 14px;
         border: none;
@@ -169,10 +189,11 @@
       .form-group textarea {
         height: 120px;
         resize: vertical;
+        padding: 12px;
       }
       .form-group input:focus,
-      .form-group select:focus,
-      .form-group textarea:focus {
+      .form-group textarea:focus,
+      .form-group select:focus {
         background: white;
         box-shadow: 0px 4px 10px rgba(208,2,27,0.2);
       }
@@ -183,7 +204,7 @@
       .submit-container button {
         background: #d0021b;
         color: white;
-        font-size: 1.3rem;
+        font-size: 1.4rem;
         font-weight: bold;
         padding: 14px 30px;
         border: none;
@@ -195,19 +216,6 @@
         background: #a00015;
         transform: translateY(-3px);
         box-shadow: 0px 6px 12px rgba(208,2,27,0.3);
-      }
-      .support-info {
-        margin-top: 2rem;
-        font-size: 1.1rem;
-        color: #444;
-      }
-      .support-info a {
-        color: #d0021b;
-        font-weight: bold;
-        text-decoration: none;
-      }
-      .support-info a:hover {
-        text-decoration: underline;
       }
       /* ========== FOOTER ========== */
       footer {
@@ -253,27 +261,22 @@
       .f-acc a,
       .f-support a {
         text-decoration: none;
-        color: rgb(200,200,200);
+        color: rgb(200, 200, 200);
       }
       .f-logo img {
         width: 150px;
         height: auto;
       }
-      /* ========== RESPONSIVE ========== */
+      /* ========== RESPONSIVE FIXES ========== */
       @media (max-width: 1024px) {
-        .nav-links ul {
-          gap: 1rem;
+        .form-container {
+          max-width: 95%;
         }
-        .contact-main {
-          margin-top: 80px;
-          padding: 2rem;
-        }
-        .contact-container {
-          padding: 2rem;
-        }
-        .f-list {
+        .form-row {
           flex-direction: column;
-          align-items: center;
+        }
+        .form-group {
+          width: 100%;
         }
       }
     </style>
@@ -301,57 +304,76 @@
         </ul>
       </div>
       <div class="usr-panel">
-        <!-- Now has an ID -->
-        <button class="signup-btn" id="joinNowBtn" onclick="location.href='/non members/registration.html?tab=signup'">Join Now</button>
+        <!-- Dynamic header elements -->
+        <button class="signup-btn" id="joinNowBtn" onclick="location.href='/non members/registration.html?tab=signup'">
+          Join Now
+        </button>
         <img src="/images/EmptyBag.svg" alt="empty-shopping-bag" />
-        <!-- User icon link now has an ID -->
+        <!-- Single user icon with dynamic link -->
         <a id="userIconLink" href="/non members/registration.html?tab=login">
-          <img src="/images/GuestIcon.svg" alt="guest-profile-icon" />
+          <img src="/images/GuestIcon.svg" alt="user-profile-icon" />
         </a>
-        <!-- Logout Button added here, initially hidden -->
+        <!-- Logout Button (shown if logged in) -->
         <button class="signup-btn" id="logoutBtn" style="display: none;">Logout</button>
       </div>
     </nav>
 
-    <!-- MAIN CONTENT: CONTACT SUPPORT -->
-    <main class="contact-main">
-      <div class="contact-container">
-        <h1>Contact Support</h1>
-        <p>If you're experiencing an issue, let us know and we'll assist you as soon as possible.</p>
-        <form id="contactForm">
-          <div class="form-group">
-            <label>Full Name</label>
-            <input type="text" name="fullName" placeholder="Enter your full name" required />
+    <!-- MAIN CONTENT: APPLICATION FORM -->
+    <main class="application-main">
+      <div class="form-container">
+        <h1>Membership Application Form</h1>
+        <p>Tell us about how you'd like to use your Membership</p>
+        <form id="applicationForm">
+          <!-- Basic Information -->
+          <div class="section-header">Basic Information</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">Name</label>
+              <input type="text" id="firstName" name="firstName" placeholder="Enter your name" required />
+            </div>
+            <div class="form-group">
+              <label for="lastName">Surname</label>
+              <input type="text" id="lastName" name="lastName" placeholder="Enter your surname" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="Enter your email" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone number</label>
+              <input type="tel" id="phone" name="phone" placeholder="Enter phone number" required />
+            </div>
           </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" name="email" placeholder="Enter your email" required />
-          </div>
-          <div class="form-group">
-            <label>Issue Type</label>
-            <select name="issueType" required>
-              <option value="">Select an issue...</option>
-              <option value="billing">Billing Issue</option>
-              <option value="membership">Membership Problem</option>
-              <option value="technical">Technical Issue</option>
-              <option value="free_membership">Request Free Membership</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Describe Your Issue</label>
-            <textarea name="description" placeholder="Provide details about your issue..." required></textarea>
+          <!-- Additional Information -->
+          <div class="section-header">Additional Information</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="membershipType">Membership Type</label>
+              <select id="membershipType" name="membershipType" required>
+                <option value="">Select a membership...</option>
+                <option value="community">Community</option>
+                <option value="key_access">Key Access</option>
+                <option value="creative_workspace">Creative Workspace</option>
+                <option value="pay_what_you_can">Pay what you can</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="reason">Why?</label>
+              <textarea id="reason" name="reason" placeholder="Explain why you need this membership..." required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="participated">Have you ever participated in cultural events?</label>
+              <textarea id="participated" name="participated" placeholder="Type here..." required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="heardAbout">How did you hear about us?</label>
+              <textarea id="heardAbout" name="heardAbout" placeholder="Type here..." required></textarea>
+            </div>
           </div>
           <div class="submit-container">
-            <button type="submit">Submit Request</button>
+            <button type="submit" id="submitApplication">Submit Application</button>
           </div>
         </form>
-        <div class="support-info">
-          <p>
-            <strong>Need immediate help?</strong> Contact us via email at
-            <a href="mailto:support@togetherculture.com">support@togetherculture.com</a>
-          </p>
-        </div>
       </div>
     </main>
 
@@ -370,66 +392,93 @@
 
     <!-- JavaScript for form submission handling -->
     <script>
-      document.getElementById("contactForm").addEventListener("submit", async function(event) {
-        event.preventDefault();
+      document.getElementById("applicationForm").addEventListener("submit", async function(event) {
+        event.preventDefault(); // Prevent default form submission
 
-        // Gather form data using name attributes
-        const fullName = event.target.fullName.value;
-        const email = event.target.email.value;
-        const issueType = event.target.issueType.value;
-        const description = event.target.description.value;
+        // Collect the form values by ID
+        const firstName = document.getElementById("firstName").value.trim();
+        const lastName = document.getElementById("lastName").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const membershipType = document.getElementById("membershipType").value;
+        const reason = document.getElementById("reason").value.trim();
+        const participated = document.getElementById("participated").value.trim();
+        const heardAbout = document.getElementById("heardAbout").value.trim();
+
+        // Basic validation
+        if (!firstName || !lastName || !email || !phone || !membershipType || !reason || !participated || !heardAbout) {
+          alert("Please fill in all the fields.");
+          return;
+        }
 
         try {
-          const response = await fetch('/api/support', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ fullName, email, issueType, description })
+          // Make a POST request to your server's /apply endpoint
+          const response = await fetch("http://127.0.0.1:5000/apply", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              firstName,
+              lastName,
+              email,
+              phone,
+              membershipType,
+              reason,
+              participated,
+              heardAbout
+            })
           });
-          
-          const result = await response.json();
 
-          if (response.ok && result.success) {
-            alert("Your support request has been submitted successfully!");
-            window.location.href = "/index.html"; // Redirect if needed
+          const data = await response.text();
+          if (response.ok) {
+            alert("Application submitted successfully!");
+            // Redirect after submission; adjust as needed
+            window.location.href = "/index.html";
           } else {
-            alert("Error: " + (result.error || "Failed to submit support request."));
+            alert("Submission failed: " + data);
           }
         } catch (error) {
-          console.error("Submission error:", error);
-          alert("An error occurred while submitting your support request.");
+          alert("Error: Could not connect to the server.");
+          console.error("Error:", error);
         }
       });
     </script>
+
     <!-- SESSION LOGIC SCRIPT -->
     <script>
-      (function() {
+      document.addEventListener("DOMContentLoaded", () => {
+        // Debug: log that the session script is running
+        console.log("Session logic script running on Membership Application Form page");
+
         // Elements in the header
         const joinNowBtn = document.getElementById("joinNowBtn");
         const userIconLink = document.getElementById("userIconLink");
         const logoutBtn = document.getElementById("logoutBtn");
 
-        // Check if user is logged in
+        if (!joinNowBtn || !userIconLink || !logoutBtn) {
+          console.error("One or more header elements were not found!");
+          return;
+        }
+
+        // Check if user is logged in (this should be "true" if logged in)
         const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+        console.log("isLoggedIn:", isLoggedIn);
 
         // Update UI based on login status:
         if (isLoggedIn) {
-          // Hide "Join Now" button
           joinNowBtn.style.display = "none";
-          // Show logout button
           logoutBtn.style.display = "inline-block";
-          // Set user icon link to dashboard if logged in
           userIconLink.href = "/Members/UserDashboard.html";
+          console.log("User is logged in: updating header to show logout and dashboard link.");
         } else {
-          // Show "Join Now" button
           joinNowBtn.style.display = "inline-block";
-          // Hide logout button
           logoutBtn.style.display = "none";
-          // Set user icon link to login page if not logged in
           userIconLink.href = "/non members/registration.html?tab=login";
+          console.log("User is NOT logged in: updating header to show join now and login link.");
         }
 
         // Logout logic
         logoutBtn.addEventListener("click", async () => {
+          console.log("Logout button clicked.");
           try {
             const response = await fetch("/logout", {
               method: "POST",
@@ -438,16 +487,17 @@
             if (response.ok) {
               localStorage.removeItem("loggedIn");
               alert("Logged out successfully!");
-              // Redirect to login page after logout
               window.location.href = "/non members/registration.html?tab=login";
+              console.log("Logout successful, redirecting to login page.");
             } else {
               alert("Logout failed.");
+              console.error("Logout failed. Response status:", response.status);
             }
           } catch (error) {
             console.error("Error during logout:", error);
           }
         });
-      })();
+      });
     </script>
   </body>
 </html>

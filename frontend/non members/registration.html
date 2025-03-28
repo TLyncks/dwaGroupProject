@@ -3,260 +3,506 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Registration</title>
-
-
-    <!-- Link your global CSS if any -->
-    <link rel="stylesheet" href="..\css\styles.css" />
-    
-
-    <link rel="stylesheet" href="..\header.css" />
-
-
-  </head>
-
-
-
-  <style>
-    body {
-        font-family: Arial, sans-serif;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background: linear-gradient(rgb(221, 221, 221), rgb(182, 182, 182));
+    <title>Sign Up / Log In | Together Culture</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <style>
+      /* ========== RESET & GLOBAL ========== */
+      * {
         margin: 0;
         padding: 0;
-    }
-
-    .content {
-        text-align: center;
-        margin-top: 100px;
-        width: 80%;
-    }
-
-    .container {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+      html, body {
+        height: 100%;
+      }
+      body {
         display: flex;
-       
-        justify-content: space-between;
-        align-items: flex-start;
-        gap: 10px;
-        margin-top: 30px;
-        width: 80%;
-    }
+        flex-direction: column;
+      }
 
-
-    .registration-container {
-        flex: 1;
-        max-width: 400px;
-        padding: 20px;
-        border: 2px solid red;
-        border-radius: 10px;
-        background-color: white;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .membership-column{
-        display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-    width: 40%;
-    }
-
-    .form-group {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 15px;
-    }
-
-    label {
-        flex: 1;
-        text-align: left;
-        padding-right: 10px;
-    }
-
-    input, textarea {
-        flex: 2;
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-
-    button {
+      /* ========== HEADER ========== */
+      .navbar {
+        background-color: #fe1e3c;
+        position: fixed;
+        top: 0;
+        left: 0;
         width: 100%;
-        padding: 10px;
-        background-color: red;
-        color: white;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        font-weight: 200;
+        z-index: 1000;
+      }
+      .nav-header img {
+        height: 50px;
+        width: auto;
+      }
+      .nav-links {
+        margin: 0 auto;
+      }
+      .nav-links ul {
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 1rem;
+      }
+      .usr-panel {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .signup-btn {
+        background: linear-gradient(to right, #ff416c, #ff4b2b);
+        color: #fff;
         border: none;
-        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 25px;
         cursor: pointer;
-    }
+        transition: 0.3s ease-in-out;
+      }
+      .signup-btn:hover {
+        background: linear-gradient(to right, #ff4b2b, #ff416c);
+        transform: scale(1.05);
+      }
+      /* Dropdown Menu */
+      .dropdown {
+        position: relative;
+      }
+      .dropdown-menu {
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #fff;
+        min-width: 160px;
+        border-radius: 8px;
+        margin-top: 0.5rem;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        padding: 0.75rem 0;
+        transform: translateY(-10px);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+      .dropdown-menu li {
+        list-style: none;
+      }
+      .dropdown-menu li a {
+        display: block;
+        padding: 0.5rem 1rem;
+        color: #333;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: background-color 0.2s ease;
+      }
+      .dropdown-menu li a:hover {
+        background-color: #f2f2f2;
+      }
+      .dropdown:hover .dropdown-menu {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
 
-    button:hover {
-        background-color: darkred;
-    }
+      /* ========== MAIN CONTENT: REGISTRATION ========== */
+      .auth-main {
+        margin-top: 100px; /* offset for fixed header */
+        padding: 3rem 2rem;
+        background: #f4f4f9;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .auth-container {
+        max-width: 600px;
+        width: 100%;
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+        text-align: center;
+        border-top: 6px solid #d0021b;
+      }
+      .auth-container h1 {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #222;
+        margin-bottom: 1.5rem;
+      }
+      .auth-container p {
+        margin-bottom: 2rem;
+      }
+      .toggle-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+      .toggle-btn {
+        background: #d0021b;
+        color: white;
+        font-size: 1rem;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .toggle-btn:hover,
+      .toggle-btn.active {
+        background: #a00015;
+      }
+      .form-group {
+        text-align: left;
+        margin-bottom: 1rem;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #333;
+      }
+      .form-group input {
+        width: 100%;
+        padding: 0.75rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+      }
+      .submit-btn {
+        background: #d0021b;
+        color: white;
+        font-size: 1rem;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .submit-btn:hover {
+        background: #a00015;
+      }
+      .auth-form {
+        display: none;
+      }
 
-    .membership-info {
-    width: 400px;
-    padding: 20px;
-    border: 2px solid red;
-    border-radius: 10px;
-    flex-direction: column;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-    color: black; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    height: 200px; 
-}
+      /* ========== FOOTER ========== */
+      footer {
+        background-color: #0f0f0f;
+        color: whitesmoke;
+        font-size: small;
+        font-weight: 200;
+        padding: 40px 0;
+        margin-top: auto;
+      }
+      .f-format {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .authors {
+        text-align: center;
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+      .authors h4 {
+        margin-bottom: 1rem;
+      }
 
-.membership-info p {
-    display: inline;
-    background: white;
-    padding: 2px 5px;
-    border-radius: 3px;
-}
-
-.membership-one{
-    background: url('../images/threeGirlsLaptop.jpg') center/cover no-repeat;
-}
-.membership-two{
-    background: url('../images/customerSupport.jpg') center/cover no-repeat;
-}
-
-
-</style>
-
-<body>
-  
-    <!-- Navigation Bar -->
+      /* ========== RESPONSIVE ========== */
+      @media (max-width: 1024px) {
+        .nav-links ul {
+          gap: 1rem;
+        }
+        .auth-container {
+          padding: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ========== HEADER ========== -->
     <nav class="navbar">
       <!-- Left: Logo -->
       <div class="nav-header">
-        <img
-          src="../images/TC_Logos-01.png"
-          alt="Together Culture Cambridge Logo"
-        />
+        <img src="/images/TC_Logos-01.png" alt="Together Culture Cambridge Logo" />
       </div>
-
-      <!-- Center: Nav Links -->
+      <!-- Center: Nav Links with Dropdown -->
       <div class="nav-links">
         <ul>
-          <li><a href="#">About</a></li>
-
-          <!-- Only show sub-menu on direct hover over "Memberships" item -->
+          <li><a href="/index.html">About</a></li>
           <li class="dropdown">
-            <a href="community-membership.html">Memberships</a>
+            <a href="#">Memberships</a>
             <ul class="dropdown-menu">
-              <li><a href="#">Community</a></li>
-              <li><a href="key-access-membership.html">Key Access</a></li>
-              <li><a href="workspace-application.html">Creative Workspace</a></li>
+              <li><a href="/non members/community-membership.html">Community</a></li>
+              <li><a href="/non members/key-access-membership.html">Key Access</a></li>
+              <li><a href="/non members/creative-workspace-membership.html">Creative Workspace</a></li>
+              <li><a href="/non members/non-member-page.html">Compare all Memberships</a></li>
             </ul>
           </li>
-
-          <li><a href="contact-support.html">Contact Us</a></li>
-          <li><a href="events.html">Events</a></li>
+          <li><a href="/non members/events.html">Events</a></li>
+          <li><a href="/non members/contact-support.html">Contact Us</a></li>
         </ul>
       </div>
-
-      <!-- Right: Sign Up + Icons -->
+      <!-- Right: User Panel -->
       <div class="usr-panel">
-        <button class="signup-btn">Sign Up</button>
-        <img src="../images/EmptyBag.svg" alt="Shopping Bag Icon" />
-        <img src="../images/GuestIcon.svg" alt="Guest Profile Icon" />
+        <!-- Show "Join Now" by default, hide if logged in -->
+        <button class="signup-btn" id="joinNowBtn">Join Now</button>
+
+        <!-- Shopping bag always visible -->
+        <img src="/images/EmptyBag.svg" alt="empty-shopping-bag" />
+
+        <!-- Single user icon that changes destination depending on login state -->
+        <a id="userIconLink">
+          <img src="/images/GuestIcon.svg" alt="user-profile-icon" />
+        </a>
+
+        <!-- Logout button (hidden if not logged in) -->
+        <button class="signup-btn" id="logoutBtn" style="display: none;">Logout</button>
       </div>
     </nav>
 
+    <!-- ========== MAIN CONTENT: REGISTRATION ========== -->
+    <main class="auth-main">
+      <div class="auth-container">
+        <h1>Welcome to Together Culture</h1>
+        <p>Please choose an option below to continue.</p>
 
-
-
-
-
-    <div class="content">
-        <h1>Welcome Back!</h1>
-        <p>fwagebwrbea</p>
-    </div>
-
-<div class = "container">
-    <div class="registration-container">
-        <h2>Application Form</h2>
-        <form id = "registration-form">
-            <div class="form-group">
-                <label for="fullname">Full Name:</label>
-                <input type="text" id="fullname" name="fullname" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div class="form-group">
-                <label for="confirm-password">Confirm Password:</label>
-                <input type="password" id="confirm-password" name="confirm-password" required>
-            </div>
-            <div class="form-group">
-                <label for="address">Address:</label>
-                <input type="text" id="address" name="address" required>
-            </div>
-            <div class="form-group">
-                <label for="phone">Phone:</label>
-                <input type="tel" id="phone" name="phone" required>
-            </div>
-            <div class="form-group">
-                <label for="reason">Why are you Joining?</label>
-                <textarea id="reason" name="reason" rows="3" required></textarea>
-            </div>
-            <button type="submit">Submit</button>
-         </form>
+        <!-- Toggle Buttons -->
+        <div class="toggle-buttons">
+          <button class="toggle-btn" id="signUpBtn">Sign Up</button>
+          <button class="toggle-btn" id="loginBtn">Log In</button>
         </div>
-    
 
-        <div class=" membership-column">
-            <div class = "membership-info membership-one">
-                <p>Memberships applications are reviewed by our team. We will contact you in 1-2 weeks with your status.</p>
-            
-            </div>
+        <!-- Sign Up Form -->
+        <form class="auth-form" id="signUpForm">
+          <div class="form-group">
+            <label for="signup-name">Full Name</label>
+            <input type="text" id="signup-name" name="fullName" placeholder="Your Name" required />
+          </div>
+          <div class="form-group">
+            <label for="signup-email">Email Address</label>
+            <input type="email" id="signup-email" name="email" placeholder="example@domain.com" required />
+          </div>
+          <div class="form-group">
+            <label for="signup-phone">Phone Number</label>
+            <input type="tel" id="signup-phone" name="phone" placeholder="123-456-7890" required />
+          </div>
+          <div class="form-group">
+            <label for="signup-password">Password</label>
+            <input type="password" id="signup-password" name="password" placeholder="Password" required />
+          </div>
+          <div class="form-group">
+            <label for="signup-confirm">Confirm Password</label>
+            <input type="password" id="signup-confirm" name="confirmPassword" placeholder="Confirm Password" required />
+          </div>
+          <button type="submit" class="submit-btn">Sign Up</button>
+        </form>
 
+        <!-- Log In Form -->
+        <form class="auth-form" id="loginForm">
+          <div class="form-group">
+            <label for="login-email">Email Address</label>
+            <input type="email" id="login-email" name="email" placeholder="example@domain.com" required />
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" name="password" placeholder="Password" required />
+          </div>
+          <button type="submit" class="submit-btn">Log In</button>
+        </form>
+      </div>
+    </main>
 
-            <div class = "membership-info membership-two">
-                <p>Need Help?</p>
-                <a href = "contact-support.html">
-                <button type = "menu">Contact Us!</button>
-                </a>
-            </div>
-
+    <!-- ========== FOOTER ========== -->
+    <footer>
+      <div class="f-format">
+        <div class="authors">
+          <h4>Authors:</h4>
+          <p>Tai Rose (SID: 2108618)</p>
+          <p>Malcom Going (SID: 2372291)</p>
+          <p>Alessandro La Mendola (SID: 2158059)</p>
+          <p>Yusuf Kose (SID: 2415327)</p>
         </div>
-    </div>
+      </div>
+    </footer>
 
+    <!-- ========== SCRIPTS ========== -->
+    <script>
+      // ========== SHOW/HIDE FORMS ==========
+      const signUpBtn = document.getElementById("signUpBtn");
+      const loginBtn = document.getElementById("loginBtn");
+      const signUpForm = document.getElementById("signUpForm");
+      const loginForm = document.getElementById("loginForm");
 
+      function showSignUp() {
+        signUpBtn.classList.add("active");
+        loginBtn.classList.remove("active");
+        signUpForm.style.display = "block";
+        loginForm.style.display = "none";
+      }
+      function showLogin() {
+        loginBtn.classList.add("active");
+        signUpBtn.classList.remove("active");
+        loginForm.style.display = "block";
+        signUpForm.style.display = "none";
+      }
 
-  
+      signUpBtn.addEventListener("click", showSignUp);
+      loginBtn.addEventListener("click", showLogin);
 
+      // Check URL ?tab=login to display login form directly
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get("tab") === "login") {
+        showLogin();
+      } else {
+        showSignUp();
+      }
 
+      // ========== SESSION MANAGEMENT (FRONT-END EXAMPLE) ==========
+      // We'll store a simple "loggedIn" flag in localStorage for demonstration.
+      // Also store "userRole" to check if admin or not.
 
-</body>
+      const backendURL = window.location.port === '5000' ? '' : 'http://127.0.0.1:5000';
+      const logoutBtn = document.getElementById("logoutBtn");
+      const joinNowBtn = document.getElementById("joinNowBtn");
+      const userIconLink = document.getElementById("userIconLink");
 
-  <footer>
-    <div class="f-format">
-        <div class="f-list">
-            <div class="f-nav">
-                <h4>Navigation</h4>
-                <ul>
-                    <li><a href="/frontend/index.html">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="community-membership.html">Memberships</a></li>
-                    <li><a href="/contact-support.html">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer>
-  <script src= "registration.js"> </script> 
+      function updateUIBasedOnLogin() {
+        const isLoggedIn = localStorage.getItem("loggedIn") === "true";
 
+        if (isLoggedIn) {
+          // Hide "Join Now" button
+          joinNowBtn.style.display = "none";
+          // Show logout button
+          logoutBtn.style.display = "inline-block";
+          // If logged in, user icon goes to Dashboard (or Admin if userRole=admin)
+          const userRole = localStorage.getItem("userRole");
+          if (userRole === "admin") {
+            userIconLink.href = "/admin/member.html";
+          } else {
+            userIconLink.href = "/Members/UserDashboard.html";
+          }
+        } else {
+          // Show "Join Now" button
+          joinNowBtn.style.display = "inline-block";
+          // Hide logout button
+          logoutBtn.style.display = "none";
+          // If not logged in, user icon goes to login page
+          userIconLink.href = "/non members/registration.html?tab=login";
+        }
+      }
+      updateUIBasedOnLogin();
 
+      // ========== SIGN UP FORM SUBMIT ==========
+      signUpForm.addEventListener("submit", async function(event) {
+        event.preventDefault();
+        const fullName = document.getElementById("signup-name").value.trim();
+        const email = document.getElementById("signup-email").value.trim();
+        const phone = document.getElementById("signup-phone").value.trim();
+        const password = document.getElementById("signup-password").value;
+        const confirmPassword = document.getElementById("signup-confirm").value;
+
+        if (!fullName || !email || !phone || !password || !confirmPassword) {
+          alert("All fields are required.");
+          return;
+        }
+        if (password !== confirmPassword) {
+          alert("Passwords do not match!");
+          return;
+        }
+
+        try {
+          const response = await fetch(`${backendURL}/signup`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ fullName, email, phone, password })
+          });
+          const data = await response.text();
+          if (response.ok) {
+            alert("Signup successful! You can now log in.");
+            window.location.href = "registration.html?tab=login";
+          } else {
+            alert("Signup failed: " + data);
+          }
+        } catch (error) {
+          alert("Error: Could not connect to the server.");
+          console.error("Error:", error);
+        }
+      });
+
+      // ========== LOG IN FORM SUBMIT ==========
+      loginForm.addEventListener("submit", async function(event) {
+        event.preventDefault();
+        const email = document.getElementById("login-email").value.trim();
+        const password = document.getElementById("login-password").value;
+        if (!email || !password) {
+          alert("Both fields are required.");
+          return;
+        }
+
+        try {
+          const response = await fetch(`${backendURL}/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include", // Ensures session cookie is sent
+            body: JSON.stringify({ email, password })
+          });
+          const data = await response.json();
+
+          if (response.ok) {
+            // Mark user as logged in
+            localStorage.setItem("loggedIn", "true");
+
+            // Check if admin
+            if (data.role === "admin") {
+              localStorage.setItem("userRole", "admin");
+              alert("Hello admin!");
+              window.location.href = "/admin/member.html";
+            } else {
+              localStorage.setItem("userRole", "user");
+              alert("Login successful!");
+              window.location.href = "/Members/UserDashboard.html";
+            }
+          } else {
+            alert("Login failed: " + (data.error || "Unknown error"));
+          }
+        } catch (error) {
+          alert("Error: Could not connect to the server.");
+          console.error("Error:", error);
+        }
+      });
+
+      // ========== LOGOUT BUTTON ==========
+      logoutBtn.addEventListener("click", async () => {
+        try {
+          const response = await fetch(`${backendURL}/logout`, {
+            method: "POST",
+            credentials: "include" // Ensures session cookie is sent
+          });
+          if (response.ok) {
+            localStorage.removeItem("loggedIn");
+            localStorage.removeItem("userRole");
+            alert("Logged out successfully!");
+            updateUIBasedOnLogin();
+            // Optionally redirect or reload
+            window.location.href = "/non members/registration.html?tab=login";
+          } else {
+            alert("Logout failed.");
+          }
+        } catch (error) {
+          console.error("Error logging out:", error);
+        }
+      });
+    </script>
+  </body>
 </html>

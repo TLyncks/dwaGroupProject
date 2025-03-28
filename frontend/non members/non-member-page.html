@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>All Memberships</title>
 
-    <!-- Link to global CSS file -->
-    <link rel="stylesheet" href="/frontend/css/styles.css" />
-
-    <!-- Page-specific / merged CSS -->
+    <link rel="stylesheet" href="/css/styles.css" />
     <style>
       /* ========== BASIC RESET ========== */
       * {
@@ -17,7 +14,6 @@
         box-sizing: border-box;
         font-family: Arial, sans-serif;
       }
-
       /* ========== NAVBAR CONTAINER ========== */
       .navbar {
         background-color: #fe1e3c;
@@ -32,16 +28,12 @@
         font-weight: 200;
         z-index: 1000;
       }
-
-      /* LEFT: LOGO */
       .nav-header img {
         height: 50px;
         width: auto;
       }
-
-      /* CENTER: NAV LINKS */
       .nav-links {
-        margin: 0 auto; /* center the nav list */
+        margin: 0 auto;
       }
       .nav-links ul {
         list-style: none;
@@ -53,15 +45,11 @@
         color: #fff;
         font-size: 1rem;
       }
-
-      /* RIGHT: SIGN UP + ICONS */
       .usr-panel {
         display: flex;
         align-items: center;
         gap: 1rem;
       }
-
-      /* SIGNUP BUTTON (GRADIENT) */
       .signup-btn {
         background: linear-gradient(to right, #ff416c, #ff4b2b);
         color: #fff;
@@ -77,7 +65,6 @@
         background: linear-gradient(to right, #ff4b2b, #ff416c);
         transform: scale(1.05);
       }
-
       /* ========== DROPDOWN MENU ========== */
       .dropdown {
         position: relative;
@@ -112,17 +99,15 @@
       .dropdown-menu li a:hover {
         background-color: #f2f2f2;
       }
-      /* Show sub-menu ONLY on hover of .dropdown */
       .dropdown:hover .dropdown-menu {
         visibility: visible;
         opacity: 1;
         pointer-events: auto;
         transform: translateY(0);
       }
-
       /* ========== MAIN CONTENT (MEMBERSHIPS) ========== */
       .all-memberships-main {
-        margin-top: 80px; /* offset for navbar height */
+        margin-top: 80px;
         padding: 2rem;
         background: #fff;
       }
@@ -137,8 +122,6 @@
         margin: 0 auto;
         gap: 2rem;
       }
-
-      /* LEFT INFO (BIG TITLE) */
       .left-info {
         flex: 1;
       }
@@ -160,8 +143,6 @@
         text-transform: uppercase;
         line-height: 1.2;
       }
-
-      /* MIDDLE RED CARD */
       .membership-card {
         background-color: #d0021b;
         color: #fff;
@@ -190,15 +171,13 @@
         font-size: 1rem;
       }
       .membership-benefits li::before {
-        content: \"> \";
+        content: "> ";
         position: absolute;
         left: 0;
         color: #fff;
         font-weight: bold;
         transform: translateX(-20px);
       }
-
-      /* RIGHT COST & CTA */
       .membership-cost {
         flex: 1;
         text-align: center;
@@ -234,8 +213,6 @@
       .cta-button:hover {
         background-color: #555;
       }
-
-      /* Extra note for workspace membership */
       .apply-note {
         max-width: 1200px;
         margin: 1rem auto 0 auto;
@@ -244,8 +221,6 @@
         font-size: 1rem;
         font-style: italic;
       }
-
-      /* Hardship Notice + Free Membership Button */
       .hardship-notice {
         max-width: 1200px;
         margin: 2rem auto;
@@ -274,8 +249,6 @@
       .free-membership-btn:hover {
         background-color: #555;
       }
-
-      /* FOOTER layout */
       footer {
         background-color: #0f0f0f;
         color: whitesmoke;
@@ -325,8 +298,6 @@
         height: auto;
         width: 150px;
       }
-
-      /* RESPONSIVE ADJUSTMENTS */
       @media (max-width: 1024px) {
         .membership-layout {
           flex-direction: column;
@@ -349,37 +320,42 @@
     <nav class="navbar">
       <!-- Left: Logo -->
       <div class="nav-header">
-        <img
-          src="/frontend/images/TC_Logos-01.png"
-          alt="Together Culture Cambridge Logo"
-        />
+        <img src="/images/TC_Logos-01.png" alt="Together Culture Cambridge Logo" />
       </div>
 
       <!-- Center: Nav Links -->
       <div class="nav-links">
         <ul>
-          <li><a href="#">About</a></li>
-
-          <!-- Only show sub-menu on direct hover over "Memberships" item -->
+          <li><a href="/index.html">About</a></li>
           <li class="dropdown">
             <a href="#">Memberships</a>
             <ul class="dropdown-menu">
-              <li><a href="#">Community</a></li>
-              <li><a href="#">Key Access</a></li>
-              <li><a href="#">Creative Workspace</a></li>
+              <li><a href="/non members/community-membership.html">Community</a></li>
+              <li><a href="/non members/key-access-membership.html">Key Access</a></li>
+              <li><a href="/non members/creative-workspace-membership.html">Creative Workspace</a></li>
+              <li><a href="/non members/non-member-page.html">Compare all Memberships</a></li>
             </ul>
           </li>
-
-          <li><a href="#">Events</a></li>
-          <li><a href="#">Contact us</a></li>
+          <li><a href="/non members/events.html">Events</a></li>
+          <li><a href="/non members/contact-support.html">Contact Us</a></li>
         </ul>
       </div>
 
       <!-- Right: Sign Up + Icons -->
       <div class="usr-panel">
-        <button class="signup-btn">Sign Up</button>
-        <img src="/frontend/images/EmptyBag.svg" alt="Shopping Bag Icon" />
-        <img src="/frontend/images/GuestIcon.svg" alt="Guest Profile Icon" />
+        <!-- Add ID here so script can find it -->
+        <button class="signup-btn" id="joinNowBtn" onclick="location.href='/non members/registration.html?tab=signup'">
+          Join Now
+        </button>
+        <img src="/images/EmptyBag.svg" alt="empty-shopping-bag" />
+        <!-- Add ID for userIconLink -->
+        <a id="userIconLink" href="/non members/registration.html?tab=login">
+          <img src="/images/GuestIcon.svg" alt="guest-profile-icon" />
+        </a>
+        <!-- Add a logout button with the same ID used in the script -->
+        <button class="signup-btn" id="logoutBtn" style="display: none;">
+          Logout
+        </button>
       </div>
     </nav>
 
@@ -415,13 +391,15 @@
             </div>
           </div>
 
-          <!-- Right Cost & Button -->
+          <!-- Right Cost & CTA -->
           <div class="membership-cost">
             <div class="price-card">
               <p class="price-title">Monthly Cost</p>
               <p class="price-amount">£18.50 per month</p>
             </div>
-            <a href="#" class="cta-button">Join the Community Membership</a>
+            <a href="/non members/member application.html" class="cta-button">
+              Join the Community Membership
+            </a>
           </div>
         </div>
       </section>
@@ -454,13 +432,18 @@
             </div>
           </div>
 
-          <!-- Right Cost & Button -->
+          <!-- Right Cost & CTA -->
           <div class="membership-cost">
             <div class="price-card">
               <p class="price-title">Monthly Cost</p>
-              <p class="price-amount">£75 per month<br />+ £100 joining fee</p>
+              <p class="price-amount">
+                £75 per month<br />
+                + £100 joining fee
+              </p>
             </div>
-            <a href="#" class="cta-button">Join the Key Access Membership</a>
+            <a href="/non members/member application.html" class="cta-button">
+              Join the Key Access Membership
+            </a>
           </div>
         </div>
       </section>
@@ -495,18 +478,20 @@
             </div>
           </div>
 
-          <!-- Right Cost & Button -->
+          <!-- Right Cost & CTA -->
           <div class="membership-cost">
             <div class="price-card">
               <p class="price-title">Monthly Cost</p>
-              <p class="price-amount">£100 per month<br />+ £100 joining fee</p>
+              <p class="price-amount">
+                £100 per month<br />
+                + £100 joining fee
+              </p>
             </div>
-            <a href="#" class="cta-button">
+            <a href="/non members/member application.html" class="cta-button">
               Become a Creative Workspace Member
             </a>
           </div>
         </div>
-        <!-- Extra note about applying -->
         <div class="apply-note">
           <p>
             In order to apply to become a workspace member, we will need you to
@@ -523,55 +508,76 @@
           <strong>Pay What You Can</strong>
           memberships to those facing financial hardship.
         </p>
-        <button class="free-membership-btn">Apply for Free Membership</button>
+        <button
+          class="free-membership-btn"
+          onclick="location.href='/non members/member application.html'"
+        >
+          Apply for Free Membership
+        </button>
       </div>
     </main>
 
-    <!-- Footer -->
+    <!-- ========== FOOTER ========== -->
     <footer>
       <div class="f-format">
-        <div class="f-list">
-          <div class="f-nav">
-            <h4>Navigation</h4>
-            <ul>
-              <li><a href="/frontend/index.html">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Community Membership</a></li>
-              <li><a href="#">Contact</a></li>
-            </ul>
-          </div>
-          <div class="f-mem">
-            <h4>Memberships</h4>
-            <ul>
-              <li><a href="#">Community</a></li>
-              <li><a href="#">Key Access</a></li>
-              <li><a href="#">Creative Workspace</a></li>
-            </ul>
-          </div>
-          <div class="f-acc">
-            <h4>Account</h4>
-            <ul>
-              <li><a href="#">Login / Sign-up</a></li>
-              <li><a href="#">Account Dashboard</a></li>
-              <li><a href="#">My Membership</a></li>
-              <li><a href="#">Billing</a></li>
-            </ul>
-          </div>
-          <div class="f-support">
-            <h4>Support</h4>
-            <ul>
-              <li><a href="#">Contact Us</a></li>
-              <li><a href="#">Report Issue</a></li>
-            </ul>
-          </div>
-          <div class="f-logo">
-            <img
-              src="/frontend/images/PLACEHOLDER.svg"
-              alt="Placeholder Logo"
-            />
-          </div>
+        <div class="authors">
+          <h4>Authors:</h4>
+          <p>Tai Rose (SID: 2108618)</p>
+          <p>Malcom Going (SID: 2372291)</p>
+          <p>Alessandro La Mendola (SID: 2158059)</p>
+          <p>Yusuf Kose (SID: 2415327)</p>
         </div>
       </div>
     </footer>
+
+    <!-- SESSION LOGIC SCRIPT -->
+    <script>
+      (function() {
+        // Elements in the header
+        const joinNowBtn = document.getElementById("joinNowBtn");
+        const userIconLink = document.getElementById("userIconLink");
+        const logoutBtn = document.getElementById("logoutBtn");
+
+        // Check if user is logged in
+        const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+
+        // Update UI based on login status:
+        if (isLoggedIn) {
+          // Hide "Join Now" button
+          joinNowBtn.style.display = "none";
+          // Show logout button
+          logoutBtn.style.display = "inline-block";
+          // Set user icon link to dashboard if logged in
+          userIconLink.href = "/Members/UserDashboard.html";
+        } else {
+          // Show "Join Now" button
+          joinNowBtn.style.display = "inline-block";
+          // Hide logout button
+          logoutBtn.style.display = "none";
+          // Set user icon link to login page if not logged in
+          userIconLink.href = "/non members/registration.html?tab=login";
+        }
+
+        // Logout logic
+        logoutBtn.addEventListener("click", async () => {
+          try {
+            const response = await fetch("/logout", {
+              method: "POST",
+              credentials: "include"
+            });
+            if (response.ok) {
+              localStorage.removeItem("loggedIn");
+              alert("Logged out successfully!");
+              // Redirect to login page after logout
+              window.location.href = "/non members/registration.html?tab=login";
+            } else {
+              alert("Logout failed.");
+            }
+          } catch (error) {
+            console.error("Error during logout:", error);
+          }
+        });
+      })();
+    </script>
   </body>
 </html>
