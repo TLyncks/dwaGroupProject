@@ -17,7 +17,13 @@ const supportRoute = require('./non members/Routes/SupportRoute.js');
 //authorisation route
 const authRoute = require('./non members/Routes/authRoute.js')
 
+//loggedin users route
+const memberRoutesThis = require('./Members/memberRoutes.js');
+
+
+
 const app = express();
+
 
 // ====== MIDDLEWARE ======
 app.use(cors());
@@ -39,6 +45,9 @@ app.use(express.static(path.join(__dirname, '../frontend')));
 
 // ====== ROUTES ======
 
+//TODO THESE ROUTES NEED TO BE CHANGED, AS THEY ALL START AT THE SAME PLACE AND CAN CONFLICT. THEY NEED TO BE NAMED /Events, /routes...
+//THE location they are called at needs to be changed as well. 
+
 // Registration routes on root
 app.use('/', userRoutes);
 
@@ -48,9 +57,13 @@ app.use('/events', eventRoutes);
 // Auth routes on root
 app.use('/', authRoute); 
 
-// Support routes on root
-// In supportRoute.js, the route is defined as router.post('/api/support', ...)
-// So the final endpoint will be POST /api/support
+
+app.use('/member', memberRoutesThis);
+
+
+
+
+
 app.use('/', supportRoute);
 
 // Example root endpoint
