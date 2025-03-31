@@ -62,8 +62,7 @@ exports.logout = (req, res) => {
       console.error('Logout error:', err);
       return res.status(500).json({ error: 'Could not log out.' });
     }
-    // If you’re using cookies, you might also want to clear them:
-    // res.clearCookie('connect.sid');
+   
 
     return res.json({ message: 'Logged out successfully!' });
   });

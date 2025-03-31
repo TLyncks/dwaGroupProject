@@ -1,4 +1,3 @@
-// backend/admin/routes/eventRoutes.js
 const express = require('express');
 const router = express.Router();
 const eventController = require('../controllers/eventController');
@@ -20,7 +19,10 @@ router.get('/:id', eventController.getEventById);
 // Admin report endpoint:
 router.get('/:id/attendees', eventController.getEventAttendees);
 
-// Create, update, delete (if needed)
+// NEW: Join event endpoint:
+router.post('/:id/join', eventController.joinEvent);
+
+// Create, update, delete endpoints:
 router.post('/', upload.single('file'), eventController.createEvent);
 router.put('/:id', upload.single('file'), eventController.updateEvent);
 router.delete('/:id', eventController.deleteEvent);
