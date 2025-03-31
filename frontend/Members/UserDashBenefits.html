@@ -1,3 +1,5 @@
+<!--TODO every user page needs the same header and footer-->
+
 <!DOCTYPE html>
 <html lang="en" class="light">
 <head>
@@ -102,7 +104,7 @@
 
 
 <body>
-   
+   <!--
     <nav class="navbar">
         <header class="nav-header">
             <div class="nav-image">
@@ -125,8 +127,28 @@
            <img src="../images/GuestIcon.svg" alt="guest-profile-icon" />
         </div>
     </nav>
-    
-    
+-->
+    <!--ALLESSANDROS HEADER-->
+
+    <nav class="dashboard-nav">
+        <div class="nav-links">
+          <ul>
+            <li><a href="UserDashboard.html">Dashboard</a></li>
+            <li><a href="Calendar.html">Calendar</a></li>
+            <li><a href="">Chat</a></li>
+            <li><a href="UserDigitalContent.html">Digital Content</a></li>
+            <li><a href="Settings.html">Settings</a></li>
+          </ul>
+        </div>
+        <div class="usr-panel">
+          <!-- Logout button shown when logged in -->
+          <button class="signup-btn" id="logoutBtnDashboard" style="display: none;">Logout</button>
+          <!-- User icon with dynamic link -->
+          <a id="userIconLinkDashboard">
+            <img src="../images/GuestIcon.svg" alt="user-profile-icon" style="height: 40px; width: auto;" />
+          </a>
+        </div>
+      </nav>
 
     <main class="dashboard-container">
         <h1> Benefits Dashboard</h1>
@@ -351,6 +373,6 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src = "../js/logoutFunction.js"></script>
 </body>
 </html>

@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Fetch user data
     async function fetchUserData() {
       try {
-        const response = await fetch('/user/settings', {
+        const response = await fetch('/member/settings', {
           method: 'GET',
           credentials: 'include',
         });
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         username: userForm.querySelector('[value="nmaxwell"]').value,
         name: userForm.querySelector('[value="Nelle Maxwell"]').value,
         email: userForm.querySelector('[value="nmaxwell@mail.com"]').value,
-        company: userForm.querySelector('[value="Company Ltd."]').value,
+        company: userForm.querySelector('[value="Company Ltd."]').value, 
       };
   
       try {

@@ -12,7 +12,7 @@ const getUserProfile = async (req, res) => {
     const [rows] = await db.pool.query('SELECT * FROM BaseUser WHERE memberID = ?', [userId]); //TODO needs to accurately take data from mysql
     if (rows.length === 0) {
       return res.status(404).json({ error: 'User not found' });
-    }
+    } 
 
     const user = rows[0];
     res.json({                              //TODO adjust depending on data taken from mysql
