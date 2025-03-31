@@ -34,7 +34,8 @@ exports.login = async (req, res) => {
 
     // 3) If valid, store user ID & role in session
     //    (Assuming you have a 'role' column in BaseUser with 'user' or 'admin')
-    req.session.userId = user.id;
+    //malcolm changed below from user.id to user.memberID. id in mysql is just numbering, while memberID is the user's unique member ID.
+    req.session.userId = user.memberID;
     req.session.role = user.role; // e.g. 'admin' or 'user'
 
     // Determine the message based on role

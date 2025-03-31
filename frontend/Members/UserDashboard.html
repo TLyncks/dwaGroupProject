@@ -4,15 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>User Dashboard</title>
-    <link rel="stylesheet" type="text/css" href="/css/footHeadStyle.css" />
-    <link rel="stylesheet" type="text/css" href="/css/dashboard.css" />
+    <link rel="stylesheet" type="text/css" href="../Members/footHeadStyle.css" />
+    <link rel="stylesheet" type="text/css" href="Userdashboard.css" />
     <style>
       body {
         background-color: #f5f5f5;
         margin: 0;
       }
       /* ========== PUBLIC NAVIGATION (Extra Links from Registration Page) ========== */
-      .public-nav {
+     /* .public-nav {
         background-color: #fe1e3c;
         display: flex;
         align-items: center;
@@ -75,10 +75,11 @@
       .public-nav .dropdown-menu li a:hover {
         background-color: #f2f2f2;
       }
+        */
       
       /* ========== DASHBOARD NAVIGATION ========== */
       .dashboard-nav {
-        background-color: #333;
+        background-color: #fe1e3c;
         display: flex;
         align-items: center;
         padding: 0 1rem;
@@ -136,12 +137,13 @@
       }
       .profile {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         background: white;
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         grid-column: span 2;
+        gap: 20px
       }
       .profile img {
         width: 80px;
@@ -149,12 +151,23 @@
         border-radius: 50%;
         margin-right: 15px;
       }
-      .profile-details h5, .profile-details p {
-        margin: 0;
-      }
-      .profile-details p {
-        color: gray;
-      }
+      .profile-details {
+  display: flex;
+  flex-direction: column; /* Stacks the content vertically */
+  gap: 10px; /* Adds space between each piece of information */
+}
+
+.profile-details h5 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px; /* Optional: Adds space below the name */
+}
+
+.profile-details p {
+  margin: 0;
+  color: gray;
+  font-size: 14px; /* Adjust size for better readability */
+}
       .content-card {
         display: block;
         position: relative;
@@ -220,10 +233,10 @@
     </style>
   </head>
   <body>
-    <!-- ========== PUBLIC NAVIGATION ========== -->
+    <!-- ========== PUBLIC NAVIGATION ========== 
     <nav class="public-nav">
       <div class="nav-header">
-        <img src="/images/TC_Logos-01.png" alt="Together Culture Cambridge Logo" />
+        <img src="../images/TC_Logos-01.png" alt="Together Culture Cambridge Logo" />
       </div>
       <div class="nav-links">
         <ul>
@@ -242,16 +255,16 @@
         </ul>
       </div>
     </nav>
-
+  -->
     <!-- ========== DASHBOARD NAVIGATION ========== -->
     <nav class="dashboard-nav">
       <div class="nav-links">
         <ul>
-          <li><a href="/Members/UserDashboard.html">Dashboard</a></li>
-          <li><a href="/Members/Calendar.html">Calendar</a></li>
-          <li><a href="/Members/Chat.html">Chat</a></li>
-          <li><a href="/Members/UserDigitalContent.html">Digital Content</a></li>
-          <li><a href="/Members/Settings.html">Settings</a></li>
+          <li><a href="UserDashboard.html">Dashboard</a></li>
+          <li><a href="Calendar.html">Calendar</a></li>
+          <li><a href="">Chat</a></li>
+          <li><a href="UserDigitalContent.html">Digital Content</a></li>
+          <li><a href="Settings.html">Settings</a></li>
         </ul>
       </div>
       <div class="usr-panel">
@@ -259,7 +272,7 @@
         <button class="signup-btn" id="logoutBtnDashboard" style="display: none;">Logout</button>
         <!-- User icon with dynamic link -->
         <a id="userIconLinkDashboard">
-          <img src="/images/GuestIcon.svg" alt="user-profile-icon" style="height: 40px; width: auto;" />
+          <img src="../images/GuestIcon.svg" alt="user-profile-icon" style="height: 40px; width: auto;" />
         </a>
       </div>
     </nav>
@@ -269,34 +282,35 @@
     <div class="container">
       <div class="content-grid">
         <!-- Profile Section -->
-        <div class="profile">
-          <img src="/UserDashPhotos/defaultIcon.jpg" alt="User Profile">
-          <div class="profile-details">
-            <h5>John Doe</h5>
-            <p>Email: johndoe@example.com</p>
-            <p>Other Info: Web Developer, Traveler</p>
+        <div id = userProfileThis class="profile">
+          <div id = 'userProfileImage'>
+          <img src="UserDashPhotos/defaultIcon.jpg" alt="User Profile">
+          </div>
+          <div id = 'profile-details' class="profile details">
+            <h5>${userData.fullName}</h5>
+               <p>${userData.email}</p>
           </div>
         </div>
         <!-- Content Cards -->
-        <a href="/Members/benefits.html" class="content-card">
-          <img src="/UserDashPhotos/healthyGirl.jpg" alt="Benefits">
+        <a href="Members/benefits.html" class="content-card">
+          <img src="UserDashPhotos/healthyGirl.jpg" alt="Benefits">
           <div class="title-overlay">Benefits</div>
         </a>
-        <a href="/Members/Calendar.html" class="content-card">
-          <img src="/UserDashPhotos/calendar.jpg" alt="Calendar">
+        <a href="Members/Calendar.html" class="content-card">
+          <img src="UserDashPhotos/calendar.jpg" alt="Calendar">
           <div class="title-overlay">Calendar</div>
         </a>
-        <a href="/Members/UserDigitalContent.html" class="content-card">
-          <img src="/UserDashPhotos/digitalContent.jpg" alt="Digital Content">
+        <a href="Members/UserDigitalContent.html" class="content-card">
+          <img src="UserDashPhotos/digitalContent.jpg" alt="Digital Content">
           <div class="title-overlay">Digital Content</div>
         </a>
-        <a href="/Members/Chat.html" class="content-card">
-          <img src="/UserDashPhotos/messaging.jpg" alt="Chat">
+        <a href="Members/Chat.html" class="content-card">
+          <img src="UserDashPhotos/messaging.jpg" alt="Chat">
           <div class="title-overlay">Chat</div>
         </a>
         <!-- Settings Section -->
         <div class="settings">
-          <img src="/UserDashPhotos/settingsIcon.jpg" alt="Settings" width="80">
+          <img src="UserDashPhotos/settingsIcon.jpg" alt="Settings" width="80">
           <h3>Settings</h3>
         </div>
       </div>
@@ -323,7 +337,7 @@
           window.location.href = "/non members/registration.html?tab=login";
         }
       })();
-
+      
       // Update Dashboard header based on login status.
       function updateDashboardUI() {
         const isLoggedIn = localStorage.getItem("loggedIn") === "true";
@@ -340,7 +354,7 @@
         }
       }
       updateDashboardUI();
-
+      
       // Logout functionality for dashboard header.
       document.getElementById("logoutBtnDashboard").addEventListener("click", async () => {
         try {
@@ -360,5 +374,6 @@
         }
       });
     </script>
+    <script src = "./UsersJS/UserDash.js"></script>
   </body>
 </html>

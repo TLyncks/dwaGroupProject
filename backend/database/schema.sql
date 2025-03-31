@@ -48,27 +48,8 @@ CREATE TABLE adminInfo
     benefitProgress INT NOT NULL DEFAULT 0
 );
 
-                -- Company roles: Links BaseUser to companies with specific roles
-                CREATE TABLE company_roles
-                (
-                        role_id INT
-                        AUTO_INCREMENT PRIMARY KEY,    -- Unique ID for each role entry
-    memberID INT NOT NULL,                     -- Links to BaseUser
-    company_id INT NOT NULL,                   -- Links to companies
-    role VARCHAR
-                        (100) NOT NULL,                -- Employee title (e.g., Manager, Engineer)
-    area ENUM
-                        ('Management','Leadership','HR','Marketing','Finance','Sales','Product Development','Support Staff','Other') NOT NULL,
-    is_company_admin BOOLEAN DEFAULT FALSE,
-    FOREIGN KEY
-                        (memberID) REFERENCES BaseUser
-                        (memberID) ON
-                        DELETE CASCADE,
-    FOREIGN KEY (company_id)
-                        REFERENCES companies
-                        (company_id) ON
-                        DELETE CASCADE
-);
+             
+    
 
                         -- Companies: Master table for company information
                         CREATE TABLE companies
@@ -90,6 +71,29 @@ CREATE TABLE adminInfo
     memberCountUsingTC INT,
     companyBio TEXT,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+
+   -- Company roles: Links BaseUser to companies with specific roles
+            CREATE TABLE company_roles
+                (
+                        role_id INT
+                        AUTO_INCREMENT PRIMARY KEY,    -- Unique ID for each role entry
+    memberID INT NOT NULL,                     -- Links to BaseUser
+    company_id INT NOT NULL,                   -- Links to companies
+    role VARCHAR
+                        (100) NOT NULL,                -- Employee title (e.g., Manager, Engineer)
+    area ENUM
+                        ('Management','Leadership','HR','Marketing','Finance','Sales','Product Development','Support Staff','Other') NOT NULL,
+    is_company_admin BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY
+                        (memberID) REFERENCES BaseUser
+                        (memberID) ON
+                        DELETE CASCADE,
+    FOREIGN KEY (company_id)
+                        REFERENCES companies
+                        (company_id) ON
+                        DELETE CASCADE
 );
 
                                 -- Calendar: Events table

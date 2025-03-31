@@ -19,9 +19,9 @@ exports.submitSupportRequest = async (req, res) => {
     });
   } catch (error) {
     console.error('Error inserting support request:', error);
-    res.status(500).json({
-      success: false,
-      error: 'An error occurred while submitting your support request.',
-    });
+    const errorMessage = process.env.NODE_ENV === 'production' 
+      ? 'An unexpected error occurred. Please try again later.' 
+      : error.message;
+    res.status(500).json({ success: false, error: errorMessage });
   }
 };
