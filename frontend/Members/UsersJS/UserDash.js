@@ -45,14 +45,15 @@ async function fetchUserProfile() {
 
 
   function displayUserProfile(userData) {
-    const profileElement = document.getElementById('userProfileThis'); // Replace with actual element ID
+    const profileElement = document.getElementById('profile-details'); // Replace with actual element ID
   
     //  ${userData.profileImage ||_____________________}
     // add ^^^ this line above <h2>Welcome</h2> if we incorporate profile pictures to swap between user and default photo
+   // <img src="  ../UserDashPhotos/default-profile.png" alt="Profile Image"></img> 
     //ROUTE CORRECT DEFAULT PHOTO BELOW FJIGOUJIBD:LIJSGHKBVIWLNOD:SGILHJ>B
     if (profileElement) {
       profileElement.innerHTML = `
-        <img src="  ../UserDashPhotos/default-profile.png" alt="Profile Image"></img> 
+       
         <h2>Welcome</h2>
         <p> ${userData.fullName}</p>
         <p>Email: ${userData.email}</p>
