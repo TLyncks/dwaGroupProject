@@ -1,177 +1,379 @@
 <!DOCTYPE html>
 <html lang="en" class="light">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>User Dashboard</title>
-    <link rel="stylesheet" type="text/css" href="footHeadStyle.css" />
-    <link rel="stylesheet" type="text/css" href="dashboard.css" />
+    <link rel="stylesheet" type="text/css" href="../Members/footHeadStyle.css" />
+    <link rel="stylesheet" type="text/css" href="Userdashboard.css" />
     <style>
-        body {
-            background-color: #f5f5f5;
-            margin: 0;
-        }
-        .container {
-            max-width: 2500px;
-            margin: auto;
-            padding: 20px;
-        }
-        .profile {
-            display: flex;
-            align-items: center;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            grid-column: span 2; /* Profile spans 2 columns */
-        }
-        .profile img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            margin-right: 15px;
-        }
-        .profile-details h5, .profile-details p {
-            margin: 0;
-        }
-        .profile-details p {
-            color: gray;
-        }
-        /* 2-column grid */
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(500px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .content-card {
-            display: block;
-            position: relative;
-            color: inherit;
-            text-decoration: none;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        .content-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-           
-        }
-        .content-card:hover {
-            transform: scale(1.05); /* Slight zoom effect */
-            transition: 0.3s ease-in-out;
-        }
+      body {
+        background-color: #f5f5f5;
+        margin: 0;
+      }
+      /* ========== PUBLIC NAVIGATION (Extra Links from Registration Page) ========== */
+     /* .public-nav {
+        background-color: #fe1e3c;
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        height: 60px;
+      }
+      .public-nav .nav-header img {
+        height: 50px;
+        width: auto;
+      }
+      .public-nav .nav-links {
+        margin-left: 20px;
+      }
+      .public-nav .nav-links ul {
+        list-style: none;
+        display: flex;
+        gap: 1.5rem;
+      }
+      .public-nav .nav-links a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 1rem;
+      }
+      .public-nav .nav-links .dropdown {
+        position: relative;
+      }
+      .public-nav .dropdown-menu {
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #fff;
+        min-width: 160px;
+        border-radius: 8px;
+        margin-top: 0.5rem;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        padding: 0.75rem 0;
+        transform: translateY(-10px);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+      .public-nav .dropdown:hover .dropdown-menu {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+      .public-nav .dropdown-menu li {
+        list-style: none;
+      }
+      .public-nav .dropdown-menu li a {
+        display: block;
+        padding: 0.5rem 1rem;
+        color: #333;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: background-color 0.2s ease;
+      }
+      .public-nav .dropdown-menu li a:hover {
+        background-color: #f2f2f2;
+      }
+        */
+      
+      /* ========== DASHBOARD NAVIGATION ========== */
+      .dashboard-nav {
+        background-color: #fe1e3c;
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        height: 60px;
+      }
+      .dashboard-nav .nav-links ul {
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+        margin: 0;
+        padding: 0;
+      }
+      .dashboard-nav .nav-links a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 1rem;
+      }
+      .dashboard-nav .usr-panel {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .signup-btn {
+        background: linear-gradient(to right, #ff416c, #ff4b2b);
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+      }
+      .signup-btn:hover {
+        background: linear-gradient(to right, #ff4b2b, #ff416c);
+        transform: scale(1.05);
+      }
+      
+      h1 {
+        text-align: center;
+        margin-top: 20px;
+      }
+      
+      .container {
+        max-width: 2500px;
+        margin: auto;
+        padding: 20px;
+      }
+      .content-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(500px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+      }
+      .profile {
+        display: flex;
+        align-items: flex-start;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        grid-column: span 2;
+        gap: 20px
+      }
+      .profile img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin-right: 15px;
+      }
+      .profile-details {
+  display: flex;
+  flex-direction: column; /* Stacks the content vertically */
+  gap: 10px; /* Adds space between each piece of information */
+}
 
-        .content-card .title-overlay {
-            position: absolute;
-            bottom: 10px;
-            left: 15px;
-            color: white;
-            font-size: 1.2rem;
-            font-weight: bold;
+.profile-details h5 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px; /* Optional: Adds space below the name */
+}
+
+.profile-details p {
+  margin: 0;
+  color: gray;
+  font-size: 14px; /* Adjust size for better readability */
+}
+      .content-card {
+        display: block;
+        position: relative;
+        color: inherit;
+        text-decoration: none;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      }
+      .content-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+      .content-card:hover {
+        transform: scale(1.05);
+        transition: 0.3s ease-in-out;
+      }
+      .content-card .title-overlay {
+        position: absolute;
+        bottom: 10px;
+        left: 15px;
+        color: white;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+      .settings {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        grid-column: span 2;
+        text-align: center;
+      }
+      footer {
+        width: 100%;
+        background-color: #0f0f0f;
+        color: whitesmoke;
+        text-align: center;
+        padding: 40px 0;
+        margin-top: 20px;
+      }
+      .f-format {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .authors {
+        text-align: center;
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+      .authors h4 {
+        margin-bottom: 1rem;
+      }
+      @media (max-width: 1024px) {
+        .public-nav .nav-links ul,
+        .dashboard-nav .nav-links ul {
+          gap: 1rem;
         }
-        /* Settings Section */
-        .settings {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            grid-column: span 2; /* Settings spans 2 columns below */
-            text-align: center;
-        }
-        /* Footer Fix */
-        footer {
-            width: 100%;
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 20px;
-        }
+      }
     </style>
-</head>
-<body>
-    <nav class="navbar">
-        <header class="nav-header">
-            <div class="nav-image">
-                <img src="../frontend/images/TC_Logos-01.png" alt="PLACEHOLDER" />
-            </div>
-        </header>
-        <div class="nav-links">
-            <ul>
-                <li><a href=".\UserDashboard.html">Dashboard</a></li>
-                <li><a href="#">Calendar</a></li>
-                <li><a href="#">Chat</a></li>
-                <li><a href=".\UserDigitalContent.html">Digital Content</a></li>
-                <li><a href="#">Settings</a></li>
+  </head>
+  <body>
+    <!-- ========== PUBLIC NAVIGATION ========== 
+    <nav class="public-nav">
+      <div class="nav-header">
+        <img src="../images/TC_Logos-01.png" alt="Together Culture Cambridge Logo" />
+      </div>
+      <div class="nav-links">
+        <ul>
+          <li><a href="/index.html">About</a></li>
+          <li class="dropdown">
+            <a href="#">Memberships</a>
+            <ul class="dropdown-menu">
+              <li><a href="/non members/community-membership.html">Community</a></li>
+              <li><a href="/non members/key-access-membership.html">Key Access</a></li>
+              <li><a href="/non members/creative-workspace-membership.html">Creative Workspace</a></li>
+              <li><a href="/non members/non-member-page.html">Compare all Memberships</a></li>
             </ul>
-        </div>
-        <div class="usr-panel">
-            <button>Sign Up</button>
-            <img src="../frontend/images/EmptyBag.svg" alt="empty-shopping-bag" />
-            <img src="../frontend/images/GuestIcon.svg" alt="guest-profile-icon" />
-        </div>
+          </li>
+          <li><a href="/non members/events.html">Events</a></li>
+          <li><a href="/non members/contact-support.html">Contact Us</a></li>
+        </ul>
+      </div>
+    </nav>
+  -->
+    <!-- ========== DASHBOARD NAVIGATION ========== -->
+    <nav class="dashboard-nav">
+      <div class="nav-links">
+        <ul>
+          <li><a href="UserDashboard.html">Dashboard</a></li>
+          <li><a href="Calendar.html">Calendar</a></li>
+          <li><a href="">Chat</a></li>
+          <li><a href="UserDigitalContent.html">Digital Content</a></li>
+          <li><a href="Settings.html">Settings</a></li>
+        </ul>
+      </div>
+      <div class="usr-panel">
+        <!-- Logout button shown when logged in -->
+        <button class="signup-btn" id="logoutBtnDashboard" style="display: none;">Logout</button>
+        <!-- User icon with dynamic link -->
+        <a id="userIconLinkDashboard">
+          <img src="../images/GuestIcon.svg" alt="user-profile-icon" style="height: 40px; width: auto;" />
+        </a>
+      </div>
     </nav>
 
     <h1>Welcome to Your Dashboard</h1>
 
     <div class="container">
-        <div class="content-grid">
-            <!-- Profile Section -->
-            <div class="profile">
-                <img src=".\UserDashPhotos\defaultIcon.jpg" alt="User Profile">
-                <div class="profile-details">
-                    <h5>John Doe</h5>
-                    <p>Email: johndoe@example.com</p>
-                    <p>Other Info: Web Developer, Traveler</p>
-                </div>
-            </div>
-
-            <!-- Content Cards (2 per row) -->
-            <a href="benefits.html" class="content-card">
-                <img src=".\UserDashPhotos\healthyGirl.jpg" alt="Benefits">
-                <div class="title-overlay">Benefits</div>
-            </a>
-            <a href="" class="content-card">
-                <img src=".\UserDashPhotos\calendar.jpg" alt="Calendar">
-                <div class="title-overlay">Calendar</div>
-                  </a>
-
-            <a href="UserDigitalContent.html" class="content-card">
-                <img src=".\UserDashPhotos\digitalContent.jpg" alt="Digital Content">
-                <div class="title-overlay">Digital Content</div>
-            </a>
-
-            <a href="" class="content-card">
-                <img src=".\UserDashPhotos\messaging.jpg" alt="Chat">
-                <div class="title-overlay">Chat</div>
-              </a>
-
-            <!-- Settings Section -->
-            <div class="settings">
-                <img src=".\UserDashPhotos\settingsIcon.jpg" alt="Settings" width="80">
-                <h3>Settings</h3>
-            </div>
+      <div class="content-grid">
+        <!-- Profile Section -->
+        <div id = userProfileThis class="profile">
+          <div id = 'userProfileImage'>
+          <img src="UserDashPhotos/defaultIcon.jpg" alt="User Profile">
+          </div>
+          <div id = 'profile-details' class="profile details">
+            <h5>${userData.fullName}</h5>
+               <p>${userData.email}</p>
+          </div>
         </div>
+        <!-- Content Cards -->
+        <a href="Members/benefits.html" class="content-card">
+          <img src="UserDashPhotos/healthyGirl.jpg" alt="Benefits">
+          <div class="title-overlay">Benefits</div>
+        </a>
+        <a href="Members/Calendar.html" class="content-card">
+          <img src="UserDashPhotos/calendar.jpg" alt="Calendar">
+          <div class="title-overlay">Calendar</div>
+        </a>
+        <a href="Members/UserDigitalContent.html" class="content-card">
+          <img src="UserDashPhotos/digitalContent.jpg" alt="Digital Content">
+          <div class="title-overlay">Digital Content</div>
+        </a>
+        <a href="Members/Chat.html" class="content-card">
+          <img src="UserDashPhotos/messaging.jpg" alt="Chat">
+          <div class="title-overlay">Chat</div>
+        </a>
+        <!-- Settings Section -->
+        <div class="settings">
+          <img src="UserDashPhotos/settingsIcon.jpg" alt="Settings" width="80">
+          <h3>Settings</h3>
+        </div>
+      </div>
     </div>
 
     <footer>
-        <div class="f-format">
-            <div class="f-list">
-                <div class="f-nav">
-                    <h4>Navigation</h4>
-                    <ul>
-                        <li><a href="../frontend/index.html">Home</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Memberships</a></li>
-                        <li><a href="..\contact-support.html">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
+      <div class="f-format">
+        <div class="f-nav">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/index.html#about">About</a></li>
+            <li><a href="/non members/registration.html">Memberships</a></li>
+            <li><a href="/non members/contact-support.html">Contact</a></li>
+          </ul>
         </div>
+      </div>
     </footer>
-</body>
+
+    <script>
+      // SESSION MANAGEMENT: Force redirect if not logged in (for protected dashboard)
+      (function checkSession() {
+        if (localStorage.getItem("loggedIn") !== "true") {
+          window.location.href = "/non members/registration.html?tab=login";
+        }
+      })();
+      
+      // Update Dashboard header based on login status.
+      function updateDashboardUI() {
+        const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+        const logoutBtnDashboard = document.getElementById("logoutBtnDashboard");
+        const userIconLinkDashboard = document.getElementById("userIconLinkDashboard");
+        if (isLoggedIn) {
+          logoutBtnDashboard.style.display = "inline-block";
+          // If logged in, clicking the user icon goes to the dashboard.
+          userIconLinkDashboard.href = "/Members/UserDashboard.html";
+        } else {
+          logoutBtnDashboard.style.display = "none";
+          // If not logged in, clicking the user icon goes to login.
+          userIconLinkDashboard.href = "/non members/registration.html?tab=login";
+        }
+      }
+      updateDashboardUI();
+      
+      // Logout functionality for dashboard header.
+      document.getElementById("logoutBtnDashboard").addEventListener("click", async () => {
+        try {
+          const response = await fetch('/logout', {
+            method: 'POST',
+            credentials: 'include'
+          });
+          if (response.ok) {
+            localStorage.removeItem("loggedIn");
+            alert("Logged out successfully!");
+            window.location.href = "/non members/registration.html?tab=login";
+          } else {
+            alert("Logout failed.");
+          }
+        } catch (error) {
+          console.error("Error during logout:", error);
+        }
+      });
+    </script>
+    <script src = "./UsersJS/UserDash.js"></script>
+  </body>
 </html>
