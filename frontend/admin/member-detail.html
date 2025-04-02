@@ -2,60 +2,152 @@
 <html lang="en" class="light">
   <head>
     <link rel="stylesheet" href="admin.css" />
+    <link rel="stylesheet" href="lib/bootstrap.min.css" />
+    <link rel="stylesheet" href="lib/table-sortable.css" />
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/table-sortable.js"></script>
   </head>
 
   <body>
     <nav class="navbar">
       <header class="nav-header">
         <div class="nav-image">
-          <img src="/frontend/images/TC_Logos-01.png" alt="Together Culture CAMBRIDGE" />
+          <img src="/images/TC_Logos-01.png" alt="Together Culture Cambridge Logo" />
         </div>
       </header>
       <div class="nav-links">
         <ul>
           <li><a href="#">About</a></li>
           <li><a href="./member.html">Memberships</a></li>
+          <li><a href="./event.html">Events</a></li>
           <li><a href="/frontend/non members/contact-support.html">Contact</a></li>
         </ul>
       </div>
       <div class="usr-panel">
-        <button href="#">Logout</button>
-        <img src="/frontend/images/GuestIcon.svg" alt="guest-profile-icon" />
+        <button class="signup-btn" id="logoutBtn">Logout</button>
+        <a id="userIconLink">
+          <img src="/images/GuestIcon.svg" alt="user-profile-icon" />
+        </a>
       </div>
     </nav>
 
-    <main style="margin-top: 48px">
+    <main class="mt-2">
       <div class="admin-container">
         
-        <h2><button class="btn" onclick="window.location.href = 'member.html'">&#x25c0;</button>Member Detail - Yusuf Kose</h2>
+        <h2 style="margin-top: 32px">
+          Update:
+          <span id="h3-title" style="color: #fe1e3c"></span>
+        </h2>
 
-        <select id="membership-type" class="input-select">
-          <option value="">Select MemberShip Type</option>
-          <option value="community-member">Community Member</option>
-          <option value="key-access-member">Key Access Member</option>
-          <option value="workspace-member" selected>Workspace Member</option>
-        </select>
-        <select id="based-on" class="input-select">
-          <option value="">Select Based On</option>
-          <option value="individual">Individual</option>
-          <option value="company" selected>Company</option>
-        </select>
+        <div class="add-member">
+          <form id="updateMemberForm" method="post">
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Name:</label>
+              <div class="col-9">
+                <input type="text" class="form-control" placeholder="Name" name="username" id="username" required />
+              </div>
+            </div>
 
-        <select id="tag" class="input-select">
-          <option value="">Select Tag</option>
-          <option value="always" selected>Always</option>
-          <option value="usually">Usually</option>
-          <option value="often">Often</option>
-          <option value="never">Never</option>
-        </select>
-        <br />
-        <button type="submit" class="btn" style="margin-top: 12px; margin-bottom: 12px">Update Tag</button>
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Email:</label>
+              <div class="col-9">
+                <input type="text" class="form-control" placeholder="Email" name="userEmail" id="userEmail" required />
+              </div>
+            </div>
 
-        <div class="member-actions">
-          <input type="text" class="input-text" id="search-member" placeholder="Search Activity..." style="width: 80%" />
-          <button class="btn" onclick="searchActivity()">Search</button>
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Password:</label>
+              <div class="col-9">
+                <input type="password" class="form-control" placeholder="Password" name="userPassword"  id="userPassword"/>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Phone:</label>
+              <div class="col-9">
+                <input type="number" class="form-control" placeholder="Phone" name="userPhone" id="userPhone" />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Address:</label>
+              <div class="col-9">
+                <textarea class="form-control" name="address" id="address"></textarea>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label" for="role">Role: </label>
+              <div class="col-sm-9">
+                <select id="role" class="form-control" required name="role" id="role">
+                  <option value="">Select Role</option>
+                  <option value="user">User</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label" for="status">Status: </label>
+              <div class="col-sm-9">
+                <select id="status" class="form-control" required name="status" id="status">
+                  <option value="">Select Status</option>
+                  <option value="Waiting">Waiting</option>
+                  <option value="Approved">Approved</option>
+                  <option value="Denied">Denied</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label" for="membership-type">Membership Type: </label>
+              <div class="col-sm-9">
+                <select class="form-control" name="membershipType" id="membershipType">
+                  <option value="">Select MemberShip Type</option>
+                  <option value="Community Member">Community Member</option>
+                  <option value="Key Access Member">Key Access Member</option>
+                  <option value="Workspace Member">Workspace Member</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label" for="basedOn">Based On: </label>
+              <div class="col-sm-9">
+                <select id="basedOn" class="form-control" name="basedOn" id="basedOn">
+                  <option value="">Select Based On</option>
+                  <option value="Individual">Individual</option>
+                  <option value="Company">Company</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label" for="tag">Tag: </label>
+              <div class="col-sm-9">
+                <select id="tag" class="form-control" name="tag" id="tag">
+                  <option value="">Select Tag</option>
+                  <option value="Always">Always</option>
+                  <option value="Usually">Usually</option>
+                  <option value="Often">Often</option>
+                  <option value="Never">Never</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Key Member:</label>
+              <div class="col-1 mt-2">
+                <input type="checkbox" class="form-control"  name="isKeyMember"  id="isKeyMember" />
+              </div>
+            </div>
+
+            <button id="go-back" class="btn">Go Back</button>
+            <button type="submit" class="btn btn-primary float-right">Update Member</button>
+          </form>
         </div>
-
+        <br />
+        <hr />
         <div class="activity-table">
           <table>
             <thead>
@@ -115,7 +207,7 @@
             </div>
           </div>
           <div class="f-logo">
-            <img src="/frontend/images/PLACEHOLDER.svg" />
+            <img src="/images/PLACEHOLDER.svg" />
           </div>
         </div>
         <hr />
@@ -130,5 +222,82 @@
         </div>
       </div>
     </footer>
+    <script>
+
+      const backendURL = window.location.port === '5000' ? '' : 'http://127.0.0.1:5000'
+      const userRole = localStorage.getItem('userRole')
+      const isLoggedIn = localStorage.getItem('loggedIn') === 'true'
+      if (isLoggedIn && userRole === 'admin') {
+        // User is logged in and is an admin, do nothing
+      } else {
+        // User is not logged in or not an admin, redirect to login page
+        window.location.href = '/non members/registration.html?tab=login'
+      } 
+
+      let searchParams = new URLSearchParams(window.location.search)
+      let memberId = searchParams.get('memberId')
+
+      $.get(`http://localhost:5000/member-admin/${memberId}`, function (data) {
+        $('#h3-title').html(data.UserName)
+        $('#username').val(data.UserName)
+        $('#userEmail').val(data.userEmail)
+        $('#userPhone').val(data.UserPhone)
+        $('#address').val(data.UserAddress)
+        $('#role').val(data.role)
+        $('#status').val(data.status)
+        $('#membershipType').val(data.membershipType)
+        $('#basedOn').val(data.basedOn)
+        $('#tag').val(data.tag)
+        $('#isKeyMember').attr('checked', data.isKeyMember == '1');
+      })
+
+
+      $('#go-back').click(function (e) {
+        e.preventDefault()
+        window.location.href = 'member.html'
+      })
+
+      $('#updateMemberForm').submit(function (e) {
+        e.preventDefault()
+        var formData = new FormData(this) 
+        var jsonObject = {}
+        formData.forEach((value, key) => {
+          if (value) jsonObject[key] = value
+        })
+        $.ajax({
+          url: 'http://localhost:5000/member-admin/' + memberId, // The URL where you want to send the POST request
+          type: 'PUT',
+          contentType: 'application/json',
+          data: JSON.stringify(jsonObject), 
+          success: function (response) {
+            alert('Member Updated successfully!')
+          },
+          error: function (xhr, status, error) {
+            alert('An error occurred: ' + error)
+          }
+        })
+      })
+
+      
+      logoutBtn.addEventListener('click', async () => {
+        try {
+          const response = await fetch(`${backendURL}/logout`, {
+            method: 'POST',
+            credentials: 'include' // Ensures session cookie is sent
+          })
+          if (response.ok) {
+            localStorage.removeItem('loggedIn')
+            localStorage.removeItem('userId')
+            localStorage.removeItem('userRole')
+            // Optionally redirect or reload
+            window.location.href = '/non members/registration.html?tab=login'
+          } else {
+            alert('Logout failed.')
+          }
+        } catch (error) {
+          console.error('Error logging out:', error)
+        }
+      })
+    </script>
   </body>
 </html>

@@ -240,16 +240,16 @@
       let eventId = searchParams.get('eventId')
 
       $.get(`http://localhost:5000/events/${eventId}`, function (data) {
-        $('#h3-title').html(data.event.title)
-        $('#title').val(data.event.title)
-        $('#image').attr('src', `http://localhost:5000/uploads/${data.event.image_url}`)
-        $('#startDate').val(data.event.start_date)
-        $('#endDate').val(data.event.end_date)
-        $('#startTime').val(data.event.start_time.split(':')[0] + ':' + data.event.start_time.split(':')[1])
-        $('#endTime').val(data.event.end_time.split(':')[0] + ':' + data.event.end_time.split(':')[1])
-        $('#recurrence').val(data.event.recurrence)
-        $('#visibility').val(data.event.visibility)
-        $('#description').val(data.event.description)
+        $('#h3-title').html(data.title)
+        $('#title').val(data.title)
+        $('#image').attr('src', `http://localhost:5000/uploads/${data.image_url}`)
+        $('#startDate').val(data.start_date)
+        $('#endDate').val(data.end_date)
+        $('#startTime').val(data.start_time.split(':')[0] + ':' + data.start_time.split(':')[1])
+        $('#endTime').val(data.end_time.split(':')[0] + ':' + data.end_time.split(':')[1])
+        $('#recurrence').val(data.recurrence)
+        $('#visibility').val(data.visibility)
+        $('#description').val(data.description)
       })
 
       $('#update-event-form').submit(function (e) {

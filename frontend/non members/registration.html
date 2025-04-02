@@ -462,6 +462,7 @@
           if (response.ok) {
             // Mark user as logged in
             localStorage.setItem("loggedIn", "true");
+            localStorage.setItem("userId", data.userId);
 
             // Check if admin
             if (data.role === "admin") {
@@ -491,6 +492,7 @@
           });
           if (response.ok) {
             localStorage.removeItem("loggedIn");
+            localStorage.removeItem("userId");
             localStorage.removeItem("userRole");
             alert("Logged out successfully!");
             updateUIBasedOnLogin();
