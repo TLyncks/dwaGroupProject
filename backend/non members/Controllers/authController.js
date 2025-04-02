@@ -2,20 +2,17 @@
 const db = require('../../config/database.js');
 const bcrypt = require('bcrypt');
 
-/**
- * POST /login
- * Logs a user in using session-based auth.
- */
+
 exports.login = async (req, res) => {
   const { email, password } = req.body;
 
-  // Basic validation
+  //  validation
   if (!email || !password) {
     return res.status(400).json({ error: 'Both email and password are required.' });
   }
 
   try {
-    // 1) Check if user exists
+    //  Check if user exists
     const [rows] = await db.pool.query(
       'SELECT * FROM BaseUser WHERE userEmail = ?',
       [email]
@@ -26,13 +23,13 @@ exports.login = async (req, res) => {
 
     const user = rows[0];
 
-    // 2) Compare the provided password with the hashed password
+    //  Compare the provided password with the hashed password
     const isMatch = await bcrypt.compare(password, user.password_hash);
     if (!isMatch) {
       return res.status(400).json({ error: 'Invalid credentials.' });
     }
 
-    // 3) If valid, store user ID & role in session
+    // If valid, store user ID & role in session
     //    (Assuming you have a 'role' column in BaseUser with 'user' or 'admin')
     //malcolm changed below from user.id to user.memberID. id in mysql is just numbering, while memberID is the user's unique member ID.
     req.session.userId = user.memberID;

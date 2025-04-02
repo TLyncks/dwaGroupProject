@@ -115,7 +115,7 @@
 
       /* ========== MAIN CONTENT: REGISTRATION ========== */
       .auth-main {
-        margin-top: 100px; /* offset for fixed header */
+        margin-top: 100px; 
         padding: 3rem 2rem;
         background: #f4f4f9;
         flex: 1;
@@ -339,7 +339,7 @@
 
     <!-- ========== SCRIPTS ========== -->
     <script>
-      // ================== SHOW/HIDE FORMS ========== 
+      // SHOW/HIDE FORMS 
       const signUpBtn = document.getElementById("signUpBtn");
       const loginBtn = document.getElementById("loginBtn");
       const signUpForm = document.getElementById("signUpForm");
@@ -369,7 +369,8 @@
         showSignUp();
       }
 
-      // ================== SESSION MANAGEMENT (FRONT-END EXAMPLE) ==========
+      //  SESSION MANAGEMENT (FRONT-END EXAMPLE) 
+
       const backendURL = window.location.port === '5000' ? '' : 'http://127.0.0.1:5000';
       const logoutBtn = document.getElementById("logoutBtn");
       const joinNowBtn = document.getElementById("joinNowBtn");

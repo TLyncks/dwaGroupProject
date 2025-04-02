@@ -107,7 +107,7 @@
 
       /* ========== MAIN CONTENT: UPCOMING EVENTS ========== */
       .events-main {
-        margin-top: 100px; /* offset for fixed header */
+        margin-top: 100px; 
         padding: 3rem 2rem;
         background: #f4f4f9;
         display: flex;
@@ -199,7 +199,7 @@
       }
       /* ========== CALENDAR STYLES ========== */
       #calendar-container {
-        display: none; /* hidden by default; toggled via JS */
+        display: none; 
         margin-top: 2rem;
       }
       #calendar-container h2 {
@@ -550,7 +550,7 @@
       // ================== BACKEND URL LOGIC ==================
       const backendURL = window.location.port === '5000' ? '' : 'http://127.0.0.1:5000';
 
-      // ================== Filter and Calendar Toggle Logic ==================
+      //  Filter and Calendar Toggle Logic
       const filterButtons = document.querySelectorAll(".filter-btn");
       const eventCards = document.querySelectorAll(".event-card");
       const calendarBtn = document.getElementById("calendarBtn");
@@ -558,7 +558,7 @@
 
       filterButtons.forEach((button) => {
         button.addEventListener("click", () => {
-          // Mark this button as active, remove from others
+          
           filterButtons.forEach((btn) => btn.classList.remove("active"));
           button.classList.add("active");
 
@@ -585,7 +585,7 @@
         calendarContainer.style.display = "block";
       });
 
-      // ================== Join Event Function ==================
+      //  Join Event Function
       async function joinEvent(eventId) {
         try {
           // Retrieve userId from localStorage
@@ -596,11 +596,11 @@
             return;
           }
 
-          // Existing code: we do not remove anything, just add userId to the request body
+          
           const response = await fetch(`${backendURL}/events/${eventId}/join`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            // We add userId to the existing eventId body
+            
             body: JSON.stringify({ eventId, userId })
           });
           if (response.ok) {
@@ -643,7 +643,7 @@
           });
           if (response.ok) {
             localStorage.removeItem("loggedIn");
-            // Also remove userId to ensure joinEvent won't proceed
+           
             localStorage.removeItem("userId");
             alert("Logged out successfully!");
             window.location.href = "/non members/registration.html?tab=login";
@@ -655,8 +655,8 @@
         }
       });
 
-      // ================== Dynamic Events Loading (Optional) ==================
-      // If your backend serves a JSON list of events at /api/events, we can load them here:
+      //  Dynamic Events Loading 
+     
       window.addEventListener("DOMContentLoaded", async () => {
         try {
           const response = await fetch(`${backendURL}/api/events`);
@@ -670,7 +670,7 @@
           eventsData.forEach(event => {
             // Fallback category for filter if not present in DB:
             const category = "all"; 
-            // Fallback image for now:
+           
             const imageURL = "/images/eventPlaceholder.jpg";
 
             // Convert start_date/end_date if they exist

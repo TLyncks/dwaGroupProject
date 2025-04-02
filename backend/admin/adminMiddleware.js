@@ -1,4 +1,4 @@
-// admin/middleware/adminMiddleware.js
+// admin/middleware/adminMiddleware.js this is to ensure security
 exports.checkAdmin = (req, res, next) => {
     if (req.session && req.session.role === 'admin') {
       return next();

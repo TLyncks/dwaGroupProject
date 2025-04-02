@@ -1,6 +1,4 @@
--- ========================================
--- ========== Malcom's Tables ============
--- ========================================
+
 
 -- Admin (Only us 4)
 CREATE TABLE adminInfo
@@ -135,9 +133,9 @@ CREATE TABLE adminInfo
                                                 DELETE CASCADE
 );
 
-      -- ========================================
+      
       -- ========== Support Requests ============
-       -- ========================================
+       
         CREATE TABLE support_request
            (
             id INT
