@@ -33,6 +33,11 @@ const pool = mysql.createPool({
   });
 }*/
 
+if (pool){
+  console.log('Database connection pool created successfully')
+
+}
+
 module.exports = {
   pool
 }

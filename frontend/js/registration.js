@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
       // Check address validity with the backend
       try {
-        const response = await fetch("/validate-address", {
+        const response = await fetch("/validate-address", { //TODO im confused about the pathing. should it be /____/validate-address?
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ address }),
