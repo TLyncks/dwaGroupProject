@@ -1,7 +1,7 @@
 
 const db = require('../config/database.js');
 const bcrypt = require('bcrypt');
-//const userId = require('../non members/Controllers/authController.js')
+
 
 
 // Controller to get user details for settings and benefits??
@@ -56,6 +56,8 @@ const getUserProfileForDash = async (req, res) => {
     res.json({                              //TODO adjust depending on data taken from mysql
       fullName: user.UserName,
       email: user.userEmail,
+      ID : user.memberID,
+      
       otherInfo: user.otherInfo || 'No additional info available'
 
     });
@@ -139,11 +141,48 @@ const updateUserProfile = async (req, res) => {
 
   };
 
+  //to pull the progress bar amount from backend
+  const getBenefitProgress = async (req, res) => {
+    try {
+      const userId = req.session.userId; 
+      if (!userId) {
+        return res.status(401).json({ error: 'Unauthorized' });
+      }
+      const [rows] = await db.pool.query(
+        'SELECT benefitProgress FROM baseuser WHERE memberID = ?',
+        [userId]
+      );
+      if (rows.length === 0) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+      res.json(rows[0]);
+    } catch (error) {
+      console.error('Error fetching benefit progress:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  };
+
+  //then this updates the progress bar
+  const updateBenefitProgress = async (req, res) => {
+    try {
+      const userId = req.session.userId;
+      if (!userId) {
+        return res.status(401).json({ error: 'Unauthorized' });
+      }
+      const { benefitProgress } = req.body;
+      await db.pool.query(
+        'UPDATE baseuser SET benefitProgress = ? WHERE memberID = ?',
+        [benefitProgress, userId]
+      );
+      res.json({ message: 'Benefit progress updated successfully' });
+    } catch (error) {
+      console.error('Error updating benefit progress:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  };
 
 
 
 
-
-
-  module.exports = { getUserProfile, updateUserProfile, updateUserPassword, getUserProfileForDash };
+  module.exports = { getUserProfile, updateUserProfile, updateUserPassword, getUserProfileForDash, getBenefitProgress, updateBenefitProgress };
 
