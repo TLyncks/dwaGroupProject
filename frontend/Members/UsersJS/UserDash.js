@@ -1,6 +1,6 @@
 async function fetchUserProfile() {
     try {
-      const response = await fetch('/member/user', {
+      const response = await fetch('/member/dashboard', {
         method: 'GET',
         credentials: 'include',
       });
@@ -16,6 +16,29 @@ async function fetchUserProfile() {
       alert('Could not load user data. Please try again.');
     }
   }
+
+/*
+  async function fetchUserSettings() {
+    try {
+      const response = await fetch('/member/settings', {
+        method: 'GET',
+        credentials: 'include',
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to fetch user data');
+      }
+  
+      const userData = await response.json();
+      displayUserProfile(userData);
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+      alert('Could not load user data. Please try again.');
+    }
+  }
+    */
+
+
   /*
   function displayUserProfile(user) {
     const profileImage = document.getElementById('userProfileImage');
@@ -50,7 +73,7 @@ async function fetchUserProfile() {
     //  ${userData.profileImage ||_____________________}
     // add ^^^ this line above <h2>Welcome</h2> if we incorporate profile pictures to swap between user and default photo
    // <img src="  ../UserDashPhotos/default-profile.png" alt="Profile Image"></img> 
-    //ROUTE CORRECT DEFAULT PHOTO BELOW FJIGOUJIBD:LIJSGHKBVIWLNOD:SGILHJ>B
+    //ROUTE CORRECT DEFAULT PHOTO BELOW FJIGOUJIBD:LIJSGHKBVIWLNOD:SGILHJ>B 
     if (profileElement) {
       profileElement.innerHTML = `
        
