@@ -178,25 +178,20 @@
                     <div class="card text-center benefit-card" style="background-image: url('UserDashPhotos/free-photo-of-vibrant-market-scene-in-valencia-spain.jpeg');">
                         
                             <h5 class="semi-transparent-bg">Community Discounts</h5>
-                            <div id="benefit2" class="hover-content">
-                                <p class="semi-transparent-bg">We've partnered with vendors in our community that align with our mission to bring great deals! Use your member ID at the register!</p>
-                               
-                                    <div style="display: flex; gap: 20px;">
-                                        <ul>
-                                            <li>Jack's Gelato</li>
-                                            <li>Zhonghua Snacks</li>
-                                            <li>Thrive Cafe</li>
-                                        </ul>
-                                        <ul>
-                                            <li>Noshe Afghan</li>
-                                            <li>Zi's Piri Piri</li>
-                                            <li>Noodles +</li>
-                                        </ul>
-                                    </div>  
+                            <!-- ------------- -->
+                                    <div id="vendorBenefit" class="hover-content">
+                                        <p class="semi-transparent-bg">We've partnered with vendors in our community that align with our mission to bring great deals! Use your member ID at the register! Enter membership number to claim:</p>
+                                        <input type="text" id="vendorMembershipInput" placeholder="Membership Number">
+                                        <button class="btn btn-primary" id="vendorClaimBtn">Claim</button>
+                                        <p id="vendorError" style="color: red; display: none;">Incorrect membership number. Please try again.</p>
+                                    </div>
+                                <!-- ------------- -->
+                            
+                                
                       
                             
-                                <button class="btn btn-primary" onclick="handleButtonClick('benefit2', 17, 'btn2')">Claim</button>
-                            </div>
+                               <!--<button class="btn btn-primary" onclick="handleButtonClick('vendorBenefit', 17, 'btn2')">Claim</button>-->
+                            
                         </div>
                     </div>
                 </div>
@@ -265,13 +260,13 @@
                     <div class="card text-center">
                         <div class = "cardtext-center benefit-card" style = "background-image: url('UserDashPhotos/communityHill.jpg')"> 
                             
-                            <h5 class="semi-transparent-bg">Join a Vibrant Community</h5>
+                            <h5 class="semi-transparent-bg">Host your own Event!</h5>
                             <div id = "benefit6" class="hover-content">
                                 <p class="semi-transparent-bg">Become apart of the fastest growing network and community in the CambridgeShire area!</p>
                                 
                                        
                                         <p class = "semi-transparent-bg">
-                                           Come in and visit! 
+                                           Host your own event and grow your own network!
                                         </p>
                                     
                                     <button class="btn btn-primary" onclick="handleButtonClick('benefit6', 17, 'btn6')">More Info</button>
@@ -292,68 +287,10 @@
 
 
  
-    <!-- The 1st section of scripts are to save and update the benefits-progress bar-->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            loadProgress(); // Load progress when page loads
-        });
-    
-        function handleButtonClick(accordionId, increment, buttonId) {
-            if (!localStorage.getItem(buttonId)) {
-                localStorage.setItem(buttonId, true); 
-                updateProgress(increment);
-                saveProgressToDB(); 
-            }
-            toggleAccordion(accordionId);
-        }
-    
-        function updateProgress(increment) {
-            let currentProgress = parseInt(localStorage.getItem("benefitProgress")) || 0;
-            if (currentProgress < 100) {
-                currentProgress = Math.min(currentProgress + increment, 100);
-                localStorage.setItem("benefitProgress", currentProgress);
-                updateProgressBar(currentProgress);
-            }
-        }
-    
-        function updateProgressBar(progress) {
-            let bar = document.getElementById("myBar");
-            bar.style.width = progress + "%";
-        }
-    
-        function loadProgress() {
-            fetch('/api/benefitProgress')
-                .then(response => response.json())
-                .then(data => {
-                    localStorage.setItem("benefitProgress", data.benefitProgress); 
-                    updateProgressBar(data.benefitProgress);
-                })
-                .catch(error => console.error('Error loading progress:', error));
-        }
-    
-        function saveProgressToDB() {
-            let progress = parseInt(localStorage.getItem("benefitProgress")) || 0;
-            fetch('/api/save-benefitProgress', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ benefitProgress: progress }) 
-            });
-        }
-    </script>
     
 
-<!--Script below is to allow the bootstrap accordion movement on button click-->
-<script>
-     function toggleAccordion(id) {
-            var content = document.getElementById(id);
-            if (content.classList.contains("show")) {
-                content.classList.remove("show");
-            } else {
-                document.querySelectorAll(".accordion-content").forEach(el => el.classList.remove("show"));
-                content.classList.add("show");
-            }
-        }
-</script>
+
+
 
 
 
@@ -373,6 +310,7 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src = "./UsersJS/UserBenefits.js"></script>
     <script src = "../js/logoutFunction.js"></script>
 </body>
 </html>

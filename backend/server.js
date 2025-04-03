@@ -70,11 +70,14 @@ const userRoutes = require('./non members/Routes/registrationRoute.js');
 
 const supportRoute = require('./non members/Routes/SupportRoute.js');
 
+const memberRoutes = require('./admin/routes/memberRoutes.js')
+
 //authorisation route
 const authRoute = require('./non members/Routes/authRoute.js')
 
 //loggedin users route
 const memberRoutesThis = require('./Members/memberRoutes.js');
+
 // ====== ROUTES ======
 
 //TODO THESE ROUTES NEED TO BE CHANGED, AS THEY ALL START AT THE SAME PLACE AND CAN CONFLICT. THEY NEED TO BE NAMED /Events, /routes...
