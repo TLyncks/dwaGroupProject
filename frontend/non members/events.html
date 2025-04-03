@@ -586,11 +586,12 @@
 
       // ================== Join Event Function ==================
       async function joinEvent(eventId) {
+        const userId = localStorage.getItem('userId');
         try {
           const response = await fetch(`/events/${eventId}/join`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ eventId })
+            body: JSON.stringify({ userId: userId })
           });
           if (response.ok) {
             alert("Successfully joined the event!");

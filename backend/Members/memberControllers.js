@@ -1,10 +1,13 @@
+
 const db = require('../config/database.js');
 const bcrypt = require('bcrypt');
 //const userId = require('../non members/Controllers/authController.js')
 
+
 // Controller to get user details for settings and benefits??
 const getUserProfile = async (req, res) => {
   try {
+
     console.log('🔹 Checking session:', req.session); // TODO Debugging log
     const userId = req.session.userId;      //TODO check which information is transfered over and used here
 
@@ -38,6 +41,7 @@ const getUserProfileForDash = async (req, res) => {
     if (!userId) {
       console.log('❌ Unauthorized: No userId in session');
       return res.status(401).json({ error: 'Unauthorized' });
+
     }
     console.log(`🔹 Fetching user data for userId: ${userId}`); //TODO delete debug
     const [rows] = await db.pool.query('SELECT * FROM baseuser WHERE memberID = ?', [userId]); //TODO needs to accurately take data from mysql
@@ -45,6 +49,7 @@ const getUserProfileForDash = async (req, res) => {
       console.log('❌ User not found in database'); //TODO delete debug
       return res.status(404).json({ error: 'User not found' });
     } 
+
 
     const user = rows[0];
     console.log('✅ User Data Retrieved:', user); //TODO debug
@@ -55,11 +60,12 @@ const getUserProfileForDash = async (req, res) => {
 
     });
 
+
   } catch (error) {
-    console.error('Error fetching user data:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    console.error('Error fetching user data:', error)
+    res.status(500).json({ error: 'Internal server error' })
   }
-};
+}
 
 
 
@@ -69,6 +75,7 @@ const getUserProfileForDash = async (req, res) => {
 
 const updateUserProfile = async (req, res) => {
   try {
+
       const userId = req.session.userId; //TODO does this need to be changed to match memberID
       const { UserName, userEmail, UserPhone, UserAddress, interest1, interest2, interest3 } = req.body;
 
@@ -139,3 +146,4 @@ const updateUserProfile = async (req, res) => {
 
 
   module.exports = { getUserProfile, updateUserProfile, updateUserPassword, getUserProfileForDash };
+
