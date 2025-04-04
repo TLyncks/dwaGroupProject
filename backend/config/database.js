@@ -1,7 +1,7 @@
 require('dotenv').config();
 const mysql = require('mysql2/promise');
 
-// Create a MySQL connection pool
+// Create the pool with your environment variables
 const pool = mysql.createPool({
   host: process.env.DB_HOST || 'localhost',
   user: process.env.DB_USER,
@@ -11,11 +11,17 @@ const pool = mysql.createPool({
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
-  maxIdle: 10,
-  idleTimeout: 60000,
+  maxIdle: 10,      // max idle connections (default = connectionLimit)
+  idleTimeout: 60000, // idle connections timeout (ms)
   enableKeepAlive: true,
   keepAliveInitialDelay: 0,
-  timezone: 'Z'
+  timezone: 'Z', // Ensures UTC time
 });
 
-module.exports = { pool };
+if (pool) {
+  console.log('Database connection pool created successfully');
+}
+
+module.exports = {
+  pool,
+};

@@ -421,7 +421,7 @@
 
         try {
           // Call /user/signup because the registration route is mounted under /user
-          const response = await fetch(`${backendURL}/user/signup`, {
+          const response = await fetch(`${backendURL}/signup`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ fullName, email, phone, password })

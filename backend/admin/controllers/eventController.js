@@ -89,14 +89,21 @@ exports.deleteEvent = async (req, res) => {
 }
 
 exports.createEventAttendee = async (req, res) => {
-  const eventId = req.params.id
-  const userId = req.body.userId
+  const eventId = req.params.id;
+  const memberID = req.body.userId; // This is what you get from the front end
   try {
-    const sql = 'INSERT INTO eventattendees(event_id, user_id) VALUES (?, ?)'
-    const [result] = await db.pool.query(sql, [eventId, userId])
-    res.json(result)
+    // Look up the actual primary key
+    const [rows] = await db.pool.query('SELECT id FROM baseuser WHERE memberID = ?', [memberID]);
+    if (rows.length === 0) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    const userId = rows[0].id; // the primary key that the FK expects
+    const sql = 'INSERT INTO eventattendees(event_id, user_id) VALUES (?, ?)';
+    const [result] = await db.pool.query(sql, [eventId, userId]);
+    res.json(result);
   } catch (error) {
-    console.error(error)
-    res.status(500).json({ error: error.message })
+    console.error(error);
+    res.status(500).json({ error: error.message });
   }
 };
+

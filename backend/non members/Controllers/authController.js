@@ -18,7 +18,6 @@ const loginLimiter = rateLimit({
 });
 
 exports.loginLimiter = loginLimiter;
-
 exports.login = async (req, res) => {
   const { email, password } = req.body
 
@@ -72,14 +71,18 @@ exports.login = async (req, res) => {
   }
 }
 
-
+/**
+ * POST /logout
+ * Logs a user out by destroying the session.
+ */
 exports.logout = (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       console.error('Logout error:', err)
       return res.status(500).json({ error: 'Could not log out.' })
     }
-   
+    // If you’re using cookies, you might also want to clear them:
+    // res.clearCookie('connect.sid');
 
     return res.json({ message: 'Logged out successfully!' })
   })

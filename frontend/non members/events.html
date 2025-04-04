@@ -601,7 +601,8 @@
           const response = await fetch(`${backendURL}/events/${eventId}/join`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ userId: userId })
+            
+            body: JSON.stringify({ eventId, userId })
           });
           if (response.ok) {
             alert("Successfully joined the event!");
