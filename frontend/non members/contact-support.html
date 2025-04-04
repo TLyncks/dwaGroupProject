@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="/css/styles.css" />
     <!-- Merged CSS for header, contact support body, and footer -->
     <style>
-      /* ========== RESET & GLOBAL ========== */
+      /* RESET & GLOBAL  */
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
         font-family: Arial, sans-serif;
       }
-      /* ========== HEADER (Unified Dropdown Header) ========== */
+      /* HEADER  */
       .navbar {
         background-color: #fe1e3c;
         position: fixed;
@@ -106,7 +106,7 @@
         pointer-events: auto;
         transform: translateY(0);
       }
-      /* ========== CONTACT SUPPORT SECTION ========== */
+      /*  CONTACT SUPPORT SECTION  */
       .contact-main {
         margin-top: 80px; /* offset for fixed header */
         padding: 3rem 2rem;
@@ -209,7 +209,7 @@
       .support-info a:hover {
         text-decoration: underline;
       }
-      /* ========== FOOTER ========== */
+      /*  FOOTER  */
       footer {
         background-color: #0f0f0f;
         color: whitesmoke;
@@ -301,14 +301,14 @@
         </ul>
       </div>
       <div class="usr-panel">
-        <!-- Now has an ID -->
+        
         <button class="signup-btn" id="joinNowBtn" onclick="location.href='/non members/registration.html?tab=signup'">Join Now</button>
         <img src="/images/EmptyBag.svg" alt="empty-shopping-bag" />
-        <!-- User icon link now has an ID -->
+        
         <a id="userIconLink" href="/non members/registration.html?tab=login">
           <img src="/images/GuestIcon.svg" alt="guest-profile-icon" />
         </a>
-        <!-- Logout Button added here, initially hidden -->
+       
         <button class="signup-btn" id="logoutBtn" style="display: none;">Logout</button>
       </div>
     </nav>
@@ -390,7 +390,7 @@
 
           if (response.ok && result.success) {
             alert("Your support request has been submitted successfully!");
-            window.location.href = "/index.html"; // Redirect if needed
+            window.location.href = "/index.html"; 
           } else {
             alert("Error: " + (result.error || "Failed to submit support request."));
           }

@@ -115,7 +115,7 @@
 
       /* ========== MAIN CONTENT: REGISTRATION ========== */
       .auth-main {
-        margin-top: 100px; /* offset for fixed header */
+        margin-top: 100px; 
         padding: 3rem 2rem;
         background: #f4f4f9;
         flex: 1;
@@ -295,7 +295,8 @@
           </div>
           <div class="form-group">
             <label for="signup-phone">Phone Number</label>
-            <input type="tel" id="signup-phone" name="phone" placeholder="123-456-7890" required />
+            <!-- Using type="number" to restrict input and ensure only digits -->
+            <input type="number" id="signup-phone" name="phone" placeholder="Enter phone number" required min="0" step="1" />
           </div>
           <div class="form-group">
             <label for="signup-password">Password</label>
@@ -338,7 +339,7 @@
 
     <!-- ========== SCRIPTS ========== -->
     <script>
-      // ========== SHOW/HIDE FORMS ==========
+      // SHOW/HIDE FORMS 
       const signUpBtn = document.getElementById("signUpBtn");
       const loginBtn = document.getElementById("loginBtn");
       const signUpForm = document.getElementById("signUpForm");
@@ -368,9 +369,7 @@
         showSignUp();
       }
 
-      // ========== SESSION MANAGEMENT (FRONT-END EXAMPLE) ==========
-      // We'll store a simple "loggedIn" flag in localStorage for demonstration.
-      // Also store "userRole" to check if admin or not.
+      //  SESSION MANAGEMENT 
 
       const backendURL = window.location.port === '5000' ? '' : 'http://127.0.0.1:5000';
       const logoutBtn = document.getElementById("logoutBtn");
@@ -379,13 +378,9 @@
 
       function updateUIBasedOnLogin() {
         const isLoggedIn = localStorage.getItem("loggedIn") === "true";
-
         if (isLoggedIn) {
-          // Hide "Join Now" button
           joinNowBtn.style.display = "none";
-          // Show logout button
           logoutBtn.style.display = "inline-block";
-          // If logged in, user icon goes to Dashboard (or Admin if userRole=admin)
           const userRole = localStorage.getItem("userRole");
           if (userRole === "admin") {
             userIconLink.href = "/admin/member.html";
@@ -393,17 +388,14 @@
             userIconLink.href = "/Members/UserDashboard.html";
           }
         } else {
-          // Show "Join Now" button
           joinNowBtn.style.display = "inline-block";
-          // Hide logout button
           logoutBtn.style.display = "none";
-          // If not logged in, user icon goes to login page
           userIconLink.href = "/non members/registration.html?tab=login";
         }
       }
       updateUIBasedOnLogin();
 
-      // ========== SIGN UP FORM SUBMIT ==========
+      // ================== SIGN UP FORM SUBMIT ==========
       signUpForm.addEventListener("submit", async function(event) {
         event.preventDefault();
         const fullName = document.getElementById("signup-name").value.trim();
@@ -420,8 +412,15 @@
           alert("Passwords do not match!");
           return;
         }
+        // Extra check to ensure phone contains only digits
+        const phoneRegex = /^\d+$/;
+        if (!phoneRegex.test(phone)) {
+          alert("Phone number must contain digits only.");
+          return;
+        }
 
         try {
+          // Call /user/signup because the registration route is mounted under /user
           const response = await fetch(`${backendURL}/signup`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -440,7 +439,7 @@
         }
       });
 
-      // ========== LOG IN FORM SUBMIT ==========
+      // ================== LOG IN FORM SUBMIT ==========
       loginForm.addEventListener("submit", async function(event) {
         event.preventDefault();
         const email = document.getElementById("login-email").value.trim();
@@ -454,13 +453,11 @@
           const response = await fetch(`${backendURL}/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            credentials: "include", // Ensures session cookie is sent
+            credentials: "include",
             body: JSON.stringify({ email, password })
           });
           const data = await response.json();
-
           if (response.ok) {
-            // Mark user as logged in
             localStorage.setItem("loggedIn", "true");
             localStorage.setItem("userId", data.userId);
 
@@ -483,20 +480,20 @@
         }
       });
 
-      // ========== LOGOUT BUTTON ==========
+      // ================== LOGOUT BUTTON ==========
       logoutBtn.addEventListener("click", async () => {
         try {
           const response = await fetch(`${backendURL}/logout`, {
             method: "POST",
-            credentials: "include" // Ensures session cookie is sent
+            credentials: "include"
           });
           if (response.ok) {
             localStorage.removeItem("loggedIn");
             localStorage.removeItem("userId");
             localStorage.removeItem("userRole");
+            localStorage.removeItem("userId"); // Remove userId on logout
             alert("Logged out successfully!");
             updateUIBasedOnLogin();
-            // Optionally redirect or reload
             window.location.href = "/non members/registration.html?tab=login";
           } else {
             alert("Logout failed.");

@@ -107,7 +107,7 @@
 
       /* ========== MAIN CONTENT: UPCOMING EVENTS ========== */
       .events-main {
-        margin-top: 100px; /* offset for fixed header */
+        margin-top: 100px; 
         padding: 3rem 2rem;
         background: #f4f4f9;
         display: flex;
@@ -199,7 +199,7 @@
       }
       /* ========== CALENDAR STYLES ========== */
       #calendar-container {
-        display: none; /* hidden by default; toggled via JS */
+        display: none; 
         margin-top: 2rem;
       }
       #calendar-container h2 {
@@ -321,11 +321,9 @@
       <div class="usr-panel">
         <button class="signup-btn" id="joinNowBtn" onclick="location.href='/non members/registration.html?tab=signup'">Join Now</button>
         <img src="/images/EmptyBag.svg" alt="empty-shopping-bag" />
-        <!-- Renamed ID to match membership logic -->
         <a href="/non members/registration.html?tab=login" id="userIconLink">
           <img src="/images/GuestIcon.svg" alt="guest-profile-icon" />
         </a>
-        <!-- Logout Button (hidden by default if not logged in) -->
         <button class="signup-btn" id="logoutBtn" style="display: none;">Logout</button>
       </div>
     </nav>
@@ -549,7 +547,10 @@
 
     <!-- Inline JavaScript -->
     <script>
-      // ================== Filter and Calendar Toggle Logic ==================
+      // ================== BACKEND URL LOGIC ==================
+      const backendURL = window.location.port === '5000' ? '' : 'http://127.0.0.1:5000';
+
+      //  Filter and Calendar Toggle Logic
       const filterButtons = document.querySelectorAll(".filter-btn");
       const eventCards = document.querySelectorAll(".event-card");
       const calendarBtn = document.getElementById("calendarBtn");
@@ -557,7 +558,7 @@
 
       filterButtons.forEach((button) => {
         button.addEventListener("click", () => {
-          // Mark this button as active, remove from others
+          
           filterButtons.forEach((btn) => btn.classList.remove("active"));
           button.classList.add("active");
 
@@ -584,14 +585,24 @@
         calendarContainer.style.display = "block";
       });
 
-      // ================== Join Event Function ==================
+      //  Join Event Function
       async function joinEvent(eventId) {
         const userId = localStorage.getItem('userId');
         try {
-          const response = await fetch(`/events/${eventId}/join`, {
+          // Retrieve userId from localStorage
+          const userId = localStorage.getItem("userId");
+          // If no userId is found, user is effectively not identified
+          if (!userId) {
+            alert("Please log in to join the event.");
+            return;
+          }
+
+          
+          const response = await fetch(`${backendURL}/events/${eventId}/join`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ userId: userId })
+            
+            body: JSON.stringify({ eventId, userId })
           });
           if (response.ok) {
             alert("Successfully joined the event!");
@@ -605,19 +616,9 @@
         }
       }
 
-      /*
-      // Commented out to match membership logic (no forced redirect on page load):
-      (function checkSession() {
-        if (localStorage.getItem("loggedIn") !== "true") {
-          window.location.href = "/non members/registration.html?tab=login";
-        }
-      })();
-      */
-
       // Show/hide header elements based on login
       const logoutBtn = document.getElementById("logoutBtn");
       const joinNowBtn = document.getElementById("joinNowBtn");
-      // Renamed from guestIconLink to userIconLink:
       const userIconLink = document.getElementById("userIconLink");
 
       function updateUIBasedOnLogin() {
@@ -625,12 +626,10 @@
         if (isLoggedIn) {
           joinNowBtn.style.display = "none";
           logoutBtn.style.display = "inline-block";
-          // If logged in, point user icon to the member dashboard:
           userIconLink.href = "/Members/UserDashboard.html";
         } else {
           joinNowBtn.style.display = "inline-block";
           logoutBtn.style.display = "none";
-          // If not logged in, point user icon to the login page:
           userIconLink.href = "/non members/registration.html?tab=login";
         }
       }
@@ -639,14 +638,15 @@
       // Logout button event listener
       logoutBtn.addEventListener("click", async () => {
         try {
-          const response = await fetch('/logout', {
+          const response = await fetch(`${backendURL}/logout`, {
             method: 'POST',
             credentials: 'include'
           });
           if (response.ok) {
             localStorage.removeItem("loggedIn");
+           
+            localStorage.removeItem("userId");
             alert("Logged out successfully!");
-            // Redirect to login page, matching membership logic:
             window.location.href = "/non members/registration.html?tab=login";
           } else {
             alert("Logout failed.");
@@ -656,28 +656,43 @@
         }
       });
 
-      // ================== Dynamic Events Loading (Optional) ==================
-      // If your backend serves a JSON list of events at /api/events, we can load them here:
+      //  Dynamic Events Loading 
+     
       window.addEventListener("DOMContentLoaded", async () => {
         try {
-          const response = await fetch("/api/events");
+          const response = await fetch(`${backendURL}/api/events`);
           if (!response.ok) {
             throw new Error("Failed to fetch events");
           }
           const eventsData = await response.json();
           const eventsGrid = document.querySelector(".events-grid");
           eventsGrid.innerHTML = "";
+
           eventsData.forEach(event => {
+            // Fallback category for filter if not present in DB:
+            const category = "all"; 
+           
+            const imageURL = "/images/eventPlaceholder.jpg";
+
+            // Convert start_date/end_date if they exist
+            const dateString = (event.start_date && event.end_date)
+              ? `${event.start_date} - ${event.end_date}`
+              : (event.start_date || "TBD");
+
+            const timeString = (event.start_time && event.end_time)
+              ? `${event.start_time} - ${event.end_time}`
+              : "All day";
+
             const card = document.createElement("div");
             card.className = "event-card";
-            card.setAttribute("data-category", event.category || "all");
+            card.setAttribute("data-category", category);
             card.innerHTML = `
-              <img src="${event.image_path}" alt="${event.title}" />
+              <img src="${imageURL}" alt="${event.title}" />
               <div class="event-details">
                 <h2>${event.title}</h2>
-                <p><strong>Date:</strong> ${event.event_date}</p>
-                <p><strong>Location:</strong> ${event.location}</p>
-                <p>${event.description}</p>
+                <p><strong>Date:</strong> ${dateString}</p>
+                <p><strong>Time:</strong> ${timeString}</p>
+                <p>${event.description || "No description provided."}</p>
                 <button class="event-btn" onclick="joinEvent(${event.event_id})">Join event</button>
               </div>
             `;
@@ -688,49 +703,5 @@
         }
       });
     </script>
-    <!-- SESSION LOGIC SCRIPT (Commented out to avoid duplication/conflict) -->
-    <!--
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        // Elements in the header
-        const joinNowBtn = document.getElementById("joinNowBtn");
-        const userIconLink = document.getElementById("userIconLink");
-        const logoutBtn = document.getElementById("logoutBtn");
-
-        // Check if user is logged in
-        const isLoggedIn = localStorage.getItem("loggedIn") === "true";
-
-        // Update UI based on login status:
-        if (isLoggedIn) {
-          joinNowBtn.style.display = "none";
-          logoutBtn.style.display = "inline-block";
-          userIconLink.href = "/Members/UserDashboard.html";
-        } else {
-          joinNowBtn.style.display = "inline-block";
-          logoutBtn.style.display = "none";
-          userIconLink.href = "/non members/registration.html?tab=login";
-        }
-
-        // Logout logic
-        logoutBtn.addEventListener("click", async () => {
-          try {
-            const response = await fetch("/logout", {
-              method: "POST",
-              credentials: "include"
-            });
-            if (response.ok) {
-              localStorage.removeItem("loggedIn");
-              alert("Logged out successfully!");
-              window.location.href = "/non members/registration.html?tab=login";
-            } else {
-              alert("Logout failed.");
-            }
-          } catch (error) {
-            console.error("Error during logout:", error);
-          }
-        });
-      });
-    </script>
-    -->
   </body>
 </html>

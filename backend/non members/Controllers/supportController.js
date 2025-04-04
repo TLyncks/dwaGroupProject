@@ -1,12 +1,10 @@
 // Controllers/supportController.js
-const { pool } = require('../../config/database.js'); // Adjust path if needed
+const { pool } = require('../../config/database.js'); 
 
 exports.submitSupportRequest = async (req, res) => {
   try {
     const { fullName, email, issueType, description } = req.body;
 
-    // Insert the support request into the support_request table.
-    // Ensure that the table and column names match your schema.
     const sql = `
       INSERT INTO support_request (full_name, email, issue_type, issue_description)
       VALUES (?, ?, ?, ?)

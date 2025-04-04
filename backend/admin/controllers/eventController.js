@@ -1,18 +1,20 @@
 const db = require('../../config/database.js')
 
+// Get all events
 exports.getEvents = async (req, res) => {
   try {
     const [rows] = await db.pool.query('SELECT * FROM calendar')
     rows.forEach((row) => {
-      if (row.start_date) row.start_date = row.start_date.toISOString().split('T')[0]
-      if (row.end_date) row.end_date = row.end_date.toISOString().split('T')[0]
-    })
-    res.json(rows)
+      if (row.start_date) row.start_date = row.start_date.toISOString().split('T')[0];
+      if (row.end_date) row.end_date = row.end_date.toISOString().split('T')[0];
+    });
+    res.json(rows);
   } catch (error) {
     res.status(500).json({ error: error.message })
   }
 }
 
+// Get event by ID
 exports.getEventById = async (req, res) => {
   const eventId = req.params.id
   try {
@@ -20,15 +22,16 @@ exports.getEventById = async (req, res) => {
     if (rows.length === 0) {
       return res.status(404).json({ error: 'Event not found' })
     }
-    const event = rows[0]
-    if (event.start_date) event.start_date = event.start_date.toISOString().split('T')[0]
-    if (event.end_date) event.end_date = event.end_date.toISOString().split('T')[0]
-    res.json(event)
+    const event = rows[0];
+    if (event.start_date) event.start_date = event.start_date.toISOString().split('T')[0];
+    if (event.end_date) event.end_date = event.end_date.toISOString().split('T')[0];
+    res.json(event);
   } catch (error) {
     res.status(500).json({ error: error.message })
   }
 }
 
+// Get event attendees
 exports.getEventAttendees = async (req, res) => {
   const eventId = req.params.id
   try {
@@ -45,6 +48,7 @@ exports.getEventAttendees = async (req, res) => {
   }
 }
 
+// Create a new event
 exports.createEvent = async (req, res) => {
   try {
     const sql = `INSERT INTO calendar(title, user_id, description, image_url, start_date, end_date, start_time, end_time, recurrence, visibility)
@@ -57,20 +61,22 @@ exports.createEvent = async (req, res) => {
   }
 }
 
+// Update an event
 exports.updateEvent = async (req, res) => {
   const eventId = req.params.id
   try {
-    const sql = 'UPDATE calendar SET title = ?, description = ?, ' + (req.file ? 'image_url = ?,' : '') + ' start_date = ?, end_date = ?, start_time = ?, end_time = ?, recurrence = ?, visibility = ? WHERE event_id = ?'
-    const fields = [req.body.title, req.body.description, req.body.start_date, req.body.end_date, req.body.start_time, req.body.end_time, req.body.recurrence, req.body.visibility, eventId]
-    if (req.file) fields.splice(2, 0, req.file.filename)
-    const [result] = await db.pool.query(sql, fields)
-    res.json(result)
+    const sql = 'UPDATE Calendar SET title = ?, description = ?, ' + (req.file ? 'image_url = ?,' : '') + ' start_date = ?, end_date = ?, start_time = ?, end_time = ?, recurrence = ?, visibility = ? WHERE event_id = ?';
+    const fields = [req.body.title, req.body.description, req.body.start_date, req.body.end_date, req.body.start_time, req.body.end_time, req.body.recurrence, req.body.visibility, eventId];
+    if (req.file) fields.splice(2, 0, req.file.filename);
+    const [result] = await db.pool.query(sql, fields);
+    res.json(result);
   } catch (error) {
     console.error(error)
     res.status(500).json({ error: error.message })
   }
 }
 
+// Delete an event
 exports.deleteEvent = async (req, res) => {
   const eventId = req.params.id
   try {
@@ -83,14 +89,21 @@ exports.deleteEvent = async (req, res) => {
 }
 
 exports.createEventAttendee = async (req, res) => {
-  const eventId = req.params.id
-  const userId = req.body.userId
+  const eventId = req.params.id;
+  const memberID = req.body.userId; // This is what you get from the front end
   try {
-    const sql = 'INSERT INTO eventattendees(event_id, user_id) VALUES (?, ?)'
-    const [result] = await db.pool.query(sql, [eventId, userId])
-    res.json(result)
+    // Look up the actual primary key
+    const [rows] = await db.pool.query('SELECT id FROM baseuser WHERE memberID = ?', [memberID]);
+    if (rows.length === 0) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    const userId = rows[0].id; // the primary key that the FK expects
+    const sql = 'INSERT INTO eventattendees(event_id, user_id) VALUES (?, ?)';
+    const [result] = await db.pool.query(sql, [eventId, userId]);
+    res.json(result);
   } catch (error) {
-    console.error(error)
-    res.status(500).json({ error: error.message })
+    console.error(error);
+    res.status(500).json({ error: error.message });
   }
-}
+};
+

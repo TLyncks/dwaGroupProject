@@ -341,7 +341,17 @@
             </div>
             <div class="form-group">
               <label for="phone">Phone number</label>
-              <input type="tel" id="phone" name="phone" placeholder="Enter phone number" required />
+              <!-- 1) Using type="text" so pattern can be enforced in all browsers -->
+              <!-- 2) pattern="[0-9]+" ensures only digits can be submitted -->
+              <input
+                type="text"
+                id="phone"
+                name="phone"
+                placeholder="Enter phone number"
+                required
+                pattern="[0-9]+"
+                title="Please enter digits only"
+              />
             </div>
           </div>
           <!-- Additional Information -->
@@ -405,14 +415,21 @@
         const participated = document.getElementById("participated").value.trim();
         const heardAbout = document.getElementById("heardAbout").value.trim();
 
-        // Basic validation
+        // Basic field validation
         if (!firstName || !lastName || !email || !phone || !membershipType || !reason || !participated || !heardAbout) {
           alert("Please fill in all the fields.");
           return;
         }
 
+        // Validate phone number contains only digits (extra precaution)
+        const phoneRegex = /^\d+$/;
+        if (!phoneRegex.test(phone)) {
+          alert("Insert a correct user number.");
+          return;
+        }
+
         try {
-          // Make a POST request to your server's /apply endpoint
+          // Make a POST request to the server's /apply endpoint
           const response = await fetch("http://127.0.0.1:5000/apply", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -431,8 +448,11 @@
           const data = await response.text();
           if (response.ok) {
             alert("Application submitted successfully!");
-            // Redirect after submission; adjust as needed
+            // Redirect after submission; 
             window.location.href = "/index.html";
+          } else if (response.status === 409) {
+            // If the server returns a conflict status, it indicates the user already has an account
+            alert("Submission failed: User already has an account.");
           } else {
             alert("Submission failed: " + data);
           }

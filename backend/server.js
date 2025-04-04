@@ -1,14 +1,15 @@
-require('dotenv').config()
-const express = require('express')
-const cors = require('cors')
-const session = require('express-session')
-const path = require('path')
+require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
+const session = require('express-session');
+const path = require('path');
 
+// 1) Import the pool from your database configuration
+const { pool } = require('./config/database.js'); // <-- adjust path if needed
 
 const app = express();
 
-
-
+// ====== CORS / Custom Headers Middleware ======
 app.use((req, res, next) => {
   const origin = req.headers.origin;
   if (origin) {
@@ -25,97 +26,98 @@ app.use((req, res, next) => {
 });
 
 // ====== MIDDLEWARE ======
-//app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Serve static files
+app.use('/uploads', express.static('./backend/uploads'));
+app.use(express.static(path.join(__dirname, '../frontend')));
 
-app.use('/uploads', express.static('./backend/uploads'))
-
-
-
-// Session setup (store secret in .env)
+// ====== SESSION SETUP ======
 app.use(
   session({
     secret: process.env.SESSION_SECRET || 'yourSecretKey',
     resave: false,
-
     saveUninitialized: false,
-
-    //TODO THIS NEEDS TO BE COMMENTED OUT TO RUN LOCALLY. IF USING ZROK, NEEDS THIS AND MORE TO PROPERLY STORE AND USE SESSION DATA
-   /* cookie: {
-      //secure: process.env.NODE_ENV === 'production', could this have worked idk boo this is frustrating me
-      secure: false, // Change to 'true' if using HTTPS
-      httpOnly: true, // Prevents client-side JS from accessing it
-      sameSite: 'None', // Required for cross-site cookies with zrok
-    },*/
-
+    // Uncomment below if needed:
+    // cookie: {
+    //   secure: process.env.NODE_ENV === 'production', 
+    //   httpOnly: true,
+    //   sameSite: 'None',
+    // },
   })
-)
-
-// Serve static files from the "frontend" folder
-// e.g., "frontend/index.html" → "http://localhost:5000/index.html"
-app.use(express.static(path.join(__dirname, '../frontend')))
-
-
-
-
-//  event routes
-const eventRoutes = require('./admin/routes/eventRoutes.js');
-
-// Registration routes
-const userRoutes = require('./non members/Routes/registrationRoute.js');
-
-// Support route
-
-const supportRoute = require('./non members/Routes/SupportRoute.js');
-
-const memberRoutes = require('./admin/routes/memberRoutes.js')
-
-//authorisation route
-const authRoute = require('./non members/Routes/authRoute.js')
-
-//loggedin users route
-const memberRoutesThis = require('./Members/memberRoutes.js');
+);
 
 // ====== ROUTES ======
+const eventRoutes = require('./admin/routes/eventRoutes.js');
+const memberRoutes = require('./admin/routes/memberRoutes.js');
+const userRoutes = require('./non members/Routes/registrationRoute.js');
+const authRoute = require('./non members/Routes/authRoute.js');
+const supportRoute = require('./non members/Routes/SupportRoute.js');
+const memberRoutesThis = require('./Members/memberRoutes.js');
 
-//TODO THESE ROUTES NEED TO BE CHANGED, AS THEY ALL START AT THE SAME PLACE AND CAN CONFLICT. THEY NEED TO BE NAMED /Events, /routes...
-//THE location they are called at needs to be changed as well.
+// Mount the routes
+app.use('/', userRoutes);
+app.use('/events', eventRoutes);
+app.use('/', authRoute);
+app.use('/member', memberRoutesThis);
+app.use('/member-admin', memberRoutes);
+app.use('/', supportRoute);
 
-// Registration routes on root
-app.use('/', userRoutes)
+// ====== /apply Route ======
+app.post('/apply', async (req, res) => {
+  try {
+    const {
+      firstName,
+      lastName,
+      email,
+      phone,
+      membershipType,
+      reason,
+      participated,
+      heardAbout,
+    } = req.body;
 
-// Event routes mounted at /events
+    // 1) Check for existing application with the same email
+    const [existingRows] = await pool.query(
+      'SELECT * FROM membership_applications WHERE email = ?',
+      [email]
+    );
+    if (existingRows.length > 0) {
+      return res
+        .status(409)
+        .json({ error: 'Submission failed: User already has an account.' });
+    }
 
-app.use('/events', eventRoutes)
+    // 2) Insert the new application
+    const [result] = await pool.query(
+      `INSERT INTO membership_applications
+       (first_name, last_name, email, phone, membership_type, reason, participated, heard_about, created_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())`,
+      [firstName, lastName, email, phone, membershipType, reason, participated, heardAbout]
+    );
 
-// Auth routes on root
-app.use('/', authRoute)
+    console.log('Application inserted, ID:', result.insertId);
+    return res.status(200).json({ message: 'Application received successfully' });
+  } catch (error) {
+    console.error('Error in /apply route:', error);
+    return res.status(500).json({ error: 'Database error' });
+  }
+});
 
-app.use('/member', memberRoutesThis)
-
-app.use('/member-admin', memberRoutes)
-
-app.use('/', supportRoute)
-
-
-
+// ====== ROOT ENDPOINT ======
 app.get('/', (req, res) => {
-  res.send('API is running...')
-})
+  res.send('API is running...');
+});
 
 // ====== ERROR HANDLER ======
 app.use((err, req, res, next) => {
-  console.error('Server error:', err)
-  res.status(500).json({ error: 'Internal Server Error' })
-})
-
-// ====== START SERVER ======
-const PORT = process.env.PORT || 5000
-app.listen(PORT, () => {
-
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.error('Server error:', err);
+  res.status(500).json({ error: 'Internal Server Error' });
 });
 
-
+// ====== START SERVER ======
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
