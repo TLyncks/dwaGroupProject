@@ -30,8 +30,7 @@ exports.login = async (req, res) => {
     }
 
     // If valid, store user ID & role in session
-    //    (Assuming you have a 'role' column in BaseUser with 'user' or 'admin')
-    //malcolm changed below from user.id to user.memberID. id in mysql is just numbering, while memberID is the user's unique member ID.
+  
     req.session.userId = user.memberID;
     req.session.role = user.role; // e.g. 'admin' or 'user'
 
@@ -49,10 +48,7 @@ exports.login = async (req, res) => {
   }
 };
 
-/**
- * POST /logout
- * Logs a user out by destroying the session.
- */
+
 exports.logout = (req, res) => {
   req.session.destroy((err) => {
     if (err) {

@@ -118,7 +118,7 @@ exports.deleteEvent = async (req, res) => {
 // NEW: Join an event
 exports.joinEvent = async (req, res) => {
   const eventId = req.params.id;
-  // Retrieve userId from the request body (ensure your front-end sends this)
+  // Retrieve userId from the request body 
   const { userId } = req.body;
   if (!userId) {
     return res.status(401).json({ error: "User not authenticated" });
