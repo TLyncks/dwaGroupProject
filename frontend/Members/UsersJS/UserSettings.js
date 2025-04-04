@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const passwordForm = document.querySelector('#section-password');
     const updatePasswordBtn = passwordForm.querySelector('#updatePasswordBtn');
     const updateProfileBtn = document.querySelector('#updateProfileBtn');
+      
     
     // Now call fetchUserData() since userForm and userFormNext are defined
     fetchUserData();
@@ -19,7 +20,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             const confirmPassword = passwordForm.querySelector('input[name="confirm_password"]').value; 
 
             if (newPassword !== confirmPassword) {
-                alert('New passwords do not match!');
+                //alert('New passwords do not match!');
+                 Swal.fire({
+                    icon: 'warning',
+                    title: 'Mismatch',
+                    text: 'New passwords do not match!',
+                  });
                 return;
             }
 
@@ -34,13 +40,30 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const result = await response.json();
 
                 if (response.ok) {
-                    alert('Password updated successfully!');
+                    //alert('Password updated successfully!');
+                      Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Password updated successfully!',
+                        timer: 3000,
+                        showConfirmButton: false
+                      });
                 } else {
-                    alert(result.message);
+                      Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: result.message,
+                      });
+                   // alert(result.message);
                 }
             } catch (error) {
                 console.error('Error updating password:', error);
-                alert('Error updating password. Please try again.');
+                //alert('Error updating password. Please try again.');
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Error updating password. Please try again.',
+                  });
             }
         });
     }
@@ -113,13 +136,25 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             const result = await response.json();
             if (response.ok) {
-                alert('Profile updated successfully!');
+                //alert('Profile updated successfully!');
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: 'Profile updated successfully!',
+                    timer: 3000,
+                    showConfirmButton: false
+                  });
             } else {
                 throw new Error(result.message);
             }
         } catch (error) {
             console.error('Error updating profile:', error);
-            alert('Error updating profile. Please try again.');
+            //alert('Error updating profile. Please try again.');
+              Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Error updating profile. Please try again.',
+              });
         }
     });
 });

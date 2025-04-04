@@ -375,6 +375,7 @@
       const logoutBtn = document.getElementById("logoutBtn");
       const joinNowBtn = document.getElementById("joinNowBtn");
       const userIconLink = document.getElementById("userIconLink");
+      
 
       function updateUIBasedOnLogin() {
         const isLoggedIn = localStorage.getItem("loggedIn") === "true";
@@ -468,7 +469,13 @@
               window.location.href = "/admin/member.html";
             } else {
               localStorage.setItem("userRole", "user");
-              alert("Login successful!");
+              alert("Login successful!");  //TODO sweet alert?
+              /*  Swal.fire({
+                    icon: 'success',
+                    title: 'Login Successful',
+                    timer: 3000,
+                    showConfirmButton: false
+                  }); */
               window.location.href = "/Members/UserDashboard.html";
             }
           } else {

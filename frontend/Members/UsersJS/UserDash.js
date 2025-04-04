@@ -1,3 +1,5 @@
+
+
 async function fetchUserProfile() {
     try {
       const response = await fetch('/member/dashboard', {
@@ -13,7 +15,12 @@ async function fetchUserProfile() {
       displayUserProfile(userData);
     } catch (error) {
       console.error('Error fetching user data:', error);
-      alert('Could not load user data. Please try again.');
+      //alert('Could not load user data. Please try again.');
+       Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Could not load user data. Please try again.'
+      });
     }
   }
 
@@ -25,6 +32,7 @@ async function fetchUserProfile() {
 
 
   function displayUserProfile(userData) {
+    
     const profileElement = document.getElementById('userProfileThis'); 
     if (profileElement) {
       profileElement.innerHTML = `
@@ -45,6 +53,18 @@ async function fetchUserProfile() {
           <a href= "./Settings.html" class="btn btn-primary">Settings</a>
         </div>
       `;
+       Swal.fire({
+        icon: 'info',
+        title: `Welcome, ${userData.fullName}!`,
+        html: `<div style="text-align: left;">
+                  <p><strong>Email:</strong> ${userData.email}</p>
+                  <p><strong>Member ID:</strong> ${userData.ID}</p>
+                </div>`,
+        timer: 5000,
+        timerProgressBar: true,
+        showConfirmButton: false,
+        backdrop: 'rgba(0,0,123,0.4)'
+      });
     } else {
       console.error("Profile element not found.");
     }
@@ -53,6 +73,7 @@ async function fetchUserProfile() {
   
   document.addEventListener("DOMContentLoaded", function() {
     fetchUserProfile();
+    
   });
   
   
