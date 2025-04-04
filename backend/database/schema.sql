@@ -110,94 +110,58 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 
--- Calendar: Events table
--- -----------------------------------------------------
--- Table`calendar`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `calendar` (
-  `event_id` INT NOT NULL AUTO_INCREMENT,
-  `user_id` INT NOT NULL,
-  `title` VARCHAR(255) NOT NULL,
-  `description` TEXT NULL DEFAULT NULL,
-  `image_url` VARCHAR(255) NOT NULL,
-  `start_date` DATE NOT NULL,
-  `end_date` DATE NOT NULL,
-  `start_time` TIME NOT NULL,
-  `end_time` TIME NOT NULL,
-  `recurrence` ENUM('none', 'daily', 'weekly', 'monthly') NULL DEFAULT 'none',
-  `visibility` ENUM('public', 'private', 'members-only') NULL DEFAULT 'public',
-  PRIMARY KEY (`event_id`),
-  CONSTRAINT `calendar_fk_user`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `dwa`.`baseuser` (`id`)
-    ON DELETE CASCADE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+                                -- Calendar: Events table
+                                CREATE TABLE Calendar
+                                (
+                                        event_id INT
+                                        AUTO_INCREMENT PRIMARY KEY,  -- Unique event identifier
+    title VARCHAR
+                                        (255) NOT NULL,              -- Event title
+    description TEXT,                         -- Event details
+    image_url VARCHAR
+                                        (255) NOT NULL,          -- Event image URL
+    start_date DATE NOT NULL,                 -- Event start date
+    end_date DATE NOT NULL,                   -- Event end date
+    start_time TIME NOT NULL,                 -- Event start time
+    end_time TIME NOT NULL,                   -- Event end time
+    recurrence ENUM
+                                        ('none','daily','weekly','monthly') DEFAULT 'none',
+    visibility ENUM
+                                        ('public','private','members-only') DEFAULT 'public'
+);
 
+                                        -- EventAttendees: Records which user joined which event
+                                        CREATE TABLE EventAttendees
+                                        (
+                                                attendee_id INT
+                                                AUTO_INCREMENT PRIMARY KEY,  -- Unique record for each attendee-event combination
+    event_id INT NOT NULL,                       -- Links to Calendar table
+    user_id INT NOT NULL,                        -- Links to BaseUser table
+    status ENUM
+                                                ('attending','maybe','declined') DEFAULT 'attending',
+    CONSTRAINT fk_event FOREIGN KEY
+                                                (event_id) REFERENCES Calendar
+                                                (event_id) ON
+                                                DELETE CASCADE,
+    CONSTRAINT fk_user FOREIGN KEY
+                                                (user_id) REFERENCES BaseUser
+                                                (id) ON
+                                                DELETE CASCADE
+);
 
-
--- -----------------------------------------------------
--- Table `eventattendees`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `eventattendees` (
-  `attendee_id` INT NOT NULL AUTO_INCREMENT,
-  `event_id` INT NOT NULL,
-  `user_id` INT NOT NULL,
-  `status` ENUM('attending', 'maybe', 'declined') NULL DEFAULT 'attending',
-  PRIMARY KEY (`attendee_id`),
-  INDEX `fk_event` (`event_id` ASC) VISIBLE,
-  INDEX `fk_user` (`user_id` ASC) VISIBLE,
-  CONSTRAINT `fk_event`
-    FOREIGN KEY (`event_id`)
-    REFERENCES `dwa`.`calendar` (`event_id`)
-    ON DELETE CASCADE,
-  CONSTRAINT `fk_user`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `dwa`.`baseuser` (`id`)
-    ON DELETE CASCADE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table ``.`membership_application`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `membership_application` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `first_name` VARCHAR(50) NOT NULL,
-  `last_name` VARCHAR(50) NOT NULL,
-  `email` VARCHAR(100) NOT NULL,
-  `phone` VARCHAR(15) NULL DEFAULT NULL,
-  `membership_type` ENUM('user', 'admin', 'key member') NOT NULL DEFAULT 'user',
-  `reason` TEXT NULL DEFAULT NULL,
-  `participated` TEXT NULL DEFAULT NULL,
-  `heard_about` TEXT NULL DEFAULT NULL,
-  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `email` (`email` ASC) VISIBLE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `support_request`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `support_request` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `full_name` VARCHAR(100) NULL DEFAULT NULL,
-  `email` VARCHAR(255) NULL DEFAULT NULL,
-  `issue_type` VARCHAR(50) NULL DEFAULT NULL,
-  `issue_description` TEXT NULL DEFAULT NULL,
-  `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+                                                -- ========================================
+                                                -- ========== Support Requests ============
+                                                -- ========================================
+                                                CREATE TABLE support_request
+                                                (
+                                                        id INT
+                                                        AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR
+                                                        (100),
+    email VARCHAR
+                                                        (255),
+    issue_type VARCHAR
+                                                        (50),
+    issue_description TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);

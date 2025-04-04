@@ -391,3 +391,14 @@ input[type="date"]:before {
   content: attr(placeholder);
   color: #999;
 }
+.signup-btn {
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}

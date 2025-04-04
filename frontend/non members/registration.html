@@ -459,7 +459,9 @@
           const data = await response.json();
           if (response.ok) {
             localStorage.setItem("loggedIn", "true");
-            localStorage.setItem("userId", data.userId); // Store the userId for join events
+            localStorage.setItem("userId", data.userId);
+
+            // Check if admin
             if (data.role === "admin") {
               localStorage.setItem("userRole", "admin");
               alert("Hello admin!");
@@ -487,6 +489,7 @@
           });
           if (response.ok) {
             localStorage.removeItem("loggedIn");
+            localStorage.removeItem("userId");
             localStorage.removeItem("userRole");
             localStorage.removeItem("userId"); // Remove userId on logout
             alert("Logged out successfully!");

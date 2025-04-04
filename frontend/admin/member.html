@@ -12,32 +12,35 @@
     <nav class="navbar">
       <header class="nav-header">
         <div class="nav-image">
-          <img src="/frontend/images/TC_Logos-01.png" alt="Together Culture CAMBRIDGE" />
+          <img src="/images/TC_Logos-01.png" alt="Together Culture Cambridge Logo" />
         </div>
       </header>
       <div class="nav-links">
         <ul>
           <li><a href="#">About</a></li>
           <li><a href="./member.html">Memberships</a></li>
+          <li><a href="./event.html">Events</a></li>
           <li><a href="/frontend/non members/contact-support.html">Contact</a></li>
         </ul>
       </div>
       <div class="usr-panel">
-        <button href="#">Logout</button>
-        <img src="/frontend/images/GuestIcon.svg" alt="guest-profile-icon" />
+        <button class="signup-btn" id="logoutBtn">Logout</button>
+        <a id="userIconLink">
+          <img src="/images/GuestIcon.svg" alt="user-profile-icon" />
+        </a>
       </div>
     </nav>
 
     <main>
       <div class="admin-container">
-        <h2 style="margin-top: 90px">Member Administration</h2>
+        <h2 style="margin-top: 32px">Member Administration</h2>
 
         <div class="member-actions">
-          <input type="text" class="input-text" id="search-member" placeholder="Search Name..." style="width: 15%" id="searchField" />
-          <input type="text" class="input-text" id="search-member" placeholder="Search Email..." style="width: 15%" />
-          <input type="text" class="input-text" id="search-member" placeholder="Search Type..." style="width: 15%" />
-          <input type="text" class="input-text" id="search-member" placeholder="Search Tag..." style="width: 15%" />
-          <input type="text" class="input-text" id="search-member" placeholder="Search Status..." style="width: 15%" />
+          <input type="text" class="input-text" id="search-member1" placeholder="Search Name..." style="width: 15%" id="searchField" />
+          <input type="text" class="input-text" id="search-member2" placeholder="Search Email..." style="width: 15%" />
+          <input type="text" class="input-text" id="search-member3" placeholder="Search Type..." style="width: 15%" />
+          <input type="text" class="input-text" id="search-member4" placeholder="Search Tag..." style="width: 15%" />
+          <input type="text" class="input-text" id="search-member5" placeholder="Search Status..." style="width: 15%" />
           <button class="btn" onclick="searchMember()">Search</button>
         </div>
 
@@ -45,29 +48,109 @@
 
         <div class="add-member">
           <h3>Add New Member</h3>
-          <form id="add-member-form">
-            <input type="text" class="input-text" id="member-name" placeholder="Name" required />
-            <input type="email" class="input-text" id="member-email" placeholder="Email" required />
-            <select id="membership-type" class="input-select">
-              <option value="">Select MemberShip Type</option>
-              <option value="community-member">Community Member</option>
-              <option value="key-access-member">Key Access Member</option>
-              <option value="workspace-member">Workspace Member</option>
-            </select>
-            <select id="based-on" class="input-select">
-              <option value="">Select Based On</option>
-              <option value="individual">Individual</option>
-              <option value="company">Company</option>
-            </select>
-            <select id="tag" class="input-select">
-              <option value="">Select Tag</option>
-              <option value="always">Always</option>
-              <option value="usually">Usually</option>
-              <option value="often">Often</option>
-              <option value="never">Never</option>
-            </select>
-            <br />
-            <button type="submit" class="btn" style="margin-top: 12px; margin-bottom: 12px">Add Member</button>
+          <form id="addMemberForm" method="post">
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Name:</label>
+              <div class="col-9">
+                <input type="text" class="form-control" placeholder="Name" name="username" required />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Email:</label>
+              <div class="col-9">
+                <input type="text" class="form-control" placeholder="Email" name="userEmail" required />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Password:</label>
+              <div class="col-9">
+                <input type="password" class="form-control" placeholder="Password" name="userPassword" required />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Phone:</label>
+              <div class="col-9">
+                <input type="number" class="form-control" placeholder="Phone" name="userPhone" />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Address:</label>
+              <div class="col-9">
+                <textarea class="form-control" name="address"></textarea>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label" for="role">Role: </label>
+              <div class="col-sm-9">
+                <select id="role" class="form-control" required name="role">
+                  <option value="">Select Role</option>
+                  <option value="user">User</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label" for="status">Status: </label>
+              <div class="col-sm-9">
+                <select id="status" class="form-control" required name="status">
+                  <option value="">Select Status</option>
+                  <option value="waiting">Waiting</option>
+                  <option value="approved">Approved</option>
+                  <option value="denied">Denied</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label" for="membership-type">Membership Type: </label>
+              <div class="col-sm-9">
+                <select id="membership-type" class="form-control" name="membershipType">
+                  <option value="">Select MemberShip Type</option>
+                  <option value="Community Member">Community Member</option>
+                  <option value="Key Access Member">Key Access Member</option>
+                  <option value="Workspace Member">Workspace Member</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label" for="basedOn">Based On: </label>
+              <div class="col-sm-9">
+                <select id="basedOn" class="form-control" name="basedOn">
+                  <option value="">Select Based On</option>
+                  <option value="Individual">Individual</option>
+                  <option value="Company">Company</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label" for="tag">Tag: </label>
+              <div class="col-sm-9">
+                <select id="tag" class="form-control" name="tag">
+                  <option value="">Select Tag</option>
+                  <option value="Always">Always</option>
+                  <option value="Usually">Usually</option>
+                  <option value="Often">Often</option>
+                  <option value="Never">Never</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Key Member:</label>
+              <div class="col-1 mt-2">
+                <input type="checkbox" class="form-control" id="keyMember" name="isKeyMember" />
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary mb-3 float-right">Add Member</button>
           </form>
         </div>
       </div>
@@ -88,7 +171,7 @@
           </div>
 
           <div class="f-logo">
-            <img src="/frontend/images/PLACEHOLDER.svg" />
+            <img src="/images/PLACEHOLDER.svg" />
           </div>
         </div>
         <hr />
@@ -105,71 +188,113 @@
     </footer>
 
     <script>
-      var data = [
-        {
-          name: 'Tai Rose',
-          email: 'tairose@gmail.com',
-          type: 'Community Member',
-          basedOn: 'Indiviual',
-          tag: 'Usually',
-          status: 'Approved',
-          detail: 'Detail',
-          delete: 'Delete'
-        },
-        {
-          name: 'Malcom Going',
-          email: 'malcom@gmail.com',
-          type: 'Key Access Member',
-          basedOn: 'Indiviual',
-          tag: 'Often',
-          status: 'Approved',
-          detail: 'Detail',
-          delete: 'Delete'
-        },
-        {
-          name: 'Yusuf Kose',
-          email: 'yusufkose@gmail.com',
-          type: 'Workspace Member',
-          basedOn: 'Company',
-          tag: 'Always',
-          status: 'Approved',
-          detail: 'Detail',
-          delete: 'Delete'
-        },
-        {
-          name: 'Alessandro La Mendola',
-          email: 'alessandro@gmail.com',
-          type: 'Workspace Member',
-          basedOn: 'Company',
-          tag: 'Never',
-          status: 'Waiting',
-          detail: 'Detail',
-          delete: 'Delete'
-        }
-      ]
+      const backendURL = window.location.port === '5000' ? '' : 'http://127.0.0.1:5000'
+      const userRole = localStorage.getItem('userRole')
+      const isLoggedIn = localStorage.getItem('loggedIn') === 'true'
+      if (isLoggedIn && userRole === 'admin') {
+        // User is logged in and is an admin, do nothing
+      } else {
+        // User is not logged in or not an admin, redirect to login page
+        window.location.href = '/non members/registration.html?tab=login'
+      }
+
+      var columns = {
+        UserName: 'Name',
+        userEmail: 'Email',
+        role: 'Role',
+        membershipType: 'Membership Type',
+        basedOn: 'Based On',
+        tag: 'Tag',
+        status: 'Status',
+        detail: 'Detail',
+        delete: 'Delete'
+      }
 
       var table = $('#table-sortable').tableSortable({
-        data: data,
-        columns: {
-          name: 'Name',
-          email: 'Email',
-          type: 'MemberShip Type',
-          basedOn: 'Based On',
-          tag: 'Tag',
-          status: 'Status',
-          detail: 'Detail',
-          delete: 'Delete'
-        },
+        data: [],
         rowsPerPage: 5,
         pagination: true,
         formatCell: function (row, key) {
-          if (key === 'detail') {
-            return $('<button></button>').attr('onclick', "window.location.href = 'member-detail.html'").addClass('btn').text('Detail')
-          }
-          if (key === 'delete') {
-            return $('<button></button>').attr('onclick', "'").addClass('btn').text('Delete')
-          }
+          if (key === 'detail')
+            return $('<button></button>')
+              .attr('onclick', "window.location.href = 'member-detail.html?memberId=" + row.id + "'")
+              .addClass('btn')
+              .text('Detail')
+          if (key === 'delete')
+            return $('<button></button>')
+              .attr('onclick', 'deleteMember(' + row.id + ')')
+              .addClass('btn')
+              .text('Delete')
           return row[key]
+        }
+      })
+
+      function setData() {
+        $.get(`${backendURL}/member-admin`, function (data) {
+          table.setData(
+            data.map((a) => ({ report: 'Report', detail: 'Detail', delete: 'Delete', ...a })),
+            columns
+          )
+        })
+      }
+
+      setData()
+
+      $('#addMemberForm').submit(function (e) {
+        e.preventDefault()
+        var formData = new FormData(this) // Create FormData object
+        var jsonObject = {}
+        formData.forEach((value, key) => {
+          if (value) jsonObject[key] = value
+        })
+        $.ajax({
+          url: `${backendURL}/member-admin`, // The URL where you want to send the POST request
+          type: 'POST',
+          contentType: 'application/json', // Send as JSON
+          data: JSON.stringify(jsonObject), // Convert object to JSON string
+          success: function (response) {
+            alert('Member added successfully!')
+            setData()
+          },
+          error: function (xhr, status, error) {
+            alert('An error occurred: ' + error)
+          }
+        })
+      })
+
+      function deleteMember(memberId) {
+        if (confirm('Are you sure you want to delete the member?')) {
+          $.ajax({
+            url: `${backendURL}/member-admin/` + memberId,
+            type: 'DELETE',
+            success: function (response) {
+              alert('Member deleted successfully!')
+              setData()
+            },
+            error: function (xhr, status, error) {
+              alert('An error occurred: ' + error)
+            }
+          })
+        }
+      }
+
+      logoutBtn.addEventListener('click', async () => {
+        try {
+          const response = await fetch(`${backendURL}/logout`, {
+            method: 'POST',
+            credentials: 'include' // Ensures session cookie is sent
+          })
+          if (response.ok) {
+            localStorage.removeItem('loggedIn')
+            localStorage.removeItem('userId')
+            localStorage.removeItem('userRole')
+            // Optionally redirect or reload
+            window.location.href = '/non members/registration.html?tab=login'
+          } else {
+            alert('Logout failed.')
+          }
+        } catch (error) {
+          console.error('Error logging out:', error)
         }
       })
     </script>
