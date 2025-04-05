@@ -4,8 +4,8 @@ const cors = require('cors');
 const session = require('express-session');
 const path = require('path');
 
-// 1) Import the pool from your database configuration
-const { pool } = require('./config/database.js'); // <-- adjust path if needed
+// 1) Import the pool from the database configuration
+const { pool } = require('./config/database.js'); 
 
 const app = express();
 
@@ -33,18 +33,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static('./backend/uploads'));
 app.use(express.static(path.join(__dirname, '../frontend')));
 
-// ====== SESSION SETUP ======
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET || 'yourSecretKey',
     resave: false,
     saveUninitialized: false,
-    // Uncomment below if needed:
-    // cookie: {
-    //   secure: process.env.NODE_ENV === 'production', 
-    //   httpOnly: true,
-    //   sameSite: 'None',
-    // },
+   
   })
 );
 
