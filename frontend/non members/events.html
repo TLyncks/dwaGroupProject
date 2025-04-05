@@ -346,7 +346,7 @@
 
         <!-- Events Grid -->
         <div class="events-grid">
-          <!-- Sample Event 1: MUSIC -->
+          <!-- Static Sample Event 1: MUSIC -->
           <div class="event-card" data-category="music">
             <img src="/images/event1.jpg" alt="Event 1" />
             <div class="event-details">
@@ -354,11 +354,12 @@
               <p><strong>Date:</strong> 15 April, 2025</p>
               <p><strong>Location:</strong> Cambridge Guildhall</p>
               <p>Enjoy an evening of soulful jazz music performed by renowned local artists.</p>
-              <button class="event-btn" onclick="joinEvent(8)">Join event</button>
+              <!-- Updated to use event_id = 1 -->
+              <button class="event-btn" onclick="joinEvent(1)">Join event</button>
             </div>
           </div>
 
-          <!-- Sample Event 2: ART EXHIBITIONS -->
+          <!-- Static Sample Event 2: ART EXHIBITIONS -->
           <div class="event-card" data-category="art-exhibitions">
             <img src="/images/event2.jpg" alt="Event 2" />
             <div class="event-details">
@@ -366,11 +367,12 @@
               <p><strong>Date:</strong> 5 May, 2025</p>
               <p><strong>Location:</strong> Together Culture workspace</p>
               <p>Explore thought-provoking contemporary artwork from emerging artists.</p>
-              <button class="event-btn" onclick="joinEvent(9)">Join event</button>
+              <!-- Updated to use event_id = 2 -->
+              <button class="event-btn" onclick="joinEvent(2)">Join event</button>
             </div>
           </div>
 
-          <!-- Sample Event 3: WORKSHOPS -->
+          <!-- Static Sample Event 3: WORKSHOPS -->
           <div class="event-card" data-category="workshops">
             <img src="/images/event3.jpg" alt="Event 3" />
             <div class="event-details">
@@ -378,11 +380,12 @@
               <p><strong>Date:</strong> 14 May, 2025</p>
               <p><strong>Location:</strong> Cambridge Theatre</p>
               <p>A creative session where writers share their poetry and stories in an open-mic setting.</p>
-              <button class="event-btn" onclick="joinEvent(10)">Join event</button>
+              <!-- Updated to use event_id = 3 -->
+              <button class="event-btn" onclick="joinEvent(3)">Join event</button>
             </div>
           </div>
 
-          <!-- Sample Event 4: NETWORKING -->
+          <!-- Static Sample Event 4: NETWORKING -->
           <div class="event-card" data-category="networking">
             <img src="/images/event4.jpg" alt="Event 4" />
             <div class="event-details">
@@ -390,7 +393,8 @@
               <p><strong>Date:</strong> 25 May, 2025</p>
               <p><strong>Location:</strong> Together Culture workspace</p>
               <p>A great way to get to know all of our amazing members!</p>
-              <button class="event-btn" onclick="joinEvent(11)">Join event</button>
+              <!-- Updated to use event_id = 4 -->
+              <button class="event-btn" onclick="joinEvent(4)">Join event</button>
             </div>
           </div>
         </div>
@@ -558,7 +562,6 @@
 
       filterButtons.forEach((button) => {
         button.addEventListener("click", () => {
-          
           filterButtons.forEach((btn) => btn.classList.remove("active"));
           button.classList.add("active");
 
@@ -587,21 +590,16 @@
 
       //  Join Event Function
       async function joinEvent(eventId) {
-        const userId = localStorage.getItem('userId');
+        // Retrieve userId from localStorage
+        const userId = localStorage.getItem("userId");
+        if (!userId) {
+          alert("Please log in to join the event.");
+          return;
+        }
         try {
-          // Retrieve userId from localStorage
-          const userId = localStorage.getItem("userId");
-          // If no userId is found, user is effectively not identified
-          if (!userId) {
-            alert("Please log in to join the event.");
-            return;
-          }
-
-          
           const response = await fetch(`${backendURL}/events/${eventId}/join`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            
             body: JSON.stringify({ eventId, userId })
           });
           if (response.ok) {
@@ -644,7 +642,6 @@
           });
           if (response.ok) {
             localStorage.removeItem("loggedIn");
-           
             localStorage.removeItem("userId");
             alert("Logged out successfully!");
             window.location.href = "/non members/registration.html?tab=login";
@@ -657,7 +654,6 @@
       });
 
       //  Dynamic Events Loading 
-     
       window.addEventListener("DOMContentLoaded", async () => {
         try {
           const response = await fetch(`${backendURL}/api/events`);
@@ -669,16 +665,12 @@
           eventsGrid.innerHTML = "";
 
           eventsData.forEach(event => {
-            // Fallback category for filter if not present in DB:
-            const category = "all"; 
-           
-            const imageURL = "/images/eventPlaceholder.jpg";
-
-            // Convert start_date/end_date if they exist
+            // Use the event category if provided, otherwise default to "all"
+            const category = event.category || "all";
+            const imageURL = event.image_url || "/images/eventPlaceholder.jpg";
             const dateString = (event.start_date && event.end_date)
               ? `${event.start_date} - ${event.end_date}`
               : (event.start_date || "TBD");
-
             const timeString = (event.start_time && event.end_time)
               ? `${event.start_time} - ${event.end_time}`
               : "All day";
