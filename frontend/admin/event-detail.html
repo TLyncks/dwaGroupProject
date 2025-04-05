@@ -17,18 +17,20 @@
         <ul>
           <li><a href="#">About</a></li>
           <li><a href="./member.html">Memberships</a></li>
-          <li><a href="/frontend/non members/contact-support.html">Contact</a></li>
+          <li><a href="./event.html">Events</a></li>
         </ul>
       </div>
       <div class="usr-panel">
-        <button href="#">Logout</button>
-        <img src="/frontend/images/GuestIcon.svg" alt="guest-profile-icon" />
+        <button class="signup-btn" id="logoutBtn">Logout</button>
+        <a id="userIconLink">
+          <img src="/images/GuestIcon.svg" alt="user-profile-icon" />
+        </a>
       </div>
     </nav>
 
     <main>
       <div class="admin-container">
-        <h2 style="margin-top: 90px">
+        <h2 style="margin-top: 32px">
           Update:
           <span id="h3-title" style="color: #fe1e3c"></span>
         </h2>
@@ -198,7 +200,7 @@
                 <textarea id="description" class="form-control" required name="description"></textarea>
               </div>
             </div>
-            <button class="btn" onclick="window.location.href = 'event.html'">Go Back</button>
+            <button id="go-back" class="btn">Go Back</button>
             <button type="submit" class="btn btn-primary mt-3 mb-3 float-right">Update Event</button>
           </form>
         </div>
@@ -268,6 +270,11 @@
             alert('An error occurred: ' + error)
           }
         })
+      })
+
+      $('#go-back').click(function (e) {
+        e.preventDefault()
+        window.location.href = 'event.html'
       })
     </script>
   </body>
