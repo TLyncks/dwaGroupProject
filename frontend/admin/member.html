@@ -20,7 +20,6 @@
           <li><a href="#">About</a></li>
           <li><a href="./member.html">Memberships</a></li>
           <li><a href="./event.html">Events</a></li>
-          <li><a href="/frontend/non members/contact-support.html">Contact</a></li>
         </ul>
       </div>
       <div class="usr-panel">
@@ -34,15 +33,6 @@
     <main>
       <div class="admin-container">
         <h2 style="margin-top: 32px">Member Administration</h2>
-
-        <div class="member-actions">
-          <input type="text" class="input-text" id="search-member1" placeholder="Search Name..." style="width: 15%" id="searchField" />
-          <input type="text" class="input-text" id="search-member2" placeholder="Search Email..." style="width: 15%" />
-          <input type="text" class="input-text" id="search-member3" placeholder="Search Type..." style="width: 15%" />
-          <input type="text" class="input-text" id="search-member4" placeholder="Search Tag..." style="width: 15%" />
-          <input type="text" class="input-text" id="search-member5" placeholder="Search Status..." style="width: 15%" />
-          <button class="btn" onclick="searchMember()">Search</button>
-        </div>
 
         <div id="table-sortable" class="table-sortable"></div>
 
@@ -206,6 +196,7 @@
         basedOn: 'Based On',
         tag: 'Tag',
         status: 'Status',
+        report: 'Report',
         detail: 'Detail',
         delete: 'Delete'
       }
@@ -215,6 +206,11 @@
         rowsPerPage: 5,
         pagination: true,
         formatCell: function (row, key) {
+          if (key === 'report')
+            return $('<button></button>')
+              .attr('onclick', "window.location.href = 'member-report.html?memberId=" + row.id + "'")
+              .addClass('btn')
+              .text('Report')
           if (key === 'detail')
             return $('<button></button>')
               .attr('onclick', "window.location.href = 'member-detail.html?memberId=" + row.id + "'")

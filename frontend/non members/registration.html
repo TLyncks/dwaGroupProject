@@ -461,6 +461,7 @@
           if (response.ok) {
             localStorage.setItem("loggedIn", "true");
             localStorage.setItem("userId", data.userId);
+            localStorage.setItem("id", data.id);
 
             // Check if admin
             if (data.role === "admin") {
@@ -491,9 +492,9 @@
           });
           if (response.ok) {
             localStorage.removeItem("loggedIn");
+            localStorage.removeItem("id");
             localStorage.removeItem("userId");
             localStorage.removeItem("userRole");
-            localStorage.removeItem("userId"); // Remove userId on logout
             alert("Logged out successfully!");
             updateUIBasedOnLogin();
             window.location.href = "/non members/registration.html?tab=login";

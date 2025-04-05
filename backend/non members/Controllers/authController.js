@@ -60,7 +60,7 @@ exports.login = async (req, res) => {
 
     return res.json({
       message: message,
-
+      id: user.id,
       userId: user.memberID, //formerly user.id
       role: user.role,  // so front-end knows if user is admin
     });
