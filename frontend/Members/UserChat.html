@@ -1,4 +1,135 @@
 <!--TODO add chat page with basic CHAT FEATURE COMING SOON-->
+<!-- TODO change gradient backgrount to be more cohesive-->
+ <!--TODO use the modified index.html footer. With only the home about pricing contact and change filler logo to TG logo-->
 
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!DOCTYPE html>
+<html lang="en" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Chat </title>
+    <link rel="stylesheet" type="text/css" href="../Members/footHeadStyle.css" />
+    <link rel="stylesheet" type="text/css" href="Userdashboard.css" />
+    <link rel="stylesheet" type = "text/css" href="finalHeader.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+
+            body {
+                    background-color: #f5f5f5;
+                    margin: 0;
+                    padding: 0;
+                    background: linear-gradient(to top, rgb(248, 119, 136), white); 
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100vh;
+                    height: calc(100vh - 160px); /* header + footer = 160px */
+                    margin-top: 100px; /* push content below the header */
+                }
+
+                .chat-box {
+                    width: 2.5in;
+                    max-width: 90%;
+                    background: linear-gradient(135deg, #ffffff, #e0e7ff);
+                    padding: 1.2em 1.5em;
+                    border-radius: 12px;
+                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+                    text-align: center;
+                    border: 1px solid #c7d2fe;
+                    transform: translateY(-40px);
+                    animation: slideDownFade 0.8s ease-out forwards;
+                    animation-delay: 0.3s;
+                    }
+
+    .chat-box h2 {
+      font-size: 1.3em;
+      color: #1e3a8a;
+      margin-bottom: 0.6em;
+    }
+
+    .chat-box p {
+      font-size: 0.95em;
+      color: #374151;
+      line-height: 1.4em;
+    }
+
+    @keyframes slideDownFade {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    </style>
+
+</head>
+
+
+
+
+<body>
+
+
+<!-- ========== TO BE FINAL HEADER ========== -->
+<nav class="navbar">
+    
+    <div class="nav-header">
+      <img src="../images/TC_Logos-01.png" alt="Together Culture Cambridge Logo" />
+    </div>
+    
+    <div class="nav-links">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+       
+        <li><a href="UserDashboard.html">Dashboard</a></li>
+        <li><a href="UserDigitalContent.html">Digital Content</a></li>
+        <li><a href="../non members/events.html">Calendar</a></li>
+        <li><a href="UserChat.html">Chat</a></li>
+        <li><a href="/non members/contact-support.html">Contact Us</a></li>
+        <li><a href="Settings.html">Settings</a></li>
+      </ul>
+    </div>
+    <!-- Right: User Panel -->
+    <div class="usr-panel">
+      <!-- Show "Join Now" by default, hide if logged in -->
+     <!-- <button class="signup-btn" id="joinNowBtn">Join Now</button> -->
+  
+      <!-- Shopping bag always visible -->
+     <!-- <img src="/images/EmptyBag.svg" alt="empty-shopping-bag" /> -->
+  
+      <!-- Single user icon that changes destination depending on login state -->
+      <a id="userIconLink" href="UserDashboard.html">
+        <img src="../images/GuestIcon.svg" alt="user-profile-icon" />
+      </a>
+  
+      <!-- Logout button (hidden if not logged in) --> 
+      <button class="signup-btn" id="logoutBtn" style="display: none;">Logout</button>
+    </div>
+  </nav>
+
+
+  <div class="chat-box">
+    <h2>Chat Feature Coming Soon!</h2>
+    <p>This feature will allow members to communicate directly with other members when logged in to encourage collaboration and cohesiveness.</p>
+  </div>
+
+
+
+  <footer>
+    <div class="f-format">
+      <div class="f-nav">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="/index.html#about">About</a></li>
+          <li><a href="../non members/registration.html">Memberships</a></li>
+          <li><a href="../non members/contact-support.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src = "../js/logoutFunction.js"></script>
+</body>
+</html>
