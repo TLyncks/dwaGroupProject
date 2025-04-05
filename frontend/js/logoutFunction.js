@@ -36,10 +36,21 @@
           });
           if (response.ok) {
             localStorage.removeItem("loggedIn");
-            alert("Logged out successfully!");
+            //alert("Logged out successfully!");
+               Swal.fire({
+              icon: 'success',
+              title: 'Logout Successful',
+              timer: 3000,
+              showConfirmButton: false
+            });
             window.location.href = "/non members/registration.html?tab=login";
           } else {
-            alert("Logout failed.");
+            //alert("Logout failed.");
+             Swal.fire({
+              icon: 'error',
+              title: 'Logout Failed',
+              text: 'An error occurred during logout. Please try again.',
+            });
           }
         } catch (error) {
           console.error("Error during logout:", error);

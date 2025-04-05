@@ -5,7 +5,7 @@ const memberMiddleware = require('./memberMiddleware');
 const {updateUserProfile} = require('./memberControllers')
 const {updateUserPassword} = require('./memberControllers')
 const {getUserProfileForDash} = require('./memberControllers')
-const {getBenefitProgress} = require('./memberControllers')
+const {getBenefitData} = require('./memberControllers')
 const {updateBenefitProgress} = require('./memberControllers')
 
 //MAKE SURE ANY FUNCTIONS USED BELOW ARE PROPERLY IMPORTED ABOVE!!!!
@@ -23,7 +23,9 @@ router.put('/settings', memberMiddleware, updateUserProfile);
 
 router.put('/update-password', memberMiddleware, updateUserPassword);
 
-router.get('/api/benefitProgress', memberMiddleware, getBenefitProgress);
+
+
+router.get('/api/benefitProgress', memberMiddleware, getBenefitData);
 
 
 router.post('/api/save-benefitProgress', memberMiddleware, updateBenefitProgress);
