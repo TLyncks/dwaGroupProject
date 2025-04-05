@@ -20,8 +20,6 @@
           <li><a href="#">About</a></li>
           <li><a href="./member.html">Memberships</a></li>
           <li><a href="./event.html">Events</a></li>
-          <li><a href="/frontend/non members/contact-support.html">Contact</a></li>
-          <li><a href="/frontend/non members/events.html">Events</a></li>
         </ul>
       </div>
       <div class="usr-panel">
@@ -36,12 +34,6 @@
       <div class="admin-container">
         <h2 style="margin-top: 32px">Event Administration</h2>
 
-        <div class="member-actions">
-          <input type="text" class="input-text" placeholder="Search Event..." style="width: 30%" id="searchField" />
-          <input type="date" id="searchdate" class="date-picker" style="width: 25%" />
-          <input type="date" id="enddate" class="date-picker" style="width: 25%" />
-          <button class="btn" onclick="searchEvent()">Search</button>
-        </div>
         <div id="table-sortable" class="table-sortable"></div>
         <hr />
         <div class="add-event">
@@ -57,7 +49,7 @@
             <div class="form-group row">
               <label class="col-2 col-form-label">Event Image:</label>
               <div class="col-9">
-                <input type="file" class="form-control" required accept="image/png, image/jpeg" name="file" />
+                <input type="file" class="form-control" required accept="image/png, image/jpeg" name="file" id="image" />
               </div>
             </div>
 
@@ -204,7 +196,7 @@
             <div class="form-group row">
               <label class="col-2 col-form-label">Event Description:</label>
               <div class="col-9">
-                <textarea class="form-control" required name="description"></textarea>
+                <textarea class="form-control" required name="description" id="description"></textarea>
               </div>
             </div>
 
@@ -307,7 +299,7 @@
       $('#add-event-form').submit(function (e) {
         e.preventDefault()
         var formData = new FormData(this) // Create FormData object
-        formData.append('user_id', localStorage.getItem('userId')) // Append user_id to the FormData object
+        formData.append('user_id', localStorage.getItem('id')) // Append user_id to the FormData object
         $.ajax({
           url: `${backendURL}/events`, // The URL where you want to send the POST request
           type: 'POST',
@@ -317,6 +309,16 @@
           success: function (response) {
             alert('Event added successfully!')
             setData()
+            $('#h3-title').html('')
+            $('#title').val('')
+            $('#image').attr('src', ``)
+            $('#startDate').val('')
+            $('#endDate').val('')
+            $('#startTime').val('')
+            $('#endTime').val('')
+            $('#recurrence').val('')
+            $('#visibility').val('')
+            $('#description').val('')
           },
           error: function (xhr, status, error) {
             alert('An error occurred: ' + error)

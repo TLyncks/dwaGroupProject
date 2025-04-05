@@ -93,3 +93,24 @@ exports.deleteMember = async (req, res) => {
     res.status(500).json({ error: error.message })
   }
 }
+
+exports.getEventAttendees = async (req, res) => {
+  const memberId = req.params.id
+  try {
+    const [rows] = await db.pool.query(
+      `SELECT bu.UserName, ca.title, ca.start_date, ca.start_time, ca.end_time, ea.status
+       FROM eventattendees ea
+       JOIN baseuser bu ON ea.user_id = bu.id
+       JOIN calendar ca ON ea.event_id = ca.event_id
+       WHERE ea.user_id = ? ORDER BY ca.start_date DESC`,
+      [memberId]
+    )
+    rows.forEach((row) => {
+      if (row.start_date) row.start_date = row.start_date.toISOString().split('T')[0]
+      if (row.end_date) row.end_date = row.end_date.toISOString().split('T')[0]
+    })
+    res.json(rows)
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+}

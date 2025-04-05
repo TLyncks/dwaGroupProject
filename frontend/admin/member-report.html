@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="lib/jquery.min.js"></script>
+    <title>Member Events Report | Together Culture Admin</title>
+    <style>
+      /* Basic styling for event report page */
+      body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f9;
+        margin: 0;
+        padding: 20px;
+      }
+      .report-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        text-align: center;
+      }
+      #event-info {
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 20px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th,
+      td {
+        padding: 10px;
+        border: 1px solid #ccc;
+        text-align: left;
+      }
+      th {
+        background: #fe1e3c;
+        color: #fff;
+      }
+      .back-btn {
+        margin-top: 20px;
+        display: block;
+        background: #d0021b;
+        color: white;
+        padding: 10px 15px;
+        text-decoration: none;
+        text-align: center;
+        border-radius: 5px;
+        width: 150px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .back-btn:hover {
+        background: #a00015;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="report-container">
+      <h1>Events Report for <span id="member-name"></span></h1>
+      <p id="event-info">Loading event details...</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Event Name</th>
+            <th>Event Date</th>
+            <th>Event Hours</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="attendeesTableBody">
+          <!-- Attendee rows will be inserted here dynamically -->
+        </tbody>
+      </table>
+      <a href="./member.html" class="back-btn">Back to Member List</a>
+    </div>
+
+    <script>
+      // Retrieve the memberId from the URL query string
+      const urlParams = new URLSearchParams(window.location.search)
+      const memberId = urlParams.get('memberId')
+
+      if (!memberId) {
+        document.body.innerHTML = '<p>No Member specified.</p>'
+      } else {
+        $.get(`/member-admin/${memberId}`, function (data) {
+          $('#event-info').html(`Events for Member ${data.UserName}`)
+          $('#member-name').html(data.UserName)
+        })
+
+        window.addEventListener('DOMContentLoaded', async () => {
+          try {
+            // Fetch attendee details for the given event
+            const response = await fetch(`/member-admin/${memberId}/attendees`)
+            if (!response.ok) throw new Error('Failed to fetch Events')
+            const attendees = await response.json()
+
+            // Insert attendees into table
+            const tbody = document.getElementById('attendeesTableBody')
+            tbody.innerHTML = ''
+            attendees.forEach((att) => {
+              const row = document.createElement('tr')
+              row.innerHTML = `
+                <td>${att.title}</td>
+                <td>${att.start_date}</td>
+                <td>${att.start_time.substring(0, 5)} - ${att.end_time.substring(0, 5)}</td>
+                <td>${att.status}</td>
+              `
+              tbody.appendChild(row)
+            })
+          } catch (error) {
+            console.error('Error fetching member report:', error)
+            document.body.innerHTML = '<p>Error loading member report.</p>'
+          }
+        })
+      }
+    </script>
+  </body>
+</html>
