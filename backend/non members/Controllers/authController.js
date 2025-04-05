@@ -5,7 +5,10 @@ const bcrypt = require('bcrypt');
 const rateLimit = require('express-rate-limit');
 
 
-
+/**
+ * POST /login
+ * Logs a user in using session-based auth.
+ */
 
 //preventing bruteforce and time limit on session i think
 const loginLimiter = rateLimit({
@@ -31,7 +34,7 @@ exports.login = async (req, res) => {
     if (rows.length === 0) {
       return res.status(400).json({ error: 'User not found.' })
     }
-    console.log('User data from DB:', rows[0]); 
+    console.log('User data from DB:', rows[0]); //TODO debugging remove
 
     const user = rows[0]
 
@@ -41,6 +44,9 @@ exports.login = async (req, res) => {
       return res.status(400).json({ error: 'Invalid credentials.' })
     }
 
+    // 3) If valid, store user ID & role in session
+    //    (Assuming you have a 'role' column in baseuser with 'user' or 'admin')
+    //malcolm changed below from user.id to user.memberID. id in mysql is just numbering, while memberID is the user's unique member ID.
 
     
     req.session.userId = user.memberID;
@@ -54,8 +60,8 @@ exports.login = async (req, res) => {
 
     return res.json({
       message: message,
-
-      userId: user.memberID, 
+      id: user.id,
+      userId: user.memberID, //formerly user.id
       role: user.role,  // so front-end knows if user is admin
     });
 
@@ -65,14 +71,18 @@ exports.login = async (req, res) => {
   }
 }
 
-
+/**
+ * POST /logout
+ * Logs a user out by destroying the session.
+ */
 exports.logout = (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       console.error('Logout error:', err)
       return res.status(500).json({ error: 'Could not log out.' })
     }
-   
+    // If you’re using cookies, you might also want to clear them:
+    // res.clearCookie('connect.sid');
 
     return res.json({ message: 'Logged out successfully!' })
   })
