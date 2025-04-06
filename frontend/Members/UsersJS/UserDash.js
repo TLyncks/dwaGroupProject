@@ -40,7 +40,7 @@ async function fetchUserProfile() {
             <p class="member-id">ID: ${userData.ID}</p>
           </div>
           <div class="welcome-name">
-            <span class="welcome-text">Welcome,</span>
+            <span class="welcome-text">Welcome</span>
             <span class="user-name">${userData.fullName}</span>
           </div>
         </div>
