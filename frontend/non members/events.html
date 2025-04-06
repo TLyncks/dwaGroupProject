@@ -596,6 +596,18 @@
           return;
         }
         try {
+<<<<<<< HEAD
+=======
+          // Retrieve userId from localStorage
+          const userId = localStorage.getItem("userId");
+         
+          if (!userId) {
+            alert("Please log in to join the event.");
+            return;
+          }
+
+          
+>>>>>>> upstream/main
           const response = await fetch(`${backendURL}/events/${eventId}/join`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -659,7 +671,8 @@
       //  Dynamic Events Loading 
       window.addEventListener("DOMContentLoaded", async () => {
         try {
-          const response = await fetch(`${backendURL}/api/events`);
+          console.log(backendURL); //TODO for debugging
+          const response = await fetch(`${backendURL}/api/events`); //what is this calling?
           if (!response.ok) {
             throw new Error("Failed to fetch events");
           }

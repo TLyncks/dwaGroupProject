@@ -39,7 +39,13 @@ app.use(
     secret: process.env.SESSION_SECRET || 'yourSecretKey',
     resave: false,
     saveUninitialized: false,
-   
+    // Uncomment below if needed:
+    /*
+     cookie: {
+      secure: process.env.NODE_ENV === 'production', 
+     httpOnly: false,
+      sameSite: 'None',
+     }, */
   })
 );
 

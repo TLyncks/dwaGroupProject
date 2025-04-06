@@ -25,9 +25,11 @@ router.put('/update-password', memberMiddleware, updateUserPassword);
 
 
 
-router.get('/api/benefitProgress', memberMiddleware, getBenefitData);
+router.get('/benefitProgress', memberMiddleware, getBenefitData);
 
 
-router.post('/api/save-benefitProgress', memberMiddleware, updateBenefitProgress);
+router.post('/save-benefitProgress', memberMiddleware, updateBenefitProgress);
+
+//router.get()
 
 module.exports = router;  

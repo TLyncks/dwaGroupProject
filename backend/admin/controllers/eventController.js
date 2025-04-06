@@ -99,6 +99,7 @@ exports.createEventAttendee = async (req, res) => {
     }
     const userId = rows[0].id; // the primary key that the FK expects
     const sql = 'INSERT INTO eventattendees(event_id, user_id) VALUES (?, ?)';
+    console.log(sql, eventId, userId);
     const [result] = await db.pool.query(sql, [eventId, userId]);
     res.json(result);
   } catch (error) {

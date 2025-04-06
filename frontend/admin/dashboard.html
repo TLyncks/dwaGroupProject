@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+  <head>
+    <link rel="stylesheet" href="admin.css" />
+    <link rel="stylesheet" href="lib/bootstrap.min.css" />
+    <link rel="stylesheet" href="lib/table-sortable.css" />
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/table-sortable.js"></script>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <header class="nav-header">
+        <div class="nav-image">
+          <img src="/images/TC_Logos-01.png" alt="Together Culture Cambridge Logo" />
+        </div>
+      </header>
+      <div class="nav-links">
+        <ul>
+          <li><a href="./dashboard.html">Dashboard</a></li>
+          <li><a href="./member.html">Memberships</a></li>
+          <li><a href="./event.html">Events</a></li>
+        </ul>
+      </div>
+      <div class="usr-panel">
+        <button class="signup-btn" id="logoutBtn">Logout</button>
+        <a id="userIconLink">
+          <img src="/images/GuestIcon.svg" alt="user-profile-icon" />
+        </a>
+      </div>
+    </nav>
+
+    <div class="admin-container my-1 mx-auto">
+      <h2 style="margin-top: 32px">Hello <span id="h3-title" style="color: #fe1e3c"></span></h2>
+
+      <hr />
+
+      <h2 class="">Membership Applications</h2>
+
+      <div id="table-sortable" class="table-sortable"></div>
+    </div>
+
+    <footer>
+      <div class="f-format">
+        <div class="f-list">
+          <div class="f-nav">
+            <h4>Navigation</h4>
+            <div>
+              <ul>
+                <li><a href="/frontend/index.html">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="f-logo">
+            <img src="/images/PLACEHOLDER.svg" />
+          </div>
+        </div>
+        <hr />
+        <div class="authors">
+          <h4>Authors:</h4>
+          <ul>
+            <li><a href="https://github.com/TLyncks">Tai Rose (SID: 2108618)</a></li>
+            <li><a href="https://github.com/mgoing">Malcom Going (SID: 2372291)</a></li>
+            <li><a href="https://github.com/AlessandroLaMendola">Alessandro La Mendola (SID: 2158059)</a></li>
+            <li><a href="https://github.com/yusufkose-aru">Yusuf Kose (SID: 2415327)</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const backendURL = window.location.port === '5000' ? '' : 'http://127.0.0.1:5000'
+      const userRole = localStorage.getItem('userRole')
+      const userId = localStorage.getItem('id')
+      const isLoggedIn = localStorage.getItem('loggedIn') === 'true'
+      if (isLoggedIn && userRole === 'admin') {
+        // User is logged in and is an admin, do nothing
+      } else {
+        // User is not logged in or not an admin, redirect to login page
+        window.location.href = '/non members/registration.html?tab=login'
+      }
+
+      $.get(`http://localhost:5000/member-admin/${userId}`, function (data) {
+        $('#h3-title').html(data.UserName)
+      })
+
+      var columns = {
+        first_name: 'First Name',
+        last_name: 'Last Name',
+        email: 'Email',
+        membership_type: 'Membership Type',
+        reason: 'Reason',
+        heard_about: 'Hearted About',
+        created_at: 'Date',
+        approve: 'Approve',
+        deny: 'Deny'
+      }
+
+      var table = $('#table-sortable').tableSortable({
+        data: [],
+        rowsPerPage: 5,
+        pagination: true,
+        formatCell: function (row, key) {
+          if (key === 'approve')
+            return $('<button></button>')
+              .attr('onclick', 'approveMember(' + row.id + ')')
+              .addClass('btn')
+              .text('Approve')
+          if (key === 'deny')
+            return $('<button></button>')
+              .attr('onclick', 'denyMember(' + row.id + ')')
+              .addClass('btn')
+              .text('Deny')
+          return row[key]
+        }
+      })
+
+      let tableData = []
+      function setData() {
+        $.get(`${backendURL}/membershipApplication`, function (data) {
+          tableData = data
+          table.setData(
+            data.map((a) => ({ approve: 'Approve', deny: 'Deny', ...a })),
+            columns
+          )
+        })
+      }
+
+      setData()
+
+      function approveMember(applicationId) {
+        if (confirm('Are you sure you want to approve the application?')) {
+          const application = tableData.find((a) => a.id === applicationId)
+          const jsonObject = {
+            id: application.id,
+            first_name: application.first_name,
+            last_name: application.last_name,
+            email: application.email,
+            phone: application.phone,
+            membership_type: application.membership_type,
+            reason: application.reason,
+            heard_about: application.heard_about,
+            created_at: application.created_at
+          }
+          $.ajax({
+            url: `${backendURL}/membershipApplication/`,
+            type: 'POST',
+            contentType: 'application/json', // Send as JSON
+            data: JSON.stringify(jsonObject), // Convert object to JSON string
+            success: function (response) {
+              alert('Application Approved!')
+              setData()
+            },
+            error: function (xhr, status, error) {
+              alert('An error occurred: ' + error)
+            }
+          })
+        }
+      }
+
+      function denyMember(applicationId) {
+        if (confirm('Are you sure you want to deny the application?')) {
+          $.ajax({
+            url: `${backendURL}/membershipApplication/${applicationId}/deny`,
+            type: 'PUT',
+            processData: false,
+            contentType: false,
+            success: function (response) {
+              alert('Application Denied!')
+              setData()
+            },
+            error: function (xhr, status, error) {
+              alert('An error occurred: ' + error)
+            }
+          })
+        }
+      }
+    </script>
+  </body>
+</html>
