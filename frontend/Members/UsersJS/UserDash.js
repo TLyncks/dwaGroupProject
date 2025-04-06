@@ -1,28 +1,28 @@
 
 
 async function fetchUserProfile() {
-    try {
-      const response = await fetch('/member/dashboard', {
-        method: 'GET',
-        credentials: 'include',
-      });
-  
-      if (!response.ok) {
-        throw new Error('Failed to fetch user data');
-      }
-  
-      const userData = await response.json();
-      displayUserProfile(userData);
-    } catch (error) {
-      console.error('Error fetching user data:', error);
-      //alert('Could not load user data. Please try again.');
-       Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'Could not load user data. Please try again.'
-      });
+  try {
+    const response = await fetch('/member/dashboard', {
+      method: 'GET',
+      credentials: 'include',
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch user data');
     }
+
+    const userData = await response.json();
+    displayUserProfile(userData);
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+    //alert('Could not load user data. Please try again.');
+     Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'Could not load user data. Please try again.'
+    });
   }
+}
 
 
 

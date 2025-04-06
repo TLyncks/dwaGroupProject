@@ -13,7 +13,8 @@
         box-sizing: border-box;
         font-family: Arial, sans-serif;
       }
-      html, body {
+      html,
+      body {
         height: 100%;
       }
       body {
@@ -115,7 +116,7 @@
 
       /* ========== MAIN CONTENT: REGISTRATION ========== */
       .auth-main {
-        margin-top: 100px; 
+        margin-top: 100px;
         padding: 3rem 2rem;
         background: #f4f4f9;
         flex: 1;
@@ -234,7 +235,10 @@
     <nav class="navbar">
       <!-- Left: Logo -->
       <div class="nav-header">
-        <img src="/images/TC_Logos-01.png" alt="Together Culture Cambridge Logo" />
+        <img
+          src="/images/TC_Logos-01.png"
+          alt="Together Culture Cambridge Logo"
+        />
       </div>
       <!-- Center: Nav Links with Dropdown -->
       <div class="nav-links">
@@ -243,10 +247,22 @@
           <li class="dropdown">
             <a href="#">Memberships</a>
             <ul class="dropdown-menu">
-              <li><a href="/non members/community-membership.html">Community</a></li>
-              <li><a href="/non members/key-access-membership.html">Key Access</a></li>
-              <li><a href="/non members/creative-workspace-membership.html">Creative Workspace</a></li>
-              <li><a href="/non members/non-member-page.html">Compare all Memberships</a></li>
+              <li>
+                <a href="/non members/community-membership.html">Community</a>
+              </li>
+              <li>
+                <a href="/non members/key-access-membership.html">Key Access</a>
+              </li>
+              <li>
+                <a href="/non members/creative-workspace-membership.html"
+                  >Creative Workspace</a
+                >
+              </li>
+              <li>
+                <a href="/non members/non-member-page.html"
+                  >Compare all Memberships</a
+                >
+              </li>
             </ul>
           </li>
           <li><a href="/non members/events.html">Events</a></li>
@@ -267,7 +283,9 @@
         </a>
 
         <!-- Logout button (hidden if not logged in) -->
-        <button class="signup-btn" id="logoutBtn" style="display: none;">Logout</button>
+        <button class="signup-btn" id="logoutBtn" style="display: none">
+          Logout
+        </button>
       </div>
     </nav>
 
@@ -287,24 +305,56 @@
         <form class="auth-form" id="signUpForm">
           <div class="form-group">
             <label for="signup-name">Full Name</label>
-            <input type="text" id="signup-name" name="fullName" placeholder="Your Name" required />
+            <input
+              type="text"
+              id="signup-name"
+              name="fullName"
+              placeholder="Your Name"
+              required
+            />
           </div>
           <div class="form-group">
             <label for="signup-email">Email Address</label>
-            <input type="email" id="signup-email" name="email" placeholder="example@domain.com" required />
+            <input
+              type="email"
+              id="signup-email"
+              name="email"
+              placeholder="example@domain.com"
+              required
+            />
           </div>
           <div class="form-group">
             <label for="signup-phone">Phone Number</label>
             <!-- Using type="number" to restrict input and ensure only digits -->
-            <input type="number" id="signup-phone" name="phone" placeholder="Enter phone number" required min="0" step="1" />
+            <input
+              type="number"
+              id="signup-phone"
+              name="phone"
+              placeholder="Enter phone number"
+              required
+              min="0"
+              step="1"
+            />
           </div>
           <div class="form-group">
             <label for="signup-password">Password</label>
-            <input type="password" id="signup-password" name="password" placeholder="Password" required />
+            <input
+              type="password"
+              id="signup-password"
+              name="password"
+              placeholder="Password"
+              required
+            />
           </div>
           <div class="form-group">
             <label for="signup-confirm">Confirm Password</label>
-            <input type="password" id="signup-confirm" name="confirmPassword" placeholder="Confirm Password" required />
+            <input
+              type="password"
+              id="signup-confirm"
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              required
+            />
           </div>
           <button type="submit" class="submit-btn">Sign Up</button>
         </form>
@@ -313,11 +363,23 @@
         <form class="auth-form" id="loginForm">
           <div class="form-group">
             <label for="login-email">Email Address</label>
-            <input type="email" id="login-email" name="email" placeholder="example@domain.com" required />
+            <input
+              type="email"
+              id="login-email"
+              name="email"
+              placeholder="example@domain.com"
+              required
+            />
           </div>
           <div class="form-group">
             <label for="login-password">Password</label>
-            <input type="password" id="login-password" name="password" placeholder="Password" required />
+            <input
+              type="password"
+              id="login-password"
+              name="password"
+              placeholder="Password"
+              required
+            />
           </div>
           <button type="submit" class="submit-btn">Log In</button>
         </form>
@@ -327,19 +389,53 @@
     <!-- ========== FOOTER ========== -->
     <footer>
       <div class="f-format">
+        <div class="f-list">
+          <div class="f-nav">
+            <h4>Navigation</h4>
+            <div>
+              <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li>
+                  <a href="../non members/non-member-page.html">Pricing</a>
+                </li>
+                <li>
+                  <a href="./non members/contact-support.html">Contact</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="f-logo">
+            <img src="../images/TC_Logos-01.png" alt="Footer Logo" />
+          </div>
+        </div>
+        <hr />
         <div class="authors">
           <h4>Authors:</h4>
-          <p>Tai Rose (SID: 2108618)</p>
-          <p>Malcom Going (SID: 2372291)</p>
-          <p>Alessandro La Mendola (SID: 2158059)</p>
-          <p>Yusuf Kose (SID: 2415327)</p>
+          <ul>
+            <li>
+              <a href="https://github.com/mgoing"
+                >Malcom Going (SID: 2372291)</a
+              >
+            </li>
+            <li>
+              <a href="https://github.com/AlessandroLaMendola"
+                >Alessandro La Mendola (SID: 2158059)</a
+              >
+            </li>
+            <li>
+              <a href="https://github.com/yusufkose-aru"
+                >Yusuf Kose (SID: 2415327)</a
+              >
+            </li>
+          </ul>
         </div>
       </div>
     </footer>
 
     <!-- ========== SCRIPTS ========== -->
     <script>
-      // SHOW/HIDE FORMS 
+      // SHOW/HIDE FORMS
       const signUpBtn = document.getElementById("signUpBtn");
       const loginBtn = document.getElementById("loginBtn");
       const signUpForm = document.getElementById("signUpForm");
@@ -369,13 +465,13 @@
         showSignUp();
       }
 
-      //  SESSION MANAGEMENT 
+      //  SESSION MANAGEMENT
 
-      const backendURL = window.location.port === '5000' ? '' : 'http://127.0.0.1:5000';
+      const backendURL =
+        window.location.port === "5000" ? "" : "http://127.0.0.1:5000";
       const logoutBtn = document.getElementById("logoutBtn");
       const joinNowBtn = document.getElementById("joinNowBtn");
       const userIconLink = document.getElementById("userIconLink");
-      
 
       function updateUIBasedOnLogin() {
         const isLoggedIn = localStorage.getItem("loggedIn") === "true";
@@ -397,7 +493,7 @@
       updateUIBasedOnLogin();
 
       // ================== SIGN UP FORM SUBMIT ==========
-      signUpForm.addEventListener("submit", async function(event) {
+      signUpForm.addEventListener("submit", async function (event) {
         event.preventDefault();
         const fullName = document.getElementById("signup-name").value.trim();
         const email = document.getElementById("signup-email").value.trim();
@@ -425,7 +521,7 @@
           const response = await fetch(`${backendURL}/signup`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ fullName, email, phone, password })
+            body: JSON.stringify({ fullName, email, phone, password }),
           });
           const data = await response.text();
           if (response.ok) {
@@ -441,7 +537,7 @@
       });
 
       // ================== LOG IN FORM SUBMIT ==========
-      loginForm.addEventListener("submit", async function(event) {
+      loginForm.addEventListener("submit", async function (event) {
         event.preventDefault();
         const email = document.getElementById("login-email").value.trim();
         const password = document.getElementById("login-password").value;
@@ -455,7 +551,7 @@
             method: "POST",
             headers: { "Content-Type": "application/json" },
             credentials: "include",
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify({ email, password }),
           });
           const data = await response.json();
           if (response.ok) {
@@ -471,8 +567,8 @@
               window.location.href = "/admin/dashboard.html";
             } else {
               localStorage.setItem("userRole", "user");
-              alert("Login successful!");  
-              
+              alert("Login successful!");
+
               window.location.href = "/Members/UserDashboard.html";
             }
           } else {
@@ -489,11 +585,11 @@
         try {
           const response = await fetch(`${backendURL}/logout`, {
             method: "POST",
-            credentials: "include"
+            credentials: "include",
           });
           if (response.ok) {
             localStorage.clear();
-            
+
             alert("Logged out successfully!");
             updateUIBasedOnLogin();
             window.location.href = "/non members/registration.html?tab=login";

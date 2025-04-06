@@ -2,14 +2,17 @@
 
 <!DOCTYPE html>
 <html lang="en" class="light">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Benefits</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="footHeadStyle.css">
-    <link rel="stylesheet" type="text/css" href="UserDashboard.css"> 
-    <link rel="stylesheet" type= "text/css" href="finalHeader.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="footHeadStyle.css" />
+    <link rel="stylesheet" type="text/css" href="UserDashboard.css" />
+    <link rel="stylesheet" type="text/css" href="finalHeader.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <!--Only having title for the photos and then on hover, the text appears -->
@@ -26,37 +29,36 @@ body{
         width: 80px;
         height: 80px;
         border-radius: 10px;
-    }
+      }
 
-        .container-fluid.custom-container{
-           
-          width: 1200px; 
-          max-width: 90%;
-           margin: 0 auto;
-        }
+      .container-fluid.custom-container {
+        width: 1200px;
+        max-width: 90%;
+        margin: 0 auto;
+      }
 
-    .card {
+      .card {
         border-radius: 10px;
         overflow: hidden;
         position: relative;
         transition: 0.3s;
-    }
+      }
 
-    .card:hover {
+      .card:hover {
         transform: scale(1.05);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
 
-    .benefit-card {
+      .benefit-card {
         background-size: cover;
         background-position: center;
         color: white;
         border-radius: 10px;
         min-height: 300px;
         position: relative;
-    }
+      }
 
-    h5 {
+      h5 {
         position: absolute;
         bottom: 0;
         width: 100%;
@@ -65,9 +67,9 @@ body{
         padding: 10px 0;
         margin: 0;
         text-align: center;
-    }
+      }
 
-    .hover-content {
+      .hover-content {
         position: absolute;
         bottom: -100%;
         width: 100%;
@@ -80,40 +82,35 @@ body{
         align-items: center;
         text-align: center;
         transition: bottom 0.5s ease;
-    }
+      }
 
-    .card:hover .hover-content {
+      .card:hover .hover-content {
         bottom: 0;
-    }
+      }
 
-    #myProgress {
-            width: 80%; 
-            height: 30px;
-            background-color: grey;
-            border-radius: 5px;
-            overflow: hidden; 
-        }
+      #myProgress {
+        width: 80%;
+        height: 30px;
+        background-color: grey;
+        border-radius: 5px;
+        overflow: hidden;
+      }
 
-        #myBar {
-            width: 0%; 
-            height: 100%;
-            background-color: green;
-            transition: width 0.5s ease-in-out; 
-        }
+      #myBar {
+        width: 0%;
+        height: 100%;
+        background-color: green;
+        transition: width 0.5s ease-in-out;
+      }
 
-        body {
-        background: linear-gradient(to top, rgb(254 30 60), white); 
+      body {
+        background: linear-gradient(to top, rgb(254 30 60), white);
         color: #333;
-    }
-</style>
+      }
+    </style>
+  </head>
 
- </head>
-
-
-
-
-<body>
-   
+  <body>
     <!-- ========== TO BE FINAL HEADER ========== -->
 <nav class="navbar">
     <!-- Left: Logo -->
@@ -154,10 +151,10 @@ body{
 
 
     <main class="dashboard-container">
-        <h1> Benefits Dashboard</h1>
-        <div id="myProgress">
-            <div id="myBar"></div>
-        </div>
+      <h1>Benefits Dashboard</h1>
+      <div id="myProgress">
+        <div id="myBar"></div>
+      </div>
 
       
 
@@ -280,10 +277,9 @@ body{
 
                 </div>
             </div>
-
-
-
+          </div>
         </div>
+      </div>
     </main>
 
 
@@ -320,7 +316,7 @@ body{
         </div>
       </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src = "./UsersJS/UserBenefits.js"></script>
-    <script src = "../js/logoutFunction.js"></script>
-</body>
+    <script src="./UsersJS/UserBenefits.js"></script>
+    <script src="../js/logoutFunction.js"></script>
+  </body>
 </html>

@@ -2,7 +2,7 @@
 <html lang="en" class="light">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Upcoming Events | Together Culture</title>
     <link rel="stylesheet" href="/css/styles.css" />
     <style>
@@ -107,7 +107,7 @@
 
       /* ========== MAIN CONTENT: UPCOMING EVENTS ========== */
       .events-main {
-        margin-top: 100px; 
+        margin-top: 100px;
         padding: 3rem 2rem;
         background: #f4f4f9;
         display: flex;
@@ -199,7 +199,7 @@
       }
       /* ========== CALENDAR STYLES ========== */
       #calendar-container {
-        display: none; 
+        display: none;
         margin-top: 2rem;
       }
       #calendar-container h2 {
@@ -298,7 +298,10 @@
     <nav class="navbar">
       <!-- Left: Logo -->
       <div class="nav-header">
-        <img src="/images/TC_Logos-01.png" alt="Together Culture Cambridge Logo" />
+        <img
+          src="/images/TC_Logos-01.png"
+          alt="Together Culture Cambridge Logo"
+        />
       </div>
       <!-- Center: Nav Links with Dropdown -->
       <div class="nav-links">
@@ -307,10 +310,22 @@
           <li class="dropdown">
             <a href="#">Memberships</a>
             <ul class="dropdown-menu">
-              <li><a href="/non members/community-membership.html">Community</a></li>
-              <li><a href="/non members/key-access-membership.html">Key Access</a></li>
-              <li><a href="/non members/creative-workspace-membership.html">Creative Workspace</a></li>
-              <li><a href="/non members/non-member-page.html">Compare all Memberships</a></li>
+              <li>
+                <a href="/non members/community-membership.html">Community</a>
+              </li>
+              <li>
+                <a href="/non members/key-access-membership.html">Key Access</a>
+              </li>
+              <li>
+                <a href="/non members/creative-workspace-membership.html"
+                  >Creative Workspace</a
+                >
+              </li>
+              <li>
+                <a href="/non members/non-member-page.html"
+                  >Compare all Memberships</a
+                >
+              </li>
             </ul>
           </li>
           <li><a href="/non members/events.html">Events</a></li>
@@ -319,12 +334,20 @@
       </div>
       <!-- Right: User Panel with Logout Functionality -->
       <div class="usr-panel">
-        <button class="signup-btn" id="joinNowBtn" onclick="location.href='/non members/registration.html?tab=signup'">Join Now</button>
+        <button
+          class="signup-btn"
+          id="joinNowBtn"
+          onclick="location.href='/non members/registration.html?tab=signup'"
+        >
+          Join Now
+        </button>
         <img src="/images/EmptyBag.svg" alt="empty-shopping-bag" />
         <a href="/non members/registration.html?tab=login" id="userIconLink">
           <img src="/images/GuestIcon.svg" alt="guest-profile-icon" />
         </a>
-        <button class="signup-btn" id="logoutBtn" style="display: none;">Logout</button>
+        <button class="signup-btn" id="logoutBtn" style="display: none">
+          Logout
+        </button>
       </div>
     </nav>
 
@@ -332,16 +355,25 @@
     <main class="events-main">
       <div class="events-container">
         <h1>Upcoming Cultural Events</h1>
-        <p>Join us for inspiring cultural experiences, workshops, and networking events.</p>
+        <p>
+          Join us for inspiring cultural experiences, workshops, and networking
+          events.
+        </p>
 
         <!-- Filter Options -->
         <div class="filter-options">
           <button class="filter-btn active" data-filter="all">All</button>
           <button class="filter-btn" data-filter="workshops">Workshops</button>
           <button class="filter-btn" data-filter="music">Music</button>
-          <button class="filter-btn" data-filter="art-exhibitions">Art Exhibitions</button>
-          <button class="filter-btn" data-filter="networking">Networking</button>
-          <button class="filter-btn" data-filter="calendar" id="calendarBtn">Calendar</button>
+          <button class="filter-btn" data-filter="art-exhibitions">
+            Art Exhibitions
+          </button>
+          <button class="filter-btn" data-filter="networking">
+            Networking
+          </button>
+          <button class="filter-btn" data-filter="calendar" id="calendarBtn">
+            Calendar
+          </button>
         </div>
 
         <!-- Events Grid -->
@@ -353,13 +385,18 @@
               <h2>Live Jazz Night</h2>
               <p><strong>Date:</strong> 15 April, 2025</p>
               <p><strong>Location:</strong> Cambridge Guildhall</p>
-              <p>Enjoy an evening of soulful jazz music performed by renowned local artists.</p>
+              <p>
+                Enjoy an evening of soulful jazz music performed by renowned
+                local artists.
+              </p>
 
-              <button class="event-btn" onclick="joinEvent(1)">Join event</button> <!--changed 8 to 1-->
+              <button class="event-btn" onclick="joinEvent(1)">
+                Join event
+              </button>
+              <!--changed 8 to 1-->
 
               <!-- Pass the button element along with event_id -->
-            <!--  <button class="event-btn" onclick="joinEvent(this, 1)">Join event</button> -->
-
+              <!--  <button class="event-btn" onclick="joinEvent(this, 1)">Join event</button> -->
             </div>
           </div>
 
@@ -370,12 +407,17 @@
               <h2>Modern Art Exhibition</h2>
               <p><strong>Date:</strong> 5 May, 2025</p>
               <p><strong>Location:</strong> Together Culture workspace</p>
-              <p>Explore thought-provoking contemporary artwork from emerging artists.</p>
+              <p>
+                Explore thought-provoking contemporary artwork from emerging
+                artists.
+              </p>
 
-              <button class="event-btn" onclick="joinEvent(2)">Join event</button> <!--changed 9 to 2-->
+              <button class="event-btn" onclick="joinEvent(2)">
+                Join event
+              </button>
+              <!--changed 9 to 2-->
 
-             <!-- <button class="event-btn" onclick="joinEvent(this, 2)">Join event</button> -->
-
+              <!-- <button class="event-btn" onclick="joinEvent(this, 2)">Join event</button> -->
             </div>
           </div>
 
@@ -386,12 +428,17 @@
               <h2>Poetry &amp; Storytelling Workshop</h2>
               <p><strong>Date:</strong> 14 May, 2025</p>
               <p><strong>Location:</strong> Cambridge Theatre</p>
-              <p>A creative session where writers share their poetry and stories in an open-mic setting.</p>
+              <p>
+                A creative session where writers share their poetry and stories
+                in an open-mic setting.
+              </p>
 
-              <button class="event-btn" onclick="joinEvent(4)">Join event</button> <!--changed 10 to 4-->
+              <button class="event-btn" onclick="joinEvent(4)">
+                Join event
+              </button>
+              <!--changed 10 to 4-->
 
-            <!--  <button class="event-btn" onclick="joinEvent(this, 3)">Join event</button> -->
-
+              <!--  <button class="event-btn" onclick="joinEvent(this, 3)">Join event</button> -->
             </div>
           </div>
 
@@ -404,10 +451,12 @@
               <p><strong>Location:</strong> Together Culture workspace</p>
               <p>A great way to get to know all of our amazing members!</p>
 
-              <button class="event-btn" onclick="joinEvent(5)">Join event</button> <!--changed 11 to 5-->
+              <button class="event-btn" onclick="joinEvent(5)">
+                Join event
+              </button>
+              <!--changed 11 to 5-->
 
-           <!--   <button class="event-btn" onclick="joinEvent(this, 4)">Join event</button> -->
-
+              <!--   <button class="event-btn" onclick="joinEvent(this, 4)">Join event</button> -->
             </div>
           </div>
         </div>
@@ -453,7 +502,7 @@
                 <tr>
                   <td>13</td>
                   <td>14</td>
-                  <td class="highlight">15<br/>Live Jazz Night</td>
+                  <td class="highlight">15<br />Live Jazz Night</td>
                   <td>16</td>
                   <td>17</td>
                   <td>18</td>
@@ -508,7 +557,7 @@
                 </tr>
                 <tr>
                   <td>4</td>
-                  <td class="highlight">5<br/>Modern Art<br/>Exhibition</td>
+                  <td class="highlight">5<br />Modern Art<br />Exhibition</td>
                   <td>6</td>
                   <td>7</td>
                   <td>8</td>
@@ -519,7 +568,7 @@
                   <td>11</td>
                   <td>12</td>
                   <td>13</td>
-                  <td class="highlight">14<br/>Poetry &amp; Storytelling</td>
+                  <td class="highlight">14<br />Poetry &amp; Storytelling</td>
                   <td>15</td>
                   <td>16</td>
                   <td>17</td>
@@ -534,7 +583,7 @@
                   <td>24</td>
                 </tr>
                 <tr>
-                  <td class="highlight">25<br/>Networking</td>
+                  <td class="highlight">25<br />Networking</td>
                   <td>26</td>
                   <td>27</td>
                   <td>28</td>
@@ -552,12 +601,46 @@
     <!-- ========== FOOTER ========== -->
     <footer>
       <div class="f-format">
+        <div class="f-list">
+          <div class="f-nav">
+            <h4>Navigation</h4>
+            <div>
+              <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li>
+                  <a href="../non members/non-member-page.html">Pricing</a>
+                </li>
+                <li>
+                  <a href="./non members/contact-support.html">Contact</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="f-logo">
+            <img src="../images/TC_Logos-01.png" alt="Footer Logo" />
+          </div>
+        </div>
+        <hr />
         <div class="authors">
           <h4>Authors:</h4>
-          <p>Tai Rose (SID: 2108618)</p>
-          <p>Malcom Going (SID: 2372291)</p>
-          <p>Alessandro La Mendola (SID: 2158059)</p>
-          <p>Yusuf Kose (SID: 2415327)</p>
+          <ul>
+            <li>
+              <a href="https://github.com/mgoing"
+                >Malcom Going (SID: 2372291)</a
+              >
+            </li>
+            <li>
+              <a href="https://github.com/AlessandroLaMendola"
+                >Alessandro La Mendola (SID: 2158059)</a
+              >
+            </li>
+            <li>
+              <a href="https://github.com/yusufkose-aru"
+                >Yusuf Kose (SID: 2415327)</a
+              >
+            </li>
+          </ul>
         </div>
       </div>
     </footer>
@@ -565,7 +648,8 @@
     <!-- Inline JavaScript -->
     <script>
       // ================== BACKEND URL LOGIC ==================
-      const backendURL = window.location.port === '5000' ? '' : 'http://127.0.0.1:5000';
+      const backendURL =
+        window.location.port === "5000" ? "" : "http://127.0.0.1:5000";
 
       //  Filter and Calendar Toggle Logic
       const filterButtons = document.querySelectorAll(".filter-btn");
@@ -590,14 +674,15 @@
               card.style.display = "none";
             } else {
               const cardCategory = card.getAttribute("data-category");
-              card.style.display = cardCategory === filterValue ? "block" : "none";
+              card.style.display =
+                cardCategory === filterValue ? "block" : "none";
             }
           });
         });
       });
 
       calendarBtn.addEventListener("click", () => {
-        eventCards.forEach((card) => card.style.display = "none");
+        eventCards.forEach((card) => (card.style.display = "none"));
         calendarContainer.style.display = "block";
       });
 
@@ -612,7 +697,7 @@
           return;
         }
         try {
-/*
+          /*
           // Retrieve userId from localStorage
           const userId = localStorage.getItem("userId");
          
@@ -626,7 +711,7 @@
           const response = await fetch(`${backendURL}/events/${eventId}/join`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ eventId, userId })
+            body: JSON.stringify({ eventId, userId }),
           });
           if (response.ok) {
             alert("Successfully joined the event!");
@@ -667,14 +752,14 @@
       logoutBtn.addEventListener("click", async () => {
         try {
           const response = await fetch(`${backendURL}/logout`, {
-            method: 'POST',
-            credentials: 'include'
+            method: "POST",
+            credentials: "include",
           });
           if (response.ok) {
             localStorage.clear();
             localStorage.removeItem("loggedIn");
             localStorage.removeItem("userId");
-           localStorage.clear(); //Added to help with logic that uses localstorage
+            localStorage.clear(); //Added to help with logic that uses localstorage
             alert("Logged out successfully!");
             window.location.href = "/non members/registration.html?tab=login";
           } else {
@@ -685,10 +770,9 @@
         }
       });
 
-      //  Dynamic Events Loading 
+      //  Dynamic Events Loading
       window.addEventListener("DOMContentLoaded", async () => {
         try {
-         
           const response = await fetch(`${backendURL}/events`); //what is this calling? Changing (`${backendURL}/api/events`) to (`${backendURL}/events`) as this is not a route i can find and throws error during testing
           if (!response.ok) {
             throw new Error("Failed to fetch events");
@@ -697,23 +781,24 @@
           const eventsGrid = document.querySelector(".events-grid");
           eventsGrid.innerHTML = "";
 
-          eventsData.forEach(event => {
-
+          eventsData.forEach((event) => {
             // Fallback category for filter if not present in DB:
-            const category = "all"; 
-           
+            const category = "all";
+
             const imageURL = event.image_url
-            ? `${backendURL}/uploads/${event.image_url}`
-            : "/frontend/images/eventPlaceholder.jpg";
+              ? `${backendURL}/uploads/${event.image_url}`
+              : "/frontend/images/eventPlaceholder.jpg";
 
             // Convert start_date/end_date if they exist
 
-            const dateString = (event.start_date && event.end_date)
-              ? `${event.start_date} - ${event.end_date}`
-              : (event.start_date || "TBD");
-            const timeString = (event.start_time && event.end_time)
-              ? `${event.start_time} - ${event.end_time}`
-              : "All day";
+            const dateString =
+              event.start_date && event.end_date
+                ? `${event.start_date} - ${event.end_date}`
+                : event.start_date || "TBD";
+            const timeString =
+              event.start_time && event.end_time
+                ? `${event.start_time} - ${event.end_time}`
+                : "All day";
 
             const card = document.createElement("div");
             card.className = "event-card";
@@ -725,7 +810,9 @@
                 <p><strong>Date:</strong> ${dateString}</p>
                 <p><strong>Time:</strong> ${timeString}</p>
                 <p>${event.description || "No description provided."}</p>
-                <button class="event-btn" onclick="joinEvent(this, ${event.event_id})">Join event</button>
+                <button class="event-btn" onclick="joinEvent(this, ${
+                  event.event_id
+                })">Join event</button>
               </div>
             `;
             eventsGrid.appendChild(card);
