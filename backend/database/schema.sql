@@ -162,9 +162,9 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table ``.`membership_applications`
+-- Table ``.`membership_application`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `membership_applications` (
+CREATE TABLE IF NOT EXISTS `membership_application` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(50) NOT NULL,
   `last_name` VARCHAR(50) NOT NULL,
