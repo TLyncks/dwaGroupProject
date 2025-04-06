@@ -43,8 +43,7 @@ exports.signup = async (req, res) => {
     const saltRounds = 10
     const password_hash = await bcrypt.hash(password, saltRounds)
 
-    // Insert new user into baseuser table, including phone
-    // Make sure your DB column is named "UserPhone" (or change it below)
+ 
     const sql = `
       INSERT INTO baseuser (UserName, userEmail, UserPhone, password_hash, memberID)
       VALUES (?, ?, ?, ?, ?)

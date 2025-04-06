@@ -341,8 +341,7 @@
             </div>
             <div class="form-group">
               <label for="phone">Phone number</label>
-              <!-- 1) Using type="text" so pattern can be enforced in all browsers -->
-              <!-- 2) pattern="[0-9]+" ensures only digits can be submitted -->
+            
               <input
                 type="text"
                 id="phone"
@@ -429,7 +428,7 @@
         }
 
         try {
-          // Make a POST request to the server's /apply endpoint
+          
           const response = await fetch("http://127.0.0.1:5000/apply", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
