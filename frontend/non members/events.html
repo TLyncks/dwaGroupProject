@@ -354,8 +354,12 @@
               <p><strong>Date:</strong> 15 April, 2025</p>
               <p><strong>Location:</strong> Cambridge Guildhall</p>
               <p>Enjoy an evening of soulful jazz music performed by renowned local artists.</p>
+
+              <button class="event-btn" onclick="joinEvent(1)">Join event</button> <!--changed 8 to 1-->
+
               <!-- Pass the button element along with event_id -->
-              <button class="event-btn" onclick="joinEvent(this, 1)">Join event</button>
+            <!--  <button class="event-btn" onclick="joinEvent(this, 1)">Join event</button> -->
+
             </div>
           </div>
 
@@ -367,7 +371,11 @@
               <p><strong>Date:</strong> 5 May, 2025</p>
               <p><strong>Location:</strong> Together Culture workspace</p>
               <p>Explore thought-provoking contemporary artwork from emerging artists.</p>
-              <button class="event-btn" onclick="joinEvent(this, 2)">Join event</button>
+
+              <button class="event-btn" onclick="joinEvent(2)">Join event</button> <!--changed 9 to 2-->
+
+             <!-- <button class="event-btn" onclick="joinEvent(this, 2)">Join event</button> -->
+
             </div>
           </div>
 
@@ -379,7 +387,11 @@
               <p><strong>Date:</strong> 14 May, 2025</p>
               <p><strong>Location:</strong> Cambridge Theatre</p>
               <p>A creative session where writers share their poetry and stories in an open-mic setting.</p>
-              <button class="event-btn" onclick="joinEvent(this, 3)">Join event</button>
+
+              <button class="event-btn" onclick="joinEvent(4)">Join event</button> <!--changed 10 to 4-->
+
+            <!--  <button class="event-btn" onclick="joinEvent(this, 3)">Join event</button> -->
+
             </div>
           </div>
 
@@ -391,7 +403,11 @@
               <p><strong>Date:</strong> 25 May, 2025</p>
               <p><strong>Location:</strong> Together Culture workspace</p>
               <p>A great way to get to know all of our amazing members!</p>
-              <button class="event-btn" onclick="joinEvent(this, 4)">Join event</button>
+
+              <button class="event-btn" onclick="joinEvent(5)">Join event</button> <!--changed 11 to 5-->
+
+           <!--   <button class="event-btn" onclick="joinEvent(this, 4)">Join event</button> -->
+
             </div>
           </div>
         </div>
@@ -596,8 +612,7 @@
           return;
         }
         try {
-<<<<<<< HEAD
-=======
+/*
           // Retrieve userId from localStorage
           const userId = localStorage.getItem("userId");
          
@@ -607,7 +622,7 @@
           }
 
           
->>>>>>> upstream/main
+ THIS WAS CONFLICTING. I COMMENTED IT OUT INCASE THIS CAUSES ERRORS */
           const response = await fetch(`${backendURL}/events/${eventId}/join`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -658,6 +673,7 @@
           if (response.ok) {
             localStorage.removeItem("loggedIn");
             localStorage.removeItem("userId");
+           localStorage.clear(); //Added to help with logic that uses localstorage
             alert("Logged out successfully!");
             window.location.href = "/non members/registration.html?tab=login";
           } else {
@@ -671,8 +687,8 @@
       //  Dynamic Events Loading 
       window.addEventListener("DOMContentLoaded", async () => {
         try {
-          console.log(backendURL); //TODO for debugging
-          const response = await fetch(`${backendURL}/api/events`); //what is this calling?
+         
+          const response = await fetch(`${backendURL}/events`); //what is this calling? Changing (`${backendURL}/api/events`) to (`${backendURL}/events`) as this is not a route i can find and throws error during testing
           if (!response.ok) {
             throw new Error("Failed to fetch events");
           }
@@ -681,9 +697,16 @@
           eventsGrid.innerHTML = "";
 
           eventsData.forEach(event => {
-            // Use the event category if provided, otherwise default to "all"
-            const category = event.category || "all";
-            const imageURL = event.image_url || "/images/eventPlaceholder.jpg";
+
+            // Fallback category for filter if not present in DB:
+            const category = "all"; 
+           
+            const imageURL = event.image_url
+            ? `${backendURL}/uploads/${event.image_url}`
+            : "/frontend/images/eventPlaceholder.jpg";
+
+            // Convert start_date/end_date if they exist
+
             const dateString = (event.start_date && event.end_date)
               ? `${event.start_date} - ${event.end_date}`
               : (event.start_date || "TBD");

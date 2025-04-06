@@ -168,7 +168,7 @@
                             <h5 class="semi-transparent-bg">Exclusive Together Culture Events</h5>
                                 <div id = "benefit1" class = "hover-content">
                                      <p class="semi-transparent-bg">Attend your first Together Culture Event to redeem this benefit and start hosting your own events!</p>
-                                    <button class="btn btn-primary" onclick="handleButtonClick('benefit1', 1, 'btn1')">Claim</button>
+                                    <button class="btn btn-primary" id= "benefit1Btn">Claim</button>
                                 </div>
                       
                     </div>
@@ -209,7 +209,7 @@
                                 
                                     <p class="semi-transparent-bg">Anglia Ruskin University has partnered with us to bring select services and events to the community at large!</p>
 
-                                <button class="btn btn-primary" onclick="handleButtonClick('benefit3', 1, 'btn3')">Attend to Claim</button>
+                                <button class="btn btn-primary" id = "benefit3Btn">Attend to Claim</button>
                             </div>
                     </div>
                 </div>
@@ -224,7 +224,7 @@
                                 <p class="semi-transparent-bg">Access to select CU event and services</p>
                                     
                                     <p class = "semi-transparent-bg">Cambridge University has partnered with us to bring services and events to the community!</p>
-                                    <button class="btn btn-primary" onclick="handleButtonClick('benefit4', 1, 'btn4')">Attend to Claim</button>
+                                    <button class="btn btn-primary" id = "benefit4Btn">Attend to Claim</button>
                              
                              </div>
                     </div>
@@ -248,9 +248,9 @@
                                             </p>
                                            <!-- <a href="#"><img src="" alt="Workspace"></a> -->
                                         
-                                        <button class="btn btn-primary" onclick="handleButtonClick('benefit5', 1, 'btn5')">More Info</button>
+                                        <button class="btn btn-primary" id="benefit5Btn">More Info</button>
                                  
-                                <!-- TODO link to the workplace and services-->
+                               
                             </div>
                         </div>
                     </div>
@@ -270,7 +270,7 @@
                                            Host your own event and grow your own network!
                                         </p>
                                     
-                                    <button class="btn btn-primary" onclick="handleButtonClick('benefit6', 1, 'btn6')">More Info</button>
+                                    <button class="btn btn-primary" id = "benefit6Btn">More Info</button>
                             </div>
                         </div>
                     </div>
@@ -286,21 +286,37 @@
 
 
 
+    <!-- ========== FOOTER ========== -->
     <footer>
         <div class="f-format">
-            <div class="f-list">
-                <div class="f-nav">
-                    <h4>Navigation</h4>
-                    <ul>
-                        <li><a href="/frontend/index.html">Home</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Memberships</a></li>
-                        <li><a href="/contact-support.html">Contact</a></li>
-                    </ul>
-                </div>
+          <div class="f-list">
+            <div class="f-nav">
+              <h4>Navigation</h4>
+              <div>
+                <ul>
+                  <li><a href="../index.html">Home</a></li>
+                  <li><a href="../non members/non-member-page.html">Pricing</a></li>
+                  <li><a href="./non members/contact-support.html">Contact</a></li>
+                </ul>
+              </div>
             </div>
+           
+            <div class="f-logo">
+              <img src="../images/TC_Logos-01.png" alt="Footer Logo">
+            </div>
+          </div>
+          <hr>
+          <div class="authors">
+            <h4>Authors:</h4>
+            <ul>
+              
+              <li><a href="https://github.com/mgoing">Malcom Going (SID: 2372291)</a></li>
+              <li><a href="https://github.com/AlessandroLaMendola">Alessandro La Mendola (SID: 2158059)</a></li>
+              <li><a href="https://github.com/yusufkose-aru">Yusuf Kose (SID: 2415327)</a></li>
+            </ul>
+          </div>
         </div>
-    </footer>
+      </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src = "./UsersJS/UserBenefits.js"></script>
     <script src = "../js/logoutFunction.js"></script>
