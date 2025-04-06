@@ -296,8 +296,16 @@
 
       setData()
 
+      function isOnlyNumbers(text) {
+        return /^[0-9]+$/.test(text);
+      }
+
       $('#add-event-form').submit(function (e) {
         e.preventDefault()
+        if(isOnlyNumbers($('#title').val())){
+          alert('Event Name cannot be only numbers')
+          return
+        }
         var formData = new FormData(this) // Create FormData object
         formData.append('user_id', localStorage.getItem('id')) // Append user_id to the FormData object
         $.ajax({
