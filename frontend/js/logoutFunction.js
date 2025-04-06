@@ -21,6 +21,7 @@
             credentials: 'include'
           });
           if (response.ok) {
+            localStorage.clear();
             localStorage.removeItem("loggedIn");
             //alert("Logged out successfully!");
                Swal.fire({
@@ -29,7 +30,7 @@
               timer: 3000,
               showConfirmButton: false
             });
-            localStorage.clear();
+            
             window.location.href = "/non members/registration.html?tab=login";
           } else {
             //alert("Logout failed.");

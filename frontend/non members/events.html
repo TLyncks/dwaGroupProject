@@ -671,6 +671,7 @@
             credentials: 'include'
           });
           if (response.ok) {
+            localStorage.clear();
             localStorage.removeItem("loggedIn");
             localStorage.removeItem("userId");
            localStorage.clear(); //Added to help with logic that uses localstorage
