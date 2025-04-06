@@ -9,24 +9,7 @@
           window.location.href = "/non members/registration.html?tab=login";
         }
       })();
-      /*
-      // Update Dashboard header based on login status.
-      function updateDashboardUI() {
-        const isLoggedIn = localStorage.getItem("loggedIn") === "true";
-        const logoutBtnDashboard = document.getElementById("logoutBtnDashboard");
-        const userIconLinkDashboard = document.getElementById("userIconLinkDashboard");
-        if (isLoggedIn) {
-          logoutBtnDashboard.style.display = "inline-block";
-          // If logged in, clicking the user icon goes to the dashboard.
-          userIconLinkDashboard.href = "/Members/UserDashboard.html";
-        } else {
-          logoutBtnDashboard.style.display = "none";
-          // If not logged in, clicking the user icon goes to login.
-          userIconLinkDashboard.href = "/non members/registration.html?tab=login";
-        }
-      }
-      updateDashboardUI();
-      */ //TESTING WITH OUT TO GET CURRENT FUNCTIONALITY TO WORK
+     
 
 
 
@@ -38,6 +21,7 @@
             credentials: 'include'
           });
           if (response.ok) {
+            localStorage.clear();
             localStorage.removeItem("loggedIn");
             //alert("Logged out successfully!");
                Swal.fire({
@@ -46,6 +30,7 @@
               timer: 3000,
               showConfirmButton: false
             });
+            
             window.location.href = "/non members/registration.html?tab=login";
           } else {
             //alert("Logout failed.");

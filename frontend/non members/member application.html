@@ -504,6 +504,7 @@
               credentials: "include"
             });
             if (response.ok) {
+              localStorage.clear();
               localStorage.removeItem("loggedIn");
               alert("Logged out successfully!");
               window.location.href = "/non members/registration.html?tab=login";

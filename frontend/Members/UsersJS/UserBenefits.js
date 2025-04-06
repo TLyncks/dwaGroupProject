@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
           saveProgressToDB();
         }
         // Redirect to the calendar page WHY DOESNT IT WORK
-        window.location.href = "../../nonmembers/events.html";
+        window.location.href = "../non members/events.html";
       });
     }
   
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   
     // 3
-    const benefit3Btn = document.querySelector("#benefit3 .btn.btn-primary");
+    const benefit3Btn = document.getElementById("benefit3Btn");
     if (benefit3Btn) {
       benefit3Btn.addEventListener("click", function() {
         if (!localStorage.getItem("benefit3Claimed")) {
@@ -52,12 +52,12 @@ document.addEventListener("DOMContentLoaded", function() {
           updateProgress(1);
           saveProgressToDB();
         }
-        window.location.href = "../../nonmembers/events.html";
+        window.location.href = "../../non members/events.html";
       });
     }
   
     // for number 4
-    const benefit4Btn = document.querySelector("#benefit4 .btn.btn-primary");
+    const benefit4Btn = document.getElementById("benefit4Btn");
     if (benefit4Btn) {
       benefit4Btn.addEventListener("click", function() {
         if (!localStorage.getItem("benefit4Claimed")) {
@@ -65,12 +65,12 @@ document.addEventListener("DOMContentLoaded", function() {
           updateProgress(1);
           saveProgressToDB();
         }
-        window.location.href = "../../nonmembers/events.html";
+        window.location.href = "../../non members/events.html";
       });
     }
   
     // Bnumber 5
-    const benefit5Btn = document.querySelector("#benefit5 .btn.btn-primary");
+    const benefit5Btn = document.getElementById("benefit5Btn");
     if (benefit5Btn) {
       benefit5Btn.addEventListener("click", function() {
         const membershipType = localStorage.getItem("membershipType") || "Community Member";
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   
     // this is benefit 6
-    const benefit6Btn = document.querySelector("#benefit6 .btn.btn-primary");
+    const benefit6Btn = document.getElementById("benefit6Btn");
     if (benefit6Btn) {
       benefit6Btn.addEventListener("click", function() {
         if (!localStorage.getItem("benefit6Claimed")) {

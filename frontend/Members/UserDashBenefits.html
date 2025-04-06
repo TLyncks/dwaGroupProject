@@ -15,9 +15,17 @@
     <link rel="stylesheet" type="text/css" href="finalHeader.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!--Only having title for the photos and then on hover, the text appears -->
-    <style>
-      .icon {
+<!--Only having title for the photos and then on hover, the text appears -->
+<style>
+
+body{
+    background: linear-gradient(to top, rgb(248, 119, 136), white); 
+}
+
+
+
+
+    .icon {
         width: 80px;
         height: 80px;
         border-radius: 10px;
@@ -104,46 +112,43 @@
 
   <body>
     <!-- ========== TO BE FINAL HEADER ========== -->
-    <nav class="navbar">
-      <!-- Left: Logo -->
-      <div class="nav-header">
-        <img
-          src="../images/TC_Logos-01.png"
-          alt="Together Culture Cambridge Logo"
-        />
-      </div>
+<nav class="navbar">
+    <!-- Left: Logo -->
+    <div class="nav-header">
+      <img src="../images/TC_Logos-01.png" alt="Together Culture Cambridge Logo" />
+    </div>
+    
+    <div class="nav-links">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+       
+        <li><a href="UserDashboard.html">Dashboard</a></li>
+        <li><a href="UserDigitalContent.html">Digital Content</a></li>
+        <li><a href="../non members/events.html">Calendar</a></li>
+        <li><a href="UserChat.html">Chat</a></li>
+        <li><a href="/non members/contact-support.html">Contact Us</a></li>
+        <li><a href="Settings.html">Settings</a></li>
+      </ul>
+    </div>
+    <!-- Right: User Panel -->
+    <div class="usr-panel">
+      <!-- Show "Join Now" by default, hide if logged in -->
+     <!-- <button class="signup-btn" id="joinNowBtn">Join Now</button> -->
+  
+      <!-- Shopping bag always visible -->
+     <!-- <img src="/images/EmptyBag.svg" alt="empty-shopping-bag" /> -->
+  
+      <!-- Single user icon that changes destination depending on login state -->
+      <a id="userIconLink" href="UserDashboard.html">
+        <img src="/images/GuestIcon.svg" alt="user-profile-icon" />
+      </a>
+  
+      <!-- Logout button (hidden if not logged in) style="display: none;" --> 
+      <button class="signup-btn" id="logoutBtn" >Logout</button>
+    </div>
+  </nav>
 
-      <div class="nav-links">
-        <ul>
-          <li><a href="../index.html">Home</a></li>
 
-          <li><a href="UserDashboard.html">Dashboard</a></li>
-          <li><a href="UserDigitalContent.html">Digital Content</a></li>
-          <li><a href="Calendar.html">Calendar</a></li>
-          <li><a href="UserChat.html">Chat</a></li>
-          <li><a href="/non members/contact-support.html">Contact Us</a></li>
-          <li><a href="Settings.html">Settings</a></li>
-        </ul>
-      </div>
-      <!-- Right: User Panel -->
-      <div class="usr-panel">
-        <!-- Show "Join Now" by default, hide if logged in -->
-        <!-- <button class="signup-btn" id="joinNowBtn">Join Now</button> -->
-
-        <!-- Shopping bag always visible -->
-        <!-- <img src="/images/EmptyBag.svg" alt="empty-shopping-bag" /> -->
-
-        <!-- Single user icon that changes destination depending on login state -->
-        <a id="userIconLink" href="UserDashboard.html">
-          <img src="/images/GuestIcon.svg" alt="user-profile-icon" />
-        </a>
-
-        <!-- Logout button (hidden if not logged in) -->
-        <button class="signup-btn" id="logoutBtn" style="display: none">
-          Logout
-        </button>
-      </div>
-    </nav>
 
     <main class="dashboard-container">
       <h1>Benefits Dashboard</h1>
@@ -151,221 +156,165 @@
         <div id="myBar"></div>
       </div>
 
-      <div class="container-fluid mt-4 custom-container">
-        <div class="row">
-          <!-- Benefit 1 -->
-          <div class="col-md-6">
-            <div
-              class="card text-center benefit-card"
-              style="
-                background-image: url('UserDashPhotos/Screenshot 2025-03-02 132636.png');
-              "
-            >
-              <!--<div class="card-body">-->
-              <h5 class="semi-transparent-bg">
-                Exclusive Together Culture Events
-              </h5>
-              <div id="benefit1" class="hover-content">
-                <p class="semi-transparent-bg">
-                  Attend your first Together Culture Event to redeem this
-                  benefit and start hosting your own events!
-                </p>
-                <button
-                  class="btn btn-primary"
-                  onclick="handleButtonClick('benefit1', 1, 'btn1')"
-                >
-                  Claim
-                </button>
-              </div>
-            </div>
-          </div>
+      
 
-          <!-- Benefit 2 -->
-          <div class="col-md-6">
-            <div
-              class="card text-center benefit-card"
-              style="
-                background-image: url('UserDashPhotos/free-photo-of-vibrant-market-scene-in-valencia-spain.jpeg');
-              "
-            >
-              <h5 class="semi-transparent-bg">Community Discounts</h5>
-              <!-- ------------- -->
-              <div id="vendorBenefit" class="hover-content">
-                <p class="semi-transparent-bg">
-                  We've partnered with vendors in our community that align with
-                  our mission to bring great deals! Use your member ID at the
-                  register! Enter membership number to claim:
-                </p>
-                <input
-                  type="text"
-                  id="vendorMembershipInput"
-                  placeholder="Membership Number"
-                />
-                <button
-                  class="btn btn-primary"
-                  id="vendorClaimBtn"
-                  onclick="handleButtonClick('benefit2', 1, 'btn2')"
-                >
-                  Claim
-                </button>
-                <p id="vendorError" style="color: red; display: none">
-                  Incorrect membership number. Please try again.
-                </p>
-              </div>
-              <!-- ------------- -->
-
-              <!--<button class="btn btn-primary" onclick="handleButtonClick('vendorBenefit', 17, 'btn2')">Claim</button>-->
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <!-- Benefit 3 -->
-          <div class="col-md-6">
-            <div
-              class="card text-center benefit-card"
-              style="
-                background-image: url('UserDashPhotos/ARU_Chelms-Campus-1646315935-369966023.jpg');
-              "
-            >
-              <h5 class="semi-transparent-bg">
-                Anglia Ruskin University Partnership
-              </h5>
-              <div id="benefit3" class="hover-content">
-                <p class="semi-transparent-bg">
-                  Anglia Ruskin University has partnered with us to bring select
-                  services and events to the community at large!
-                </p>
-
-                <button
-                  class="btn btn-primary"
-                  onclick="handleButtonClick('benefit3', 1, 'btn3')"
-                >
-                  Attend to Claim
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Benefit 4 -->
-          <div class="col-md-6">
-            <div
-              class="card text-center benefit-card"
-              style="
-                background-image: url('UserDashPhotos/Cambridge image.jpg');
-              "
-            >
-              <h5 class="semi-transparent-bg">
-                Cambridge University Partnership
-              </h5>
-              <div id="benefit4" class="hover-content">
-                <p class="semi-transparent-bg">
-                  Access to select CU event and services
-                </p>
-
-                <p class="semi-transparent-bg">
-                  Cambridge University has partnered with us to bring services
-                  and events to the community!
-                </p>
-                <button
-                  class="btn btn-primary"
-                  onclick="handleButtonClick('benefit4', 1, 'btn4')"
-                >
-                  Attend to Claim
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <!-- Benefit 5 -->
-          <div class="col-md-6">
-            <div class="card text-center">
-              <div
-                class="cardtext-center benefit-card"
-                style="
-                  background-image: url('UserDashPhotos/Screenshot+2024-06-10+at+15.32.51+(1).jpg');
-                "
-              >
-                <h5 class="semi-transparent-bg">
-                  Together Culture Workplace & Services
-                </h5>
-                <div id="benefit5" class="hover-content">
-                  <p class="semi-transparent-bg">
-                    Exclusive access to our 5 Fitzroy St Workplace & Services!
-                  </p>
-
-                  <p class="semi-transparent-bg">
-                    Reserve our workspace with access to materials, technology
-                    and creative tools to foster development of your personal
-                    hobbies or your company's new program! Space for individuals
-                    and group work with
-                  </p>
-                  <!-- <a href="#"><img src="" alt="Workspace"></a> -->
-
-                  <button
-                    class="btn btn-primary"
-                    onclick="handleButtonClick('benefit5', 1, 'btn5')"
-                  >
-                    More Info
-                  </button>
-
-                  <!-- TODO link to the workplace and services-->
+        <div class="container-fluid mt-4 custom-container ">
+            <div class="row">
+                <!-- Benefit 1 -->
+                <div class="col-md-6">
+                    <div class="card text-center benefit-card" style="background-image: url('UserDashPhotos/Screenshot 2025-03-02 132636.png');">
+                        <!--<div class="card-body">-->
+                            <h5 class="semi-transparent-bg">Exclusive Together Culture Events</h5>
+                                <div id = "benefit1" class = "hover-content">
+                                     <p class="semi-transparent-bg">Attend your first Together Culture Event to redeem this benefit and start hosting your own events!</p>
+                                    <button class="btn btn-primary" id= "benefit1Btn">Claim</button>
+                                </div>
+                      
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
 
-          <!-- Benefit 6 -->
-          <div class="col-md-6">
-            <div class="card text-center">
-              <div
-                class="cardtext-center benefit-card"
-                style="
-                  background-image: url('UserDashPhotos/communityHill.jpg');
-                "
-              >
-                <h5 class="semi-transparent-bg">Host your own Event!</h5>
-                <div id="benefit6" class="hover-content">
-                  <p class="semi-transparent-bg">
-                    Become apart of the fastest growing network and community in
-                    the CambridgeShire area!
-                  </p>
-
-                  <p class="semi-transparent-bg">
-                    Host your own event and grow your own network!
-                  </p>
-
-                  <button
-                    class="btn btn-primary"
-                    onclick="handleButtonClick('benefit6', 1, 'btn6')"
-                  >
-                    More Info
-                  </button>
+                <!-- Benefit 2 -->
+                <div class="col-md-6">
+                    <div class="card text-center benefit-card" style="background-image: url('UserDashPhotos/free-photo-of-vibrant-market-scene-in-valencia-spain.jpeg');">
+                        
+                            <h5 class="semi-transparent-bg">Community Discounts</h5>
+                            <!-- ------------- -->
+                                    <div id="vendorBenefit" class="hover-content">
+                                        <p class="semi-transparent-bg">We've partnered with vendors in our community that align with our mission to bring great deals! Use your member ID at the register! Enter membership number to claim:</p>
+                                        <input type="text" id="vendorMembershipInput" placeholder="Membership Number">
+                                        <button class="btn btn-primary" id="vendorClaimBtn">Claim</button>
+                                        <p id="vendorError" style="color: red; display: none;">Incorrect membership number. Please try again.</p>
+                                    </div>
+                                <!-- ------------- -->
+                            
+                                
+                      
+                            
+                               <!--<button class="btn btn-primary" onclick="handleButtonClick('vendorBenefit', 17, 'btn2')">Claim</button>-->
+                            
+                        </div>
+                    </div>
                 </div>
-              </div>
+
+            <div class="row">
+                <!-- Benefit 3 -->
+                <div class="col-md-6">
+                    <div class="card text-center benefit-card" style="background-image: url('UserDashPhotos/ARU_Chelms-Campus-1646315935-369966023.jpg');">
+                        
+                            <h5 class="semi-transparent-bg">Anglia Ruskin University Partnership</h5>
+                            <div id="benefit3" class="hover-content">
+                                
+                                
+                                
+                                    <p class="semi-transparent-bg">Anglia Ruskin University has partnered with us to bring select services and events to the community at large!</p>
+
+                                <button class="btn btn-primary" id = "benefit3Btn">Attend to Claim</button>
+                            </div>
+                    </div>
+                </div>
+            
+
+                <!-- Benefit 4 -->
+                <div class="col-md-6">
+                    <div class="card text-center benefit-card" style="background-image: url('UserDashPhotos/Cambridge image.jpg');">
+                        
+                        <h5 class="semi-transparent-bg">Cambridge University Partnership</h5>
+                            <div id="benefit4" class="hover-content">
+                                <p class="semi-transparent-bg">Access to select CU event and services</p>
+                                    
+                                    <p class = "semi-transparent-bg">Cambridge University has partnered with us to bring services and events to the community!</p>
+                                    <button class="btn btn-primary" id = "benefit4Btn">Attend to Claim</button>
+                             
+                             </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <!-- Benefit 5 -->
+                <div class="col-md-6">
+                    <div class="card text-center">
+                        <div class = "cardtext-center benefit-card" style = "background-image: url('UserDashPhotos/Screenshot+2024-06-10+at+15.32.51+(1).jpg')">
+                        
+                            <h5 class="semi-transparent-bg">Together Culture Workplace & Services</h5>
+                            <div id = "benefit5" class="hover-content">
+                                <p class="semi-transparent-bg">Exclusive access to our 5 Fitzroy St Workplace & Services!</p>
+                                       
+                                            <p class = "semi-transparent-bg">
+                                                Reserve our workspace with access to materials, technology and creative tools to foster development of your personal hobbies 
+                                                or your company's new program! Space for individuals and group work with 
+                                            </p>
+                                           <!-- <a href="#"><img src="" alt="Workspace"></a> -->
+                                        
+                                        <button class="btn btn-primary" id="benefit5Btn">More Info</button>
+                                 
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Benefit 6 -->
+                <div class="col-md-6">
+                    <div class="card text-center">
+                        <div class = "cardtext-center benefit-card" style = "background-image: url('UserDashPhotos/communityHill.jpg')"> 
+                            
+                            <h5 class="semi-transparent-bg">Host your own Event!</h5>
+                            <div id = "benefit6" class="hover-content">
+                                <p class="semi-transparent-bg">Become apart of the fastest growing network and community in the CambridgeShire area!</p>
+                                
+                                       
+                                        <p class = "semi-transparent-bg">
+                                           Host your own event and grow your own network!
+                                        </p>
+                                    
+                                    <button class="btn btn-primary" id = "benefit6Btn">More Info</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                </div>
             </div>
           </div>
         </div>
       </div>
     </main>
 
+
+
+    <!-- ========== FOOTER ========== -->
     <footer>
-      <div class="f-format">
-        <div class="f-list">
-          <div class="f-nav">
-            <h4>Navigation</h4>
+        <div class="f-format">
+          <div class="f-list">
+            <div class="f-nav">
+              <h4>Navigation</h4>
+              <div>
+                <ul>
+                  <li><a href="../index.html">Home</a></li>
+                  <li><a href="../non members/non-member-page.html">Pricing</a></li>
+                  <li><a href="./non members/contact-support.html">Contact</a></li>
+                </ul>
+              </div>
+            </div>
+           
+            <div class="f-logo">
+              <img src="../images/TC_Logos-01.png" alt="Footer Logo">
+            </div>
+          </div>
+          <hr>
+          <div class="authors">
+            <h4>Authors:</h4>
             <ul>
-              <li><a href="/frontend/index.html">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Memberships</a></li>
-              <li><a href="/contact-support.html">Contact</a></li>
+              
+              <li><a href="https://github.com/mgoing">Malcom Going (SID: 2372291)</a></li>
+              <li><a href="https://github.com/AlessandroLaMendola">Alessandro La Mendola (SID: 2158059)</a></li>
+              <li><a href="https://github.com/yusufkose-aru">Yusuf Kose (SID: 2415327)</a></li>
             </ul>
           </div>
         </div>
-      </div>
-    </footer>
+      </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./UsersJS/UserBenefits.js"></script>
     <script src="../js/logoutFunction.js"></script>

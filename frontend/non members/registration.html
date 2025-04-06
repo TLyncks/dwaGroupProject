@@ -492,10 +492,8 @@
             credentials: "include"
           });
           if (response.ok) {
-            localStorage.removeItem("loggedIn");
-            localStorage.removeItem("id");
-            localStorage.removeItem("userId");
-            localStorage.removeItem("userRole");
+            localStorage.clear();
+            
             alert("Logged out successfully!");
             updateUIBasedOnLogin();
             window.location.href = "/non members/registration.html?tab=login";
