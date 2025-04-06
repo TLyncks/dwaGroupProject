@@ -56,8 +56,27 @@ const getUserProfileForDash = async (req, res) => {
     res.json({                              //TODO adjust depending on data taken from mysql
       fullName: user.UserName,
       email: user.userEmail,
-      ID : user.memberID,
-      
+      ID : user.memberID, /*
+      id: 1,
+ 
+  UserAddress: '123 Main St, Example City',
+  UserPhone: '1234567890',
+  isKeyMember: 0,
+  dateAccountMade: 2025-04-03T21:11:00.000Z,
+  eventsHosted: 0,
+  eventsAttended: 0,
+  interest1: 'Technology',
+  interest2: 'Gaming',
+  interest3: 'Networking',
+  memberID: 666666,
+  timesWorkspaceReserved: 0,
+  benefitProgress: 0,
+  role: 'user',
+  membershipType: 'Community Member',
+  basedOn: 'Individual',
+  tag: 'Usually',
+  status: 'Approved'
+      */
       otherInfo: user.otherInfo || 'No additional info available'
 
     });
@@ -164,7 +183,7 @@ const updateUserProfile = async (req, res) => {
 
 
 
-  //getting data for the benefits dashboard
+  //getting data for the benefits dashboard TODO maybe delete??
   const getBenefitData = async (req, res) => {
     try {
       const userId = req.session.userId; 
@@ -177,9 +196,12 @@ const updateUserProfile = async (req, res) => {
          FROM baseuser 
          WHERE memberID = ?`,
         [userId]
+          
       );
       if (rows.length === 0) {
+        console.log('user data for', userId,' fetched: ', rows)
         return res.status(404).json({ error: 'User not found' });
+        
       }
       res.json(rows[0]);
     } catch (error) {
@@ -192,4 +214,3 @@ const updateUserProfile = async (req, res) => {
 
 
   module.exports = { getUserProfile, updateUserProfile, updateUserPassword, getUserProfileForDash, updateBenefitProgress, getBenefitData };
-
