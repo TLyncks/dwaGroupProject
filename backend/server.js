@@ -81,7 +81,7 @@ app.post('/apply', async (req, res) => {
 
     // 1) Check for existing application with the same email
     const [existingRows] = await pool.query(
-      'SELECT * FROM membership_applications WHERE email = ?',
+      'SELECT * FROM membership_application WHERE email = ?',
       [email]
     );
     if (existingRows.length > 0) {
@@ -92,7 +92,7 @@ app.post('/apply', async (req, res) => {
 
     // 2) Insert the new application
     const [result] = await pool.query(
-      `INSERT INTO membership_applications
+      `INSERT INTO membership_application
        (first_name, last_name, email, phone, membership_type, reason, participated, heard_about, created_at)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())`,
       [firstName, lastName, email, phone, membershipType, reason, participated, heardAbout]

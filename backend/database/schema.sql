@@ -170,7 +170,7 @@ CREATE TABLE IF NOT EXISTS `membership_application` (
   `last_name` VARCHAR(50) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
   `phone` VARCHAR(15) NULL DEFAULT NULL,
-  `membership_type` ENUM('user', 'admin', 'key member') NOT NULL DEFAULT 'user',
+  `membership_type` ENUM('community', 'key_access', 'creative_workspace', 'pay_what_you_can') NOT NULL DEFAULT 'community',
   `reason` TEXT NULL DEFAULT NULL,
   `participated` TEXT NULL DEFAULT NULL,
   `heard_about` TEXT NULL DEFAULT NULL,
