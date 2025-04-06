@@ -1,5 +1,3 @@
-<!-- TODO add the responsive header for the index so when a user is logged in they can go to the home page with the same header-->
- <!-- TODO Add logo and filler welcome stuff-->
 <!DOCTYPE html>
 <html lang="en" class="light">
   <head>
@@ -53,6 +51,7 @@
         color: #fff;
         font-size: 1rem;
       }
+      /* ========== USER PANEL (Updated for session logic) ========== */
       .usr-panel {
         display: flex;
         align-items: center;
@@ -297,12 +296,14 @@
           <li><a href="./non members/contact-support.html">Contact Us</a></li>
         </ul>
       </div>
+      <!-- Updated user panel with session login/logout logic -->
       <div class="usr-panel">
-        <button class="signup-btn" onclick="location.href='./non members/registration.html?tab=signup'">Join Now</button>
+        <button class="signup-btn" id="joinNowBtn" onclick="location.href='./non members/registration.html?tab=signup'">Join Now</button>
         <img src="./images/EmptyBag.svg" alt="empty-shopping-bag" />
-        <a href="./non members/registration.html?tab=login">
+        <a href="./non members/registration.html?tab=login" id="userIconLink">
           <img src="./images/GuestIcon.svg" alt="guest-profile-icon" />
         </a>
+        <button class="signup-btn" id="logoutBtn" style="display: none;">Logout</button>
       </div>
     </nav>
     <!-- ========== MAIN CONTENT ========== -->
@@ -324,7 +325,7 @@
           <p>Our platform connects artists, performers, and cultural enthusiasts, offering transformative experiences that inspire and engage. Whether you are exploring innovative art forms or seeking networking opportunities, Together Culture is your gateway to a vibrant cultural scene.</p>
           <p>Learn more about our mission and upcoming events on our <a href="https://www.togetherculture.com/" target="_blank">official website</a>.</p>
         </section>
-      
+        <!-- Services Section with Card Layout -->
         <section class="services-info">
           <h2>Our Services &amp; Offerings</h2>
           <p>Join us and discover how shared creative experiences can transform communities.</p>
@@ -349,7 +350,7 @@
         </section>
       </div>
     </main>
-    <!-- ========== FOOTER ========== -->
+    <!-- ========== FOOTER (unchanged) ========== -->
     <footer>
       <div class="f-format">
         <div class="f-list">
@@ -385,9 +386,55 @@
               <li><a href="#">Contact Us</a></li>
               <li><a href="#">Report Issue</a></li>
             </ul>
-          
+          </div>
+          <div class="f-logo">
+            <img src="./images/PLACEHOLDER.svg" alt="Placeholder Logo" />
+          </div>
+        </div>
       </div>
     </footer>
     <script src="js/main.js"></script>
+    <script>
+      // ================== BACKEND URL LOGIC ==================
+      const backendURL = window.location.port === '5000' ? '' : 'http://127.0.0.1:5000';
+
+      // Session Login/Logout Logic (same as events.html)
+      const logoutBtn = document.getElementById("logoutBtn");
+      const joinNowBtn = document.getElementById("joinNowBtn");
+      const userIconLink = document.getElementById("userIconLink");
+
+      function updateUIBasedOnLogin() {
+        const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+        if (isLoggedIn) {
+          joinNowBtn.style.display = "none";
+          logoutBtn.style.display = "inline-block";
+          userIconLink.href = "/Members/UserDashboard.html";
+        } else {
+          joinNowBtn.style.display = "inline-block";
+          logoutBtn.style.display = "none";
+          userIconLink.href = "/non members/registration.html?tab=login";
+        }
+      }
+      updateUIBasedOnLogin();
+
+      logoutBtn.addEventListener("click", async () => {
+        try {
+          const response = await fetch(`${backendURL}/logout`, {
+            method: 'POST',
+            credentials: 'include'
+          });
+          if (response.ok) {
+            localStorage.removeItem("loggedIn");
+            localStorage.removeItem("userId");
+            alert("Logged out successfully!");
+            window.location.href = "/non members/registration.html?tab=login";
+          } else {
+            alert("Logout failed.");
+          }
+        } catch (error) {
+          console.error("Error during logout:", error);
+        }
+      });
+    </script>
   </body>
 </html>
