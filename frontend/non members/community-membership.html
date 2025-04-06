@@ -80,7 +80,7 @@
         min-width: 160px;
         border-radius: 8px;
         margin-top: 0.5rem;
-        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         padding: 0.75rem 0;
         transform: translateY(-10px);
         transition: opacity 0.2s ease, transform 0.2s ease;
@@ -288,7 +288,10 @@
     <!-- HEADER -->
     <nav class="navbar">
       <div class="nav-header">
-        <img src="/images/TC_Logos-01.png" alt="Together Culture Cambridge Logo" />
+        <img
+          src="/images/TC_Logos-01.png"
+          alt="Together Culture Cambridge Logo"
+        />
       </div>
       <div class="nav-links">
         <ul>
@@ -296,10 +299,22 @@
           <li class="dropdown">
             <a href="#">Memberships</a>
             <ul class="dropdown-menu">
-              <li><a href="/non members/community-membership.html">Community</a></li>
-              <li><a href="/non members/key-access-membership.html">Key Access</a></li>
-              <li><a href="/non members/creative-workspace-membership.html">Creative Workspace</a></li>
-              <li><a href="/non members/non-member-page.html">Compare all Memberships</a></li>
+              <li>
+                <a href="/non members/community-membership.html">Community</a>
+              </li>
+              <li>
+                <a href="/non members/key-access-membership.html">Key Access</a>
+              </li>
+              <li>
+                <a href="/non members/creative-workspace-membership.html"
+                  >Creative Workspace</a
+                >
+              </li>
+              <li>
+                <a href="/non members/non-member-page.html"
+                  >Compare all Memberships</a
+                >
+              </li>
             </ul>
           </li>
           <li><a href="/non members/events.html">Events</a></li>
@@ -308,7 +323,11 @@
       </div>
       <div class="usr-panel">
         <!-- Join Now & User Icon: Visible if not logged in -->
-        <button class="signup-btn" id="joinNowBtn" onclick="location.href='/non members/registration.html?tab=signup'">
+        <button
+          class="signup-btn"
+          id="joinNowBtn"
+          onclick="location.href='/non members/registration.html?tab=signup'"
+        >
           Join Now
         </button>
         <img src="/images/EmptyBag.svg" alt="empty-shopping-bag" />
@@ -317,7 +336,9 @@
           <img src="/images/GuestIcon.svg" alt="user-profile-icon" />
         </a>
         <!-- Logout Button (shown if logged in) -->
-        <button class="signup-btn" id="logoutBtn" style="display: none;">Logout</button>
+        <button class="signup-btn" id="logoutBtn" style="display: none">
+          Logout
+        </button>
       </div>
     </nav>
 
@@ -367,12 +388,46 @@
     <!-- FOOTER -->
     <footer>
       <div class="f-format">
+        <div class="f-list">
+          <div class="f-nav">
+            <h4>Navigation</h4>
+            <div>
+              <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li>
+                  <a href="../non members/non-member-page.html">Pricing</a>
+                </li>
+                <li>
+                  <a href="./non members/contact-support.html">Contact</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="f-logo">
+            <img src="../images/TC_Logos-01.png" alt="Footer Logo" />
+          </div>
+        </div>
+        <hr />
         <div class="authors">
           <h4>Authors:</h4>
-          <p>Tai Rose (SID: 2108618)</p>
-          <p>Malcom Going (SID: 2372291)</p>
-          <p>Alessandro La Mendola (SID: 2158059)</p>
-          <p>Yusuf Kose (SID: 2415327)</p>
+          <ul>
+            <li>
+              <a href="https://github.com/mgoing"
+                >Malcom Going (SID: 2372291)</a
+              >
+            </li>
+            <li>
+              <a href="https://github.com/AlessandroLaMendola"
+                >Alessandro La Mendola (SID: 2158059)</a
+              >
+            </li>
+            <li>
+              <a href="https://github.com/yusufkose-aru"
+                >Yusuf Kose (SID: 2415327)</a
+              >
+            </li>
+          </ul>
         </div>
       </div>
     </footer>
@@ -410,7 +465,7 @@
           try {
             const response = await fetch("/logout", {
               method: "POST",
-              credentials: "include"
+              credentials: "include",
             });
             if (response.ok) {
               localStorage.clear();

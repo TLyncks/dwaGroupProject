@@ -83,7 +83,7 @@
         min-width: 160px;
         border-radius: 8px;
         margin-top: 0.5rem;
-        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         padding: 0.75rem 0;
         transform: translateY(-10px);
         transition: opacity 0.2s ease, transform 0.2s ease;
@@ -123,7 +123,7 @@
         background: white;
         padding: 3rem;
         border-radius: 15px;
-        box-shadow: 0px 6px 15px rgba(0,0,0,0.15);
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
         text-align: center;
         border-top: 6px solid #d0021b;
       }
@@ -157,14 +157,14 @@
         background: white;
         padding: 1.5rem;
         border-radius: 12px;
-        box-shadow: 0px 4px 10px rgba(0,0,0,0.12);
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.12);
         border-left: 6px solid #d0021b;
         transition: 0.3s ease-in-out;
         position: relative;
       }
       .form-group:hover {
         transform: translateY(-2px);
-        box-shadow: 0px 8px 15px rgba(0,0,0,0.2);
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
       }
       .form-group label {
         font-size: 1.1rem;
@@ -195,7 +195,7 @@
       .form-group textarea:focus,
       .form-group select:focus {
         background: white;
-        box-shadow: 0px 4px 10px rgba(208,2,27,0.2);
+        box-shadow: 0px 4px 10px rgba(208, 2, 27, 0.2);
       }
       .submit-container {
         text-align: center;
@@ -215,7 +215,7 @@
       .submit-container button:hover {
         background: #a00015;
         transform: translateY(-3px);
-        box-shadow: 0px 6px 12px rgba(208,2,27,0.3);
+        box-shadow: 0px 6px 12px rgba(208, 2, 27, 0.3);
       }
       /* ========== FOOTER ========== */
       footer {
@@ -285,7 +285,10 @@
     <!-- HEADER -->
     <nav class="navbar">
       <div class="nav-header">
-        <img src="/images/TC_Logos-01.png" alt="Together Culture Cambridge Logo" />
+        <img
+          src="/images/TC_Logos-01.png"
+          alt="Together Culture Cambridge Logo"
+        />
       </div>
       <div class="nav-links">
         <ul>
@@ -293,10 +296,22 @@
           <li class="dropdown">
             <a href="#">Memberships</a>
             <ul class="dropdown-menu">
-              <li><a href="/non members/community-membership.html">Community</a></li>
-              <li><a href="/non members/key-access-membership.html">Key Access</a></li>
-              <li><a href="/non members/creative-workspace-membership.html">Creative Workspace</a></li>
-              <li><a href="/non members/non-member-page.html">Compare all Memberships</a></li>
+              <li>
+                <a href="/non members/community-membership.html">Community</a>
+              </li>
+              <li>
+                <a href="/non members/key-access-membership.html">Key Access</a>
+              </li>
+              <li>
+                <a href="/non members/creative-workspace-membership.html"
+                  >Creative Workspace</a
+                >
+              </li>
+              <li>
+                <a href="/non members/non-member-page.html"
+                  >Compare all Memberships</a
+                >
+              </li>
             </ul>
           </li>
           <li><a href="/non members/events.html">Events</a></li>
@@ -305,7 +320,11 @@
       </div>
       <div class="usr-panel">
         <!-- Dynamic header elements -->
-        <button class="signup-btn" id="joinNowBtn" onclick="location.href='/non members/registration.html?tab=signup'">
+        <button
+          class="signup-btn"
+          id="joinNowBtn"
+          onclick="location.href='/non members/registration.html?tab=signup'"
+        >
           Join Now
         </button>
         <img src="/images/EmptyBag.svg" alt="empty-shopping-bag" />
@@ -314,7 +333,9 @@
           <img src="/images/GuestIcon.svg" alt="user-profile-icon" />
         </a>
         <!-- Logout Button (shown if logged in) -->
-        <button class="signup-btn" id="logoutBtn" style="display: none;">Logout</button>
+        <button class="signup-btn" id="logoutBtn" style="display: none">
+          Logout
+        </button>
       </div>
     </nav>
 
@@ -329,19 +350,37 @@
           <div class="form-row">
             <div class="form-group">
               <label for="firstName">Name</label>
-              <input type="text" id="firstName" name="firstName" placeholder="Enter your name" required />
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                placeholder="Enter your name"
+                required
+              />
             </div>
             <div class="form-group">
               <label for="lastName">Surname</label>
-              <input type="text" id="lastName" name="lastName" placeholder="Enter your surname" required />
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                placeholder="Enter your surname"
+                required
+              />
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="Enter your email" required />
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+              />
             </div>
             <div class="form-group">
               <label for="phone">Phone number</label>
-            
+
               <input
                 type="text"
                 id="phone"
@@ -368,19 +407,38 @@
             </div>
             <div class="form-group">
               <label for="reason">Why?</label>
-              <textarea id="reason" name="reason" placeholder="Explain why you need this membership..." required></textarea>
+              <textarea
+                id="reason"
+                name="reason"
+                placeholder="Explain why you need this membership..."
+                required
+              ></textarea>
             </div>
             <div class="form-group">
-              <label for="participated">Have you ever participated in cultural events?</label>
-              <textarea id="participated" name="participated" placeholder="Type here..." required></textarea>
+              <label for="participated"
+                >Have you ever participated in cultural events?</label
+              >
+              <textarea
+                id="participated"
+                name="participated"
+                placeholder="Type here..."
+                required
+              ></textarea>
             </div>
             <div class="form-group">
               <label for="heardAbout">How did you hear about us?</label>
-              <textarea id="heardAbout" name="heardAbout" placeholder="Type here..." required></textarea>
+              <textarea
+                id="heardAbout"
+                name="heardAbout"
+                placeholder="Type here..."
+                required
+              ></textarea>
             </div>
           </div>
           <div class="submit-container">
-            <button type="submit" id="submitApplication">Submit Application</button>
+            <button type="submit" id="submitApplication">
+              Submit Application
+            </button>
           </div>
         </form>
       </div>
@@ -389,84 +447,133 @@
     <!-- FOOTER -->
     <footer>
       <div class="f-format">
+        <div class="f-list">
+          <div class="f-nav">
+            <h4>Navigation</h4>
+            <div>
+              <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li>
+                  <a href="../non members/non-member-page.html">Pricing</a>
+                </li>
+                <li>
+                  <a href="./non members/contact-support.html">Contact</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="f-logo">
+            <img src="../images/TC_Logos-01.png" alt="Footer Logo" />
+          </div>
+        </div>
+        <hr />
         <div class="authors">
           <h4>Authors:</h4>
-          <p>Tai Rose (SID: 2108618)</p>
-          <p>Malcom Going (SID: 2372291)</p>
-          <p>Alessandro La Mendola (SID: 2158059)</p>
-          <p>Yusuf Kose (SID: 2415327)</p>
+          <ul>
+            <li>
+              <a href="https://github.com/mgoing"
+                >Malcom Going (SID: 2372291)</a
+              >
+            </li>
+            <li>
+              <a href="https://github.com/AlessandroLaMendola"
+                >Alessandro La Mendola (SID: 2158059)</a
+              >
+            </li>
+            <li>
+              <a href="https://github.com/yusufkose-aru"
+                >Yusuf Kose (SID: 2415327)</a
+              >
+            </li>
+          </ul>
         </div>
       </div>
     </footer>
 
     <!-- JavaScript for form submission handling -->
     <script>
-      document.getElementById("applicationForm").addEventListener("submit", async function(event) {
-        event.preventDefault(); // Prevent default form submission
+      document
+        .getElementById("applicationForm")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault(); // Prevent default form submission
 
-        // Collect the form values by ID
-        const firstName = document.getElementById("firstName").value.trim();
-        const lastName = document.getElementById("lastName").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const phone = document.getElementById("phone").value.trim();
-        const membershipType = document.getElementById("membershipType").value;
-        const reason = document.getElementById("reason").value.trim();
-        const participated = document.getElementById("participated").value.trim();
-        const heardAbout = document.getElementById("heardAbout").value.trim();
+          // Collect the form values by ID
+          const firstName = document.getElementById("firstName").value.trim();
+          const lastName = document.getElementById("lastName").value.trim();
+          const email = document.getElementById("email").value.trim();
+          const phone = document.getElementById("phone").value.trim();
+          const membershipType =
+            document.getElementById("membershipType").value;
+          const reason = document.getElementById("reason").value.trim();
+          const participated = document
+            .getElementById("participated")
+            .value.trim();
+          const heardAbout = document.getElementById("heardAbout").value.trim();
 
-        // Basic field validation
-        if (!firstName || !lastName || !email || !phone || !membershipType || !reason || !participated || !heardAbout) {
-          alert("Please fill in all the fields.");
-          return;
-        }
-
-        // Validate phone number contains only digits (extra precaution)
-        const phoneRegex = /^\d+$/;
-        if (!phoneRegex.test(phone)) {
-          alert("Insert a correct user number.");
-          return;
-        }
-
-        try {
-          
-          const response = await fetch("http://127.0.0.1:5000/apply", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              firstName,
-              lastName,
-              email,
-              phone,
-              membershipType,
-              reason,
-              participated,
-              heardAbout
-            })
-          });
-
-          const data = await response.text();
-          if (response.ok) {
-            alert("Application submitted successfully!");
-            // Redirect after submission; 
-            window.location.href = "/index.html";
-          } else if (response.status === 409) {
-            // If the server returns a conflict status, it indicates the user already has an account
-            alert("Submission failed: User already has an account.");
-          } else {
-            alert("Submission failed: " + data);
+          // Basic field validation
+          if (
+            !firstName ||
+            !lastName ||
+            !email ||
+            !phone ||
+            !membershipType ||
+            !reason ||
+            !participated ||
+            !heardAbout
+          ) {
+            alert("Please fill in all the fields.");
+            return;
           }
-        } catch (error) {
-          alert("Error: Could not connect to the server.");
-          console.error("Error:", error);
-        }
-      });
+
+          // Validate phone number contains only digits (extra precaution)
+          const phoneRegex = /^\d+$/;
+          if (!phoneRegex.test(phone)) {
+            alert("Insert a correct user number.");
+            return;
+          }
+
+          try {
+            const response = await fetch("http://127.0.0.1:5000/apply", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                firstName,
+                lastName,
+                email,
+                phone,
+                membershipType,
+                reason,
+                participated,
+                heardAbout,
+              }),
+            });
+
+            const data = await response.text();
+            if (response.ok) {
+              alert("Application submitted successfully!");
+              // Redirect after submission;
+              window.location.href = "/index.html";
+            } else if (response.status === 409) {
+              // If the server returns a conflict status, it indicates the user already has an account
+              alert("Submission failed: User already has an account.");
+            } else {
+              alert("Submission failed: " + data);
+            }
+          } catch (error) {
+            alert("Error: Could not connect to the server.");
+            console.error("Error:", error);
+          }
+        });
     </script>
 
     <!-- SESSION LOGIC SCRIPT -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         // Debug: log that the session script is running
-        console.log("Session logic script running on Membership Application Form page");
+        console.log(
+          "Session logic script running on Membership Application Form page"
+        );
 
         // Elements in the header
         const joinNowBtn = document.getElementById("joinNowBtn");
@@ -487,12 +594,16 @@
           joinNowBtn.style.display = "none";
           logoutBtn.style.display = "inline-block";
           userIconLink.href = "/Members/UserDashboard.html";
-          console.log("User is logged in: updating header to show logout and dashboard link.");
+          console.log(
+            "User is logged in: updating header to show logout and dashboard link."
+          );
         } else {
           joinNowBtn.style.display = "inline-block";
           logoutBtn.style.display = "none";
           userIconLink.href = "/non members/registration.html?tab=login";
-          console.log("User is NOT logged in: updating header to show join now and login link.");
+          console.log(
+            "User is NOT logged in: updating header to show join now and login link."
+          );
         }
 
         // Logout logic
@@ -501,7 +612,7 @@
           try {
             const response = await fetch("/logout", {
               method: "POST",
-              credentials: "include"
+              credentials: "include",
             });
             if (response.ok) {
               localStorage.clear();
