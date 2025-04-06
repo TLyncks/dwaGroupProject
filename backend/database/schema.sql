@@ -175,12 +175,12 @@ CREATE TABLE IF NOT EXISTS `membership_application` (
   `participated` TEXT NULL DEFAULT NULL,
   `heard_about` TEXT NULL DEFAULT NULL,
   `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` ENUM('Approved', 'Denied', 'Waiting') NOT NULL DEFAULT 'Waiting',
   PRIMARY KEY (`id`),
   UNIQUE INDEX `email` (`email` ASC) VISIBLE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
-
 
 -- -----------------------------------------------------
 -- Table `support_request`

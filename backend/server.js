@@ -51,6 +51,7 @@ app.use(
 // ====== ROUTES ======
 const eventRoutes = require('./admin/routes/eventRoutes.js');
 const memberRoutes = require('./admin/routes/memberRoutes.js');
+const membershipApplicationRoutes = require('./admin/routes/membershipApplicationRoutes.js');
 const userRoutes = require('./non members/Routes/registrationRoute.js');
 const authRoute = require('./non members/Routes/authRoute.js');
 const supportRoute = require('./non members/Routes/SupportRoute.js');
@@ -62,6 +63,7 @@ app.use('/events', eventRoutes);
 app.use('/', authRoute);
 app.use('/member', memberRoutesThis);
 app.use('/member-admin', memberRoutes);
+app.use('/membershipApplication', membershipApplicationRoutes);
 app.use('/', supportRoute);
 
 // ====== /apply Route ======
