@@ -661,7 +661,7 @@
      
       window.addEventListener("DOMContentLoaded", async () => {
         try {
-          //console.log(backendURL); //TODO for debugging
+         
           const response = await fetch(`${backendURL}/events`); //what is this calling? Changing (`${backendURL}/api/events`) to (`${backendURL}/events`) as this is not a route i can find and throws error during testing
           if (!response.ok) {
             throw new Error("Failed to fetch events");

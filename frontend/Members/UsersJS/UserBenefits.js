@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   
     // 3
-    const benefit3Btn = document.querySelector("#benefit3 .btn.btn-primary");
+    const benefit3Btn = document.querySelector("benefit3Btn");
     if (benefit3Btn) {
       benefit3Btn.addEventListener("click", function() {
         if (!localStorage.getItem("benefit3Claimed")) {
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   
     // for number 4
-    const benefit4Btn = document.querySelector("#benefit4 .btn.btn-primary");
+    const benefit4Btn = document.querySelector("benefit4Btn");
     if (benefit4Btn) {
       benefit4Btn.addEventListener("click", function() {
         if (!localStorage.getItem("benefit4Claimed")) {
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   
     // Bnumber 5
-    const benefit5Btn = document.querySelector("#benefit5 .btn.btn-primary");
+    const benefit5Btn = document.querySelector("benefit5Btn");
     if (benefit5Btn) {
       benefit5Btn.addEventListener("click", function() {
         const membershipType = localStorage.getItem("membershipType") || "Community Member";
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   
     // this is benefit 6
-    const benefit6Btn = document.querySelector("#benefit6 .btn.btn-primary");
+    const benefit6Btn = document.querySelector("benefit6Btn");
     if (benefit6Btn) {
       benefit6Btn.addEventListener("click", function() {
         if (!localStorage.getItem("benefit6Claimed")) {
