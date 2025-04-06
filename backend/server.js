@@ -4,8 +4,8 @@ const cors = require('cors');
 const session = require('express-session');
 const path = require('path');
 
-// 1) Import the pool from the database configuration
-const { pool } = require('./config/database.js'); 
+// 1) Import the pool from your database configuration
+const { pool } = require('./config/database.js'); // <-- adjust path if needed
 
 const app = express();
 
@@ -33,7 +33,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static('./backend/uploads'));
 app.use(express.static(path.join(__dirname, '../frontend')));
 
-
+// ====== SESSION SETUP ======
 app.use(
   session({
     secret: process.env.SESSION_SECRET || 'yourSecretKey',
@@ -46,6 +46,7 @@ app.use(
 // ====== ROUTES ======
 const eventRoutes = require('./admin/routes/eventRoutes.js');
 const memberRoutes = require('./admin/routes/memberRoutes.js');
+const membershipApplicationRoutes = require('./admin/routes/membershipApplicationRoutes.js');
 const userRoutes = require('./non members/Routes/registrationRoute.js');
 const authRoute = require('./non members/Routes/authRoute.js');
 const supportRoute = require('./non members/Routes/SupportRoute.js');
@@ -57,6 +58,7 @@ app.use('/events', eventRoutes);
 app.use('/', authRoute);
 app.use('/member', memberRoutesThis);
 app.use('/member-admin', memberRoutes);
+app.use('/membershipApplication', membershipApplicationRoutes);
 app.use('/', supportRoute);
 
 // ====== /apply Route ======
@@ -75,7 +77,7 @@ app.post('/apply', async (req, res) => {
 
     // 1) Check for existing application with the same email
     const [existingRows] = await pool.query(
-      'SELECT * FROM membership_applications WHERE email = ?',
+      'SELECT * FROM membership_application WHERE email = ?',
       [email]
     );
     if (existingRows.length > 0) {
@@ -86,7 +88,7 @@ app.post('/apply', async (req, res) => {
 
     // 2) Insert the new application
     const [result] = await pool.query(
-      `INSERT INTO membership_applications
+      `INSERT INTO membership_application
        (first_name, last_name, email, phone, membership_type, reason, participated, heard_about, created_at)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())`,
       [firstName, lastName, email, phone, membershipType, reason, participated, heardAbout]
