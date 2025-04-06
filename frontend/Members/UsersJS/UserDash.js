@@ -26,49 +26,50 @@ async function fetchUserProfile() {
 
 
 
-function displayUserProfile(userData) {
-  
-  const profileElement = document.getElementById('userProfileThis'); 
-  if (profileElement) {
-    profileElement.innerHTML = `
-      <div id="userProfileImage">
-        <img src="UserDashPhotos/defaultIcon.jpg" alt="User Profile">
-      </div>
-      <div class="profile-info">
-        <div class="contact-info">
-          <p class="email">${userData.email}</p>
-          <p class="member-id">ID: ${userData.ID}</p>
+  function displayUserProfile(userData) {
+    
+    const profileElement = document.getElementById('userProfileThis'); 
+    if (profileElement) {
+      profileElement.innerHTML = `
+        <div id="userProfileImage">
+          <img src="UserDashPhotos/defaultIcon.jpg" alt="User Profile">
         </div>
-        <div class="welcome-name">
-          <span class="welcome-text">Welcome</span>
-          <span class="user-name">${userData.fullName}</span>
+        <div class="profile-info">
+          <div class="contact-info">
+            <p class="email">${userData.email}</p>
+            <p class="member-id">ID: ${userData.ID}</p>
+          </div>
+          <div class="welcome-name">
+            <span class="welcome-text">Welcome</span>
+            <span class="user-name">${userData.fullName}</span>
+          </div>
         </div>
-      </div>
-      <div class="profile-settings">
-        <a href= "./Settings.html" class="btn btn-primary">Settings</a>
-      </div>
-    `;
-     Swal.fire({
-      icon: 'info',
-      title: `Welcome, ${userData.fullName}!`,
-      html: `<div style="text-align: left;">
-                <p><strong>Email:</strong> ${userData.email}</p>
-                <p><strong>Member ID:</strong> ${userData.ID}</p>
-                <p><strong>If this is your first time logging in, your current default password is "password" and needs to be changed.</strong></p>
-              </div>`,
-      timer: 5000,
-      timerProgressBar: true,
-      showConfirmButton: false,
-      backdrop: 'rgba(0,0,123,0.4)'
-    });
-  } else {
-    console.error("Profile element not found.");
+        <div class="profile-settings">
+          <a href= "./Settings.html" class="btn btn-primary">Settings</a>
+        </div>
+      `;
+       Swal.fire({
+        icon: 'info',
+        title: `Welcome, ${userData.fullName}!`,
+        html: `<div style="text-align: left;">
+                  <p><strong>Email:</strong> ${userData.email}</p>
+                  <p><strong>Member ID:</strong> ${userData.ID}</p>
+                  <p><strong>If this is your first time logging in, your current default password is "password" and needs to be changed.</strong></p>
+                </div>`,
+        timer: 5000,
+        timerProgressBar: true,
+        showConfirmButton: false,
+        backdrop: 'rgba(0,0,123,0.4)'
+      });
+    } else {
+      console.error("Profile element not found.");
+    }
   }
-}
-
-
-document.addEventListener("DOMContentLoaded", function() {
-  fetchUserProfile();
   
-});
-
+  
+  document.addEventListener("DOMContentLoaded", function() {
+    fetchUserProfile();
+    
+  });
+  
+  
