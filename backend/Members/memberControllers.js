@@ -214,4 +214,3 @@ const updateUserProfile = async (req, res) => {
 
 
   module.exports = { getUserProfile, updateUserProfile, updateUserPassword, getUserProfileForDash, updateBenefitProgress, getBenefitData };
-

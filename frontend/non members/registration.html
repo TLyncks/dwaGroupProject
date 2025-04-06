@@ -460,9 +460,10 @@
           const data = await response.json();
           if (response.ok) {
             localStorage.setItem("loggedIn", "true");
-            localStorage.setItem("userId", data.userId);
-            localStorage.setItem("id", data.id);
-
+            localStorage.setItem("userId", data.userId); // baseuser memberID field
+            localStorage.setItem("id", data.id); //baseuser id field
+            localStorage.getItem("id");
+            localStorage.setItem("userRole", data.role); // baseuser role field
             // Check if admin
             if (data.role === "admin") {
               localStorage.setItem("userRole", "admin");
