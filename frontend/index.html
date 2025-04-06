@@ -13,7 +13,8 @@
         box-sizing: border-box;
         font-family: Arial, sans-serif;
       }
-      html, body {
+      html,
+      body {
         height: 100%;
       }
       body {
@@ -277,7 +278,10 @@
     <nav class="navbar">
       <header class="nav-header">
         <div class="nav-image">
-          <img src="./images/TC_Logos-01.png" alt="Together Culture Cambridge Logo" />
+          <img
+            src="./images/TC_Logos-01.png"
+            alt="Together Culture Cambridge Logo"
+          />
         </div>
       </header>
       <div class="nav-links">
@@ -286,10 +290,24 @@
           <li class="dropdown">
             <a href="#">Memberships</a>
             <ul class="dropdown-menu">
-              <li><a href="./non members/community-membership.html">Community</a></li>
-              <li><a href="./non members/key-access-membership.html">Key Access</a></li>
-              <li><a href="./non members/creative-workspace-membership.html">Creative Workspace</a></li>
-              <li><a href="./non members/non-member-page.html">Compare all Memberships</a></li>
+              <li>
+                <a href="./non members/community-membership.html">Community</a>
+              </li>
+              <li>
+                <a href="./non members/key-access-membership.html"
+                  >Key Access</a
+                >
+              </li>
+              <li>
+                <a href="./non members/creative-workspace-membership.html"
+                  >Creative Workspace</a
+                >
+              </li>
+              <li>
+                <a href="./non members/non-member-page.html"
+                  >Compare all Memberships</a
+                >
+              </li>
             </ul>
           </li>
           <li><a href="./non members/events.html">Events</a></li>
@@ -298,21 +316,39 @@
       </div>
       <!-- Updated user panel with session login/logout logic -->
       <div class="usr-panel">
-        <button class="signup-btn" id="joinNowBtn" onclick="location.href='./non members/registration.html?tab=signup'">Join Now</button>
+        <button
+          class="signup-btn"
+          id="joinNowBtn"
+          onclick="location.href='./non members/registration.html?tab=signup'"
+        >
+          Join Now
+        </button>
         <img src="./images/EmptyBag.svg" alt="empty-shopping-bag" />
         <a href="./non members/registration.html?tab=login" id="userIconLink">
           <img src="./images/GuestIcon.svg" alt="guest-profile-icon" />
         </a>
-        <button class="signup-btn" id="logoutBtn" style="display: none;">Logout</button>
+        <button class="signup-btn" id="logoutBtn" style="display: none">
+          Logout
+        </button>
       </div>
     </nav>
     <!-- ========== MAIN CONTENT ========== -->
     <main>
       <!-- Video Banner with Updated Heading -->
       <div class="lp-banner">
-        <video src="./images/cambridge_students_walking.mp4" loading="lazy" autoplay muted loop></video>
+        <video
+          src="./images/cambridge_students_walking.mp4"
+          loading="lazy"
+          autoplay
+          muted
+          loop
+        ></video>
         <div class="content">
-          <img src="./images/PLACEHOLDER.svg" loading="lazy" alt="Banner Graphic" />
+          <img
+            src="./images/PLACEHOLDER.svg"
+            loading="lazy"
+            alt="Banner Graphic"
+          />
           <h1>Experience Creativity &amp; Culture</h1>
         </div>
       </div>
@@ -321,14 +357,33 @@
         <!-- Company Information Section -->
         <section class="company-info">
           <h2>About Together Culture</h2>
-          <p>Together Culture is a dynamic community dedicated to celebrating and promoting the rich tapestry of arts and cultural expression in Cambridge. We foster creativity, inclusivity, and dialogue through a diverse range of events, workshops, and collaborative projects.</p>
-          <p>Our platform connects artists, performers, and cultural enthusiasts, offering transformative experiences that inspire and engage. Whether you are exploring innovative art forms or seeking networking opportunities, Together Culture is your gateway to a vibrant cultural scene.</p>
-          <p>Learn more about our mission and upcoming events on our <a href="https://www.togetherculture.com/" target="_blank">official website</a>.</p>
+          <p>
+            Together Culture is a dynamic community dedicated to celebrating and
+            promoting the rich tapestry of arts and cultural expression in
+            Cambridge. We foster creativity, inclusivity, and dialogue through a
+            diverse range of events, workshops, and collaborative projects.
+          </p>
+          <p>
+            Our platform connects artists, performers, and cultural enthusiasts,
+            offering transformative experiences that inspire and engage. Whether
+            you are exploring innovative art forms or seeking networking
+            opportunities, Together Culture is your gateway to a vibrant
+            cultural scene.
+          </p>
+          <p>
+            Learn more about our mission and upcoming events on our
+            <a href="https://www.togetherculture.com/" target="_blank"
+              >official website</a
+            >.
+          </p>
         </section>
         <!-- Services Section with Card Layout -->
         <section class="services-info">
           <h2>Our Services &amp; Offerings</h2>
-          <p>Join us and discover how shared creative experiences can transform communities.</p>
+          <p>
+            Join us and discover how shared creative experiences can transform
+            communities.
+          </p>
           <div class="services-grid">
             <div class="service-card">
               <h3>Engaging Events</h3>
@@ -396,7 +451,8 @@
     <script src="js/main.js"></script>
     <script>
       // ================== BACKEND URL LOGIC ==================
-      const backendURL = window.location.port === '5000' ? '' : 'http://127.0.0.1:5000';
+      const backendURL =
+        window.location.port === "5000" ? "" : "http://127.0.0.1:5000";
 
       // Session Login/Logout Logic (same as events.html)
       const logoutBtn = document.getElementById("logoutBtn");
@@ -420,8 +476,8 @@
       logoutBtn.addEventListener("click", async () => {
         try {
           const response = await fetch(`${backendURL}/logout`, {
-            method: 'POST',
-            credentials: 'include'
+            method: "POST",
+            credentials: "include",
           });
           if (response.ok) {
             localStorage.removeItem("loggedIn");
