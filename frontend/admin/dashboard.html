@@ -178,6 +178,27 @@
           })
         }
       }
+
+      logoutBtn.addEventListener('click', async () => {
+        try {
+          const response = await fetch(`${backendURL}/logout`, {
+            method: 'POST',
+            credentials: 'include' // Ensures session cookie is sent
+          })
+          if (response.ok) {
+            localStorage.removeItem('loggedIn')
+            localStorage.removeItem('userId')
+            localStorage.removeItem('userRole')
+            localStorage.removeItem('id')
+            // Optionally redirect or reload
+            window.location.href = '/non members/registration.html?tab=login'
+          } else {
+            alert('Logout failed.')
+          }
+        } catch (error) {
+          console.error('Error logging out:', error)
+        }
+      })
     </script>
   </body>
 </html>

@@ -297,12 +297,12 @@
       setData()
 
       function isOnlyNumbers(text) {
-        return /^[0-9]+$/.test(text);
+        return /^[0-9]+$/.test(text)
       }
 
       $('#add-event-form').submit(function (e) {
         e.preventDefault()
-        if(isOnlyNumbers($('#title').val())){
+        if (isOnlyNumbers($('#title').val())) {
           alert('Event Name cannot be only numbers')
           return
         }
@@ -360,6 +360,7 @@
             localStorage.removeItem('loggedIn')
             localStorage.removeItem('userId')
             localStorage.removeItem('userRole')
+            localStorage.removeItem('id')
             // Optionally redirect or reload
             window.location.href = '/non members/registration.html?tab=login'
           } else {
