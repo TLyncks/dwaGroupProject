@@ -436,6 +436,7 @@
               credentials: "include"
             });
             if (response.ok) {
+              localStorage.clear();
               localStorage.removeItem("loggedIn");
               alert("Logged out successfully!");
               // Redirect to login page after logout

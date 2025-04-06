@@ -15,7 +15,9 @@
 <!--Only having title for the photos and then on hover, the text appears -->
 <style>
 
-
+body{
+    background: linear-gradient(to top, rgb(248, 119, 136), white); 
+}
 
 
 
@@ -125,7 +127,7 @@
        
         <li><a href="UserDashboard.html">Dashboard</a></li>
         <li><a href="UserDigitalContent.html">Digital Content</a></li>
-        <li><a href="Calendar.html">Calendar</a></li>
+        <li><a href="../non members/events.html">Calendar</a></li>
         <li><a href="UserChat.html">Chat</a></li>
         <li><a href="/non members/contact-support.html">Contact Us</a></li>
         <li><a href="Settings.html">Settings</a></li>
@@ -144,8 +146,8 @@
         <img src="/images/GuestIcon.svg" alt="user-profile-icon" />
       </a>
   
-      <!-- Logout button (hidden if not logged in) --> 
-      <button class="signup-btn" id="logoutBtn" style="display: none;">Logout</button>
+      <!-- Logout button (hidden if not logged in) style="display: none;" --> 
+      <button class="signup-btn" id="logoutBtn" >Logout</button>
     </div>
   </nav>
 
@@ -183,7 +185,7 @@
                                     <div id="vendorBenefit" class="hover-content">
                                         <p class="semi-transparent-bg">We've partnered with vendors in our community that align with our mission to bring great deals! Use your member ID at the register! Enter membership number to claim:</p>
                                         <input type="text" id="vendorMembershipInput" placeholder="Membership Number">
-                                        <button class="btn btn-primary" id="vendorClaimBtn" onclick="handleButtonClick('benefit2', 1, 'btn2')">Claim</button>
+                                        <button class="btn btn-primary" id="vendorClaimBtn">Claim</button>
                                         <p id="vendorError" style="color: red; display: none;">Incorrect membership number. Please try again.</p>
                                     </div>
                                 <!-- ------------- -->

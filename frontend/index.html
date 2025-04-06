@@ -119,6 +119,7 @@
       }
       .lp-banner {
         position: relative;
+        margin-bottom: 170px; /* Adjust this value based on your design */
       }
       .lp-banner video {
         width: 100%;
@@ -344,11 +345,11 @@
           loop
         ></video>
         <div class="content">
-          <img
-            src="./images/PLACEHOLDER.svg"
+         <!-- <img
+            src="./images/TC_Logos-01.png"
             loading="lazy"
             alt="Banner Graphic"
-          />
+          /> -->
           <h1>Experience Creativity &amp; Culture</h1>
         </div>
       </div>
@@ -443,7 +444,7 @@
             </ul>
           </div>
           <div class="f-logo">
-            <img src="./images/PLACEHOLDER.svg" alt="Placeholder Logo" />
+            <img src="./images/TC_Logos-01.png" alt="Placeholder Logo" />
           </div>
         </div>
       </div>
@@ -480,8 +481,8 @@
             credentials: "include",
           });
           if (response.ok) {
-            localStorage.removeItem("loggedIn");
-            localStorage.removeItem("userId");
+            localStorage.clear();
+           
             alert("Logged out successfully!");
             window.location.href = "/non members/registration.html?tab=login";
           } else {
