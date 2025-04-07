@@ -55,7 +55,7 @@ async function fetchUserProfile() {
         html: `<div style="text-align: left;">
                   <p><strong>Email:</strong> ${userData.email}</p>
                   <p><strong>Member ID:</strong> ${userData.ID}</p>
-                  <p><strong>If this is your first time logging in, your current default password is "password" and needs to be changed.</strong></p>
+                  
                 </div>`,
         timer: 5000,
         timerProgressBar: true,
