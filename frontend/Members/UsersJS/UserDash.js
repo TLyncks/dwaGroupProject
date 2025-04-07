@@ -38,6 +38,7 @@ async function fetchUserProfile() {
           <div class="contact-info">
             <p class="email">${userData.email}</p>
             <p class="member-id">ID: ${userData.ID}</p>
+            <p class="membership-type">Membership: ${userData.Membership}</p>
           </div>
           <div class="welcome-name">
             <span class="welcome-text">Welcome</span>
