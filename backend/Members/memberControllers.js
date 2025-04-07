@@ -56,7 +56,8 @@ const getUserProfileForDash = async (req, res) => {
     res.json({                              //TODO adjust depending on data taken from mysql
       fullName: user.UserName,
       email: user.userEmail,
-      ID : user.memberID, /*
+      ID : user.memberID,
+      Membership: user.membershipType, /*
       id: 1,
  
   UserAddress: '123 Main St, Example City',
