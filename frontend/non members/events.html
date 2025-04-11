@@ -704,10 +704,10 @@
           if (!userId) {
             alert("Please log in to join the event.");
             return;
-          }
-
-          
+          }     
  THIS WAS CONFLICTING. I COMMENTED IT OUT INCASE THIS CAUSES ERRORS */
+
+
           const response = await fetch(`${backendURL}/events/${eventId}/join`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },

@@ -47,6 +47,7 @@ async function fetchUserProfile() {
         </div>
         <div class="profile-settings">
           <a href= "./Settings.html" class="btn btn-primary">Settings</a>
+          
         </div>
       `;
        Swal.fire({

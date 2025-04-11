@@ -101,6 +101,11 @@ exports.createEventAttendee = async (req, res) => {
     const sql = 'INSERT INTO eventattendees(event_id, user_id) VALUES (?, ?)';
     console.log(sql, eventId, userId);
     const [result] = await db.pool.query(sql, [eventId, userId]);
+
+    const updateSql = 'UPDATE baseuser SET eventsAttended = eventsAttended + 1 WHERE memberID = ?'; //this was added by malcolm
+    await db.pool.query(updateSql, [userId]); //this was added by malcolm
+
+
     res.json(result);
   } catch (error) {
     console.error(error);
