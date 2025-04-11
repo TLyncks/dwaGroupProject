@@ -57,27 +57,7 @@ const getUserProfileForDash = async (req, res) => {
       fullName: user.UserName,
       email: user.userEmail,
       ID : user.memberID,
-      Membership: user.membershipType, /*
-      id: 1,
- 
-  UserAddress: '123 Main St, Example City',
-  UserPhone: '1234567890',
-  isKeyMember: 0,
-  dateAccountMade: 2025-04-03T21:11:00.000Z,
-  eventsHosted: 0,
-  eventsAttended: 0,
-  interest1: 'Technology',
-  interest2: 'Gaming',
-  interest3: 'Networking',
-  memberID: 666666,
-  timesWorkspaceReserved: 0,
-  benefitProgress: 0,
-  role: 'user',
-  membershipType: 'Community Member',
-  basedOn: 'Individual',
-  tag: 'Usually',
-  status: 'Approved'
-      */
+      Membership: user.membershipType, 
       otherInfo: user.otherInfo || 'No additional info available'
 
     });
@@ -213,5 +193,67 @@ const updateUserProfile = async (req, res) => {
 
 
 
+  const showMyEvents = async (req, res) => {
+    try {
+      const sessionMemberId = req.session.userId;
+      if (!sessionMemberId) {
+        return res.status(401).json({ error: 'Unauthorized' });
+      }
 
-  module.exports = { getUserProfile, updateUserProfile, updateUserPassword, getUserProfileForDash, updateBenefitProgress, getBenefitData };
+      const userQuery = 'SELECT id, UserName, eventsHosted, eventsAttended FROM baseuser WHERE memberID = ?';
+      const [userRows] = await db.pool.query(userQuery, [sessionMemberId]);
+      const userIncrementID = userRows[0].id;
+      console.log('userIncrementID:', userIncrementID);
+
+      if (!userRows || userRows.length === 0) {
+      return res.status(404).send('User not found.');
+    }
+    const user = userRows[0];
+
+    const hostedEventsQuery = 'SELECT event_id, user_id, title, description, image_url, start_date, end_date, end_time FROM calendar WHERE user_id = ?';
+    const [hostedEvents] = await db.pool.query(hostedEventsQuery, [userIncrementID]);
+
+    const attendedEventsQuery = `
+      SELECT c.event_id, c.title, c.description, c.image_url, c.start_date, c.end_date, c.end_time
+      FROM calendar AS c
+      INNER JOIN eventattendees AS ea ON c.event_id = ea.event_id
+      WHERE ea.user_id = ?
+    `;
+    const [attendedEvents] = await db.pool.query(attendedEventsQuery, [userIncrementID]);
+
+    const uniqueAttendedEvents = attendedEvents.filter((event, index, self) =>
+      index === self.findIndex((e) => e.event_id === event.event_id)
+    );
+    console.log('unique events:' + uniqueAttendedEvents);
+
+    return res.json({
+         user,
+         hostedEvents,
+         attendedEvents: uniqueAttendedEvents,
+       });
+    } catch (error) {
+      console.error('Error on page:', error);
+      return res.status(500).send('Server error retrieving events.');
+    }
+  };
+        
+      
+    
+
+
+    
+
+
+
+
+  
+
+//take id from baseuser that matches memberID which is req.session.userId. The id from baseuser is then used to scan event_attendees. 
+//if there is a user_id that matches the id from baseuser, it takes all the rows with the id. Then compares the event_id from the row
+//and takes the event information from calendar. The event info is displayed. A button will display as well. If the user selects
+//a sweet alert appears suggesting do you want to remove from event. If yes then the will be removed from event_attendee table for that event
+
+
+
+
+  module.exports = { getUserProfile, updateUserProfile, updateUserPassword, getUserProfileForDash, updateBenefitProgress, getBenefitData, showMyEvents };

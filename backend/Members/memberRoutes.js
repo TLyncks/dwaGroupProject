@@ -7,6 +7,7 @@ const {updateUserPassword} = require('./memberControllers')
 const {getUserProfileForDash} = require('./memberControllers')
 const {getBenefitData} = require('./memberControllers')
 const {updateBenefitProgress} = require('./memberControllers')
+const {showMyEvents} = require('./memberControllers')
 
 //MAKE SURE ANY FUNCTIONS USED BELOW ARE PROPERLY IMPORTED ABOVE!!!!
 
@@ -23,6 +24,8 @@ router.put('/settings', memberMiddleware, updateUserProfile);
 
 router.put('/update-password', memberMiddleware, updateUserPassword);
 
+router.get('showMyEvents', memberMiddleware, showMyEvents);
+
 
 
 router.get('/benefitProgress', memberMiddleware, getBenefitData);
@@ -30,6 +33,6 @@ router.get('/benefitProgress', memberMiddleware, getBenefitData);
 
 router.post('/save-benefitProgress', memberMiddleware, updateBenefitProgress);
 
-//router.get()
+router.get('/My-Events', memberMiddleware, showMyEvents);
 
 module.exports = router;  
